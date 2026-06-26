@@ -28,10 +28,18 @@
     all: [],
     filtered: [],
     category: 'all',
+    keyword: null,   // 'apple-picking' or null
     stateFilter: 'all',
-    origin: null, // {lat, lng} when searching by ZIP
+    origin: null,
     rendered: 0,
   };
+
+  function matchesKeyword(item) {
+    if (state.keyword !== 'apple-picking') return true;
+    if (item.category === 'Orchard') return true;
+    var text = (item.name + ' ' + (item.review || '')).toLowerCase();
+    return text.includes('apple') && (text.includes('pick') || text.includes('orchard') || text.includes('u-pick') || text.includes('u pick'));
+  }
 
   var map, clusterGroup, originMarker;
   var markersById = {};
@@ -149,7 +157,11 @@
   // ---------- listings ----------
   function applyFilters() {
     var list = state.all.filter(function (item) {
-      if (state.category !== 'all' && item.category !== state.category) return false;
+      if (state.keyword === 'apple-picking') {
+        if (!matchesKeyword(item)) return false;
+      } else if (state.category !== 'all') {
+        if (item.category !== state.category) return false;
+      }
       if (state.stateFilter !== 'all' && item.state !== state.stateFilter) return false;
       return true;
     });
@@ -275,7 +287,14 @@
         c.classList.remove('active');
       });
       btn.classList.add('active');
-      state.category = btn.getAttribute('data-cat');
+      var cat = btn.getAttribute('data-cat');
+      if (cat === 'apple-picking') {
+        state.keyword = 'apple-picking';
+        state.category = 'all';
+      } else {
+        state.keyword = null;
+        state.category = cat;
+      }
       applyFilters();
     });
 
@@ -395,8 +414,26 @@
     }
   }
 
+  function applyPageDefaultFilter() {
+    var defaultFilter = el.filters.getAttribute('data-default-filter');
+    if (!defaultFilter) return;
+    var chip = el.filters.querySelector('[data-cat="' + defaultFilter + '"]');
+    if (chip) {
+      Array.prototype.forEach.call(el.filters.children, function (c) { c.classList.remove('active'); });
+      chip.classList.add('active');
+    }
+    if (defaultFilter === 'apple-picking') {
+      state.keyword = 'apple-picking';
+      state.category = 'all';
+    } else {
+      state.keyword = null;
+      state.category = defaultFilter;
+    }
+  }
+
   initMap();
   bindEvents();
+  applyPageDefaultFilter();
   initViewToggle();
   window.addEventListener('resize', initViewToggle);
 
