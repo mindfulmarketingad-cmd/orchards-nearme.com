@@ -39,7 +39,6 @@
   var el = {
     cards: document.getElementById('cards'),
     count: document.getElementById('resultsCount'),
-    loadMore: document.getElementById('loadMore'),
     filters: document.getElementById('filters'),
     stateSelect: document.getElementById('stateSelect'),
     searchForm: document.getElementById('searchForm'),
@@ -222,15 +221,13 @@
 
   function renderMore() {
     var slice = state.filtered.slice(state.rendered, state.rendered + PAGE_SIZE);
-    var html = slice.map(cardHtml).join('');
     if (state.rendered === 0 && slice.length === 0) {
       el.cards.innerHTML =
         '<div class="no-results">No locations match your search. Try a different ZIP code or filter.</div>';
     } else {
-      el.cards.insertAdjacentHTML('beforeend', html);
+      el.cards.insertAdjacentHTML('beforeend', slice.map(cardHtml).join(''));
     }
     state.rendered += slice.length;
-    el.loadMore.hidden = state.rendered >= state.filtered.length;
   }
 
   // ---------- ZIP search ----------
@@ -309,7 +306,14 @@
       applyFilters();
     });
 
-    el.loadMore.addEventListener('click', renderMore);
+    // Infinite scroll — load next page as user nears bottom of card list
+    el.cards.addEventListener('scroll', function () {
+      if (state.rendered >= state.filtered.length) return;
+      var threshold = 200;
+      if (el.cards.scrollTop + el.cards.clientHeight >= el.cards.scrollHeight - threshold) {
+        renderMore();
+      }
+    });
 
     el.cards.addEventListener('click', function (e) {
       var card = e.target.closest('.card');
