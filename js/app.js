@@ -7,6 +7,23 @@
 
   var PAGE_SIZE = 24;
 
+  // Fruit icons (tiny SVGs for markers)
+  var iconSvgs = {
+    Orchard: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 32"%3E%3Ccircle cx="12" cy="10" r="8" fill="%23e23b3b"/%3E%3Cpath d="M12 18 L12 28" stroke="%238b6f47" stroke-width="2"/%3E%3C/svg%3E',
+    Farm: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 32"%3E%3Ccircle cx="12" cy="10" r="8" fill="%232e8b3d"/%3E%3Cpath d="M12 18 L12 28" stroke="%238b6f47" stroke-width="2"/%3E%3C/svg%3E',
+    'Garden Center': 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 32"%3E%3Ccircle cx="12" cy="10" r="8" fill="%236b4f2a"/%3E%3Cpath d="M12 18 L12 28" stroke="%238b6f47" stroke-width="2"/%3E%3C/svg%3E'
+  };
+
+  function getMarkerIcon(category) {
+    var svg = iconSvgs[category] || iconSvgs.Farm;
+    return L.icon({
+      iconUrl: svg,
+      iconSize: [24, 32],
+      iconAnchor: [12, 32],
+      popupAnchor: [0, -32]
+    });
+  }
+
   var state = {
     all: [],
     filtered: [],
@@ -28,6 +45,9 @@
     searchForm: document.getElementById('searchForm'),
     zipInput: document.getElementById('zipInput'),
     resetBtn: document.getElementById('resetBtn'),
+    viewToggle: document.getElementById('viewToggle'),
+    resultsCol: document.querySelector('.results-col'),
+    mapCol: document.querySelector('.map-col'),
   };
 
   document.getElementById('year').textContent = new Date().getFullYear();
@@ -102,7 +122,7 @@
     markersById = {};
     var markers = [];
     state.filtered.forEach(function (item) {
-      var m = L.marker([item.lat, item.lng]);
+      var m = L.marker([item.lat, item.lng], { icon: getMarkerIcon(item.category) });
       m.bindPopup(popupHtml(item));
       markersById[item.id] = m;
       markers.push(m);
@@ -301,11 +321,43 @@
         clusterGroup.zoomToShowLayer(marker, function () {
           marker.openPopup();
         });
-        if (window.innerWidth <= 900) {
+        if (window.innerWidth <= 768) {
+          switchView('map');
+        } else if (window.innerWidth <= 900) {
           document.getElementById('map').scrollIntoView({ behavior: 'smooth' });
         }
       }
     });
+
+    // Mobile view toggle
+    if (el.viewToggle) {
+      el.viewToggle.addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-view]');
+        if (!btn) return;
+        switchView(btn.getAttribute('data-view'));
+      });
+    }
+  }
+
+  function switchView(view) {
+    var isMobile = window.innerWidth <= 768;
+    if (!isMobile) return;
+
+    var mapBtn = document.querySelector('[data-view="map"]');
+    var listBtn = document.querySelector('[data-view="list"]');
+
+    if (view === 'map') {
+      el.mapCol.classList.remove('hidden');
+      el.resultsCol.classList.add('hidden');
+      if (mapBtn) mapBtn.classList.add('active');
+      if (listBtn) listBtn.classList.remove('active');
+      setTimeout(function () { map.invalidateSize(); }, 100);
+    } else {
+      el.mapCol.classList.add('hidden');
+      el.resultsCol.classList.remove('hidden');
+      if (mapBtn) mapBtn.classList.remove('active');
+      if (listBtn) listBtn.classList.add('active');
+    }
   }
 
   function populateStates() {
@@ -327,8 +379,22 @@
   }
 
   // ---------- init ----------
+  function initViewToggle() {
+    var isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+      el.mapCol.classList.add('hidden');
+      el.resultsCol.classList.remove('hidden');
+      var mapBtn = document.querySelector('[data-view="map"]');
+      var listBtn = document.querySelector('[data-view="list"]');
+      if (mapBtn) mapBtn.classList.remove('active');
+      if (listBtn) listBtn.classList.add('active');
+    }
+  }
+
   initMap();
   bindEvents();
+  initViewToggle();
+  window.addEventListener('resize', initViewToggle);
 
   fetch('/data/listings.json')
     .then(function (r) {
