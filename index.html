@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orchards Near Me | Apple &amp; Cherry Picking Locations</title>
+  <meta name="description" content="Find orchards near me across all 50 states. Discover apple and cherry picking locations, pick-your-own farms, and garden centers on an interactive map. Search by ZIP code." />
+  <link rel="canonical" href="https://orchards-nearme.com/" />
+  <meta property="og:title" content="Orchards Near Me | Apple &amp; Cherry Picking Locations" />
+  <meta property="og:description" content="Find orchards, pick-your-own farms, and garden centers near you on an interactive map of all 50 states." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://orchards-nearme.com/" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/vendor/leaflet/leaflet.css" />
+  <link rel="stylesheet" href="/vendor/leaflet/MarkerCluster.css" />
+  <link rel="stylesheet" href="/vendor/leaflet/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="/" aria-label="Orchards Near Me home">
+        <span class="leaf" aria-hidden="true"></span>
+        Orchards Near Me
+      </a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="/" class="active">Home</a>
+        <a href="/about.html">About</a>
+        <a href="#find" class="cta">Find</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Find Orchards Near Me</h1>
+        <p>Explore apple and cherry picking spots, pick-your-own farms, and garden centers across all 50 states. Plant the seed, pick the fun, make it a family day out.</p>
+        <div class="pills">
+          <span>Orchards</span>
+          <span>Pick-Your-Own Farms</span>
+          <span>Garden Centers</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="controls" id="find">
+      <div class="container">
+        <form class="search-form" id="searchForm">
+          <input type="text" id="zipInput" inputmode="numeric" placeholder="Enter your ZIP code (e.g. 05346)" aria-label="Search by ZIP code" />
+          <button type="submit" class="btn">Search</button>
+          <button type="button" class="btn btn-ghost" id="resetBtn">Reset</button>
+        </form>
+        <div class="filters" id="filters" role="group" aria-label="Filter by type">
+          <button class="filter-chip active" data-cat="all">All</button>
+          <button class="filter-chip" data-cat="Orchard">Orchards</button>
+          <button class="filter-chip" data-cat="Farm">Farms</button>
+          <button class="filter-chip" data-cat="Garden Center">Garden Centers</button>
+        </div>
+        <select class="state-select" id="stateSelect" aria-label="Filter by state">
+          <option value="all">All states</option>
+        </select>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="find-layout">
+        <div class="results-col">
+          <div class="results-head">
+            <h2>Listings</h2>
+            <span class="results-count" id="resultsCount">Loading...</span>
+          </div>
+          <div class="cards" id="cards"></div>
+          <button class="btn btn-ghost load-more" id="loadMore" hidden>Show more listings</button>
+        </div>
+        <div class="map-col">
+          <div id="map" role="application" aria-label="Map of orchards, farms and garden centers"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul class="footer-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/disclaimer.html">Disclaimer</a></li>
+        <li><a href="/privacy.html">Privacy</a></li>
+        <li><a href="/terms.html">Terms</a></li>
+        <li><a href="/sitemap.html">Sitemap</a></li>
+      </ul>
+      <div class="footer-bottom">
+        <p>Orchards Near Me &mdash; your friendly guide to orchards, farms, and garden centers across the USA. &copy; <span id="year"></span> orchards-nearme.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/vendor/leaflet/leaflet.js"></script>
+  <script src="/vendor/leaflet/leaflet.markercluster.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
