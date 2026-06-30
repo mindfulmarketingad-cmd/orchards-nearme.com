@@ -35,10 +35,15 @@
   };
 
   function matchesKeyword(item) {
-    if (state.keyword !== 'apple-picking') return true;
-    if (item.category === 'Orchard') return true;
     var text = (item.name + ' ' + (item.review || '')).toLowerCase();
-    return text.includes('apple') && (text.includes('pick') || text.includes('orchard') || text.includes('u-pick') || text.includes('u pick'));
+    if (state.keyword === 'apple-picking') {
+      if (item.category === 'Orchard') return true;
+      return text.includes('apple') && (text.includes('pick') || text.includes('orchard') || text.includes('u-pick') || text.includes('u pick'));
+    }
+    if (state.keyword === 'cherry-picking') {
+      return text.includes('cherry');
+    }
+    return true;
   }
 
   var map, clusterGroup, originMarker;
@@ -157,7 +162,7 @@
   // ---------- listings ----------
   function applyFilters() {
     var list = state.all.filter(function (item) {
-      if (state.keyword === 'apple-picking') {
+      if (state.keyword) {
         if (!matchesKeyword(item)) return false;
       } else if (state.category !== 'all') {
         if (item.category !== state.category) return false;
@@ -288,8 +293,8 @@
       });
       btn.classList.add('active');
       var cat = btn.getAttribute('data-cat');
-      if (cat === 'apple-picking') {
-        state.keyword = 'apple-picking';
+      if (cat === 'apple-picking' || cat === 'cherry-picking') {
+        state.keyword = cat;
         state.category = 'all';
       } else {
         state.keyword = null;
@@ -416,18 +421,23 @@
 
   function applyPageDefaultFilter() {
     var defaultFilter = el.filters.getAttribute('data-default-filter');
-    if (!defaultFilter) return;
-    var chip = el.filters.querySelector('[data-cat="' + defaultFilter + '"]');
-    if (chip) {
-      Array.prototype.forEach.call(el.filters.children, function (c) { c.classList.remove('active'); });
-      chip.classList.add('active');
+    if (defaultFilter) {
+      var chip = el.filters.querySelector('[data-cat="' + defaultFilter + '"]');
+      if (chip) {
+        Array.prototype.forEach.call(el.filters.children, function (c) { c.classList.remove('active'); });
+        chip.classList.add('active');
+      }
+      if (defaultFilter === 'apple-picking' || defaultFilter === 'cherry-picking') {
+        state.keyword = defaultFilter;
+        state.category = 'all';
+      } else {
+        state.keyword = null;
+        state.category = defaultFilter;
+      }
     }
-    if (defaultFilter === 'apple-picking') {
-      state.keyword = 'apple-picking';
-      state.category = 'all';
-    } else {
-      state.keyword = null;
-      state.category = defaultFilter;
+    var defaultState = el.filters.getAttribute('data-default-state');
+    if (defaultState) {
+      state.stateFilter = defaultState;
     }
   }
 
@@ -446,6 +456,9 @@
         return i.lat && i.lng;
       });
       populateStates();
+      if (state.stateFilter !== 'all') {
+        el.stateSelect.value = state.stateFilter;
+      }
       applyFilters();
     })
     .catch(function () {
