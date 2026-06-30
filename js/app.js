@@ -35,25 +35,79 @@
     rendered: 0,
   };
 
+  // Single source of truth for keyword filters, reused by the filter logic
+  // (matchesKeyword) and by the "fit chips" shown on cards/popups.
+  var KEYWORD_DEFS = [
+    {
+      slug: 'apple-picking',
+      label: 'Apple Picking',
+      icon: '🍎',
+      test: function (item, text) {
+        if (item.category === 'Orchard') return true;
+        return text.includes('apple') && (text.includes('pick') || text.includes('orchard') || text.includes('u-pick') || text.includes('u pick'));
+      }
+    },
+    {
+      slug: 'cherry-picking',
+      label: 'Cherry Picking',
+      icon: '🍒',
+      test: function (item, text) { return text.includes('cherry'); }
+    },
+    {
+      slug: 'berry-picking',
+      label: 'Berry Picking',
+      icon: '🍓',
+      test: function (item, text) {
+        return text.includes('berry') || text.includes('berries') || text.includes('strawberr') || text.includes('blueberr') || text.includes('raspberr') || text.includes('blackberr');
+      }
+    },
+    {
+      slug: 'peach-picking',
+      label: 'Peach Picking',
+      icon: '🍑',
+      test: function (item, text) { return text.includes('peach'); }
+    },
+    {
+      slug: 'blueberry-picking',
+      label: 'Blueberry Picking',
+      icon: '🫐',
+      test: function (item, text) { return text.includes('blueberr'); }
+    }
+  ];
+
+  function findKeywordDef(slug) {
+    for (var i = 0; i < KEYWORD_DEFS.length; i++) {
+      if (KEYWORD_DEFS[i].slug === slug) return KEYWORD_DEFS[i];
+    }
+    return null;
+  }
+
   function matchesKeyword(item) {
+    var def = findKeywordDef(state.keyword);
+    if (!def) return true;
     var text = (item.name + ' ' + (item.review || '')).toLowerCase();
-    if (state.keyword === 'apple-picking') {
-      if (item.category === 'Orchard') return true;
-      return text.includes('apple') && (text.includes('pick') || text.includes('orchard') || text.includes('u-pick') || text.includes('u pick'));
+    return def.test(item, text);
+  }
+
+  function getFitChips(item) {
+    var text = (item.name + ' ' + (item.review || '')).toLowerCase();
+    var matches = [];
+    for (var i = 0; i < KEYWORD_DEFS.length; i++) {
+      if (KEYWORD_DEFS[i].test(item, text)) matches.push(KEYWORD_DEFS[i]);
     }
-    if (state.keyword === 'cherry-picking') {
-      return text.includes('cherry');
+    return matches;
+  }
+
+  function fitChipsHtml(item) {
+    var chips = getFitChips(item);
+    if (!chips.length) return '';
+    var html = '<div class="fit-chips">';
+    for (var i = 0; i < chips.length; i++) {
+      var c = chips[i];
+      html += '<span class="fit-chip fit-chip--' + c.slug.replace('-picking', '') + '">' + c.icon + ' ' + escapeHtml(c.label) + '</span>';
     }
-    if (state.keyword === 'berry-picking') {
-      return text.includes('berry') || text.includes('berries') || text.includes('strawberr') || text.includes('blueberr') || text.includes('raspberr') || text.includes('blackberr');
-    }
-    if (state.keyword === 'peach-picking') {
-      return text.includes('peach');
-    }
-    if (state.keyword === 'blueberry-picking') {
-      return text.includes('blueberr');
-    }
-    return true;
+    html += '</div>';
+    return html;
   }
 
   var map, clusterGroup, originMarker, zipAreaCircle;
@@ -133,6 +187,7 @@
       '<div class="map-popup">' +
       '<h4>' + escapeHtml(item.name) + '</h4>' +
       '<p class="pop-meta">' + escapeHtml(meta) + '</p>' +
+      fitChipsHtml(item) +
       rating +
       '<p class="pop-meta">' + escapeHtml(item.address) + '</p>' +
       site +
@@ -246,6 +301,7 @@
       '<p class="card-meta">' + ratingLine + '</p></div>' +
       '<span class="badge ' + catClass(item.category) + '">' + escapeHtml(item.category) + '</span>' +
       '</div>' +
+      fitChipsHtml(item) +
       '<p class="card-address">' + escapeHtml(meta) + dist + '<br>' + escapeHtml(item.address) + '</p>' +
       review +
       '<div class="card-links">' +

@@ -515,6 +515,60 @@ h3 {
   color: #fff;
 }
 
+/* ---------- Fit chips (which pick-your-own keyword filters a listing matches) ---------- */
+.fit-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 0 0 6px;
+}
+
+.fit-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1.4;
+  padding: 1px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+.fit-chip--apple {
+  background: #fdeaea;
+  color: var(--red-dark);
+  border-color: #f3b9b9;
+}
+
+.fit-chip--cherry {
+  background: #fbe9ef;
+  color: #9c1f4a;
+  border-color: #f0bdd1;
+}
+
+.fit-chip--berry {
+  background: #f1eaf8;
+  color: #5b3a99;
+  border-color: #d6c5ec;
+}
+
+.fit-chip--peach {
+  background: #fdf0e4;
+  color: #c5601a;
+  border-color: #f2d2ad;
+}
+
+.fit-chip--blueberry {
+  background: #e8edfa;
+  color: #2c4ea3;
+  border-color: #bfcdef;
+}
+
+.map-popup .fit-chips {
+  margin: 4px 0;
+}
 
 .no-results {
   background: var(--white);
