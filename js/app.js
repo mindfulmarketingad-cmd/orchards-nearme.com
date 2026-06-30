@@ -6,6 +6,7 @@
   'use strict';
 
   var PAGE_SIZE = 24;
+  var CLAIM_LISTING_URL = 'https://buy.stripe.com/3cIfZi96i6cM7My9pIfrW09';
 
   // Fruit icons (tiny SVGs for markers)
   var iconSvgs = {
@@ -232,6 +233,8 @@
     var website = item.website
       ? '<a href="' + escapeHtml(item.website) + '" target="_blank" rel="noopener nofollow">Website</a>'
       : '';
+    var claimListing =
+      '<a class="card-claim" href="' + CLAIM_LISTING_URL + '" target="_blank" rel="noopener">Claim your listing</a>';
 
     return (
       '<article class="card" data-id="' + escapeHtml(item.id) + '">' +
@@ -245,6 +248,7 @@
       '<div class="card-links">' +
       '<a href="' + directions + '" target="_blank" rel="noopener nofollow">Get directions</a>' +
       website +
+      claimListing +
       '</div>' +
       '</article>'
     );

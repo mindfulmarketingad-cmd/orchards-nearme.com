@@ -492,9 +492,27 @@ h3 {
 
 .card-links {
   display: flex;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 12px;
   font-weight: 700;
   font-size: 0.8rem;
+}
+
+.card-claim {
+  margin-left: auto;
+  background: var(--green-light);
+  color: var(--green-dark);
+  border: 1px solid var(--green);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.74rem;
+  white-space: nowrap;
+}
+
+.card-claim:hover {
+  background: var(--green);
+  color: #fff;
 }
 
 
