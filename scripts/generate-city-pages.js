@@ -66,6 +66,7 @@ const allCategories = [
   { slug: 'cherry-picking', label: 'Cherry Picking', urlPrefix: 'cherry-picking-orchards-near-', nearMeUrl: '/find/cherry-picking-orchards-near-me', nearMeLabel: 'Cherry Picking Orchards Near Me' },
   { slug: 'berry-picking', label: 'Berry Picking', urlPrefix: 'berry-picking-orchards-near-', nearMeUrl: '/find/berry-picking-orchards-near-me', nearMeLabel: 'Berry Picking Orchards Near Me' },
   { slug: 'peach-picking', label: 'Peach Picking', urlPrefix: 'peach-picking-orchards-near-', nearMeUrl: '/find/peach-picking-orchards-near-me', nearMeLabel: 'Peach Picking Orchards Near Me' },
+  { slug: 'blueberry-picking', label: 'Blueberry Picking', urlPrefix: 'blueberry-picking-orchards-near-', nearMeUrl: '/find/blueberry-picking-orchards-near-me', nearMeLabel: 'Blueberry Picking Orchards Near Me' },
   { slug: 'garden-centers', label: 'Garden Centers', urlPrefix: 'garden-centers-near-', nearMeUrl: '/find/garden-centers-near-me', nearMeLabel: 'Garden Centers Near Me' },
 ];
 
@@ -869,6 +870,200 @@ const peachSeason = {
   Wyoming: 'No commercial peach season given the state\'s high elevation and severe winters.',
 };
 
+const blueberryIntros = {
+  Montgomery: 'South Alabama\'s sandy, acidic soil is well suited to rabbiteye blueberries, and the farms clustered around Baldwin and Covington counties, a couple hours south of Montgomery, anchor the state\'s commercial blueberry industry. Several of these family operations open rows to pick-your-own visitors each early summer.',
+  Juneau: 'Alaska has no commercial blueberry farms, but wild blueberries grow abundantly in the muskeg and mountainsides around Juneau, and foraging them each August is a genuine local tradition rather than a substitute for pick-your-own. Locals know exactly which south-facing slopes ripen first.',
+  Phoenix: 'Phoenix\'s desert heat and alkaline soil are about as far from a blueberry bush\'s preferred conditions as it gets, and the state has essentially no commercial blueberry production. Specialty growers occasionally experiment with container-grown southern highbush varieties, but pick-your-own blueberry farms aren\'t part of the local landscape.',
+  'Little Rock': 'Arkansas\'s blueberry farms are a modest but genuine part of the state\'s small-fruit agriculture, with highbush varieties grown on family farms within a couple hours of Little Rock. The sandy soils of the Gulf Coastal Plain in the southern part of the state suit the bushes especially well.',
+  Sacramento: 'California\'s blueberry industry has grown quickly in recent decades, with southern highbush varieties bred specifically for the state\'s mild winters now grown throughout the Central Valley not far from Sacramento. The early harvest here often beats most of the rest of the country to market.',
+  Denver: 'Colorado\'s high altitude and alkaline soil make commercial blueberry growing genuinely difficult, and the handful of growers near Denver who do attempt it amend their soil heavily and choose the hardiest available cultivars. It remains a small-scale, dedicated pursuit rather than an industry.',
+  Hartford: 'Connecticut\'s blueberry farms are small, family-run operations scattered around the Hartford area, growing highbush varieties that thrive in the state\'s acidic, glacially-formed soils. Many of the same farms have grown blueberries for multiple generations.',
+  Dover: 'Delaware\'s sandy coastal-plain soil, part of the same Delmarva Peninsula geology that supports the region\'s berry industry, gives blueberry growers near Dover a real advantage, and several pick-your-own farms have built loyal followings each July.',
+  Tallahassee: 'Florida\'s blueberry growers, using southern highbush and rabbiteye varieties bred for the state\'s mild winters, produce some of the earliest blueberries in the entire country, often ready by April. Several u-pick farms within range of Tallahassee take advantage of North Florida\'s slightly cooler winters compared to the rest of the state.',
+  Atlanta: 'Georgia is one of the nation\'s leading blueberry producers, with rabbiteye varieties thriving in the sandy soils of South Georgia, and the orchards within a couple hours of Atlanta produce some of the most celebrated blueberries in the Southeast each June.',
+  Honolulu: 'Hawaii\'s tropical climate doesn\'t provide the winter chill blueberry bushes need to set fruit properly, so the islands have no commercial blueberry industry. Blueberries sold in Honolulu are shipped in from the mainland.',
+  Boise: 'Idaho\'s blueberry farms are a small but real part of the Treasure Valley\'s fruit-growing scene near Boise, with highbush varieties grown alongside the region\'s better-known apples and cherries thanks to irrigation and long summer days.',
+  Springfield: 'Illinois blueberry growers cluster in the sandier soils of the southern part of the state, with several u-pick farms within range of Springfield that have amended their ground specifically to lower the pH blueberry bushes demand.',
+  Indianapolis: 'Indiana\'s blueberry farms, concentrated in the sandier soils of the northern and southern parts of the state, supply pick-your-own visitors near Indianapolis each July with highbush varieties grown on family farms.',
+  'Des Moines': 'Iowa\'s heavy clay soils are a poor natural fit for blueberries, which demand acidic, well-drained ground, so the small number of growers near Des Moines who succeed do so through serious soil amendment rather than favorable starting conditions.',
+  Topeka: 'Kansas blueberry farms are uncommon but real, with growers near Topeka amending the state\'s alkaline soil to grow highbush varieties on a small scale for local pick-your-own visitors each summer.',
+  Frankfort: 'Kentucky\'s blueberry farms are small, family-run operations in the Bluegrass region around Frankfort, growing highbush varieties that benefit from the area\'s moderate climate and reasonably acidic soil.',
+  'Baton Rouge': 'Louisiana\'s blueberry farms, using rabbiteye varieties suited to the Gulf South\'s heat and humidity, are concentrated in the hill country north of Baton Rouge, where the soil drains better than the flatter land closer to the Mississippi River.',
+  Augusta: 'Maine is the wild blueberry capital of the country, and while the famous lowbush barrens of Washington and Hancock counties are well northeast of Augusta, the state\'s wild blueberry culture runs deep enough that foraging and small-scale picking opportunities exist throughout central Maine each August.',
+  Annapolis: 'Maryland\'s Eastern Shore, part of the same Delmarva Peninsula peach-and-berry belt that runs through Delaware, supports a number of highbush blueberry farms within range of Annapolis that have grown the fruit commercially for generations.',
+  Boston: 'Massachusetts blends commercial highbush blueberry farms with a strong wild lowbush tradition in the interior parts of the state, and several pick-your-own operations within driving distance of Boston offer both varieties each summer.',
+  Lansing: 'Michigan is one of the top blueberry-producing states in the country, and the famous fruit belt along Lake Michigan\'s eastern shore, a few hours from Lansing, has built its identity around the crop for over a century thanks to the lake\'s moderating effect on the climate.',
+  'Saint Paul': 'Minnesota\'s cold winters limit blueberry growing to the hardiest cultivars, and the small number of farms near the Twin Cities that grow them do so on carefully amended, acidic soil suited to the bushes\' specific needs.',
+  Jackson: 'Mississippi has a genuine rabbiteye blueberry industry concentrated in the southern part of the state, and several u-pick farms within range of Jackson have grown the crop commercially for decades, taking advantage of the region\'s long, warm growing season.',
+  'Jefferson City': 'Missouri\'s blueberry farms cluster in the Ozark foothills, where better drainage and slightly more acidic soil give the bushes an edge, and several u-pick operations within range of Jefferson City have built a loyal local following.',
+  Helena: 'Montana\'s harsh winters and alkaline soil make commercial blueberry growing impractical, and the state has essentially no pick-your-own blueberry industry. Wild huckleberries, a different plant entirely, fill the role blueberries play farther east.',
+  Lincoln: 'Nebraska blueberry farms are uncommon, with the handful of growers near Lincoln who succeed relying on heavily amended soil and cold-hardy cultivars to overcome the state\'s naturally alkaline ground.',
+  'Carson City': 'Nevada\'s arid climate and alkaline soil make blueberry growing a real challenge, and the small number of growers in irrigated valleys near Carson City who attempt it do so on a limited, carefully managed scale.',
+  Concord: 'New Hampshire\'s acidic, glacially-formed soil actually suits blueberries well, and a number of small highbush farms near Concord, along with wild lowbush patches in the hills, give visitors real pick-your-own options each summer.',
+  Trenton: 'New Jersey is the blueberry capital of the country in cultural terms, and Hammonton, in the Pine Barrens not far from Trenton, has called itself the Blueberry Capital of the World for generations thanks to the area\'s enormous cultivated highbush production.',
+  'Santa Fe': 'New Mexico\'s high desert climate and alkaline soil make blueberries a difficult crop, and commercial production near Santa Fe is essentially nonexistent, with what little growing happens limited to heavily amended raised beds.',
+  Albany: 'New York\'s blueberry farms, particularly in the Hudson Valley near Albany, take advantage of the region\'s acidic soils and river-moderated climate, offering pick-your-own highbush blueberries each July before the valley\'s apple season begins.',
+  Raleigh: 'North Carolina is a major blueberry-producing state, with highbush varieties grown extensively in the southeastern part of the state and additional farms within range of Raleigh that have made blueberries a significant summer crop.',
+  Bismarck: 'North Dakota\'s severe winters and alkaline soil rule out commercial blueberry farming almost entirely, and what little blueberry growing happens near Bismarck is limited to a handful of dedicated home gardeners using raised, amended beds.',
+  Columbus: 'Ohio blueberry farms, concentrated in the sandier soils of the northeastern and southern parts of the state, supply pick-your-own visitors within range of Columbus each July with highbush varieties grown on family farms.',
+  'Oklahoma City': 'Oklahoma\'s blueberry farms are a small but growing part of the state\'s fruit industry, with highbush varieties grown in the eastern part of the state where rainfall and soil acidity are more favorable than the drier west, within range of Oklahoma City.',
+  Salem: 'Oregon is one of the country\'s top blueberry-producing states, and the Willamette Valley around Salem, with its mild, wet climate and naturally acidic soil, is the heart of that production, supplying both fresh-market and processed blueberries nationwide.',
+  Harrisburg: 'Pennsylvania\'s blueberry farms, including notable operations in the Pocono region and scattered family farms within range of Harrisburg, take advantage of the state\'s acidic soils in forested and former-forest areas.',
+  Providence: 'Rhode Island\'s blueberry farms are small but well established, with highbush varieties grown on family farms within easy reach of Providence thanks to the state\'s naturally acidic, glacially-formed soil.',
+  Columbia: 'South Carolina has a real blueberry industry, with both highbush and rabbiteye varieties grown across the state, and several u-pick farms within range of Columbia supply visitors each June with some of the earliest blueberries in the Southeast.',
+  Pierre: 'South Dakota\'s harsh climate and alkaline soil make commercial blueberry farming impractical, and the state has essentially no pick-your-own blueberry industry near Pierre.',
+  Nashville: 'Middle Tennessee\'s blueberry farms, grown on family operations within driving distance of Nashville, take advantage of the region\'s moderate climate and reasonably acidic soil to produce a respectable highbush crop each summer.',
+  Austin: 'East Texas, with its sandier and more acidic soil than the Hill Country around Austin, is where the state\'s blueberry industry is concentrated, though a handful of growers closer to Austin amend their soil to grow the crop on a smaller scale.',
+  'Salt Lake City': 'Utah\'s alkaline soil and arid climate make blueberry growing genuinely difficult, and the small number of growers near Salt Lake City who succeed do so through heavy soil amendment and careful irrigation.',
+  Montpelier: 'Vermont\'s acidic, rocky soil suits blueberries reasonably well, and a number of small highbush farms near Montpelier, along with wild lowbush patches in the hills, give visitors real pick-your-own opportunities each summer.',
+  Richmond: 'Virginia\'s blueberry farms, found in both the Piedmont and Tidewater regions within range of Richmond, take advantage of the state\'s naturally acidic soils to grow highbush varieties commercially.',
+  Olympia: 'Washington is one of the top blueberry-producing states in the country, and while the largest operations are concentrated in Whatcom County in the northwest, the mild, wet climate around Olympia supports blueberry farming throughout western Washington.',
+  Charleston: 'West Virginia\'s mountainous terrain limits large-scale blueberry farming, but the state\'s naturally acidic soil supports a number of small highbush farms in the hills surrounding Charleston.',
+  Madison: 'Wisconsin\'s blueberry farms, smaller in scale than the state\'s famous cranberry marshes, are found on sandy, acidic soils in the central and northern parts of the state, with several u-pick operations within range of Madison.',
+  Cheyenne: 'Wyoming\'s high elevation, harsh winters, and alkaline soil make commercial blueberry farming impractical, and the state has essentially no pick-your-own blueberry industry near Cheyenne.',
+};
+
+const blueberryTips = {
+  Montgomery: 'Call ahead before driving to Baldwin or Covington counties, since rabbiteye blueberries ripen quickly in Alabama\'s early summer heat and the picking window can shift fast. Go in the cooler morning hours both for comfort and because berries hold up better off the bush before the day heats up.',
+  Juneau: 'If you want to forage wild blueberries near Juneau, ask locally about south-facing slopes, which ripen earlier than shaded areas, and bring bear awareness gear since blueberry patches are popular with wildlife too. Early to mid-August is typically the peak window.',
+  Phoenix: 'There isn\'t a realistic pick-your-own blueberry option near Phoenix, so satisfy a craving at a farmers market with fruit trucked in from California or Mexico instead. If you\'re traveling to a milder part of the state in early summer, ask about container-grown specialty farms.',
+  'Little Rock': 'Arkansas blueberry season runs through the heat of early summer, so an early morning visit is more comfortable and yields firmer berries. Call ahead, since these family farms are smaller operations than what you\'d find in major blueberry states.',
+  Sacramento: 'California\'s blueberry season starts earlier than most of the country, so check Central Valley farms beginning in April rather than waiting for a traditional summer timeline. Weekday mornings tend to have better selection before the day\'s heat sets in.',
+  Denver: 'Blueberry picking near Denver is a niche pursuit, so call ahead to confirm a farm has a crop before making the trip — amended-soil operations can have unpredictable yields. Expect a much smaller selection than in major blueberry states.',
+  Hartford: 'Connecticut\'s blueberry season is relatively short, typically peaking in July, so call ahead to small Hartford-area farms rather than assuming availability. Many of these farms have been growing blueberries for generations and are happy to talk about their methods.',
+  Dover: 'Delmarva blueberry farms near Dover peak in July; visit on a weekday morning for the best selection before weekend crowds pick through the ripest bushes. Bring a cooler, since blueberries soften in the heat faster than people expect.',
+  Tallahassee: 'Florida blueberry season starts remarkably early, often by April, so don\'t wait for a traditional summer mindset before checking local u-pick farms. North Florida\'s slightly cooler winters compared to the rest of the state give the area a real advantage.',
+  Atlanta: 'Georgia blueberry season peaks in June; call ahead since intense summer heat can accelerate ripening beyond what the calendar suggests. South Georgia farms a couple hours from Atlanta tend to have the largest commercial operations.',
+  Honolulu: 'There\'s no local blueberry picking option in Hawaii — buy fresh blueberries at a farmers market or grocery store instead, since all of it is shipped in from the mainland.',
+  Boise: 'Idaho\'s blueberry season is shorter than warmer states\', typically a few weeks in midsummer, so call Treasure Valley farms ahead of a visit. Many of the same farms growing blueberries also have cherries and apples worth asking about.',
+  Springfield: 'Southern Illinois blueberry farms tend to have more reliable crops than those further north, so it may be worth the extra drive from Springfield. Call ahead, since these are smaller operations than the Midwest\'s major apple orchards.',
+  Indianapolis: 'Indiana blueberry season typically peaks in July; call ahead to farms in the sandier soils of the northern or southern part of the state before making the drive from Indianapolis.',
+  'Des Moines': 'Iowa\'s blueberry crop is small and weather-dependent, so call ahead to confirm a farm actually has fruit before driving out — heavy clay soil makes yields less predictable than in major blueberry states.',
+  Topeka: 'Kansas blueberry farms are uncommon, so call ahead to confirm availability before making a special trip from Topeka. These tend to be smaller, soil-amended operations rather than large commercial farms.',
+  Frankfort: 'Kentucky\'s small blueberry farms sell out quickly since they don\'t produce at commercial scale, so call ahead rather than just showing up. Many of these farms are mixed operations, so ask what else is ripe.',
+  'Baton Rouge': 'Plan a trip north into Louisiana\'s hill country for the best blueberry farms, since the soil there drains better than land closer to Baton Rouge. Bring a cooler for the drive back in the Gulf South\'s summer heat and humidity.',
+  Augusta: 'For wild Maine blueberries, late July through August is the window — ask locally about foraging areas near Augusta, and consider a trip further Down East to Washington County for the full wild blueberry barren experience.',
+  Annapolis: 'Eastern Shore blueberry farms near Annapolis peak in July; cross the Bay Bridge on a weekday morning to beat both traffic and weekend crowds. These farms have grown blueberries commercially for generations.',
+  Boston: 'Ask whether a farm near Boston grows highbush, wild lowbush, or both — they ripen at slightly different times and offer different picking experiences. Late July through August covers most of the season here.',
+  Lansing: 'Michigan\'s fruit belt along Lake Michigan, a few hours from Lansing, is genuinely worth the drive during blueberry season — the lake\'s moderating effect produces some of the best blueberries in the country. Late July is typically peak season.',
+  'Saint Paul': 'Minnesota\'s blueberry crop is small and cold-hardy-cultivar dependent, so call ahead before driving out from the Twin Cities. Yields can vary considerably depending on how the winter treated the bushes.',
+  Jackson: 'Mississippi\'s rabbiteye blueberry farms in the southern part of the state peak in June; call ahead before driving from Jackson, and bring a cooler for the humid Gulf South heat.',
+  'Jefferson City': 'Ozark foothill blueberry farms near Jefferson City tend to have better drainage and more reliable crops than flatter parts of the state, so they\'re worth seeking out specifically.',
+  Helena: 'There\'s no real blueberry picking option near Helena — Montana\'s climate and soil don\'t support it. If you want a similar experience, ask locally about wild huckleberry foraging instead, which is a genuine Montana tradition.',
+  Lincoln: 'Nebraska blueberry farms are uncommon and small-scale, so call ahead before driving out from Lincoln to confirm a crop is actually available.',
+  'Carson City': 'Blueberry picking near Carson City is a niche, limited option — call ahead to confirm availability, since Nevada\'s arid climate makes for unpredictable small-scale yields.',
+  Concord: 'New Hampshire blueberry season runs through summer; ask whether a Concord-area farm has both cultivated highbush rows and wild lowbush patches, since many do and the lowbush berries ripen on a slightly different schedule.',
+  Trenton: 'Make the drive to Hammonton during peak blueberry season in late June and July — it\'s genuinely one of the best blueberry destinations in the country, and arriving early on a weekday avoids the heaviest crowds.',
+  'Santa Fe': 'Blueberry picking isn\'t realistically available near Santa Fe — New Mexico\'s alkaline soil and dry climate work against the crop. A farmers market is a more reliable way to find fresh blueberries locally.',
+  Albany: 'Hudson Valley blueberry farms near Albany peak in July, just ahead of the region\'s apple season — visit on a weekday for a quieter trip and the best selection.',
+  Raleigh: 'North Carolina blueberry season runs through June and into July; the southeastern part of the state has the largest commercial farms, though several u-pick operations exist within range of Raleigh too.',
+  Bismarck: 'There\'s essentially no commercial blueberry picking near Bismarck — North Dakota\'s winters and soil are both working against the crop. Cold-hardy apple orchards are a more realistic pick-your-own option here.',
+  Columbus: 'Ohio blueberry farms in the sandier soils of the northeast or south tend to have more reliable crops than other parts of the state — worth the extra drive from Columbus during peak season in July.',
+  'Oklahoma City': 'Eastern Oklahoma has better blueberry-growing conditions than the drier west, so farms in that direction from Oklahoma City are worth seeking out specifically during the early summer season.',
+  Salem: 'Willamette Valley blueberry farms near Salem are some of the best in the country — visit in July for peak season, and expect excellent selection given how significant Oregon\'s blueberry industry is nationally.',
+  Harrisburg: 'Pennsylvania blueberry farms, including operations in the Pocono region, peak in July; call ahead to confirm picking hours since these are generally smaller operations than the state\'s famous apple orchards.',
+  Providence: 'Rhode Island\'s compact size means most blueberry farms are a short drive from Providence — call ahead since the selection is smaller than in major blueberry states, but the quality from these family farms is excellent.',
+  Columbia: 'South Carolina blueberry season starts in June, among the earliest in the Southeast outside Florida and Georgia — visit early in the month for the best selection near Columbia.',
+  Pierre: 'There\'s no realistic blueberry picking option near Pierre — South Dakota\'s climate and soil don\'t support commercial production. Cold-hardy apple orchards are the better bet in this part of the state.',
+  Nashville: 'Middle Tennessee blueberry farms near Nashville peak in summer; call ahead to confirm availability, since these tend to be smaller family operations than the region\'s apple farms.',
+  Austin: 'East Texas has the state\'s real blueberry-growing conditions, so plan for a longer drive from Austin if you want the widest selection — though a few closer, soil-amended farms exist for a shorter trip.',
+  'Salt Lake City': 'Blueberry picking near Salt Lake City is limited — call ahead to confirm a farm actually has fruit, since Utah\'s alkaline soil makes for smaller, less predictable yields than major blueberry states.',
+  Montpelier: 'Vermont blueberry farms near Montpelier offer both cultivated highbush rows and wild lowbush patches in many cases — ask which is available, since they ripen on slightly different schedules through the summer.',
+  Richmond: 'Both the Piedmont and Tidewater regions near Richmond have blueberry farms worth checking — call ahead since availability can vary by location and week during the June-into-July season.',
+  Olympia: 'While Whatcom County in northwest Washington has the largest blueberry operations, farms closer to Olympia in western Washington\'s mild climate are also worth checking during peak season.',
+  Charleston: 'West Virginia\'s small blueberry farms in the hills around Charleston are worth calling ahead to, since they don\'t produce at the scale of flatter-land operations elsewhere in the country.',
+  Madison: 'Wisconsin blueberry farms near Madison are smaller than the state\'s famous cranberry operations — call ahead to confirm availability, typically in July, before making the drive.',
+  Cheyenne: 'There\'s no realistic blueberry picking option near Cheyenne — Wyoming\'s elevation, winters, and alkaline soil all work against the crop. Farmers markets are a more reliable source for fresh blueberries here.',
+};
+
+const blueberryRegion = {
+  'new-england': {
+    h2: 'Blueberry Picking in New England',
+    body: `New England has one of the deepest blueberry traditions in the country, blending commercial highbush farms with genuine wild lowbush blueberry patches in the hills and barrens of the interior. Maine is the undisputed center of that tradition — the wild blueberry barrens of Washington and Hancock counties make it the largest wild blueberry producer in the world — while Connecticut, Massachusetts, New Hampshire, Rhode Island, and Vermont all support smaller highbush farms suited to the region's naturally acidic, glacially-formed soil. The season typically runs from July through August, with wild and cultivated berries sometimes ripening on slightly different schedules at the same farm.`,
+  },
+  'mid-atlantic': {
+    h2: 'Mid-Atlantic Blueberry Country',
+    body: `New Jersey anchors the mid-Atlantic's blueberry identity, with Hammonton in the Pine Barrens calling itself the Blueberry Capital of the World on the strength of enormous highbush production that supplies fresh and processed berries nationwide. Delaware and Maryland's Eastern Shore share the same favorable sandy, acidic Delmarva soil, while Pennsylvania and Virginia contribute their own smaller commercial farms. The season here generally runs from late June through July, often overlapping with the region's peach harvest at the same farms.`,
+  },
+  southeast: {
+    h2: 'Southeastern Blueberry Farms',
+    body: `The Southeast is genuine blueberry country, with Georgia and North Carolina both ranking among the nation's leading producers thanks to rabbiteye and highbush varieties suited to the region's sandy, acidic soils and long growing season. South Carolina, Alabama, and Mississippi each contribute their own established industries, and Florida's southern highbush varieties, bred specifically for the state's mild winters, produce some of the earliest blueberries in the entire country, often ready by April. The harvest here stretches from spring into midsummer, one of the longest blueberry windows in the nation.`,
+  },
+  midwest: {
+    h2: 'Midwest Blueberry Picking',
+    body: `Michigan is one of the top blueberry-producing states in the country, and the fruit belt along Lake Michigan's eastern shore has built its identity around the crop for well over a century, helped enormously by the lake's moderating effect on the local climate. Illinois, Indiana, Ohio, and Wisconsin all support smaller highbush farms concentrated on the sandier, more acidic soils within their borders, while Iowa, Kansas, Minnesota, Missouri, Nebraska, and the Dakotas see only limited, soil-amended production given their generally heavier or more alkaline ground.`,
+  },
+  mountain: {
+    h2: 'Mountain West Blueberry Growing',
+    body: `True blueberry farming is genuinely difficult across the mountain west, where high elevation, alkaline soil, and harsh winters work against the crop's preference for acidic, well-drained ground. Colorado, Idaho, Montana, Nevada, New Mexico, Utah, and Wyoming each have only a small number of dedicated growers who succeed through heavy soil amendment, and several of these states see visitors turn instead to wild huckleberries — a different but beloved regional fruit — for a similar foraging experience.`,
+  },
+  'south-central': {
+    h2: 'Blueberry Picking in Texas, Oklahoma, and Louisiana',
+    body: `East Texas has the state's real blueberry country, with sandier, more acidic soil than the Hill Country supporting a genuine rabbiteye and highbush industry, while eastern Oklahoma's better rainfall and soil acidity, compared to the drier west, support a smaller but real crop. Louisiana's blueberry farms cluster in the hill country north of the Mississippi River delta, where drainage and soil conditions favor the bushes far more than the flatter land to the south.`,
+  },
+  pacific: {
+    h2: 'Pacific Coast Blueberry Country',
+    body: `Oregon and Washington both rank among the nation's top blueberry-producing states, with the Willamette Valley and the irrigated valleys of western Washington offering the mild, wet climate and naturally acidic soil blueberries thrive in. California's blueberry industry has expanded rapidly with southern highbush varieties bred for the state's mild winters, producing some of the earliest blueberries in the country, while Alaska has no commercial industry but supports a strong wild blueberry foraging culture in its coastal mountains.`,
+  },
+  southwest: {
+    h2: 'Blueberry Picking in Arizona and Hawaii',
+    body: `Arizona's desert heat and alkaline soil make commercial blueberry farming impractical, leaving the state with essentially no pick-your-own blueberry industry, while Hawaii's tropical climate lacks the winter chill blueberry bushes need to set fruit, ruling out commercial production there as well. Both states rely entirely on blueberries shipped in from elsewhere.`,
+  },
+};
+
+const blueberrySeason = {
+  Alabama: 'Late May through July, with rabbiteye varieties in Baldwin and Covington counties typically peaking in June.',
+  Alaska: 'Wild blueberries ripen from late July through August in the mountains and muskeg around Juneau.',
+  Arizona: 'No meaningful commercial blueberry season; the desert climate doesn\'t support the crop.',
+  Arkansas: 'June through July, with farms in the southern Gulf Coastal Plain typically leading the harvest.',
+  California: 'One of the earliest seasons in the country, often starting in April and running into June with southern highbush varieties.',
+  Colorado: 'A short, limited season in July for the small number of amended-soil growers near Denver.',
+  Connecticut: 'July, a relatively brief window at the state\'s small highbush farms.',
+  Delaware: 'Late June through July on the Delmarva Peninsula\'s sandy coastal-plain soil.',
+  Florida: 'As early as April for southern highbush and rabbiteye varieties, among the earliest blueberry seasons anywhere in the country.',
+  Georgia: 'May through July, with the peak typically falling in June at the state\'s major rabbiteye farms.',
+  Hawaii: 'No commercial blueberry season; the climate doesn\'t provide the winter chill the bushes require.',
+  Idaho: 'July, a relatively short window in the irrigated valleys of the Treasure Valley.',
+  Illinois: 'July, with southern Illinois farms on sandier soil typically having the most reliable crops.',
+  Indiana: 'July, with farms in the sandier soils of the northern and southern parts of the state leading the harvest.',
+  Iowa: 'A short, unpredictable window in July for the state\'s small amended-soil farms.',
+  Kansas: 'July for the limited number of growers who have amended the state\'s naturally alkaline soil.',
+  Kentucky: 'July, on a similar schedule to neighboring Appalachian states.',
+  Louisiana: 'Late May through June, with rabbiteye varieties in the northern hill country leading the harvest.',
+  Maine: 'Wild lowbush blueberries ripen from late July through August, peaking in the famous barrens of Washington and Hancock counties.',
+  Maryland: 'Late June through July on the Eastern Shore, continuing the Delmarva Peninsula\'s berry-growing tradition.',
+  Massachusetts: 'Late July through August, with cultivated highbush and wild lowbush varieties sometimes ripening on slightly different schedules.',
+  Michigan: 'Mid-July through August, peaking along the Lake Michigan fruit belt that anchors the state\'s major blueberry industry.',
+  Minnesota: 'A short window in late July for the state\'s small, cold-hardy-cultivar farms.',
+  Mississippi: 'June, with the state\'s rabbiteye blueberry farms in the south leading the harvest.',
+  Missouri: 'July, with Ozark foothill farms typically having the most reliable crops.',
+  Montana: 'No meaningful commercial blueberry season; the climate and soil work against the crop.',
+  Nebraska: 'A short, limited window in July for the state\'s small number of growers.',
+  Nevada: 'A short, limited season in July for irrigated-valley growers near Carson City.',
+  'New Hampshire': 'Summer through August, blending cultivated highbush rows with wild lowbush patches in the hills.',
+  'New Jersey': 'Late June through July, peaking at Hammonton\'s enormous highbush operations.',
+  'New Mexico': 'No meaningful commercial blueberry season given the state\'s alkaline soil and dry climate.',
+  'New York': 'July in the Hudson Valley, just ahead of the region\'s much larger apple harvest.',
+  'North Carolina': 'June into July, with the largest commercial farms in the southeastern part of the state.',
+  'North Dakota': 'No meaningful commercial blueberry season given the state\'s severe winters and alkaline soil.',
+  Ohio: 'July, with farms in the sandier soils of the northeast and south leading the harvest.',
+  Oklahoma: 'Early summer, with farms in the wetter, more acidic eastern part of the state leading the harvest.',
+  Oregon: 'July, peaking at the Willamette Valley\'s major commercial blueberry operations.',
+  Pennsylvania: 'July, including notable harvests in the Pocono region.',
+  'Rhode Island': 'July at the state\'s small but well-established highbush farms.',
+  'South Carolina': 'June, among the earliest blueberry seasons in the Southeast outside Florida and Georgia.',
+  'South Dakota': 'No meaningful commercial blueberry season given the state\'s harsh climate and alkaline soil.',
+  Tennessee: 'Summer, with Middle Tennessee farms generally following a similar schedule to their Kentucky neighbors.',
+  Texas: 'June, with East Texas\'s sandier, more acidic soil supporting the state\'s real blueberry industry.',
+  Utah: 'A short, limited season in July for the state\'s small number of amended-soil growers.',
+  Vermont: 'Summer through August, blending cultivated highbush rows with wild lowbush patches in the hills.',
+  Virginia: 'June into July, with farms in both the Piedmont and Tidewater regions.',
+  Washington: 'July through August, peaking in Whatcom County\'s major commercial operations alongside smaller farms statewide.',
+  'West Virginia': 'July, with small highbush farms scattered through the mountains.',
+  Wisconsin: 'July, smaller in scale than the state\'s famous cranberry marshes but genuine nonetheless.',
+  Wyoming: 'No meaningful commercial blueberry season given the state\'s elevation, winters, and alkaline soil.',
+};
+
 // ---------- Page generator ----------
 
 function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
@@ -882,11 +1077,11 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
   const resultsHeading = `${fruitLabel} Near ${city}, ${code}`;
   const relatedLinks = relatedLinksHtml(fruitSlug, citySlug, stateSlug, city, state);
 
-  const introsByFruit = { 'apple-picking': appleIntros, 'cherry-picking': cherryIntros, 'berry-picking': berryIntros, 'peach-picking': peachIntros };
-  const tipsByFruit = { 'apple-picking': appleTips, 'cherry-picking': cherryTips, 'berry-picking': berryTips, 'peach-picking': peachTips };
-  const regionByFruit = { 'apple-picking': appleRegion, 'cherry-picking': cherryRegion, 'berry-picking': berryRegion, 'peach-picking': peachRegion };
-  const seasonByFruit = { 'apple-picking': appleSeason, 'cherry-picking': cherrySeason, 'berry-picking': berrySeason, 'peach-picking': peachSeason };
-  const regionKeyField = { 'apple-picking': 'region', 'cherry-picking': 'cherryRegion', 'berry-picking': 'region', 'peach-picking': 'region' };
+  const introsByFruit = { 'apple-picking': appleIntros, 'cherry-picking': cherryIntros, 'berry-picking': berryIntros, 'peach-picking': peachIntros, 'blueberry-picking': blueberryIntros };
+  const tipsByFruit = { 'apple-picking': appleTips, 'cherry-picking': cherryTips, 'berry-picking': berryTips, 'peach-picking': peachTips, 'blueberry-picking': blueberryTips };
+  const regionByFruit = { 'apple-picking': appleRegion, 'cherry-picking': cherryRegion, 'berry-picking': berryRegion, 'peach-picking': peachRegion, 'blueberry-picking': blueberryRegion };
+  const seasonByFruit = { 'apple-picking': appleSeason, 'cherry-picking': cherrySeason, 'berry-picking': berrySeason, 'peach-picking': peachSeason, 'blueberry-picking': blueberrySeason };
+  const regionKeyField = { 'apple-picking': 'region', 'cherry-picking': 'cherryRegion', 'berry-picking': 'region', 'peach-picking': 'region', 'blueberry-picking': 'region' };
 
   const defaultFilter = fruitSlug;
   const capital = capitals.find(c => c.city === city);
@@ -1434,6 +1629,7 @@ const fruits = [
   { fruitSlug: 'cherry-picking', fruitLabel: 'Cherry Picking' },
   { fruitSlug: 'berry-picking', fruitLabel: 'Berry Picking' },
   { fruitSlug: 'peach-picking', fruitLabel: 'Peach Picking' },
+  { fruitSlug: 'blueberry-picking', fruitLabel: 'Blueberry Picking' },
 ];
 
 for (const fruit of fruits) {

@@ -29,7 +29,7 @@
     all: [],
     filtered: [],
     category: 'all',
-    keyword: null,   // 'apple-picking', 'cherry-picking', 'berry-picking', 'peach-picking', or null
+    keyword: null,   // 'apple-picking', 'cherry-picking', 'berry-picking', 'peach-picking', 'blueberry-picking', or null
     stateFilter: 'all',
     origin: null,
     rendered: 0,
@@ -49,6 +49,9 @@
     }
     if (state.keyword === 'peach-picking') {
       return text.includes('peach');
+    }
+    if (state.keyword === 'blueberry-picking') {
+      return text.includes('blueberr');
     }
     return true;
   }
@@ -349,7 +352,7 @@
       });
       btn.classList.add('active');
       var cat = btn.getAttribute('data-cat');
-      if (cat === 'apple-picking' || cat === 'cherry-picking' || cat === 'berry-picking' || cat === 'peach-picking') {
+      if (cat === 'apple-picking' || cat === 'cherry-picking' || cat === 'berry-picking' || cat === 'peach-picking' || cat === 'blueberry-picking') {
         state.keyword = cat;
         state.category = 'all';
       } else {
@@ -492,7 +495,7 @@
         Array.prototype.forEach.call(el.filters.children, function (c) { c.classList.remove('active'); });
         chip.classList.add('active');
       }
-      if (defaultFilter === 'apple-picking' || defaultFilter === 'cherry-picking' || defaultFilter === 'berry-picking' || defaultFilter === 'peach-picking') {
+      if (defaultFilter === 'apple-picking' || defaultFilter === 'cherry-picking' || defaultFilter === 'berry-picking' || defaultFilter === 'peach-picking' || defaultFilter === 'blueberry-picking') {
         state.keyword = defaultFilter;
         state.category = 'all';
       } else {

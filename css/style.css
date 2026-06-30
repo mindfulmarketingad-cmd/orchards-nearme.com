@@ -875,6 +875,10 @@ h3 {
   border-top-color: #e8833a;
 }
 
+.find-directory-card--blueberry {
+  border-top-color: #2c4ea3;
+}
+
 .find-directory-card--garden {
   border-top-color: var(--green);
 }
@@ -901,6 +905,10 @@ h3 {
 
 .find-directory-card--peach .find-directory-card-body h3 {
   color: #c5601a;
+}
+
+.find-directory-card--blueberry .find-directory-card-body h3 {
+  color: #2c4ea3;
 }
 
 .find-directory-card--garden .find-directory-card-body h3 {
@@ -930,6 +938,10 @@ h3 {
 
 .find-directory-card--peach .find-directory-card-cta {
   color: #c5601a;
+}
+
+.find-directory-card--blueberry .find-directory-card-cta {
+  color: #2c4ea3;
 }
 
 .find-directory-card--garden .find-directory-card-cta {
