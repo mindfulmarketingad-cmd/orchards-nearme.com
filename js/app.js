@@ -28,7 +28,7 @@
     all: [],
     filtered: [],
     category: 'all',
-    keyword: null,   // 'apple-picking' or null
+    keyword: null,   // 'apple-picking', 'cherry-picking', 'berry-picking', or null
     stateFilter: 'all',
     origin: null,
     rendered: 0,
@@ -42,6 +42,9 @@
     }
     if (state.keyword === 'cherry-picking') {
       return text.includes('cherry');
+    }
+    if (state.keyword === 'berry-picking') {
+      return text.includes('berry') || text.includes('berries') || text.includes('strawberr') || text.includes('blueberr') || text.includes('raspberr') || text.includes('blackberr');
     }
     return true;
   }
@@ -293,7 +296,7 @@
       });
       btn.classList.add('active');
       var cat = btn.getAttribute('data-cat');
-      if (cat === 'apple-picking' || cat === 'cherry-picking') {
+      if (cat === 'apple-picking' || cat === 'cherry-picking' || cat === 'berry-picking') {
         state.keyword = cat;
         state.category = 'all';
       } else {
@@ -427,7 +430,7 @@
         Array.prototype.forEach.call(el.filters.children, function (c) { c.classList.remove('active'); });
         chip.classList.add('active');
       }
-      if (defaultFilter === 'apple-picking' || defaultFilter === 'cherry-picking') {
+      if (defaultFilter === 'apple-picking' || defaultFilter === 'cherry-picking' || defaultFilter === 'berry-picking') {
         state.keyword = defaultFilter;
         state.category = 'all';
       } else {

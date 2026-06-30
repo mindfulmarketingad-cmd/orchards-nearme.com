@@ -453,6 +453,202 @@ const cherrySeason = {
   Wyoming: 'Cherry picking isn\'t practically available near Cheyenne; Colorado\'s Western Slope or Utah\'s Wasatch Front are the most accessible cherry orchard options.',
 };
 
+// ---------- Berry picking content ----------
+
+const berryIntros = {
+  'Montgomery': `Montgomery sits within reach of central Alabama's strawberry country, with the farms around Cullman and Chilton County offering pick-your-own strawberries each spring before the blueberry bushes in the same area come ripe in early summer. The two seasons back-to-back give Montgomery families two distinct reasons to head north for a berry-picking morning.`,
+  'Juneau': `Juneau's surrounding forests are full of wild berries, and while commercial pick-your-own farms are scarce in southeast Alaska, salmonberries, blueberries, and huckleberries grow abundantly along the trails and muskegs around the city. Locals treat late-summer berry foraging as a cherished ritual, with bear awareness as essential gear as a bucket.`,
+  'Phoenix': `Phoenix's desert floor isn't berry country, but the high-elevation communities around Flagstaff and Prescott, a few hours north, occasionally host small raspberry and strawberry operations that take advantage of the cooler mountain summers. A berry-picking day from Phoenix is best treated as part of a broader high-country getaway.`,
+  'Little Rock': `Little Rock is a reasonable drive from Cave City, Arkansas, long celebrated for growing some of the sweetest strawberries in the South thanks to its sandy, mineral-rich soil. Blackberry season follows in early summer across the Ozark foothills, giving central Arkansas residents a full spring-into-summer berry-picking calendar.`,
+  'Sacramento': `Sacramento sits at the edge of California's enormous strawberry industry, with u-pick strawberry fields scattered through the Central Valley and blueberry operations increasingly common in the foothills. California's growing season is long enough that berry picking near Sacramento can stretch from April through late summer depending on what's in season.`,
+  'Denver': `Denver's berry-picking options lean toward the high-altitude raspberry and currant farms tucked into the foothills west of the city, where cool nights and intense sun produce fruit with concentrated flavor. A handful of u-pick operations near Boulder and along the Front Range make for an easy half-day trip.`,
+  'Hartford': `Hartford is surrounded by Connecticut's strawberry and blueberry farms, with the Litchfield Hills and the lower Connecticut River valley both hosting well-established pick-your-own operations. Strawberries typically lead the season in June, followed by blueberries through July and August at many of the same family farms.`,
+  'Dover': `Dover sits in the heart of the Delmarva Peninsula's berry country, where the sandy coastal-plain soil is well suited to strawberries and the high-bush blueberries that thrive in Delaware and Maryland's mild, humid summers. Several Kent County farms run both seasons back to back from May through August.`,
+  'Tallahassee': `Tallahassee benefits from Florida's position as one of the nation's earliest strawberry producers, with farms in the Panhandle and nearby Georgia counties offering pick-your-own strawberries as early as March. Blueberries follow in late spring, giving the capital a genuinely early start to the national berry season.`,
+  'Atlanta': `Atlanta has excellent access to both ends of Georgia's berry calendar, with blueberry farms concentrated in the southern part of the state and a smaller but growing number of strawberry and blackberry operations in the north Georgia foothills within an hour or two of the city.`,
+  'Honolulu': `Honolulu's tropical climate doesn't support traditional berry crops, but a handful of farms on Oahu and the neighbor islands grow specialty crops like poha berries (Cape gooseberries) that offer a similar pick-your-own experience with a distinctly Hawaiian character unavailable anywhere on the mainland.`,
+  'Boise': `Boise sits within reach of Idaho's raspberry and huckleberry country, with cultivated raspberry farms scattered through the Treasure Valley and wild huckleberries found at higher elevations toward McCall and the central Idaho mountains. Huckleberry picking remains largely a foraging tradition rather than a commercial pick-your-own industry.`,
+  'Springfield': `Springfield's central Illinois farms grow strawberries and blueberries on a modest but reliable scale, with pick-your-own operations scattered through the counties surrounding the capital. Strawberry season typically runs through late May and June, with blueberries picking up as the strawberry rows wind down.`,
+  'Indianapolis': `Indianapolis has good access to Indiana's strawberry and blueberry farms, many of which operate in the same southern Indiana hill country that hosts the state's famous apple orchards. The berry season here runs from late May through August, making it a natural complement to a fall orchard visit.`,
+  'Des Moines': `Des Moines sits in a state where strawberry and raspberry farms dot the river valleys, with pick-your-own operations near the capital offering a brief but popular June strawberry season followed by raspberries through midsummer. Iowa's berry farms tend to be small, family-run operations with loyal local followings.`,
+  'Topeka': `Topeka's surrounding farms grow strawberries and blackberries that thrive in the Kansas River valley's fertile bottomland, with several pick-your-own operations welcoming visitors from late May through midsummer. Kansas blackberries in particular have a reputation for intense flavor that reflects the region's hot, sunny summers.`,
+  'Frankfort': `Frankfort is well positioned for Kentucky's blackberry and blueberry farms, many tucked into the rolling Bluegrass countryside and the hills toward eastern Kentucky. Blackberry season in June overlaps with the tail end of the region's strawberry crop, giving visitors a chance to pick two fruits in one trip.`,
+  'Baton Rouge': `Baton Rouge sits less than an hour from Ponchatoula, Louisiana, long known as the strawberry capital of the state and home to a beloved annual strawberry festival each April. Blueberry farms across the Florida Parishes extend the local berry season into early summer.`,
+  'Augusta': `Augusta is the capital of the wild Maine blueberry, one of the state's most iconic crops, and while most commercial wild blueberry barrens are harvested by machine, several pick-your-own operations near the capital let visitors rake or hand-pick their own berries each August in a tradition unique to Maine.`,
+  'Annapolis': `Annapolis has strong access to Maryland's strawberry and blueberry farms, with operations scattered across the Eastern Shore and the rolling country west of the Chesapeake Bay. Strawberry season opens in May, and blueberries carry the pick-your-own season through the heart of summer.`,
+  'Boston': `Boston is surrounded by a rich berry-picking tradition that includes strawberries and blueberries in the spring and summer and, distinctively, the cranberry bogs of southeastern Massachusetts that turn brilliant red each fall. Massachusetts remains one of the top cranberry-producing states in the country, and harvest-time bog visits are a beloved regional tradition.`,
+  'Lansing': `Lansing sits in a major blueberry-producing state, with Michigan's western counties along Lake Michigan ranking among the top blueberry regions in the country. Strawberries and raspberries round out the calendar, giving Lansing-area families a long pick-your-own berry season that runs from June into August.`,
+  'Saint Paul': `Saint Paul has good access to Minnesota's strawberry and raspberry farms, many clustered in the river valleys and lake country surrounding the Twin Cities. June strawberries give way to raspberries through midsummer, and several farms also grow cold-hardy blueberry varieties bred specifically for Minnesota's climate.`,
+  'Jackson': `Jackson is well placed for Mississippi's blueberry farms, concentrated mostly in the southern part of the state where the warm, humid climate suits rabbiteye blueberry varieties especially well. The blueberry season runs from late May through July, making it the centerpiece of central Mississippi's pick-your-own calendar.`,
+  'Jefferson City': `Jefferson City sits near Missouri's Ozark blackberry and strawberry farms, where the rocky, well-drained hillsides produce berries with notably concentrated flavor. The Ozark blackberry season in June is a regional highlight, and several farms combine it with the area's established apple-orchard tourism in fall.`,
+  'Helena': `Helena is close to Montana's huckleberry country, where the wild fruit is so beloved it has become something of a state obsession, sold in everything from jam to ice cream. True huckleberry picking remains mostly a foraging tradition in the forests around Helena and further west toward Missoula and the Flathead Valley.`,
+  'Lincoln': `Lincoln's surrounding farms grow strawberries on a modest scale, with several pick-your-own operations welcoming visitors each June across the eastern Nebraska river valleys. Berry farming here is a smaller industry than in neighboring states, but the farms that do operate tend to offer a personal, unhurried picking experience.`,
+  'Carson City': `Carson City's high-desert surroundings limit traditional berry farming, but a handful of operations in the Carson Valley and toward Lake Tahoe grow strawberries and raspberries that benefit from the intense sun and cool nights of the region. These remain small, seasonal operations worth calling ahead to confirm.`,
+  'Concord': `Concord sits in classic New England blueberry country, with wild lowbush blueberry fields and cultivated highbush varieties both well represented across central New Hampshire. Strawberry season opens the pick-your-own calendar in June, with blueberries carrying it through July and August at many of the same farms.`,
+  'Trenton': `Trenton is close to one of the most significant blueberry-growing regions in the country, with the Pine Barrens around Hammonton, New Jersey—long known as the Blueberry Capital of the World—producing a substantial share of the nation's cultivated blueberries. Strawberry farms in Hunterdon County round out the spring season.`,
+  'Santa Fe': `Santa Fe's high elevation supports a small but growing raspberry-farming community in the valleys north of the city, where cool nights and intense sunlight concentrate flavor in the fruit. Berry picking here is a niche but rewarding activity, typically running from midsummer into early fall.`,
+  'Albany': `Albany sits at the edge of the Hudson Valley's strawberry, blueberry, and raspberry farms, many of which share land with the valley's famous apple orchards. The berry season opens with strawberries in June and continues through blueberries and raspberries into August, well before the fall apple rush begins.`,
+  'Raleigh': `Raleigh has strong access to North Carolina's blueberry industry, one of the largest in the country, with farms concentrated in the southeastern part of the state as well as strawberry operations closer to the capital. The strawberry season in May is a Piedmont tradition, with blueberries following through summer.`,
+  'Bismarck': `Bismarck's surroundings include wild chokecherries and juneberries that have long been part of North Dakota's foraging and preserving traditions, alongside a small number of cultivated strawberry and raspberry farms near the capital. Berry picking here tends to be a modest, community-oriented affair rather than a large commercial industry.`,
+  'Columbus': `Columbus has good access to Ohio's strawberry, blueberry, and raspberry farms, many clustered in the counties surrounding the capital and offering a long pick-your-own season that opens in late May and continues through August. Several of these farms also run the state's well-known fall apple operations.`,
+  'Oklahoma City': `Oklahoma City sits in the state that made the blackberry its official state fruit, and pick-your-own blackberry farms across central and eastern Oklahoma draw enthusiastic crowds each June. Strawberry farms closer to the capital open the season a few weeks earlier in May.`,
+  'Salem': `Salem is at the heart of Oregon's exceptional berry country, home to the marionberry—a blackberry hybrid developed in Marion County and named for it—alongside major blueberry, raspberry, and boysenberry production throughout the Willamette Valley. Few places in the country offer the berry variety and quality found near Salem.`,
+  'Harrisburg': `Harrisburg has excellent access to Pennsylvania's strawberry and blueberry farms, many concentrated in the fertile farmland surrounding the capital and the Cumberland Valley. The strawberry season in late May and June kicks off a pick-your-own calendar that continues with blueberries through the heart of summer.`,
+  'Providence': `Providence sits close to Rhode Island's small but well-loved strawberry and blueberry farms, scattered across the western part of the state. The compact geography means no farm is ever far from the capital, and the relatively short season makes timing a visit with local farm updates worthwhile.`,
+  'Columbia': `Columbia is well positioned for South Carolina's strawberry and blueberry farms, with the Upstate region's foothills hosting some of the state's most popular pick-your-own operations. Strawberry season in April and May is followed by blueberries through the early summer heat.`,
+  'Pierre': `Pierre's surroundings include wild chokecherries and juneberries gathered from the riverbanks and draws of central South Dakota, a foraging tradition that predates commercial agriculture in the region. Cultivated berry farms are rare this far west, making local foraging knowledge especially valuable for anyone seeking a berry-picking outing.`,
+  'Nashville': `Nashville has solid access to Tennessee's blackberry and blueberry farms, many tucked into the hills and valleys surrounding the capital. Blackberry season in June is a Middle Tennessee tradition, and several farms combine it with blueberry picking through July for an extended summer berry season.`,
+  'Austin': `Austin is within reach of two distinct Texas berry traditions: the blackberry farms of the Hill Country and the strawberries of Poteet, the self-proclaimed Strawberry Capital of Texas, about an hour south of the city. Both seasons fall in the spring, before the Texas summer heat takes hold.`,
+  'Salt Lake City': `Salt Lake City sits near Bear Lake, whose raspberries are so celebrated that the area hosts an annual raspberry festival drawing visitors from across the region. Strawberry and blueberry farms along the Wasatch Front round out a berry season that runs from June through August.`,
+  'Montpelier': `Montpelier is surrounded by Vermont's wild and cultivated blueberry fields, alongside a strong strawberry-farming tradition that opens the pick-your-own season each June. Vermont's cool climate keeps the berry season running later into summer than in many neighboring states, extending the picking window into August.`,
+  'Richmond': `Richmond has good access to Virginia's strawberry and blueberry farms, with operations scattered across the Piedmont and toward the Eastern Shore. The strawberry season in May is a central Virginia tradition, and blueberries carry the pick-your-own calendar through the summer months that follow.`,
+  'Olympia': `Olympia sits near Washington's renowned raspberry country in Whatcom County, often called the Raspberry Capital of the World for its enormous commercial production, alongside excellent blueberry farms throughout the Puget Sound lowlands. Few regions in the country can match the Pacific Northwest's berry-growing pedigree.`,
+  'Charleston': `Charleston has access to West Virginia's blackberry and blueberry farms, many found in the mountain valleys and hollows surrounding the capital. The wild and cultivated blackberries that grow throughout Appalachia have long been part of the region's food culture, and June picking trips remain a cherished local tradition.`,
+  'Madison': `Madison sits in a state that leads the nation in cranberry production, with the marshes of central Wisconsin producing the majority of America's cranberry crop each fall. Strawberry and raspberry farms closer to Madison open the season in early summer, well before the dramatic cranberry harvest begins.`,
+  'Cheyenne': `Cheyenne's high-plains surroundings are challenging for cultivated berries, but wild chokecherries and buffaloberries have long been gathered from the draws and riverbanks of southeastern Wyoming. Cultivated strawberry and raspberry operations are rare this far from major growing regions, making a successful local find feel like a genuine discovery.`,
+};
+
+const berryTips = {
+  'Montgomery': `Strawberry season near Montgomery moves fast in the Alabama heat, so go early in the morning and call ahead to confirm fields are still open—a warm spring can compress the season into just a few weeks.`,
+  'Juneau': `If you're foraging wild berries around Juneau, carry bear bells or make noise as you go, and never pick in dense brush where visibility is limited. Locals are usually happy to point newcomers toward safe, productive patches.`,
+  'Phoenix': `Treat a high-country berry trip from Phoenix as part of a longer mountain getaway rather than a quick errand—farms are small and seasonal, so calling ahead before the drive north is essential.`,
+  'Little Rock': `Cave City strawberries are worth the drive from Little Rock specifically during the peak two weeks of the season in late April and early May—ask locally or check farm social media for the exact window each year.`,
+  'Sacramento': `Sacramento-area strawberry fields can be busy on spring weekends, so arrive at opening time and bring your own flats or buckets if the farm allows it, since California u-pick operations move large volumes of fruit quickly.`,
+  'Denver': `Foothill raspberry farms near Denver tend to have short, weather-dependent picking windows, so following their social media updates in midsummer is the best way to time a visit precisely.`,
+  'Hartford': `Connecticut strawberry season is brief and intense—plan to go within the first two weeks of opening for the best selection, and ask the farm about their blueberry timeline so you can return a few weeks later.`,
+  'Dover': `Delaware's coastal-plain berry farms benefit from sandy soil that drains quickly after rain, so a Dover-area u-pick trip is often still viable the day after a storm when other regional farms might be closed.`,
+  'Tallahassee': `Because Florida's strawberry season starts so early, check farm listings as early as February—Tallahassee-area visitors who wait until the traditional spring window may find the season already winding down.`,
+  'Atlanta': `For the freshest pick from Atlanta, decide in advance whether you want south Georgia blueberries or north Georgia blackberries and strawberries—the two regions are in opposite directions and require different planning.`,
+  'Honolulu': `When seeking poha berries or other island specialty fruit near Honolulu, look to farm stands and small agricultural tours rather than expecting a traditional u-pick berry-field experience.`,
+  'Boise': `Cultivated raspberries near Boise ripen through midsummer, while wild huckleberries at higher elevations require more legwork—pack bear spray and check national forest regulations before heading into huckleberry country.`,
+  'Springfield': `Springfield-area strawberry fields are best visited on weekday mornings when fruit is coolest and crowds are thinnest—Illinois berry farms tend to be small operations that can sell out of ripe rows by midday on busy weekends.`,
+  'Indianapolis': `Many southern Indiana farms run both berry and apple picking seasons, so ask about a farm's full calendar when you visit in June—you may want to return to the same place in October.`,
+  'Des Moines': `Iowa's brief strawberry season rewards visitors who go right when farms open for the year—check local listings in late May so you don't miss the narrow June window.`,
+  'Topeka': `Kansas blackberry brambles can be thorny going, so wear long sleeves and sturdy shoes, and bring extra water since picking under the summer sun in the Kansas River valley gets hot quickly.`,
+  'Frankfort': `Combine a Kentucky blackberry-picking trip with a stop at one of the Bluegrass region's farm markets, where local honey and baked goods pair perfectly with whatever berries you bring home.`,
+  'Baton Rouge': `Time a Ponchatoula strawberry trip from Baton Rouge around the town's annual strawberry festival in April for the fullest experience, though the farms themselves are worth visiting throughout the season.`,
+  'Augusta': `Wild Maine blueberry picking is different from cultivated highbush picking—you'll be raking low bushes close to the ground, so bring knee pads or a cushion and ask the farm to demonstrate proper raking technique.`,
+  'Annapolis': `Maryland's berry farms post picking conditions online frequently during peak season—checking before the drive from Annapolis saves a wasted trip if recent rain has closed fields temporarily.`,
+  'Boston': `Massachusetts cranberry bogs are typically viewed rather than hand-picked since the harvest is done by flooding and machine-raking, but several working cranberry farms offer fall tours that let visitors see the dramatic red-water harvest up close.`,
+  'Lansing': `Michigan blueberry season near Lansing peaks in July—bring a cooler since blueberries hold their quality far better when kept cold on the drive home, especially during Michigan's humid midsummer days.`,
+  'Saint Paul': `Minnesota's cold-hardy blueberry varieties ripen later than in warmer states, often into August, so don't assume the season is over just because July has ended—call ahead to check.`,
+  'Jackson': `Mississippi's rabbiteye blueberries are larger and slightly tarter than northern varieties—they're excellent for baking, so plan to bring home more than you'll eat fresh if you're near Jackson during peak season.`,
+  'Jefferson City': `Ozark blackberry brambles near Jefferson City can be picked alongside early apple varieties at some farms—ask if a single visit can cover both, since the seasons briefly overlap in early summer.`,
+  'Helena': `True Montana huckleberry picking requires research into national forest land near Helena and a respect for bear country—going with someone who knows the area is the best way to find productive patches safely.`,
+  'Lincoln': `Nebraska strawberry farms near Lincoln are small operations, so call ahead before driving out—fields can close on short notice once the limited crop is picked through.`,
+  'Carson City': `Carson Valley berry farms are few and seasonal, so treat a visit as a bonus stop on a Lake Tahoe trip rather than a dedicated destination, and always confirm hours before you go.`,
+  'Concord': `New Hampshire blueberry farms often offer both lowbush and highbush varieties—ask the farm which rows are which, since the smaller wild-type berries have a more intense, concentrated flavor that's worth seeking out.`,
+  'Trenton': `Hammonton-area blueberry farms near Trenton can draw serious crowds during peak season in July, so arrive early and bring your own containers if the farm allows it to speed up the picking and checkout process.`,
+  'Santa Fe': `High-altitude raspberry picking near Santa Fe means stronger sun even in mild temperatures—bring sunscreen and a hat, and check with the farm about which weeks produce the best fruit at elevation.`,
+  'Albany': `Hudson Valley berry farms near Albany often run strawberries, blueberries, and raspberries in sequence at the same location—ask about a multi-visit pass if you plan to return across the summer.`,
+  'Raleigh': `North Carolina blueberry farms in the southeastern part of the state are a longer drive from Raleigh, so consider combining the trip with a coastal visit to make the most of the distance.`,
+  'Bismarck': `Foraging chokecherries and juneberries near Bismarck requires landowner permission on private land—stick to public lands or farms that explicitly welcome pickers, and bring gloves since the brambles can be thorny.`,
+  'Columbus': `Ohio berry farms near Columbus often post real-time picking conditions on social media during peak season—following a few local farms before you go ensures you arrive when the rows are at their best.`,
+  'Oklahoma City': `Oklahoma blackberry picking in June can be hot work, so go early in the day, wear long sleeves against the thorns, and bring plenty of water for the trip out from Oklahoma City.`,
+  'Salem': `With so many berry types available near Salem, ask the farm what's currently ripe before you arrive—marionberries, blueberries, and raspberries often overlap in season but peak at slightly different times through the Willamette Valley summer.`,
+  'Harrisburg': `Pennsylvania strawberry season near Harrisburg moves quickly in warm years, so don't wait too long into June—calling the farm directly is more reliable than assuming based on the calendar date.`,
+  'Providence': `Rhode Island's small berry farms benefit from a personal visit—talk to the farmers about what's ripe that week, since the compact scale of these operations means picking windows can shift quickly.`,
+  'Columbia': `South Carolina Upstate berry farms near Columbia are best visited in the cooler morning hours, both for picking comfort and because berries hold their quality better before the midday heat sets in.`,
+  'Pierre': `Finding wild berries near Pierre takes some local knowledge—asking at farmers markets or county extension offices about good chokecherry and juneberry spots is more productive than searching blindly along the river.`,
+  'Nashville': `Tennessee blackberry season near Nashville runs into the summer heat, so an early start and plenty of water make the picking experience far more comfortable in the Middle Tennessee humidity.`,
+  'Austin': `Decide whether you're headed to Poteet for strawberries or the Hill Country for blackberries before you leave Austin, since the two regions are in different directions and best treated as separate trips.`,
+  'Salt Lake City': `Bear Lake raspberry season from Salt Lake City peaks in August, and the area's raspberry festival is worth timing your visit around if you want the full regional experience beyond just picking.`,
+  'Montpelier': `Vermont's later berry season means visitors from Montpelier can often still find good blueberry picking into August, well after many warmer states have wrapped up for the year.`,
+  'Richmond': `Virginia strawberry farms near Richmond tend to sell out their best rows by midday on May weekends, so an early start gives you first access to the ripest fruit.`,
+  'Olympia': `Whatcom County raspberry farms are a longer drive from Olympia, but the trip is worth it during peak July season—pair it with a visit to one of the area's blueberry farms for a full Pacific Northwest berry day.`,
+  'Charleston': `West Virginia blackberry brambles in the hollows around Charleston can be steep going, so wear good footwear and watch your footing—the reward is some of the most flavorful wild blackberries in Appalachia.`,
+  'Madison': `Wisconsin's dramatic cranberry harvest in the marshes outside Madison happens in fall and is best experienced as a guided farm tour rather than hands-on picking, since the flooded-bog method isn't a u-pick activity.`,
+  'Cheyenne': `Wild berry foraging near Cheyenne rewards patience and local knowledge—ask at county extension offices or farmers markets about productive chokecherry and buffaloberry spots along the area's river draws.`,
+};
+
+const berryRegion = {
+  'new-england': {
+    h2: 'Berry Picking Across New England',
+    body: `New England has a deep berry-picking tradition that spans the calendar from June strawberries through July and August blueberries, with the region's acidic, glacially-formed soils particularly well suited to both wild lowbush and cultivated highbush blueberry varieties. Massachusetts adds a distinctive regional specialty in its cranberry bogs, which turn brilliant red each September and October during harvest and represent one of the most visually striking agricultural traditions in the country. The pick-your-own farms throughout Connecticut, Maine, New Hampshire, Vermont, Rhode Island, and Massachusetts tend to be small, family-run operations that have cultivated loyal local followings, and many run strawberries and blueberries in sequence at the same location, giving visitors a reason to return across the summer.`,
+  },
+  'mid-atlantic': {
+    h2: 'Mid-Atlantic Berry Farms',
+    body: `The mid-Atlantic states host some of the most significant berry agriculture in the country, anchored by New Jersey's Pine Barrens region around Hammonton, long known as the Blueberry Capital of the World for its enormous cultivated blueberry production. Delaware, Maryland, Pennsylvania, Virginia, and West Virginia all contribute strong strawberry and blueberry industries of their own, benefiting from the sandy coastal-plain soils of the Delmarva Peninsula and the fertile valleys further inland. The berry season here typically opens with strawberries in May, continues with blueberries through the summer, and in many areas overlaps with the blackberry brambles that grow wild throughout the Appalachian foothills.`,
+  },
+  'southeast': {
+    h2: 'Southeastern Berry Season',
+    body: `The Southeast enjoys one of the earliest and longest berry seasons in the country, with Florida's strawberry farms often producing fruit as early as March, well ahead of the rest of the nation. Georgia and South Carolina contribute major blueberry industries, particularly the rabbiteye varieties that thrive in the region's warm, humid summers, while North Carolina ranks among the top blueberry-producing states nationally. Blackberries grow wild and cultivated throughout the Appalachian foothills from Tennessee through the Carolinas, giving the region a berry season that can run from early spring strawberries through midsummer blueberries and blackberries.`,
+  },
+  'midwest': {
+    h2: 'Midwest Berry Picking',
+    body: `The Midwest's berry season centers on strawberries and raspberries in June and July, with Michigan standing out as one of the country's leading blueberry producers thanks to the moderating influence of Lake Michigan on its western counties. Wisconsin contributes a dramatically different specialty in its cranberry marshes, which produce the majority of the nation's cranberry crop and put on a striking visual display during the fall flood-harvest. Ohio, Indiana, Illinois, Iowa, Minnesota, Missouri, and the Dakotas all support smaller-scale strawberry, raspberry, and blackberry farms, many of which share land with the region's well-known fall apple orchards.`,
+  },
+  'mountain': {
+    h2: 'Mountain West Berries',
+    body: `Berry picking in the mountain west is a more rugged and varied affair than in the country's major commercial berry regions, blending small cultivated raspberry and strawberry farms with a strong tradition of wild foraging for huckleberries, chokecherries, and buffaloberries. Montana's wild huckleberry is something close to a state obsession, found in everything from jam to ice cream, while Utah's Bear Lake raspberries have built a regional following strong enough to support an annual festival. Colorado, Idaho, Nevada, New Mexico, and Wyoming all contribute small but dedicated berry-growing communities that take advantage of the high-altitude sun and cool nights to concentrate flavor in whatever fruit they produce.`,
+  },
+  'south-central': {
+    h2: 'Berry Picking in the South-Central States',
+    body: `Texas, Oklahoma, and Louisiana each bring their own distinct berry tradition to the south-central region. Oklahoma has made the blackberry its official state fruit, and pick-your-own blackberry farms across the state draw enthusiastic crowds each June. Texas combines Hill Country blackberries with the strawberry farms of Poteet, the self-declared Strawberry Capital of Texas, while Louisiana's Ponchatoula strawberries are celebrated with an annual festival each April. The growing season across this region tends to run earlier than in northern states, with much of the berry harvest wrapped up before the most intense summer heat arrives.`,
+  },
+  'pacific': {
+    h2: 'Pacific Coast Berry Country',
+    body: `The Pacific Northwest is arguably the finest berry-growing region in the country, with Oregon's Willamette Valley home to the marionberry—a blackberry hybrid developed in Marion County and named for it—alongside major blueberry, raspberry, and boysenberry production. Washington's Whatcom County is often called the Raspberry Capital of the World for its enormous commercial output, and the Puget Sound lowlands support extensive blueberry farming as well. California contributes one of the largest strawberry industries on earth, with u-pick fields scattered through the Central Valley and coastal regions, while Alaska's wild salmonberries, blueberries, and huckleberries sustain a foraging culture distinct from the commercial farms further south.`,
+  },
+  'southwest': {
+    h2: 'Berry Picking in Arizona and Hawaii',
+    body: `Arizona and Hawaii present unusual contexts for berry picking, with both states' climates working against the cool, temperate conditions that most traditional berry crops require. Arizona's high-elevation communities around Flagstaff and Prescott occasionally support small raspberry and strawberry operations that benefit from cooler mountain summers, while Hawaii's tropical climate has led farmers to specialty crops like poha berries (Cape gooseberries) that offer a similar pick-your-own experience with a flavor profile found nowhere else in the country.`,
+  },
+};
+
+const berrySeason = {
+  Alabama: 'Strawberries from April through May in the Cullman and Chilton County area, followed by blueberries from late May through July.',
+  Alaska: 'Wild salmonberries, blueberries, and huckleberries from July through September, mostly through foraging rather than commercial farms.',
+  Arizona: 'June through August at the high-elevation farms near Flagstaff and Prescott, where cooler mountain summers support a brief raspberry and strawberry season.',
+  Arkansas: 'Strawberries in late April and early May around Cave City, followed by blackberries through the Ozark foothills in June.',
+  California: 'Strawberries nearly year-round in the mildest areas, with peak Central Valley and coastal picking from April through August; blueberries from May through July.',
+  Colorado: 'July through August for the foothill raspberry and currant farms west of Denver, with the brief window driven by the region\'s high-altitude growing conditions.',
+  Connecticut: 'Strawberries in June, followed immediately by blueberries through July and into August across Litchfield Hills and Connecticut River valley farms.',
+  Delaware: 'Strawberries in May, followed by blueberries from June through August across the Delmarva Peninsula\'s sandy coastal-plain farms.',
+  Florida: 'Strawberries from as early as December through March in the Panhandle and northern counties, among the earliest seasons in the country.',
+  Georgia: 'Blueberries from late May through July in south Georgia, with strawberries and blackberries available in the north Georgia foothills closer to early summer.',
+  Hawaii: 'Year-round for specialty crops like poha berries at the handful of farms that grow them; traditional berry picking isn\'t available in Hawaii.',
+  Idaho: 'Cultivated raspberries from July through August in the Treasure Valley, with wild huckleberries found at higher elevations from late July into September.',
+  Illinois: 'Strawberries through late May and June, with blueberries picking up as the strawberry season winds down through July.',
+  Indiana: 'Strawberries and blueberries from late May through August, with many farms in southern Indiana running both seasons in sequence.',
+  Iowa: 'A brief strawberry season in June, followed by raspberries through midsummer at farms scattered through the state\'s river valleys.',
+  Kansas: 'Strawberries in late May, followed by blackberries through June and into July across the Kansas River valley.',
+  Kentucky: 'Blackberries in June, overlapping with the tail end of the state\'s spring strawberry crop across the Bluegrass region.',
+  Louisiana: 'Strawberries from March through April around Ponchatoula, followed by blueberries across the Florida Parishes into early summer.',
+  Maine: 'Wild blueberries through August, the iconic centerpiece of the state\'s berry season, with strawberries available earlier in June.',
+  Maryland: 'Strawberries in May, followed by blueberries from June through the heart of summer across the Eastern Shore and western counties.',
+  Massachusetts: 'Strawberries and blueberries from June through August, with the state\'s distinctive cranberry harvest running September through October.',
+  Michigan: 'Strawberries and raspberries from June through August, with blueberry season peaking in July across the Lake Michigan shoreline counties.',
+  Minnesota: 'Strawberries in June, followed by raspberries through midsummer, with cold-hardy blueberry varieties often ripening into August.',
+  Mississippi: 'Blueberries from late May through July, the centerpiece of the state\'s berry season, concentrated in the southern counties.',
+  Missouri: 'Ozark blackberries in June, often overlapping with early apple varieties at the same farms in the southern part of the state.',
+  Montana: 'Wild huckleberries from late July into September, found mostly through forest foraging rather than commercial farms.',
+  Nebraska: 'A modest strawberry season in June at small farms scattered through the eastern river valleys.',
+  Nevada: 'July through August at the small Carson Valley and Lake Tahoe-area farms that grow strawberries and raspberries.',
+  'New Hampshire': 'Strawberries in June, followed by lowbush and highbush blueberries through July and August.',
+  'New Jersey': 'Strawberries in May and June, followed by the Hammonton area\'s major blueberry harvest from June through July.',
+  'New Mexico': 'Midsummer into early fall for the high-altitude raspberry farms in the valleys north of Santa Fe.',
+  'New York': 'Strawberries in June, followed by blueberries and raspberries through August across the Hudson Valley and western New York.',
+  'North Carolina': 'Strawberries in May, followed by one of the country\'s largest blueberry harvests from June through July in the southeastern counties.',
+  'North Dakota': 'Wild chokecherries and juneberries from July through August, primarily through foraging along riverbanks and draws.',
+  Ohio: 'Strawberries from late May, followed by blueberries and raspberries through the summer into August.',
+  Oklahoma: 'Strawberries in May, followed by the state\'s celebrated blackberry season in June across central and eastern counties.',
+  Oregon: 'May through August for the Willamette Valley\'s exceptional run of strawberries, marionberries, blueberries, raspberries, and boysenberries.',
+  Pennsylvania: 'Strawberries in late May and June, followed by blueberries through the heart of summer.',
+  'Rhode Island': 'Strawberries and blueberries from June through August at the state\'s small western-county farms.',
+  'South Carolina': 'Strawberries in April and May, followed by blueberries through the early summer heat in the Upstate region.',
+  'South Dakota': 'Wild chokecherries and juneberries from July through August, gathered mostly through local foraging knowledge.',
+  Tennessee: 'Blackberries in June, followed by blueberries through July across the hills surrounding Nashville and Middle Tennessee.',
+  Texas: 'Strawberries in April around Poteet, with Hill Country blackberries ripening in May and June before summer heat arrives.',
+  Utah: 'June through August, anchored by the celebrated Bear Lake raspberry harvest in August alongside strawberries and blueberries along the Wasatch Front.',
+  Vermont: 'Strawberries in June, followed by a blueberry season that runs later into August than in many neighboring states thanks to Vermont\'s cool climate.',
+  Virginia: 'Strawberries in May, followed by blueberries through the summer months across the Piedmont and Eastern Shore.',
+  Washington: 'June through August, led by Whatcom County\'s world-renowned raspberry harvest alongside extensive blueberry production around Puget Sound.',
+  'West Virginia': 'Blackberries in June, gathered from the mountain valleys and hollows throughout Appalachia, alongside a smaller blueberry season.',
+  Wisconsin: 'Strawberries and raspberries in early summer, with the state\'s massive cranberry harvest concentrated in central Wisconsin each fall.',
+  Wyoming: 'Wild chokecherries and buffaloberries from July through August, found through local foraging along river draws in the southeastern plains.',
+};
+
 // ---------- Page generator ----------
 
 function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
@@ -465,32 +661,28 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
   const desc = `Find ${fruitLabel.toLowerCase()} orchards near ${city}, ${state}. Browse pick-your-own farms and orchards on an interactive map. Search by ZIP code to find the closest location.`;
   const resultsHeading = `${fruitLabel} Near ${city}, ${code}`;
 
-  const defaultFilter = fruitSlug === 'apple-picking' ? 'apple-picking' : 'cherry-picking';
-  const regionKey = fruitSlug === 'apple-picking' ? capitals.find(c => c.city === city)?.region : capitals.find(c => c.city === city)?.cherryRegion;
-  const regionData = fruitSlug === 'apple-picking' ? appleRegion[regionKey] : cherryRegion[regionKey];
-  const intro = fruitSlug === 'apple-picking' ? appleIntros[city] : cherryIntros[city];
-  const tips = fruitSlug === 'apple-picking' ? appleTips[city] : cherryTips[city];
-  const seasonText = fruitSlug === 'apple-picking' ? appleSeason[state] : cherrySeason[state];
+  const introsByFruit = { 'apple-picking': appleIntros, 'cherry-picking': cherryIntros, 'berry-picking': berryIntros };
+  const tipsByFruit = { 'apple-picking': appleTips, 'cherry-picking': cherryTips, 'berry-picking': berryTips };
+  const regionByFruit = { 'apple-picking': appleRegion, 'cherry-picking': cherryRegion, 'berry-picking': berryRegion };
+  const seasonByFruit = { 'apple-picking': appleSeason, 'cherry-picking': cherrySeason, 'berry-picking': berrySeason };
+  const regionKeyField = { 'apple-picking': 'region', 'cherry-picking': 'cherryRegion', 'berry-picking': 'region' };
 
-  const seasonH2 = fruitSlug === 'apple-picking'
-    ? `Best Time to Go Apple Picking Near ${city}`
-    : `Best Time to Go Cherry Picking Near ${city}`;
+  const defaultFilter = fruitSlug;
+  const capital = capitals.find(c => c.city === city);
+  const regionKey = capital ? capital[regionKeyField[fruitSlug]] : undefined;
+  const regionData = regionByFruit[fruitSlug][regionKey];
+  const intro = introsByFruit[fruitSlug][city];
+  const tips = tipsByFruit[fruitSlug][city];
+  const seasonText = seasonByFruit[fruitSlug][state];
 
-  const tipsH2 = fruitSlug === 'apple-picking'
-    ? `Tips for Your ${city} Apple Picking Trip`
-    : `Tips for Your ${city} Cherry Picking Trip`;
+  const seasonH2 = `Best Time to Go ${fruitLabel} Near ${city}`;
 
-  const mainH2 = fruitSlug === 'apple-picking'
-    ? `Apple Picking Near ${city}: What You Need to Know`
-    : `Cherry Picking Near ${city}: What You Need to Know`;
+  const tipsH2 = `Tips for Your ${city} ${fruitLabel} Trip`;
 
-  const filterChips = fruitSlug === 'apple-picking'
-    ? `<button class="filter-chip" data-cat="all">All Orchards</button>
-          <button class="filter-chip active" data-cat="apple-picking">Apple Picking</button>
-          <button class="filter-chip" data-cat="Orchard">All Orchard Types</button>
-          <button class="filter-chip" data-cat="Farm">Farms</button>`
-    : `<button class="filter-chip" data-cat="all">All Orchards</button>
-          <button class="filter-chip active" data-cat="cherry-picking">Cherry Picking</button>
+  const mainH2 = `${fruitLabel} Near ${city}: What You Need to Know`;
+
+  const filterChips = `<button class="filter-chip" data-cat="all">All Orchards</button>
+          <button class="filter-chip active" data-cat="${fruitSlug}">${fruitLabel}</button>
           <button class="filter-chip" data-cat="Orchard">All Orchard Types</button>
           <button class="filter-chip" data-cat="Farm">Farms</button>`;
 
@@ -528,7 +720,7 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
       <nav class="main-nav" aria-label="Primary">
         <a href="/">Home</a>
         <a href="/about.html">About</a>
-        <a href="/#find" class="cta">Find</a>
+        <a href="/find" class="cta">Find</a>
       </nav>
     </div>
   </header>
@@ -642,6 +834,7 @@ const allUrls = [];
 const fruits = [
   { fruitSlug: 'apple-picking', fruitLabel: 'Apple Picking' },
   { fruitSlug: 'cherry-picking', fruitLabel: 'Cherry Picking' },
+  { fruitSlug: 'berry-picking', fruitLabel: 'Berry Picking' },
 ];
 
 for (const fruit of fruits) {
