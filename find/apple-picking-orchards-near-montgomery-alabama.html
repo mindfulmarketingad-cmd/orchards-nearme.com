@@ -57,11 +57,16 @@
           <button type="submit" class="btn">Search</button>
           <button type="button" class="btn btn-ghost" id="resetBtn">Reset</button>
         </form>
-        <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="apple-picking" data-default-state="Alabama">
-          <button class="filter-chip" data-cat="all">All Orchards</button>
+        <div class="filters-wrap">
+          <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
+            <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
+          </button>
+          <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="apple-picking" data-default-state="Alabama">
+            <button class="filter-chip" data-cat="all">All Orchards</button>
           <button class="filter-chip active" data-cat="apple-picking">Apple Picking</button>
           <button class="filter-chip" data-cat="Orchard">All Orchard Types</button>
           <button class="filter-chip" data-cat="Farm">Farms</button>
+          </div>
         </div>
         <select class="state-select" id="stateSelect" aria-label="Filter by state">
           <option value="all">All states</option>
@@ -110,6 +115,19 @@
           <p>When planning your apple picking trip from Montgomery, aim for weekday mornings in September when the weather is coolest and the crowds are thinnest. Many of Alabama's orchards combine apple picking with other farm activities, so bring the whole family and plan to stay for lunch.</p>
 
         </article>
+      </div>
+    </section>
+
+    <section class="seo-content related-links">
+      <div class="container">
+        <h2>More to Explore Near Montgomery, Alabama</h2>
+        <ul class="related-links-list">
+          <li><a href="/find/cherry-picking-orchards-near-montgomery-alabama">Cherry Picking Near Montgomery, Alabama</a></li>
+          <li><a href="/find/berry-picking-orchards-near-montgomery-alabama">Berry Picking Near Montgomery, Alabama</a></li>
+          <li><a href="/find/peach-picking-orchards-near-montgomery-alabama">Peach Picking Near Montgomery, Alabama</a></li>
+          <li><a href="/find/garden-centers-near-montgomery-alabama">Garden Centers Near Montgomery, Alabama</a></li>
+        </ul>
+        <p class="related-links-all"><a href="/find">Browse all pick-your-own categories and states</a></p>
       </div>
     </section>
   </main>

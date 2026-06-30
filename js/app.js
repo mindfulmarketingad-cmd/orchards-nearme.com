@@ -52,13 +52,14 @@
     return true;
   }
 
-  var map, clusterGroup, originMarker;
+  var map, clusterGroup, originMarker, zipAreaCircle;
   var markersById = {};
 
   var el = {
     cards: document.getElementById('cards'),
     count: document.getElementById('resultsCount'),
     filters: document.getElementById('filters'),
+    filtersToggle: document.getElementById('filtersToggle'),
     stateSelect: document.getElementById('stateSelect'),
     searchForm: document.getElementById('searchForm'),
     zipInput: document.getElementById('zipInput'),
@@ -150,11 +151,18 @@
 
   function fitMap() {
     if (state.origin) {
-      var pts = state.filtered.slice(0, 25).map(function (i) {
-        return [i.lat, i.lng];
-      });
-      pts.push([state.origin.lat, state.origin.lng]);
-      if (pts.length > 1) map.fitBounds(pts, { padding: [40, 40], maxZoom: 11 });
+      var nearby = state.filtered.filter(function (i) {
+        return i._dist != null && i._dist <= 50;
+      }).slice(0, 25);
+      if (nearby.length) {
+        var pts = nearby.map(function (i) {
+          return [i.lat, i.lng];
+        });
+        pts.push([state.origin.lat, state.origin.lng]);
+        map.fitBounds(pts, { padding: [40, 40], maxZoom: 12 });
+      } else {
+        map.setView([state.origin.lat, state.origin.lng], 11);
+      }
     } else if (state.stateFilter !== 'all' && state.filtered.length) {
       var b = state.filtered.map(function (i) {
         return [i.lat, i.lng];
@@ -273,6 +281,14 @@
           lng: parseFloat(place.longitude),
         };
         if (originMarker) map.removeLayer(originMarker);
+        if (zipAreaCircle) map.removeLayer(zipAreaCircle);
+        zipAreaCircle = L.circle([state.origin.lat, state.origin.lng], {
+          radius: 8047, // ~5 miles, approximates a ZIP code's local area
+          color: '#1a73e8',
+          weight: 3,
+          fillColor: '#1a73e8',
+          fillOpacity: 0.08,
+        }).addTo(map);
         originMarker = L.circleMarker([state.origin.lat, state.origin.lng], {
           radius: 9,
           color: '#e23b3b',
@@ -282,6 +298,7 @@
         })
           .addTo(map)
           .bindPopup('Your ZIP: ' + zip);
+        map.setView([state.origin.lat, state.origin.lng], 11);
         applyFilters();
       })
       .catch(function () {
@@ -289,8 +306,37 @@
       });
   }
 
+  // ---------- filters dropdown ----------
+  function closeFiltersDropdown() {
+    if (!el.filtersToggle) return;
+    el.filters.classList.remove('open');
+    el.filtersToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  function toggleFiltersDropdown() {
+    if (!el.filtersToggle) return;
+    var willOpen = !el.filters.classList.contains('open');
+    el.filters.classList.toggle('open', willOpen);
+    el.filtersToggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+  }
+
   // ---------- events ----------
   function bindEvents() {
+    if (el.filtersToggle) {
+      el.filtersToggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        toggleFiltersDropdown();
+      });
+      document.addEventListener('click', function (e) {
+        if (!el.filters.classList.contains('open')) return;
+        if (e.target.closest('.filters-wrap')) return;
+        closeFiltersDropdown();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeFiltersDropdown();
+      });
+    }
+
     el.filters.addEventListener('click', function (e) {
       var btn = e.target.closest('.filter-chip');
       if (!btn) return;
@@ -307,6 +353,7 @@
         state.category = cat;
       }
       applyFilters();
+      closeFiltersDropdown();
     });
 
     el.stateSelect.addEventListener('change', function () {
@@ -315,6 +362,10 @@
       if (originMarker) {
         map.removeLayer(originMarker);
         originMarker = null;
+      }
+      if (zipAreaCircle) {
+        map.removeLayer(zipAreaCircle);
+        zipAreaCircle = null;
       }
       applyFilters();
     });
@@ -332,6 +383,10 @@
       if (originMarker) {
         map.removeLayer(originMarker);
         originMarker = null;
+      }
+      if (zipAreaCircle) {
+        map.removeLayer(zipAreaCircle);
+        zipAreaCircle = null;
       }
       applyFilters();
     });

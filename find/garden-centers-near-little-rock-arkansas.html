@@ -57,11 +57,16 @@
           <button type="submit" class="btn">Search</button>
           <button type="button" class="btn btn-ghost" id="resetBtn">Reset</button>
         </form>
-        <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="Garden Center" data-default-state="Arkansas">
-          <button class="filter-chip" data-cat="all">All Listings</button>
+        <div class="filters-wrap">
+          <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
+            <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
+          </button>
+          <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="Garden Center" data-default-state="Arkansas">
+            <button class="filter-chip" data-cat="all">All Listings</button>
           <button class="filter-chip active" data-cat="Garden Center">Garden Centers</button>
           <button class="filter-chip" data-cat="Orchard">Orchards</button>
           <button class="filter-chip" data-cat="Farm">Farms</button>
+          </div>
         </div>
         <select class="state-select" id="stateSelect" aria-label="Filter by state">
           <option value="all">All states</option>
@@ -110,6 +115,19 @@
           <p>Spring weekends get busy at the more popular centers, so a weekday visit usually means more attention from staff. Ask about fall planting too—Arkansas's mild autumns are an underrated time to put in trees and shrubs.</p>
 
         </article>
+      </div>
+    </section>
+
+    <section class="seo-content related-links">
+      <div class="container">
+        <h2>More to Explore Near Little Rock, Arkansas</h2>
+        <ul class="related-links-list">
+          <li><a href="/find/apple-picking-orchards-near-little-rock-arkansas">Apple Picking Near Little Rock, Arkansas</a></li>
+          <li><a href="/find/cherry-picking-orchards-near-little-rock-arkansas">Cherry Picking Near Little Rock, Arkansas</a></li>
+          <li><a href="/find/berry-picking-orchards-near-little-rock-arkansas">Berry Picking Near Little Rock, Arkansas</a></li>
+          <li><a href="/find/peach-picking-orchards-near-little-rock-arkansas">Peach Picking Near Little Rock, Arkansas</a></li>
+        </ul>
+        <p class="related-links-all"><a href="/find">Browse all pick-your-own categories and states</a></p>
       </div>
     </section>
   </main>

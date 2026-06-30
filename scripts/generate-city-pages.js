@@ -61,6 +61,32 @@ const capitals = [
   { city: 'Cheyenne', state: 'Wyoming', code: 'WY', region: 'mountain', cherryRegion: 'limited' },
 ];
 
+const allCategories = [
+  { slug: 'apple-picking', label: 'Apple Picking', urlPrefix: 'apple-picking-orchards-near-', nearMeUrl: '/find/apple-picking-orchards-near-me', nearMeLabel: 'Apple Picking Orchards Near Me' },
+  { slug: 'cherry-picking', label: 'Cherry Picking', urlPrefix: 'cherry-picking-orchards-near-', nearMeUrl: '/find/cherry-picking-orchards-near-me', nearMeLabel: 'Cherry Picking Orchards Near Me' },
+  { slug: 'berry-picking', label: 'Berry Picking', urlPrefix: 'berry-picking-orchards-near-', nearMeUrl: '/find/berry-picking-orchards-near-me', nearMeLabel: 'Berry Picking Orchards Near Me' },
+  { slug: 'peach-picking', label: 'Peach Picking', urlPrefix: 'peach-picking-orchards-near-', nearMeUrl: '/find/peach-picking-orchards-near-me', nearMeLabel: 'Peach Picking Orchards Near Me' },
+  { slug: 'garden-centers', label: 'Garden Centers', urlPrefix: 'garden-centers-near-', nearMeUrl: '/find/garden-centers-near-me', nearMeLabel: 'Garden Centers Near Me' },
+];
+
+function relatedLinksHtml(currentSlug, citySlug, stateSlug, city, state) {
+  const items = allCategories
+    .filter(function (c) { return c.slug !== currentSlug; })
+    .map(function (c) {
+      return `          <li><a href="/find/${c.urlPrefix}${citySlug}-${stateSlug}">${c.label} Near ${city}, ${state}</a></li>`;
+    })
+    .join('\n');
+  return `<section class="seo-content related-links">
+      <div class="container">
+        <h2>More to Explore Near ${city}, ${state}</h2>
+        <ul class="related-links-list">
+${items}
+        </ul>
+        <p class="related-links-all"><a href="/find">Browse all pick-your-own categories and states</a></p>
+      </div>
+    </section>`;
+}
+
 // ---------- Unique city-level content ----------
 
 const appleIntros = {
@@ -854,6 +880,7 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
   const h1 = `${fruitLabel} Orchards Near ${city} ${state}`;
   const desc = `Find ${fruitLabel.toLowerCase()} orchards near ${city}, ${state}. Browse pick-your-own farms and orchards on an interactive map. Search by ZIP code to find the closest location.`;
   const resultsHeading = `${fruitLabel} Near ${city}, ${code}`;
+  const relatedLinks = relatedLinksHtml(fruitSlug, citySlug, stateSlug, city, state);
 
   const introsByFruit = { 'apple-picking': appleIntros, 'cherry-picking': cherryIntros, 'berry-picking': berryIntros, 'peach-picking': peachIntros };
   const tipsByFruit = { 'apple-picking': appleTips, 'cherry-picking': cherryTips, 'berry-picking': berryTips, 'peach-picking': peachTips };
@@ -939,8 +966,13 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
           <button type="submit" class="btn">Search</button>
           <button type="button" class="btn btn-ghost" id="resetBtn">Reset</button>
         </form>
-        <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="${defaultFilter}" data-default-state="${state}">
-          ${filterChips}
+        <div class="filters-wrap">
+          <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
+            <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
+          </button>
+          <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="${defaultFilter}" data-default-state="${state}">
+            ${filterChips}
+          </div>
         </div>
         <select class="state-select" id="stateSelect" aria-label="Filter by state">
           <option value="all">All states</option>
@@ -991,6 +1023,8 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
         </article>
       </div>
     </section>
+
+    ${relatedLinks}
   </main>
 
   <footer class="site-footer">
@@ -1225,6 +1259,7 @@ function generateGardenCenterPage({ city, state, code }) {
   const h1 = `Garden Centers Near ${city} ${state}`;
   const desc = `Find garden centers near ${city}, ${state}. Browse plant nurseries and garden centers on an interactive map. Search by ZIP code to find the closest location.`;
   const resultsHeading = `Garden Centers Near ${city}, ${code}`;
+  const relatedLinks = relatedLinksHtml('garden-centers', citySlug, stateSlug, city, state);
 
   const capital = capitals.find(c => c.city === city);
   const regionKey = capital ? capital.region : undefined;
@@ -1301,8 +1336,13 @@ function generateGardenCenterPage({ city, state, code }) {
           <button type="submit" class="btn">Search</button>
           <button type="button" class="btn btn-ghost" id="resetBtn">Reset</button>
         </form>
-        <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="Garden Center" data-default-state="${state}">
-          ${filterChips}
+        <div class="filters-wrap">
+          <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
+            <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
+          </button>
+          <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="Garden Center" data-default-state="${state}">
+            ${filterChips}
+          </div>
         </div>
         <select class="state-select" id="stateSelect" aria-label="Filter by state">
           <option value="all">All states</option>
@@ -1353,6 +1393,8 @@ function generateGardenCenterPage({ city, state, code }) {
         </article>
       </div>
     </section>
+
+    ${relatedLinks}
   </main>
 
   <footer class="site-footer">

@@ -57,15 +57,20 @@
           <button type="submit" class="btn">Search</button>
           <button type="button" class="btn btn-ghost" id="resetBtn">Reset</button>
         </form>
-        <div class="filters" id="filters" role="group" aria-label="Filter by type">
-          <button class="filter-chip active" data-cat="all">All</button>
-          <button class="filter-chip" data-cat="apple-picking">Apple Picking</button>
-          <button class="filter-chip" data-cat="cherry-picking">Cherry Picking</button>
-          <button class="filter-chip" data-cat="berry-picking">Berry Picking</button>
-          <button class="filter-chip" data-cat="peach-picking">Peach Picking</button>
-          <button class="filter-chip" data-cat="Orchard">Orchards</button>
-          <button class="filter-chip" data-cat="Farm">Farms</button>
-          <button class="filter-chip" data-cat="Garden Center">Garden Centers</button>
+        <div class="filters-wrap">
+          <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
+            <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
+          </button>
+          <div class="filters" id="filters" role="group" aria-label="Filter by type">
+            <button class="filter-chip active" data-cat="all">All</button>
+            <button class="filter-chip" data-cat="apple-picking">Apple Picking</button>
+            <button class="filter-chip" data-cat="cherry-picking">Cherry Picking</button>
+            <button class="filter-chip" data-cat="berry-picking">Berry Picking</button>
+            <button class="filter-chip" data-cat="peach-picking">Peach Picking</button>
+            <button class="filter-chip" data-cat="Orchard">Orchards</button>
+            <button class="filter-chip" data-cat="Farm">Farms</button>
+            <button class="filter-chip" data-cat="Garden Center">Garden Centers</button>
+          </div>
         </div>
         <select class="state-select" id="stateSelect" aria-label="Filter by state">
           <option value="all">All states</option>

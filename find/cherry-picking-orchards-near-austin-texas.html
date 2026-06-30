@@ -57,11 +57,16 @@
           <button type="submit" class="btn">Search</button>
           <button type="button" class="btn btn-ghost" id="resetBtn">Reset</button>
         </form>
-        <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="cherry-picking" data-default-state="Texas">
-          <button class="filter-chip" data-cat="all">All Orchards</button>
+        <div class="filters-wrap">
+          <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
+            <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
+          </button>
+          <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="cherry-picking" data-default-state="Texas">
+            <button class="filter-chip" data-cat="all">All Orchards</button>
           <button class="filter-chip active" data-cat="cherry-picking">Cherry Picking</button>
           <button class="filter-chip" data-cat="Orchard">All Orchard Types</button>
           <button class="filter-chip" data-cat="Farm">Farms</button>
+          </div>
         </div>
         <select class="state-select" id="stateSelect" aria-label="Filter by state">
           <option value="all">All states</option>
@@ -110,6 +115,19 @@
           <p>Texas cherry picking options are limited but not zero—some specialty orchards in the Hill Country have trialed cold-hardy cherry varieties with varying success, and a call to farm operations in the Fredericksburg or Medina area in April may turn up options. The Texas Hill Country in spring is extraordinarily beautiful regardless, and the journey is worthwhile even if the cherry harvest is small.</p>
 
         </article>
+      </div>
+    </section>
+
+    <section class="seo-content related-links">
+      <div class="container">
+        <h2>More to Explore Near Austin, Texas</h2>
+        <ul class="related-links-list">
+          <li><a href="/find/apple-picking-orchards-near-austin-texas">Apple Picking Near Austin, Texas</a></li>
+          <li><a href="/find/berry-picking-orchards-near-austin-texas">Berry Picking Near Austin, Texas</a></li>
+          <li><a href="/find/peach-picking-orchards-near-austin-texas">Peach Picking Near Austin, Texas</a></li>
+          <li><a href="/find/garden-centers-near-austin-texas">Garden Centers Near Austin, Texas</a></li>
+        </ul>
+        <p class="related-links-all"><a href="/find">Browse all pick-your-own categories and states</a></p>
       </div>
     </section>
   </main>

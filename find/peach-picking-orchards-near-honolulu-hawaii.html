@@ -57,11 +57,16 @@
           <button type="submit" class="btn">Search</button>
           <button type="button" class="btn btn-ghost" id="resetBtn">Reset</button>
         </form>
-        <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="peach-picking" data-default-state="Hawaii">
-          <button class="filter-chip" data-cat="all">All Orchards</button>
+        <div class="filters-wrap">
+          <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
+            <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
+          </button>
+          <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="peach-picking" data-default-state="Hawaii">
+            <button class="filter-chip" data-cat="all">All Orchards</button>
           <button class="filter-chip active" data-cat="peach-picking">Peach Picking</button>
           <button class="filter-chip" data-cat="Orchard">All Orchard Types</button>
           <button class="filter-chip" data-cat="Farm">Farms</button>
+          </div>
         </div>
         <select class="state-select" id="stateSelect" aria-label="Filter by state">
           <option value="all">All states</option>
@@ -110,6 +115,19 @@
           <p>There's no local pick-your-own peach option in Hawaii, so satisfy a peach craving at a farmers market instead, where imported mainland fruit is sold fresh. If you're visiting the mainland later in the summer, save the orchard trip for then.</p>
 
         </article>
+      </div>
+    </section>
+
+    <section class="seo-content related-links">
+      <div class="container">
+        <h2>More to Explore Near Honolulu, Hawaii</h2>
+        <ul class="related-links-list">
+          <li><a href="/find/apple-picking-orchards-near-honolulu-hawaii">Apple Picking Near Honolulu, Hawaii</a></li>
+          <li><a href="/find/cherry-picking-orchards-near-honolulu-hawaii">Cherry Picking Near Honolulu, Hawaii</a></li>
+          <li><a href="/find/berry-picking-orchards-near-honolulu-hawaii">Berry Picking Near Honolulu, Hawaii</a></li>
+          <li><a href="/find/garden-centers-near-honolulu-hawaii">Garden Centers Near Honolulu, Hawaii</a></li>
+        </ul>
+        <p class="related-links-all"><a href="/find">Browse all pick-your-own categories and states</a></p>
       </div>
     </section>
   </main>
