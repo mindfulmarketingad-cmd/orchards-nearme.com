@@ -784,6 +784,14 @@ h3 {
   border-top-color: #5b3a99;
 }
 
+.find-directory-card--peach {
+  border-top-color: #e8833a;
+}
+
+.find-directory-card--garden {
+  border-top-color: var(--green);
+}
+
 .find-directory-card-icon {
   font-size: 2.4rem;
   line-height: 1;
@@ -802,6 +810,14 @@ h3 {
 
 .find-directory-card--berry .find-directory-card-body h3 {
   color: #5b3a99;
+}
+
+.find-directory-card--peach .find-directory-card-body h3 {
+  color: #c5601a;
+}
+
+.find-directory-card--garden .find-directory-card-body h3 {
+  color: var(--green-dark);
 }
 
 .find-directory-card-body p {
@@ -823,6 +839,14 @@ h3 {
 
 .find-directory-card--berry .find-directory-card-cta {
   color: #5b3a99;
+}
+
+.find-directory-card--peach .find-directory-card-cta {
+  color: #c5601a;
+}
+
+.find-directory-card--garden .find-directory-card-cta {
+  color: var(--green);
 }
 
 .find-directory-city-list {
@@ -852,4 +876,105 @@ h3 {
   .find-directory-city-list {
     columns: 1;
   }
+}
+
+.find-state-search {
+  margin-top: 16px;
+}
+
+.find-state-search input {
+  width: 100%;
+  max-width: 480px;
+  padding: 12px 16px;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 2px solid var(--border, #ddd);
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.find-state-search input:focus {
+  outline: none;
+  border-color: var(--green);
+}
+
+.find-state-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.find-state-filter-chip {
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 2px solid var(--border, #ddd);
+  background: #fff;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.find-state-filter-chip:hover {
+  border-color: var(--green);
+}
+
+.find-state-filter-chip.active {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fff;
+}
+
+.find-state-empty {
+  margin-top: 24px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.find-state-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.find-state-row {
+  border: 1px solid var(--border, #ddd);
+  border-radius: 10px;
+  padding: 14px 16px;
+  background: #fff;
+}
+
+.find-state-name {
+  font-weight: 800;
+  font-size: 1.02rem;
+  color: var(--green-dark);
+  margin-bottom: 8px;
+}
+
+.find-state-name small {
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.find-state-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+}
+
+.find-state-link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--green-dark);
+  white-space: nowrap;
+}
+
+.find-state-link:hover {
+  color: var(--green);
 }

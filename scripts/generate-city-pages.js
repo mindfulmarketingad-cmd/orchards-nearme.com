@@ -649,6 +649,200 @@ const berrySeason = {
   Wyoming: 'Wild chokecherries and buffaloberries from July through August, found through local foraging along river draws in the southeastern plains.',
 };
 
+const peachIntros = {
+  Montgomery: 'Chilton County, halfway between Montgomery and Birmingham, is the undisputed peach capital of Alabama, with Clanton\'s peach stands and orchards drawing visitors off I-65 every summer. Several pick-your-own operations within an hour of Montgomery let you fill a basket with peaches grown in the same sandy soil that has made Chilton County peaches a statewide point of pride for generations.',
+  Juneau: 'Alaska\'s cool, short growing season makes commercial peach orchards essentially nonexistent, and most peaches sold in Juneau arrive by barge from warmer climates. A handful of dedicated growers experiment with hardy dwarf peach varieties in greenhouses or south-facing microclimates, but pick-your-own peach picking isn\'t part of the local agricultural picture the way it is farther south.',
+  Phoenix: 'Phoenix\'s desert heat is actually well suited to certain low-chill peach varieties, and the irrigated valleys around the city support a number of small orchards that fruit earlier in the season than almost anywhere else in the country. Picking typically wraps up before the worst of the summer heat arrives, making late spring the prime window.',
+  'Little Rock': 'Peach growing has a long history in Arkansas, particularly in the sandy-loam soils south and east of Little Rock, where small family orchards have supplied local farmers markets for generations. The state\'s peach season tends to run earlier than the Midwest\'s, giving Little Rock-area visitors a head start on the summer fruit calendar.',
+  Sacramento: 'California grows more peaches than any other state by a wide margin, and the Central Valley surrounding Sacramento is home to some of the largest peach orchards in the country. Both clingstone peaches destined for canning and freestone varieties grown for fresh eating ripen in the orchards within easy driving distance of the capital.',
+  Denver: 'The peaches Colorado is famous for grow on the Western Slope around Palisade, a solid four-hour drive from Denver, where the high desert sun and cool nights of the Grand Valley concentrate sugar in the fruit unlike almost anywhere else in the country. It\'s a worthwhile road trip for anyone serious about peach picking, and the Palisade Peach Festival each August draws crowds from across the state.',
+  Hartford: 'Peach orchards are a minor but real part of Connecticut agriculture, with small family farms scattered around the Hartford area growing peaches alongside apples and other tree fruit. The state\'s shorter, cooler growing season means the peach window is brief, typically just a few weeks in August.',
+  Dover: 'Delaware has a surprisingly deep peach history—in the nineteenth century it was one of the nation\'s leading peach-producing states, with railroads built specifically to ship Delaware peaches to East Coast cities. That legacy lives on in smaller form today, with orchards near Dover still growing peaches across the lower Delmarva Peninsula.',
+  Tallahassee: 'Florida\'s heat and humidity rule out most traditional peach varieties, but University of Florida breeding programs have developed low-chill cultivars specifically suited to the state\'s mild winters. A small but growing number of orchards near Tallahassee now offer some of the earliest peach picking in the country, often starting in April.',
+  Atlanta: 'Georgia\'s reputation as the Peach State is well earned, even though South Carolina actually grows more peaches by volume these days. The orchards of Peach County and Crawford County, a couple hours south of Atlanta, still produce some of the most celebrated peaches in the country, and pick-your-own operations within range of the capital draw visitors every summer.',
+  Honolulu: 'Hawaii\'s tropical climate doesn\'t support traditional peach trees, which need a period of winter chill to fruit properly, so commercial peach orchards don\'t exist on the islands. Peaches sold in Honolulu are shipped in from the mainland, and pick-your-own peach picking isn\'t something visitors will find locally.',
+  Boise: 'Idaho\'s peach orchards cluster in the warmer river valleys of the southwestern part of the state, not far from Boise, where the combination of irrigation and long summer days produces a respectable peach crop alongside the region\'s better-known apples and cherries. The season is shorter than in warmer states but the quality holds up well.',
+  Springfield: 'Southern Illinois, particularly the Shawnee Hills region around Calhoun County, has grown peaches commercially for well over a century, and several orchards within range of Springfield offer pick-your-own peaches in mid- to late summer. The rolling terrain there creates air drainage that helps protect blossoms from spring frost.',
+  Indianapolis: 'Southern Indiana\'s orchards, especially in the hill country near the Ohio River, have grown peaches successfully for generations thanks to the area\'s well-drained soils and relatively mild microclimates. Several of these family farms are within a reasonable drive of Indianapolis and open their peach rows to the public each summer.',
+  'Des Moines': 'Iowa\'s continental climate with its harsh winters makes commercial peach growing a challenge, and most of the state\'s tree-fruit orchards focus on apples instead. A small number of dedicated growers near Des Moines do produce peaches on a limited scale, using hardier cultivars bred to survive Midwest winters.',
+  Topeka: 'Peach orchards in Kansas are concentrated in the eastern part of the state, where slightly milder winters and better soil drainage give the trees a fighting chance against the state\'s notoriously unpredictable spring frosts. A handful of orchards near Topeka grow peaches alongside their main apple crop.',
+  Frankfort: 'Kentucky\'s peach orchards tend to be small, family-run operations scattered across the central and western parts of the state, often grown alongside apples on farms that have been in the same family for generations. The Bluegrass region around Frankfort has a handful of these mixed orchards within driving distance.',
+  'Baton Rouge': 'Ruston, Louisiana, well north of Baton Rouge, has built its identity around peaches, hosting the Louisiana Peach Festival every June and supplying much of the state\'s commercial peach crop. The sandy hills of north Louisiana are simply better suited to peach trees than the Mississippi River delta soils closer to the capital.',
+  Augusta: 'Maine\'s cold winters and short growing season put it at the very edge of where peach trees can reliably survive, and commercial peach orchards are essentially nonexistent in the state. The handful of home growers who do attempt peaches near Augusta rely on the hardiest available cultivars and a fair amount of luck.',
+  Annapolis: 'Maryland\'s Eastern Shore has grown peaches commercially since the nineteenth century, part of the same Delmarva Peninsula peach belt that once made Delaware famous, and several orchards within range of Annapolis still carry on that tradition with pick-your-own peach rows each summer.',
+  Boston: 'Peach orchards are a smaller part of the picture in Massachusetts than apples, but a number of farms within driving distance of Boston do grow peaches successfully, particularly in the Connecticut River Valley where the soil and microclimate are more forgiving than along the coast. The peach window here is brief, usually just a few weeks in August.',
+  Lansing: 'Michigan\'s western fruit belt, cooled and warmed by Lake Michigan in equal measure, supports peach orchards alongside the region\'s famous cherries and apples, and a number of farms within range of Lansing grow all three. The lake effect that protects blossoms from late frost is the same reason this stretch of the state became fruit country in the first place.',
+  'Saint Paul': 'Minnesota\'s brutal winters make commercial peach growing rare, and most of the state\'s tree-fruit orchards stick to cold-hardy apples instead. A small number of growers near the Twin Cities experiment with the hardiest peach cultivars available, though yields and availability vary considerably year to year.',
+  Jackson: 'Peach orchards dot the hill country of north and central Mississippi, where better drainage and slightly cooler nights give the trees an edge over the flatter Delta region. Several small family farms within range of Jackson open their peach rows to pick-your-own visitors each summer.',
+  'Jefferson City': 'Missouri has a long peach-growing tradition, particularly in the Ozark foothills, where elevation and air drainage help protect blossoms from the late frosts that can wipe out a crop elsewhere in the state. A number of orchards within range of Jefferson City grow peaches as a summer follow-up to their spring strawberry season.',
+  Helena: 'Montana\'s high elevation and severe winters put it well outside the range where commercial peach orchards can reliably operate, and the state has essentially no pick-your-own peach industry. What peach trees exist near Helena are typically backyard plantings of extremely cold-hardy cultivars rather than commercial operations.',
+  Lincoln: 'Peach growing in Nebraska is a modest, mostly small-scale affair, with orchards near Lincoln relying on hardier cultivars to survive the state\'s wide temperature swings and unpredictable spring frosts. Yields can vary significantly from year to year depending on how the winter and spring weather cooperate.',
+  'Carson City': 'Nevada\'s high desert climate and dramatic temperature swings make commercial peach orchards rare, though a handful of small growers in the irrigated valleys near Carson City do produce peaches on a limited scale. The dry air and intense sun can concentrate flavor in what fruit does make it to harvest.',
+  Concord: 'New Hampshire\'s cool climate keeps peach orchards to a minimum, with most of the state\'s tree-fruit farms focused on apples instead. A small number of growers near Concord do cultivate peaches using hardy cultivars, offering a brief late-summer picking window for those willing to seek them out.',
+  Trenton: 'New Jersey has been one of the country\'s significant peach-producing states for well over a century, and Gloucester County in the southern part of the state remains a major center of production. Orchards within range of Trenton grow peaches alongside the blueberries that have made the Garden State famous, giving visitors a full summer of pick-your-own options.',
+  'Santa Fe': 'New Mexico\'s high desert valleys, particularly along the Rio Grande south of Santa Fe, have grown peaches for generations thanks to irrigation and the intense high-altitude sun that concentrates sugar in the fruit. The orchards here produce smaller crops than the major peach states but the flavor has a devoted local following.',
+  Albany: 'New York\'s Hudson Valley, just south of Albany, has a peach-growing tradition that runs alongside its much larger apple industry, with several orchards offering pick-your-own peaches in August before the fall apple rush begins. The valley\'s combination of river-moderated temperatures and well-drained hillside soils suits peach trees well.',
+  Raleigh: 'The Sandhills region around Candor, North Carolina—celebrated each July with its own peach festival—produces some of the best peaches in the Southeast, and several orchards within range of Raleigh carry on that tradition with pick-your-own rows each summer. The sandy soil here drains quickly, which peach trees particularly appreciate.',
+  Bismarck: 'North Dakota\'s harsh winters put it well outside the range where commercial peach orchards can survive, and the state has essentially no pick-your-own peach industry. Most fruit growers in the Bismarck area focus on cold-hardy apples and chokecherries instead.',
+  Columbus: 'Southern Ohio\'s orchards, particularly along the hills bordering the Ohio River, have grown peaches successfully for generations, and a number of farms within range of Columbus offer pick-your-own peaches as a midsummer counterpart to their fall apple season. The hillside terrain helps protect blossoms from the frost pockets that can damage flat-ground orchards.',
+  'Oklahoma City': 'Porter, Oklahoma, east of Tulsa and a couple hours from Oklahoma City, has built its identity around peaches, hosting the Porter Peach Festival every July and supplying a meaningful share of the state\'s commercial crop. The orchards there take advantage of the rolling terrain and well-drained soil east of the Arkansas River valley.',
+  Salem: 'Oregon\'s peach orchards are a smaller part of the state\'s fruit industry compared to its famous berries, but farms in the Willamette Valley near Salem do grow peaches successfully, particularly varieties bred to handle the region\'s cooler, wetter summers than California\'s Central Valley.',
+  Harrisburg: 'Adams County, Pennsylvania, just southwest of Harrisburg, is one of the largest fruit-growing regions on the East Coast, producing peaches alongside the apples the area is best known for. The rolling hills and well-drained soil there have supported commercial orchards for well over a century.',
+  Providence: 'Peach orchards are a minor but genuine part of Rhode Island agriculture, with a handful of small farms near Providence growing peaches alongside apples and other tree fruit. The state\'s compact size means most of these orchards are within easy reach of the capital.',
+  Columbia: 'South Carolina now grows more peaches than any other state except California, and the Ridge area around Edgefield and Saluda counties, not far from Columbia, is the heart of that production. The Peach Capital of South Carolina, set by reputation in the Ridge towns, makes the area around the capital one of the best peach-picking destinations in the country.',
+  Pierre: 'South Dakota\'s climate is generally too harsh for commercial peach orchards, and the state\'s tree-fruit growers focus almost entirely on cold-hardy apples instead. Peach trees near Pierre, where they exist at all, are typically backyard plantings rather than pick-your-own operations.',
+  Nashville: 'Middle Tennessee\'s rolling hills support a number of small peach orchards within driving distance of Nashville, many of which grow peaches alongside the region\'s well-known apple crop. The area\'s elevation changes help create the air drainage that protects blossoms from the frost pockets that can damage a crop in low-lying spots.',
+  Austin: 'The Hill Country town of Stonewall, just outside Fredericksburg and about an hour and a half from Austin, calls itself the Peach Capital of Texas, and the orchards there produce some of the most celebrated peaches in the South each June and July. It\'s one of the most popular pick-your-own destinations in the entire state.',
+  'Salt Lake City': 'Utah County, just south of Salt Lake City, has grown peaches for generations in the orchards along the base of the Wasatch Range, where mountain runoff irrigation and intense high-altitude sun combine to produce notably flavorful fruit. Santaquin and the surrounding towns are well known locally for their peach orchards.',
+  Montpelier: 'Vermont\'s cold winters and short growing season make commercial peach orchards rare, with most of the state\'s tree-fruit farms sticking to apples instead. A small number of growers near Montpelier experiment with the hardiest peach cultivars, though the picking window is brief and yields modest.',
+  Richmond: 'The orchards of the Blue Ridge foothills and the Shenandoah Valley, both within range of Richmond, have grown peaches alongside apples for generations, with the elevation and air drainage of the hill country helping protect the trees from the frost pockets that can damage a crop on the flatter Piedmont. Carter Mountain Orchard near Charlottesville is one of the region\'s best-known pick-your-own destinations.',
+  Olympia: 'Washington\'s major peach orchards are concentrated in the irrigated valleys east of the Cascades, particularly the Yakima Valley, a considerable drive from Olympia\'s much cooler, wetter climate on the western side of the state. Western Washington\'s growing conditions simply don\'t suit peaches the way they suit berries and apples.',
+  Charleston: 'West Virginia\'s Eastern Panhandle, several hours from Charleston, is the heart of the state\'s tree-fruit industry, with orchards there growing peaches alongside the apples the region is better known for. The mountainous terrain closer to the capital is generally too cool and steep for commercial peach production.',
+  Madison: 'Wisconsin\'s climate sits right at the edge of where peach trees can reliably survive, and most of the state\'s orchards focus on apples and cherries instead. A small number of growers near Madison do cultivate hardy peach cultivars, offering a brief picking window most years.',
+  Cheyenne: 'Wyoming\'s high elevation and severe winters put it well outside the range where commercial peach orchards can operate, and the state has essentially no pick-your-own peach industry. Peach trees near Cheyenne, where they exist, are limited to a handful of hardy backyard plantings.',
+};
+
+const peachTips = {
+  Montgomery: 'Call ahead before driving to Chilton County, since peach orchards post daily ripeness updates and a hot stretch can shift the harvest up by a week. Bring a cooler; peaches bruise and soften quickly in Alabama\'s summer heat.',
+  Juneau: 'If you want true pick-your-own peaches, plan a trip outside Alaska during peach season instead—what\'s available locally comes from greenhouse experiments rather than commercial orchards. Farmers markets are the best bet for fresh peaches grown anywhere near the state.',
+  Phoenix: 'Go early in the morning to beat the desert heat, both for your own comfort and because peaches picked in cooler temperatures hold up better on the drive home. Low-chill varieties here ripen earlier than almost anywhere else, so check orchard listings starting in May.',
+  'Little Rock': 'Arkansas peach season often starts before the Midwest\'s, so don\'t wait for "summer" in the calendar sense—call orchards in late May to check on early varieties. Bring cash, as many of the smaller family stands don\'t take cards.',
+  Sacramento: 'Go on a weekday morning if you can; California\'s major peach orchards draw big weekend crowds during peak season. Ask which block has been picked most recently, since a large commercial orchard can have rows in very different stages of ripeness.',
+  Denver: 'Budget a half-day or more for the drive to Palisade—it\'s a genuine road trip, not a quick errand—and consider combining it with a stop at one of the Western Slope\'s wineries. Order ahead during the Palisade Peach Festival in August, when the best orchards sell out fast.',
+  Hartford: 'Connecticut\'s peach window is short, often just two or three weeks in August, so call ahead rather than assuming an orchard will still be picking when you arrive. Many farms post weekly ripeness updates on social media.',
+  Dover: 'The Delmarva Peninsula\'s peach season tends to peak in July; visit on a weekday morning for the best selection before weekend crowds thin out the ripest trees. Many of the historic orchards near Dover also sell peach preserves worth picking up at the farm stand.',
+  Tallahassee: 'Florida\'s low-chill peaches ripen earlier than almost anywhere else in the country, often by April, so don\'t wait for traditional "peach season" timing. Bring sun protection; orchards here offer little shade during the hottest part of the day.',
+  Atlanta: 'Georgia peaches peak in June and July; call ahead since the state\'s intense summer heat can push ripening earlier than the calendar suggests. If Peach County orchards are full, Crawford County farms nearby are often just as good and less crowded.',
+  Honolulu: 'There\'s no local pick-your-own peach option in Hawaii, so satisfy a peach craving at a farmers market instead, where imported mainland fruit is sold fresh. If you\'re visiting the mainland later in the summer, save the orchard trip for then.',
+  Boise: 'Idaho\'s peach season is shorter than warmer states\', typically just a few weeks in late summer, so call orchards in the Treasure Valley before making the drive. Many of the same farms growing peaches also have cherries and apples worth asking about.',
+  Springfield: 'Calhoun County\'s hill orchards can have a different ripening schedule than flatter farms closer to Springfield, so call ahead to check which location has peaches ready. The area\'s apple orchards often double as peach farms in midsummer.',
+  Indianapolis: 'Southern Indiana\'s peach orchards near the Ohio River ripen earlier than you might expect for the Midwest, often by mid-July, so don\'t wait until apple season to start checking. Bring a cooler for the drive back to Indianapolis.',
+  'Des Moines': 'Iowa\'s peach crop is small and weather-dependent, so call ahead to confirm an orchard actually has fruit before making the trip—a late frost can wipe out the entire local crop in some years. Hardy cultivars here ripen later than in warmer states, often into September.',
+  Topeka: 'Eastern Kansas orchards have a narrow window between spring frost risk and summer heat, so check in early to mid-summer for the best selection. Many of these farms grow peaches as a secondary crop to apples, so call to confirm availability.',
+  Frankfort: 'Kentucky\'s small peach orchards sell out quickly since they don\'t produce on a large commercial scale, so call ahead rather than just showing up. Many of these farms are mixed orchards, so ask what else is ripe while you\'re there.',
+  'Baton Rouge': 'Plan the drive north to Ruston around mid-June, when the Louisiana Peach Festival celebrates the height of the season, and expect crowds if you go festival weekend. Bring a cooler for the drive back south to keep the fruit from softening in Louisiana\'s heat and humidity.',
+  Augusta: 'Peach picking isn\'t really part of the local agricultural scene in Maine—home growers with hardy cultivars are your best bet, and even they have unpredictable yields. Farmers markets are the more reliable source for fresh peaches in season.',
+  Annapolis: 'Eastern Shore orchards peak in July; cross the Bay Bridge on a weekday morning if possible to beat both traffic and weekend crowds at the more popular pick-your-own farms. The historic peach belt here has been in production for well over a century, so ask the farmers about the area\'s history while you\'re picking.',
+  Boston: 'Connecticut River Valley orchards, west of Boston, tend to have better peach crops than farms closer to the coast, so it\'s worth the extra drive. Call ahead, since the August window here is brief.',
+  Lansing: 'West Michigan\'s fruit belt orchards often grow peaches, cherries, and apples on the same property, so ask what else is ripe when you call to check on peaches. Lake Michigan\'s moderating effect means the season here can run later into August than you\'d expect this far north.',
+  'Saint Paul': 'Minnesota\'s peach crop is small and unpredictable, so always call ahead to confirm an orchard has fruit before making the drive—a hard winter can eliminate the local crop entirely some years. Cold-hardy cultivars here often ripen later than in warmer states.',
+  Jackson: 'Mississippi\'s hill country orchards north of Jackson tend to have better peach crops than the flatter Delta farms, so it\'s worth seeking those out specifically. Bring a cooler; the state\'s summer humidity softens picked peaches quickly.',
+  'Jefferson City': 'Ozark foothill orchards often run peaches as a follow-up to spring strawberry season, so ask farms you\'ve visited before about their summer peach offerings. The elevation here helps protect the crop from the late frosts that can be a problem elsewhere in Missouri.',
+  Helena: 'Commercial peach picking isn\'t really available near Helena—Montana\'s climate is too harsh for orchards at any real scale. If you want fresh peaches, farmers markets selling fruit trucked in from warmer states are the more realistic option.',
+  Lincoln: 'Nebraska\'s peach yields vary a lot year to year depending on spring frost timing, so call ahead before driving out, especially after a rough winter. Hardier cultivars here tend to ripen a bit later than in warmer peach states.',
+  'Carson City': 'Nevada\'s small peach orchards are concentrated in irrigated valleys, so check with local farms before assuming peach picking is available—it\'s a much smaller industry here than apples or even some berries. The dry desert air can concentrate flavor in what fruit does ripen.',
+  Concord: 'New Hampshire\'s peach season is brief and the supply limited, so call ahead to one of the small orchards near Concord rather than planning a trip around peaches alone—consider combining it with a visit to a farm that also grows apples or berries.',
+  Trenton: 'Gloucester County orchards, south of Trenton, are worth the drive during peach season, and many of the same farms growing peaches also have blueberries ripe at the same time, making for a good combined trip. Call ahead during peak weeks in late July and August.',
+  'Santa Fe': 'Rio Grande Valley orchards south of Santa Fe rely on irrigation, so check with farms directly since water availability can affect the size of a given year\'s crop. The high-altitude sun here makes for intensely flavored fruit worth the drive.',
+  Albany: 'Hudson Valley orchards typically run their peach season in August, just ahead of the fall apple rush, so visit before Labor Day if peaches are the priority. Many farms offer both crops, so ask what else is in season.',
+  Raleigh: 'The Sandhills region around Candor peaks with its peach festival in mid-July, and that\'s generally the best window for picking, though crowds are heaviest that particular weekend. Sandy soil orchards here drain quickly after rain, so picking conditions stay good even after a storm.',
+  Bismarck: 'There\'s essentially no commercial peach picking near Bismarck—North Dakota\'s winters are too severe for the trees to reliably survive. Cold-hardy apple orchards are the better bet for a pick-your-own outing in this part of the state.',
+  Columbus: 'Southern Ohio\'s hillside orchards along the river tend to have more reliable peach crops than flatter farms closer to Columbus, so it\'s worth the extra drive south. Many of these orchards run peaches in midsummer ahead of their fall apple season.',
+  'Oklahoma City': 'Plan a trip to Porter around the Porter Peach Festival in mid-July for the best selection, though the orchards there pick well before and after the festival weekend too. It\'s about a two-hour drive from Oklahoma City, so call ahead to confirm hours.',
+  Salem: 'Willamette Valley orchards growing peaches alongside Oregon\'s better-known berries tend to have a shorter, later season than California\'s—check in August rather than earlier summer. Expect smaller peaches with excellent flavor compared to mass-market varieties.',
+  Harrisburg: 'Adams County orchards run a long fruit season, with peaches typically peaking in late July and into August before the area\'s famous apple harvest begins. Many farms offer both, so it\'s worth asking what\'s ripe on the day you visit.',
+  Providence: 'Rhode Island\'s compact size means most peach orchards are within a short drive of Providence, but call ahead since the selection is smaller than in bigger agricultural states. Combine a peach trip with a stop at a farm stand for local preserves.',
+  Columbia: 'The Ridge area around Edgefield and Saluda counties is one of the best peach destinations on the East Coast, and it\'s well worth the drive from Columbia—plan to arrive early since these orchards draw serious crowds in peak season. June through August covers most of the harvest here.',
+  Pierre: 'Commercial peach orchards are essentially absent near Pierre—South Dakota\'s climate doesn\'t support them at any real scale. Cold-hardy apple orchards are the more realistic pick-your-own option in this part of the state.',
+  Nashville: 'Middle Tennessee orchards growing peaches tend to be smaller operations than the region\'s apple farms, so call ahead to confirm availability before making the drive. Many of these farms grow both crops on the same property.',
+  Austin: 'Plan ahead for a trip to Stonewall and Fredericksburg, since peak peach season in June draws heavy crowds and the best orchards can sell out by midday on weekends. Going on a weekday morning is the best way to beat both the heat and the lines.',
+  'Salt Lake City': 'Utah County orchards near Santaquin peak in August, later than many other states, so don\'t assume peach season is over just because it\'s late summer. The mountain runoff irrigation here produces notably juicy, flavorful fruit.',
+  Montpelier: 'Vermont\'s peach offerings are limited and the window brief, so call ahead to one of the small orchards near Montpelier rather than counting on a guaranteed crop—pairing the trip with a farm that also grows apples or berries is a good backup plan.',
+  Richmond: 'Both the Blue Ridge foothills and Shenandoah Valley orchards are within range of Richmond and worth checking, since elevation differences mean one area may be riper than the other on a given week. Carter Mountain Orchard near Charlottesville is a popular and reliable choice.',
+  Olympia: 'The real peach orchards are a long drive east in the Yakima Valley, well outside Olympia\'s much cooler, wetter climate, so plan for a multi-hour trip if peaches are the priority. Western Washington\'s farms are better bets for berries and apples instead.',
+  Charleston: 'The Eastern Panhandle\'s orchards are several hours from Charleston, so this is a trip to plan rather than a casual outing—call ahead to confirm peach availability alongside the area\'s better-known apples.',
+  Madison: 'Wisconsin\'s peach window is brief and yields modest, so call ahead before driving out to confirm a given orchard actually has ripe fruit. Many of these farms also grow cherries and apples worth asking about.',
+  Cheyenne: 'Commercial peach picking isn\'t really available near Cheyenne—Wyoming\'s elevation and winters are too harsh for the trees to thrive at any real scale. Farmers markets selling fruit trucked in from warmer states are a more realistic source for fresh peaches.',
+};
+
+const peachRegion = {
+  'new-england': {
+    h2: 'Peach Picking in New England',
+    body: `New England sits at the northern edge of where peach trees can reliably produce a commercial crop, and most of the region's tree-fruit orchards lean heavily toward apples instead. Still, a number of farms across Connecticut, Massachusetts, and the warmer river valleys of the other New England states grow peaches successfully, typically offering a brief picking window in August before turning their attention to the much larger fall apple harvest. The fruit that does ripen here tends to be prized precisely because it's scarce, and local orchards often sell out of peaches well before the apple season even begins.`,
+  },
+  'mid-atlantic': {
+    h2: 'Mid-Atlantic Peach Country',
+    body: `The mid-Atlantic has one of the deepest peach-growing traditions in the country, anchored by the historic Delmarva Peninsula peach belt that made Delaware a national leader in the nineteenth century and by New Jersey's Gloucester County, still a major producer today. Pennsylvania's Adams County grows peaches on a serious commercial scale alongside its famous apples, and Maryland, Virginia, and West Virginia all contribute their own orchards along the region's river valleys and hill country. The peach season here typically runs from July through August, often overlapping with the blueberry harvest at the same farms.`,
+  },
+  southeast: {
+    h2: 'Southeastern Peach Orchards',
+    body: `The Southeast is peach country in the truest sense—Georgia's reputation as the Peach State is part of American folklore, even though South Carolina's Ridge region around Edgefield and Saluda counties now produces more peaches by volume than any state besides California. North Carolina's Sandhills region around Candor and Alabama's Chilton County both add their own well-established peach traditions, with festivals celebrating the harvest in towns across the region each summer. The season here runs roughly from late May through August, giving the Southeast one of the longest and most reliable peach windows in the country.`,
+  },
+  midwest: {
+    h2: 'Midwest Peach Picking',
+    body: `Peaches are a smaller part of the Midwest's fruit-growing identity than apples or, in Michigan's case, cherries, but pockets of strong peach production exist throughout the region—particularly in the hill country along major rivers, where elevation changes create air drainage that protects blossoms from late frost. Southern Illinois, southern Indiana, southern Ohio, and Michigan's western fruit belt all support peach orchards that open to pick-your-own visitors each midsummer, often on the same farms that grow the region's better-known apples.`,
+  },
+  mountain: {
+    h2: 'Mountain West Peach Orchards',
+    body: `Mountain west peach growing concentrates in a handful of well-irrigated valleys where intense high-altitude sun and dramatic day-to-night temperature swings combine to produce remarkably flavorful fruit. Colorado's Palisade peaches, grown on the Western Slope's Grand Valley, are the region's signature crop and the centerpiece of an annual festival each August, while Utah County's orchards along the Wasatch Range and New Mexico's Rio Grande Valley farms each carry on their own smaller but well-loved peach traditions.`,
+  },
+  'south-central': {
+    h2: 'Peach Picking in Texas, Oklahoma, and Louisiana',
+    body: `Texas Hill Country, centered on the towns of Stonewall and Fredericksburg, calls itself the Peach Capital of Texas and draws visitors from across the state each June and July for some of the best pick-your-own peaches in the South. Oklahoma's own peach tradition centers on Porter, celebrated each summer with its own peach festival, while Louisiana's peach belt around Ruston in the northern part of the state produces much of that state's crop in sandy hill-country soil better suited to the fruit than the Mississippi River delta further south.`,
+  },
+  pacific: {
+    h2: 'Pacific Coast Peach Orchards',
+    body: `California dominates national peach production by a wide margin, with the Central Valley's vast orchards supplying both fresh-eating freestone peaches and clingstone varieties grown for canning. Washington's peach orchards cluster in the irrigated Yakima Valley east of the Cascades, a very different growing environment from the state's cooler, wetter western half, while Oregon's Willamette Valley produces a smaller peach crop alongside the berries the region is better known for. Alaska's climate rules out commercial peach growing almost entirely.`,
+  },
+  southwest: {
+    h2: 'Peach Picking in Arizona and Hawaii',
+    body: `Arizona's desert valleys, irrigated and intensely sunny, support a number of low-chill peach orchards that ripen earlier in the year than almost anywhere else in the country, often by May. Hawaii's tropical climate, by contrast, lacks the winter chill that peach trees need to fruit properly, so the islands have essentially no commercial peach industry, and pick-your-own peach picking isn't part of the local agricultural landscape.`,
+  },
+};
+
+const peachSeason = {
+  Alabama: 'Late May through August, with Chilton County\'s harvest typically peaking in June and July when the roadside stands along I-65 are busiest.',
+  Alaska: 'No meaningful commercial peach season; if you find local peaches at all, they\'re likely to be small experimental harvests rather than a predictable annual crop.',
+  Arizona: 'As early as April and May for low-chill varieties, making it one of the earliest peach seasons in the country, with most orchards finished well before the summer heat peaks.',
+  Arkansas: 'June through August, with the earliest varieties often ready before the Fourth of July.',
+  California: 'The longest peach season in the country, starting as early as May in the warmest parts of the Central Valley and running clear through September depending on variety and elevation.',
+  Colorado: 'Mid-August through September for the famous Palisade peaches, later than most of the country, with the harvest peak coinciding with the Palisade Peach Festival each August.',
+  Connecticut: 'A brief window, generally just a few weeks in August.',
+  Delaware: 'July through August, continuing a harvest tradition on the Delmarva Peninsula that dates back over a century.',
+  Florida: 'As early as April for low-chill varieties, giving the state one of the very earliest peach seasons anywhere in the country.',
+  Georgia: 'May through August, with the peak typically falling in June and July when the state\'s famous orchards are at their busiest.',
+  Hawaii: 'No commercial peach season; the climate doesn\'t support the winter chill peach trees require to fruit.',
+  Idaho: 'Late July through August, shorter than warmer states but reliable in the irrigated valleys of the southwest.',
+  Illinois: 'July through early September, with southern Illinois orchards usually a week or two ahead of those further north.',
+  Indiana: 'Roughly mid-July through August, with southern Indiana orchards along the Ohio River often the first to ripen.',
+  Iowa: 'August into September for the limited local crop, later than warmer peach-growing states.',
+  Kansas: 'July into August, with eastern Kansas orchards typically having the most reliable crops.',
+  Kentucky: 'July through August, on a similar schedule to the state\'s neighboring Appalachian orchards.',
+  Louisiana: 'Peaking in June, celebrated each year with the Louisiana Peach Festival in Ruston at the height of the harvest.',
+  Maine: 'No reliable commercial peach season given the state\'s cold winters and short growing season.',
+  Maryland: 'July through August on the Eastern Shore, continuing the Delmarva Peninsula\'s long peach-growing history.',
+  Massachusetts: 'A brief window in August, squeezed between the state\'s summer berry season and the start of fall apple picking.',
+  Michigan: 'Late July through August, overlapping with the early part of the state\'s much larger cherry and apple harvests.',
+  Minnesota: 'August into September for the small, cold-hardy-cultivar crop, later than in warmer states.',
+  Mississippi: 'June through August, with hill-country orchards in the northern and central parts of the state usually leading the harvest.',
+  Missouri: 'July through August, often following close behind the state\'s spring strawberry harvest at the same farms.',
+  Montana: 'No commercial peach season; the state\'s harsh winters and high elevation make reliable peach production impractical.',
+  Nebraska: 'Late July through August for the modest local crop, with yields varying considerably depending on the previous winter\'s severity.',
+  Nevada: 'July through August for the small harvest concentrated in irrigated valleys.',
+  'New Hampshire': 'A brief season running through August, a small counterpart to the state\'s much larger apple harvest later in the fall.',
+  'New Jersey': 'July through August, often overlapping with the blueberry harvest at the same Garden State farms.',
+  'New Mexico': 'July through August in the Rio Grande Valley, with the high-altitude sun helping concentrate flavor in the fruit.',
+  'New York': 'Running through August in the Hudson Valley, finishing up just before the region\'s much larger apple harvest begins in September.',
+  'North Carolina': 'June through August, with the Sandhills region around Candor typically at its peak in July.',
+  'North Dakota': 'No commercial peach season given the state\'s severe winters.',
+  Ohio: 'July through August, with the hillside orchards of the southern part of the state typically leading the harvest.',
+  Oklahoma: 'Peaking in July, celebrated each year with the Porter Peach Festival at the height of the harvest.',
+  Oregon: 'Running through August, generally later and shorter than California\'s much larger harvest to the south.',
+  Pennsylvania: 'Late July through August, with Adams County orchards typically leading the state\'s harvest before the area\'s famous apple season takes over.',
+  'Rhode Island': 'A brief season running through August at the state\'s small number of orchards.',
+  'South Carolina': 'May through August, among the longest in the country outside California, with the Ridge region\'s harvest typically peaking in June and July.',
+  'South Dakota': 'No commercial peach season given the state\'s harsh climate.',
+  Tennessee: 'July through August, with Middle Tennessee orchards generally following a similar schedule to their Kentucky neighbors.',
+  Texas: 'Peaking in June and July in the Hill Country, with the Fredericksburg and Stonewall orchards drawing the heaviest crowds during those peak weeks.',
+  Utah: 'Late July through August, with Utah County orchards near Santaquin typically among the last in the country to wrap up their harvest.',
+  Vermont: 'A limited season running through August, a small counterpart to the state\'s much larger fall apple harvest.',
+  Virginia: 'July through August, with both the Blue Ridge foothills and Shenandoah Valley orchards typically ripening around the same time.',
+  Washington: 'July through August in the Yakima Valley, entirely separate from the state\'s cooler, berry-focused western half.',
+  'West Virginia': 'July through August in the Eastern Panhandle, alongside the region\'s better-known apple harvest.',
+  Wisconsin: 'Typically ripening in August, a brief window at the edge of where the trees can reliably survive the state\'s winters.',
+  Wyoming: 'No commercial peach season given the state\'s high elevation and severe winters.',
+};
+
 // ---------- Page generator ----------
 
 function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
@@ -661,11 +855,11 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
   const desc = `Find ${fruitLabel.toLowerCase()} orchards near ${city}, ${state}. Browse pick-your-own farms and orchards on an interactive map. Search by ZIP code to find the closest location.`;
   const resultsHeading = `${fruitLabel} Near ${city}, ${code}`;
 
-  const introsByFruit = { 'apple-picking': appleIntros, 'cherry-picking': cherryIntros, 'berry-picking': berryIntros };
-  const tipsByFruit = { 'apple-picking': appleTips, 'cherry-picking': cherryTips, 'berry-picking': berryTips };
-  const regionByFruit = { 'apple-picking': appleRegion, 'cherry-picking': cherryRegion, 'berry-picking': berryRegion };
-  const seasonByFruit = { 'apple-picking': appleSeason, 'cherry-picking': cherrySeason, 'berry-picking': berrySeason };
-  const regionKeyField = { 'apple-picking': 'region', 'cherry-picking': 'cherryRegion', 'berry-picking': 'region' };
+  const introsByFruit = { 'apple-picking': appleIntros, 'cherry-picking': cherryIntros, 'berry-picking': berryIntros, 'peach-picking': peachIntros };
+  const tipsByFruit = { 'apple-picking': appleTips, 'cherry-picking': cherryTips, 'berry-picking': berryTips, 'peach-picking': peachTips };
+  const regionByFruit = { 'apple-picking': appleRegion, 'cherry-picking': cherryRegion, 'berry-picking': berryRegion, 'peach-picking': peachRegion };
+  const seasonByFruit = { 'apple-picking': appleSeason, 'cherry-picking': cherrySeason, 'berry-picking': berrySeason, 'peach-picking': peachSeason };
+  const regionKeyField = { 'apple-picking': 'region', 'cherry-picking': 'cherryRegion', 'berry-picking': 'region', 'peach-picking': 'region' };
 
   const defaultFilter = fruitSlug;
   const capital = capitals.find(c => c.city === city);
@@ -824,6 +1018,368 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
 `;
 }
 
+// ---------- Garden center content ----------
+
+const gardenCenterIntros = {
+  Montgomery: 'Montgomery sits in USDA hardiness zone 8a, with a long, humid growing season that lets local garden centers keep camellias, azaleas, and crepe myrtles in stock for much of the year. The area\'s clay-heavy soil means good garden centers here are also a source of soil amendments and advice, not just plants.',
+  Juneau: 'Juneau\'s maritime climate is milder than most of Alaska, sitting in a surprisingly temperate zone 7b pocket thanks to the moderating effect of the Pacific, which lets local garden centers stock a wider range of perennials than you\'d expect this far north. Heavy rainfall and limited daylight in winter shape what thrives here, and good local nurseries know exactly which varieties tolerate both.',
+  Phoenix: 'Phoenix garden centers operate in zone 9b desert conditions, where xeriscaping with cacti, succulents, and drought-tolerant natives has become the practical standard rather than a trend. Extreme summer heat means the best local centers sell as much shade cloth and irrigation equipment as they do plants.',
+  'Little Rock': 'Little Rock falls in zone 7b/8a, a humid subtropical climate where azaleas, dogwoods, and crepe myrtles are garden center staples each spring. The area gets enough winter chill for traditional perennials but a long enough growing season that local centers often run extended spring and fall planting promotions.',
+  Sacramento: 'Sacramento\'s Mediterranean climate, zone 9b, supports nearly year-round gardening, and local garden centers reflect that with citrus trees, olive trees, and drought-tolerant California natives alongside the usual seasonal annuals. Water-wise landscaping has become a major focus given the state\'s recurring drought cycles.',
+  Denver: 'Denver garden centers contend with zone 5b/6a conditions, high altitude sun, and a short growing season bracketed by late spring and early fall frosts, which makes timing advice from local staff especially valuable. Xeriscaping and drought-tolerant perennials have become increasingly central to what Denver-area centers stock given the region\'s dry climate.',
+  Hartford: 'Hartford sits in zone 6b, with four distinct seasons that give local garden centers a predictable but compressed planting calendar—spring annuals and vegetables, summer perennials, and a strong fall season built around mums, pumpkins, and ornamental kale.',
+  Dover: 'Dover\'s zone 7b climate and sandy coastal-plain soil support both traditional mid-Atlantic perennials and a number of native plants suited to the Delmarva Peninsula\'s sandy conditions. Local garden centers here often carry plants chosen specifically for the area\'s well-drained soil.',
+  Tallahassee: 'Tallahassee garden centers operate in zone 8b/9a, a subtropical climate where camellias, azaleas, and gardenias thrive and the growing season runs nearly year-round. The area\'s clay soil and high humidity mean good local centers stock plants and amendments suited specifically to North Florida conditions rather than the sandier soil farther south in the state.',
+  Atlanta: 'Atlanta sits in zone 7b/8a, classic Southern gardening territory where dogwoods, azaleas, and hydrangeas are garden center staples each spring. The metro area\'s red clay soil is notoriously difficult to work with, and good local centers are as much a source of soil amendment advice as they are of plants.',
+  Honolulu: 'Honolulu\'s tropical zone 11/12 climate is entirely different from the mainland, and garden centers here specialize in orchids, plumeria, hibiscus, and other tropical and subtropical plants that simply can\'t survive most of the continental United States. Year-round growing means there\'s no real planting season here in the traditional sense.',
+  Boise: 'Boise garden centers work within zone 6b/7a, an arid high-desert climate where irrigation is essential and drought-tolerant landscaping has become increasingly popular. The Treasure Valley\'s long, hot summers and cold winters give local centers a fairly compressed spring planting window.',
+  Springfield: 'Springfield sits in zone 6a, classic Midwest growing conditions with cold winters and warm, humid summers that support a wide range of perennials, vegetables, and prairie natives. Local garden centers here run a strong spring rush followed by a smaller but loyal fall planting season.',
+  Indianapolis: 'Indianapolis garden centers operate in zone 6a, similar to much of the Midwest, with a planting calendar built around a relatively short frost-free window each year. Prairie natives and pollinator-friendly perennials have become increasingly popular at local centers in recent years.',
+  'Des Moines': 'Des Moines sits in zone 5b, where cold winters compress the growing season and local garden centers see an intense rush each spring once the frost risk passes. Iowa\'s prairie heritage shows up in the popularity of native grasses and perennials at local nurseries.',
+  Topeka: 'Topeka garden centers work in zone 6b, Great Plains conditions where wind and periodic drought make hardy, low-water perennials a popular choice. Local centers here often stock plants bred specifically to handle Kansas\'s temperature swings and unpredictable rainfall.',
+  Frankfort: 'Frankfort sits in zone 6b/7a, in the heart of Kentucky\'s Bluegrass region, where good soil and a moderate climate support a wide range of ornamentals alongside the turfgrass varieties the area is famous for. Local garden centers often double as a resource for the area\'s well-known horse farms and their extensive landscaping needs.',
+  'Baton Rouge': 'Baton Rouge garden centers operate in zone 9a, a subtropical climate with heavy humidity that makes azaleas, camellias, and crepe myrtles reliable favorites. The long growing season here means local centers often stay busy nearly year-round rather than seeing the sharp seasonal swings common farther north.',
+  Augusta: 'Augusta sits in zone 5a/5b, where Maine\'s short, cool growing season puts a premium on hardy perennials and a compressed but intense planting period each spring. Local garden centers here lean heavily on plants bred for cold tolerance and a short frost-free window.',
+  Annapolis: 'Annapolis garden centers work in zone 7b, Chesapeake Bay region conditions that support both traditional ornamentals and a growing interest in native coastal plants that tolerate the area\'s humidity and occasional salt exposure near the water.',
+  Boston: 'Boston sits in zone 6b/7a, with four well-defined seasons that give local garden centers a clear annual rhythm—spring bulbs and annuals, summer perennials, and a strong fall season built around New England\'s famous foliage colors and mum displays.',
+  Lansing: 'Lansing garden centers operate in zone 5b/6a, shaped by Michigan\'s lake-effect climate, which moderates temperatures just enough to support a solid range of perennials and flowering shrubs. The state\'s strong horticultural tradition means local centers often carry an unusually deep selection for the zone.',
+  'Saint Paul': 'Saint Paul sits in zone 4b, one of the harsher growing zones among state capitals, where winters are severe enough that local garden centers focus heavily on cold-hardy perennials and a short, intense spring planting rush once the ground finally thaws.',
+  Jackson: 'Jackson garden centers work in zone 8a, Deep South conditions where azaleas, camellias, and crepe myrtles are mainstays and the growing season extends well into fall. Mississippi\'s heat and humidity mean local centers also stock plants chosen specifically for disease resistance in damp conditions.',
+  'Jefferson City': 'Jefferson City sits in zone 6b, a transitional climate between the Midwest and the South that lets local garden centers stock a fairly wide range of perennials and ornamentals. The area\'s variable spring weather makes timing advice from local staff particularly useful.',
+  Helena: 'Helena garden centers operate in zone 4b/5a, high-elevation conditions with a short growing season that puts a premium on extremely hardy perennials and native plants adapted to Montana\'s dramatic temperature swings. Local centers here see a compressed but enthusiastic spring rush.',
+  Lincoln: 'Lincoln sits in zone 5b, Great Plains conditions where wind, periodic drought, and temperature extremes favor hardy, low-maintenance perennials. Nebraska\'s prairie heritage is reflected in the popularity of native grasses and pollinator gardens at local centers.',
+  'Carson City': 'Carson City garden centers work in zone 6b/7a, a high-desert climate with low humidity and significant day-to-night temperature swings that make drought-tolerant, xeriscape-friendly plants the practical default. Irrigation planning is often as much a part of the conversation at local centers as plant selection itself.',
+  Concord: 'Concord sits in zone 5b, New Hampshire\'s granite-soil terrain and cold winters shaping a planting calendar built around hardy perennials and a relatively short but reliable growing season each summer.',
+  Trenton: 'Trenton garden centers operate in zone 7a, fittingly for the Garden State, which has one of the strongest commercial nursery industries on the East Coast. Local centers benefit from that infrastructure with deep inventories and a wide variety of both ornamentals and edible plants.',
+  'Santa Fe': 'Santa Fe sits in zone 6a, a high desert climate where adobe-style xeriscaping and native Southwest plants like penstemon, chamisa, and piñon pine are garden center staples. Intense sun and low humidity at altitude mean local centers emphasize drought tolerance above almost everything else.',
+  Albany: 'Albany garden centers work in zone 5b/6a, Hudson Valley conditions with four distinct seasons that support a wide range of perennials, and a strong fall season built around the region\'s well-known apple and pumpkin harvest displays.',
+  Raleigh: 'Raleigh sits in zone 7b/8a, North Carolina Piedmont conditions where azaleas, dogwoods, and the region\'s native longleaf pine ecosystem all show up at local garden centers. The area\'s clay soil makes soil amendment advice a regular part of what good local centers offer.',
+  Bismarck: 'Bismarck garden centers operate in one of the harshest zones among state capitals, 4a, where North Dakota\'s short, intense growing season and severe winters mean local centers stock almost exclusively cold-hardy perennials and natives bred to survive extreme temperature swings.',
+  Columbus: 'Columbus sits in zone 6a, typical Midwest conditions with a clear seasonal rhythm—spring annuals and vegetables, summer perennials, and a strong fall season built around mums and ornamental gourds.',
+  'Oklahoma City': 'Oklahoma City garden centers work in zone 7a, Great Plains conditions where wind, heat, and periodic drought make hardy, low-water natives a practical and increasingly popular choice. The region\'s red soil also shapes what local centers recommend for amendment and drainage.',
+  Salem: 'Salem sits in the heart of Oregon\'s Willamette Valley, one of the most significant commercial nursery-growing regions in the entire country, and zone 8b\'s mild, wet winters support an exceptionally wide range of ornamentals, conifers, and perennials at local garden centers.',
+  Harrisburg: 'Harrisburg garden centers operate in zone 6b/7a, mid-Atlantic conditions with four clear seasons and a strong fall tradition built around Pennsylvania\'s well-known apple and pumpkin harvests alongside the usual mum and ornamental kale displays.',
+  Providence: 'Providence sits in zone 7a, coastal New England conditions where salt-tolerant plants are a consideration near the water and the state\'s compact size means most garden centers serve a tight-knit, loyal local customer base.',
+  Columbia: 'Columbia garden centers work in zone 8a, classic Southern gardening territory where camellias, azaleas, and crepe myrtles dominate spring displays and the long growing season keeps local centers busy well into fall.',
+  Pierre: 'Pierre sits in zone 4b, harsh Great Plains conditions where wind, drought, and severe winters make extremely hardy, low-water plants the practical standard. Local garden centers here see a short but intense spring rush once the frost risk finally passes.',
+  Nashville: 'Nashville garden centers operate in zone 7a, a transitional climate between the Midwest and Deep South that supports both traditional Southern ornamentals like dogwoods and azaleas and a wide range of perennials more common farther north.',
+  Austin: 'Austin sits in zone 8b/9a, Texas Hill Country conditions where heat and periodic drought have made native, low-water plants like Texas sage, lantana, and yaupon holly local garden center staples rather than a niche choice.',
+  'Salt Lake City': 'Salt Lake City garden centers work in zone 6b/7a, a high-desert climate along the Wasatch Range where mountain runoff irrigation is essential and drought-tolerant landscaping has become increasingly standard given Utah\'s water concerns.',
+  Montpelier: 'Montpelier sits in zone 4b/5a, Vermont\'s short, cool growing season and rocky, granite-influenced soil shaping a planting calendar built around hardy perennials and a compressed but well-loved spring rush at local garden centers.',
+  Richmond: 'Richmond garden centers operate in zone 7a/7b, mid-Atlantic conditions with a strong horticultural tradition reflected in the area\'s historic gardens, and local centers here often carry an unusually deep selection of both ornamentals and native Virginia perennials.',
+  Olympia: 'Olympia sits in zone 8a, the mild, wet Pacific Northwest climate that has made western Washington one of the country\'s major nursery-growing regions, and local garden centers benefit from that proximity with deep, well-priced inventories of conifers, rhododendrons, and perennials.',
+  Charleston: 'Charleston garden centers work in zone 6b, Appalachian hill-country conditions where steep terrain and variable microclimates mean plant selection can differ significantly even within a short drive, and good local staff know the difference well.',
+  Madison: 'Madison sits in zone 5a, where Wisconsin\'s cold winters and relatively short growing season put a premium on hardy perennials, and local garden centers see an intense, compressed spring rush each year once the frost risk passes.',
+  Cheyenne: 'Cheyenne garden centers operate in zone 5a, high-plains conditions defined by relentless wind, low humidity, and a short growing season, all of which make extremely hardy, low-water perennials the practical default rather than a stylistic choice.',
+};
+
+const gardenCenterTips = {
+  Montgomery: 'Visit in early spring for the widest selection of azaleas and camellias before the summer heat sets in. Ask staff about soil amendments for Montgomery\'s clay-heavy ground—most local gardeners need them.',
+  Juneau: 'Check inventory before making a special trip, since Juneau\'s isolated location and shipping costs mean stock can be limited compared to mainland garden centers. Local staff are an especially good resource for which perennials actually handle the area\'s heavy rainfall.',
+  Phoenix: 'Shop early in the morning during summer to avoid both the heat and the crowds, and ask about drip irrigation setup if you\'re new to desert gardening. Fall and winter are actually the better planting seasons here, not spring.',
+  'Little Rock': 'Spring weekends get busy at the more popular centers, so a weekday visit usually means more attention from staff. Ask about fall planting too—Arkansas\'s mild autumns are an underrated time to put in trees and shrubs.',
+  Sacramento: 'Take advantage of the area\'s long growing season by asking about succession planting for vegetables, since Sacramento\'s climate supports multiple plantings per year. Water-wise landscaping advice is worth asking for given the region\'s recurring drought restrictions.',
+  Denver: 'Plant after the last frost date, which can run later than expected at altitude—ask local staff for the current year\'s estimate rather than relying on a general rule of thumb. Afternoon hailstorms are a real risk in late spring, so ask about protective options for new plantings.',
+  Hartford: 'Fall is an underrated time to visit Hartford garden centers—perennials and shrubs planted then often establish better than spring plantings. Stock tends to be deepest in early May, right after the last frost risk passes.',
+  Dover: 'Ask about salt-tolerant and wind-tolerant varieties if you\'re gardening near the coast, since Delaware\'s sandy soil and ocean proximity both affect plant selection. Spring and fall are the two strongest planting windows here.',
+  Tallahassee: 'Take advantage of the area\'s long growing season—planting isn\'t limited to spring the way it is farther north, and fall is actually an excellent time for many ornamentals here. Ask about disease-resistant varieties given North Florida\'s humidity.',
+  Atlanta: 'Visit on a weekday if possible; Atlanta\'s garden centers get genuinely crowded on spring weekends. Bring a soil sample if you can—staff can often give more specific amendment advice for the area\'s notorious red clay than a general recommendation would.',
+  Honolulu: 'Ask staff about which plants are restricted from leaving the islands if you\'re hoping to bring anything home—Hawaii has strict agricultural rules to protect against invasive species. Year-round growing means there\'s rarely a bad time to visit.',
+  Boise: 'Plan around Boise\'s relatively short frost-free window, and ask about drought-tolerant landscaping options given the Treasure Valley\'s dry summers. Early spring tends to have the best selection before the heat arrives.',
+  Springfield: 'Spring weekends are the busiest time at Springfield-area centers, so a weekday trip usually means more one-on-one help from staff. Ask about pollinator-friendly natives—they\'ve become a popular and practical choice for Illinois gardens.',
+  Indianapolis: 'Visit early in spring for the best perennial selection, since Indiana\'s relatively short frost-free window means inventory turns over fast. Fall is a good secondary window for trees and shrubs that benefit from establishing before winter.',
+  'Des Moines': 'Iowa\'s spring rush can mean picked-over inventory by late May, so an early-season visit is worth it if you have specific varieties in mind. Ask about native prairie perennials, which tend to handle Iowa\'s weather swings better than many ornamentals.',
+  Topeka: 'Ask about wind-tolerant and drought-resistant varieties—Kansas\'s open terrain and unpredictable rainfall make these practical considerations rather than nice-to-haves. Early spring and early fall are both good planting windows here.',
+  Frankfort: 'Bluegrass-region soil tends to be better than much of the rest of the state, so don\'t assume you\'ll need the same heavy amendments other Kentucky gardeners discuss. Spring is the busiest season, but good centers restock through summer.',
+  'Baton Rouge': 'Louisiana\'s long growing season means you\'re rarely too late to plant something—ask staff what works well for the current month rather than assuming spring is the only window. Humidity-related disease resistance is worth asking about for any new shrubs.',
+  Augusta: 'Maine\'s short season means timing matters—ask staff for the realistic local planting window rather than a generic regional estimate, since microclimates vary even within central Maine. Stock up early; the best hardy perennials often sell out fast each spring.',
+  Annapolis: 'Ask about salt and wind tolerance if you\'re gardening anywhere near the water, since the Chesapeake\'s coastal exposure affects plant choices more than people expect. Spring and early fall are both solid planting windows here.',
+  Boston: 'New England\'s fall foliage season makes garden centers especially worth visiting in September and October for trees and shrubs chosen for color, not just spring bloom. Ask about microclimates—Boston\'s urban heat island can shift timing compared to the surrounding suburbs.',
+  Lansing: 'Michigan\'s lake-effect climate creates real microclimate differences even within the state, so ask local staff rather than assuming a generic Midwest planting calendar applies exactly. Spring is busy, but the state\'s strong horticultural tradition means good centers restock all season.',
+  'Saint Paul': 'Minnesota\'s spring rush is intense and short, so visit as soon as the frost risk passes if you want the best selection of hardy perennials. Ask about zone 4-rated varieties specifically, since some plants sold regionally aren\'t actually suited to Saint Paul\'s winters.',
+  Jackson: 'Mississippi\'s heat and humidity make disease resistance a genuinely important factor—ask staff which varieties of azaleas and crepe myrtles hold up best locally. The growing season extends well into fall, so don\'t limit shopping to spring.',
+  'Jefferson City': 'Missouri\'s spring weather can be unpredictable, so ask local staff about the current year\'s frost risk before planting tender annuals too early. Fall is a solid secondary window for trees and shrubs here.',
+  Helena: 'Montana\'s short growing season rewards early planning—visit as soon as the frost risk passes for the best selection of hardy perennials. Ask about native plants specifically bred for the state\'s dramatic temperature swings.',
+  Lincoln: 'Nebraska\'s wind and periodic drought make low-maintenance native perennials a practical choice worth asking about. Spring is the busiest season, but fall planting works well for trees and shrubs here too.',
+  'Carson City': 'Ask about drip irrigation and xeriscape design if you\'re new to high-desert gardening—it\'s less about plant selection and more about water management in this climate. Spring and fall both offer more moderate planting conditions than the height of summer.',
+  Concord: 'New Hampshire\'s granite soil often needs amendment, so bring questions about your specific site if you can. Spring is busy, but many of the hardiest perennials establish just as well with a fall planting.',
+  Trenton: 'New Jersey\'s strong commercial nursery industry means local centers often have deeper inventory than you\'d find in a similarly sized city elsewhere—worth asking what\'s grown locally versus shipped in. Spring and fall are both strong planting windows here.',
+  'Santa Fe': 'Ask about xeriscape design and native Southwest plants specifically—conventional water-hungry landscaping doesn\'t make sense in Santa Fe\'s climate and most good local centers will steer you toward better-adapted choices. Intense sun at altitude means afternoon shade considerations matter even for "full sun" plants.',
+  Albany: 'Hudson Valley garden centers get busy in fall thanks to the region\'s apple and pumpkin season, so visit on a weekday if you want a quieter shopping trip during that window. Spring remains the primary planting season for most perennials.',
+  Raleigh: 'Bring a soil sample if you can—Raleigh\'s clay soil varies enough by neighborhood that specific amendment advice is more useful than a general recommendation. Spring and fall are both solid planting windows in the Piedmont\'s mild climate.',
+  Bismarck: 'North Dakota\'s growing season is short and intense, so visit as early as the frost risk allows if you want the best selection of cold-hardy perennials. Ask specifically about zone 4 ratings, since not everything sold regionally actually survives a Bismarck winter.',
+  Columbus: 'Spring weekends are the busiest time at Columbus-area centers, so a weekday visit usually means more time with staff. Fall is an underrated season here for planting trees and shrubs that benefit from establishing before winter.',
+  'Oklahoma City': 'Ask about wind-tolerant and drought-resistant natives—Oklahoma\'s open plains terrain makes these practical rather than optional considerations. Spring and fall both offer better planting conditions than the height of summer heat.',
+  Salem: 'Take advantage of being in one of the country\'s major nursery-growing regions by asking staff what\'s grown right in the Willamette Valley versus shipped in from elsewhere—the local selection is often exceptional. Mild, wet winters mean fall planting works very well here too.',
+  Harrisburg: 'Visit in fall for Pennsylvania\'s well-known apple and pumpkin display season alongside the usual mum selection. Spring remains the primary planting window for most perennials and vegetables.',
+  Providence: 'Ask about salt tolerance if you\'re gardening anywhere near Narragansett Bay, since coastal exposure shapes plant selection more than people expect in a state this compact. Spring and early fall are both solid planting windows.',
+  Columbia: 'Visit early in spring for the best selection of camellias and azaleas before the summer heat arrives. The long growing season here means fall planting works well too, not just spring.',
+  Pierre: 'South Dakota\'s growing season is short and the spring rush intense, so visit as soon as frost risk passes for the best selection. Ask specifically about zone 4 hardiness ratings before buying anything not explicitly rated for the local climate.',
+  Nashville: 'Spring weekends get busy, so a weekday visit usually means more attention from staff. Nashville\'s transitional climate supports a wide range of plants, so ask what performs best at the specific edge between Southern and Midwestern conditions.',
+  Austin: 'Ask about native, low-water plants specifically—conventional landscaping struggles with Austin\'s heat and periodic drought, and most good local centers will steer you toward better-adapted choices. Fall is actually a better planting time here than spring, since plants establish before summer heat arrives.',
+  'Salt Lake City': 'Ask about drought-tolerant landscaping given Utah\'s ongoing water concerns—it\'s become a central part of what local centers recommend rather than a niche request. Mountain runoff irrigation timing affects when certain plants are available.',
+  Montpelier: 'Vermont\'s short season rewards early shopping—visit as soon as frost risk passes for the best selection of hardy perennials. Ask about soil amendments for the area\'s rocky, granite-influenced ground.',
+  Richmond: 'Richmond\'s strong horticultural tradition means local centers often carry an unusually deep selection—worth asking staff for native Virginia perennial recommendations specifically. Spring and fall are both solid planting windows in this mild mid-Atlantic climate.',
+  Olympia: 'Take advantage of being near one of the country\'s major nursery-growing regions by asking what\'s grown locally in western Washington versus shipped in—the selection of conifers and rhododendrons in particular tends to be excellent. Mild, wet winters mean fall planting works very well here too.',
+  Charleston: 'Ask local staff about your specific microclimate—West Virginia\'s steep terrain means conditions can vary significantly even within a short drive of Charleston. Spring is the busiest season, but fall works well for trees and shrubs.',
+  Madison: 'Wisconsin\'s spring rush is intense and short, so visit as soon as the frost risk passes for the best selection of hardy perennials. Ask about zone 5 ratings specifically before buying anything not explicitly suited to Madison\'s winters.',
+  Cheyenne: 'Ask about wind-tolerant and extremely drought-resistant varieties—Wyoming\'s relentless high-plains wind makes this a practical necessity rather than a preference. Spring is short and intense here, so early shopping pays off.',
+};
+
+const gardenCenterRegion = {
+  'new-england': {
+    h2: 'Garden Centers Across New England',
+    body: `New England's garden centers operate within a tightly defined growing season bracketed by a real winter on both ends, which gives the region's nurseries a clear and predictable annual rhythm: spring annuals and vegetable starts, a full summer of perennials and flowering shrubs, and a beloved fall season built around mums, pumpkins, and the trees and shrubs chosen specifically for their autumn color. Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, and Vermont each have their own pockets of hardiness zones depending on coastal proximity and elevation, and the best local centers know exactly which plants handle their particular corner of the region.`,
+  },
+  'mid-atlantic': {
+    h2: 'Mid-Atlantic Garden Centers',
+    body: `The mid-Atlantic supports one of the strongest commercial nursery industries in the country, anchored by New Jersey's deep horticultural infrastructure and complemented by Pennsylvania, Delaware, Maryland, Virginia, and West Virginia, each with their own well-established garden center traditions. The region's moderate climate and four distinct seasons give local centers a long and varied selling season, from spring bulbs and vegetable starts through a strong fall display built around the area's well-known apple and pumpkin harvests.`,
+  },
+  southeast: {
+    h2: 'Southeastern Garden Centers',
+    body: `The Southeast's warm, humid climate and long growing season make it one of the most forgiving regions in the country for gardening, with azaleas, camellias, dogwoods, and crepe myrtles serving as garden center staples from Georgia and the Carolinas through Alabama, Mississippi, Tennessee, and Florida. Many garden centers here stay busy nearly year-round rather than seeing the sharp seasonal swings common farther north, and disease-resistant plant varieties get particular attention given the region's heat and humidity.`,
+  },
+  midwest: {
+    h2: 'Midwest Garden Centers',
+    body: `Midwest garden centers work within a clear seasonal calendar shaped by cold winters and a relatively compressed growing season, which makes the spring rush especially intense across Illinois, Indiana, Iowa, Kansas, Michigan, Minnesota, Missouri, Nebraska, Ohio, North Dakota, South Dakota, and Wisconsin. Native prairie perennials and pollinator-friendly plantings have become an increasingly popular focus at local centers throughout the region, reflecting both the area's agricultural heritage and growing interest in low-maintenance landscaping.`,
+  },
+  mountain: {
+    h2: 'Mountain West Garden Centers',
+    body: `Mountain west garden centers contend with some of the most challenging growing conditions in the country—high altitude, intense sun, dramatic day-to-night temperature swings, and in many areas genuine aridity that makes water-wise landscaping a practical necessity rather than a stylistic choice. Colorado, Idaho, Montana, Nevada, New Mexico, Utah, and Wyoming each have their own hardy native plant traditions, and the best local centers across the region specialize in drought-tolerant perennials suited to short, intense growing seasons.`,
+  },
+  'south-central': {
+    h2: 'Garden Centers in Texas, Oklahoma, and Louisiana',
+    body: `Texas and Oklahoma share a climate defined by heat, wind, and periodic drought, which has made native, low-water plants like Texas sage, lantana, and yaupon holly into garden center staples rather than a niche choice, while Louisiana's humid subtropical climate supports the kind of long growing season and lush ornamental plantings—azaleas, camellias, crepe myrtles—more typical of the Deep South.`,
+  },
+  pacific: {
+    h2: 'Pacific Coast Garden Centers',
+    body: `The Pacific Northwest, particularly Oregon's Willamette Valley and western Washington, is home to one of the largest commercial nursery-growing regions in the entire country, and local garden centers benefit from that proximity with exceptionally deep, often locally grown inventories of conifers, rhododendrons, and perennials. California's Mediterranean climate supports nearly year-round gardening and a strong focus on drought-tolerant natives given the state's recurring water concerns, while Alaska's milder coastal pockets support a more limited but genuine gardening culture shaped by heavy rainfall and short winter daylight.`,
+  },
+  southwest: {
+    h2: 'Garden Centers in Arizona and Hawaii',
+    body: `Arizona's desert garden centers have built an entire business around xeriscaping, with cacti, succulents, and drought-tolerant natives as the practical default rather than a trend, given the region's extreme summer heat and limited rainfall. Hawaii's tropical climate is a different world entirely, with local garden centers specializing in orchids, plumeria, hibiscus, and other tropical plants that thrive in year-round warmth but couldn't survive almost anywhere else in the country.`,
+  },
+};
+
+const gardenCenterSeason = {
+  Alabama: 'Spring is the busiest planting season, but Alabama\'s long, mild fall is an underrated second window for trees and shrubs, and many garden centers stay active well into November.',
+  Alaska: 'A short but intense window from late spring through midsummer, shaped by Juneau\'s mild coastal climate and long summer daylight hours.',
+  Arizona: 'Fall and winter are actually the better planting seasons in Phoenix\'s desert climate, letting roots establish before the extreme heat of summer arrives.',
+  Arkansas: 'Spring is the primary rush, but Arkansas\'s mild autumns make fall an excellent and underused time to plant trees and shrubs.',
+  California: 'Sacramento\'s Mediterranean climate supports planting across most of the year, with spring and fall as the two most active seasons at local centers.',
+  Colorado: 'A compressed window between the last spring frost and the first fall frost, both of which can arrive earlier than expected at Denver\'s altitude.',
+  Connecticut: 'Spring is the main rush, but fall planting often produces better-established perennials and shrubs by the following summer.',
+  Delaware: 'Both spring and fall offer strong planting windows on the Delmarva Peninsula\'s sandy coastal-plain soil.',
+  Florida: 'A long growing season that extends well beyond spring, with fall actually preferred for many ornamentals around Tallahassee.',
+  Georgia: 'Spring is the peak season for azaleas and dogwoods, with a long growing season extending well into fall around Atlanta.',
+  Hawaii: 'Year-round growing means there\'s no traditional planting season in Honolulu—local centers stay active every month.',
+  Idaho: 'A relatively short, hot-summer window bracketed by Boise\'s spring and fall frost dates.',
+  Illinois: 'Spring is the busiest rush, with a secondary fall window for trees and shrubs around Springfield.',
+  Indiana: 'A fairly short frost-free season centered on spring, with fall as a solid secondary window for trees and shrubs.',
+  Iowa: 'An intense, compressed spring rush around Des Moines once the frost risk passes, given Iowa\'s cold winters.',
+  Kansas: 'Both early spring and early fall offer good planting conditions around Topeka, avoiding the extremes of summer heat and winter wind.',
+  Kentucky: 'Spring is the busiest season in the Bluegrass region, with good centers restocking through summer and into fall.',
+  Louisiana: 'A long growing season around Baton Rouge that rarely closes entirely—something can usually be planted nearly any month.',
+  Maine: 'A short, intense window each spring once Augusta\'s frost risk passes, with the hardiest perennials selling out fast.',
+  Maryland: 'Both spring and early fall are solid planting windows around the Chesapeake Bay region near Annapolis.',
+  Massachusetts: 'Spring is the main season, with September and October drawing visitors for New England\'s famous fall foliage trees and shrubs.',
+  Michigan: 'Spring is the primary rush around Lansing, moderated somewhat by Michigan\'s lake-effect climate extending the season slightly.',
+  Minnesota: 'A short, intense spring rush around Saint Paul once the frost risk finally passes after Minnesota\'s severe winters.',
+  Mississippi: 'A long growing season around Jackson extending well into fall, beyond the traditional spring rush.',
+  Missouri: 'Spring is the primary season around Jefferson City, with fall as a solid secondary window for trees and shrubs.',
+  Montana: 'A short, intense growing season around Helena bracketed by Montana\'s long winters on both ends.',
+  Nebraska: 'Both spring and fall offer good planting windows around Lincoln, avoiding the extremes of Nebraska\'s summer heat and winter cold.',
+  Nevada: 'Spring and fall offer more moderate planting conditions than summer\'s extreme heat in the high-desert valleys near Carson City.',
+  'New Hampshire': 'A short but reliable summer growing season around Concord, with fall planting working well for hardy perennials and shrubs.',
+  'New Jersey': 'Spring and fall are both strong planting windows in the Garden State\'s moderate mid-Atlantic climate near Trenton.',
+  'New Mexico': 'Spring and fall offer the most moderate conditions around Santa Fe, avoiding the intense midday sun of summer at altitude.',
+  'New York': 'Spring is the main season in the Hudson Valley near Albany, with fall drawing visitors for the region\'s apple and pumpkin displays.',
+  'North Carolina': 'Spring and fall are both excellent planting windows in the Piedmont\'s mild climate around Raleigh.',
+  'North Dakota': 'A short, intense spring rush around Bismarck once the frost risk passes after North Dakota\'s severe winters.',
+  Ohio: 'Spring is the primary rush around Columbus, with fall as an underrated window for planting trees and shrubs before winter.',
+  Oklahoma: 'Spring and fall both offer better conditions than the height of summer heat in the Great Plains climate near Oklahoma City.',
+  Oregon: 'Mild, wet winters around Salem mean the planting season extends well beyond spring, with fall working particularly well here.',
+  Pennsylvania: 'Spring is the primary season near Harrisburg, with fall drawing visitors for Pennsylvania\'s well-known apple and pumpkin harvest displays.',
+  'Rhode Island': 'Spring and early fall are both solid planting windows in Rhode Island\'s compact coastal climate near Providence.',
+  'South Carolina': 'A long growing season around Columbia that extends well into fall, beyond the traditional spring rush for camellias and azaleas.',
+  'South Dakota': 'A short, intense spring rush around Pierre once the frost risk passes after South Dakota\'s harsh winters.',
+  Tennessee: 'Spring is the busiest season around Nashville, with the state\'s transitional climate supporting planting into early fall as well.',
+  Texas: 'Fall is actually a better planting time than spring around Austin, letting roots establish before the intense summer heat arrives.',
+  Utah: 'Spring and fall offer the most moderate planting conditions around Salt Lake City, tied closely to mountain runoff irrigation timing.',
+  Vermont: 'A short, intense spring rush around Montpelier once Vermont\'s frost risk finally passes.',
+  Virginia: 'Spring and fall are both solid planting windows in Richmond\'s mild mid-Atlantic climate.',
+  Washington: 'Mild, wet winters around Olympia mean the planting season extends well beyond spring, much like neighboring Oregon.',
+  'West Virginia': 'Spring is the busiest season around Charleston, with fall working well for trees and shrubs in the Appalachian hill country.',
+  Wisconsin: 'A short, intense spring rush around Madison once the frost risk passes after Wisconsin\'s cold winters.',
+  Wyoming: 'A short growing season around Cheyenne shaped by high-plains wind and a narrow frost-free window each summer.',
+};
+
+// ---------- Garden center page generator ----------
+
+function generateGardenCenterPage({ city, state, code }) {
+  const citySlug = slugify(city);
+  const stateSlug = slugify(state);
+  const urlSlug = `garden-centers-near-${citySlug}-${stateSlug}`;
+  const canonicalUrl = `https://orchards-nearme.com/find/${urlSlug}`;
+  const titleTag = `Garden Centers Near ${city}, ${state} | Orchards Near Me`;
+  const h1 = `Garden Centers Near ${city} ${state}`;
+  const desc = `Find garden centers near ${city}, ${state}. Browse plant nurseries and garden centers on an interactive map. Search by ZIP code to find the closest location.`;
+  const resultsHeading = `Garden Centers Near ${city}, ${code}`;
+
+  const capital = capitals.find(c => c.city === city);
+  const regionKey = capital ? capital.region : undefined;
+  const regionData = gardenCenterRegion[regionKey];
+  const intro = gardenCenterIntros[city];
+  const tips = gardenCenterTips[city];
+  const seasonText = gardenCenterSeason[state];
+
+  const seasonH2 = `Best Time to Visit a Garden Center Near ${city}`;
+  const tipsH2 = `Tips for Your ${city} Garden Center Visit`;
+  const mainH2 = `Garden Centers Near ${city}: What You Need to Know`;
+
+  const filterChips = `<button class="filter-chip" data-cat="all">All Listings</button>
+          <button class="filter-chip active" data-cat="Garden Center">Garden Centers</button>
+          <button class="filter-chip" data-cat="Orchard">Orchards</button>
+          <button class="filter-chip" data-cat="Farm">Farms</button>`;
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${titleTag}</title>
+  <meta name="description" content="${desc}" />
+  <link rel="canonical" href="${canonicalUrl}" />
+  <meta property="og:title" content="${titleTag}" />
+  <meta property="og:description" content="Find garden centers near ${city}, ${state} on an interactive map." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="${canonicalUrl}" />
+
+  <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/vendor/leaflet/leaflet.css" />
+  <link rel="stylesheet" href="/vendor/leaflet/MarkerCluster.css" />
+  <link rel="stylesheet" href="/vendor/leaflet/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2173008413459742" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="/" aria-label="Orchards Near Me home">
+        <img src="/logo.svg" alt="" class="logo-icon" />
+        Orchards Near Me
+      </a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/find" class="cta">Find</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>${h1}</h1>
+        <p>Discover garden centers near ${city}, ${state}. Search by ZIP code to find the closest nursery, check ratings, and read real visitor reviews before you go.</p>
+        <div class="pills">
+          <span>Garden Centers</span>
+          <span>Plant Nurseries</span>
+          <span>${state}</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="controls" id="find">
+      <div class="container">
+        <form class="search-form" id="searchForm">
+          <input type="text" id="zipInput" inputmode="numeric" placeholder="Enter your ZIP code (e.g. 05346)" aria-label="Search by ZIP code" />
+          <button type="submit" class="btn">Search</button>
+          <button type="button" class="btn btn-ghost" id="resetBtn">Reset</button>
+        </form>
+        <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="Garden Center" data-default-state="${state}">
+          ${filterChips}
+        </div>
+        <select class="state-select" id="stateSelect" aria-label="Filter by state">
+          <option value="all">All states</option>
+        </select>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="view-toggle" id="viewToggle">
+        <button class="active" data-view="map">Map</button>
+        <button data-view="list">List</button>
+      </div>
+      <div class="find-layout">
+        <div class="results-col">
+          <div class="results-head">
+            <h2>${resultsHeading}</h2>
+            <span class="results-count" id="resultsCount">Loading...</span>
+          </div>
+          <div class="cards" id="cards"></div>
+        </div>
+        <div class="map-col">
+          <div id="map" role="application" aria-label="Map of garden centers near ${city}, ${state}"></div>
+          <div class="map-legend" aria-label="Map key">
+            <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
+            <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
+            <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="seo-content">
+      <div class="container">
+        <article class="seo-article">
+
+          <h2>${mainH2}</h2>
+          <p>${intro}</p>
+
+          <h2>${regionData.h2}</h2>
+          <p>${regionData.body}</p>
+
+          <h2>${seasonH2}</h2>
+          <p>${seasonText}</p>
+
+          <h2>${tipsH2}</h2>
+          <p>${tips}</p>
+
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul class="footer-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/disclaimer.html">Disclaimer</a></li>
+        <li><a href="/privacy.html">Privacy</a></li>
+        <li><a href="/terms.html">Terms</a></li>
+        <li><a href="/sitemap.html">Sitemap</a></li>
+      </ul>
+      <div class="footer-bottom">
+        <p>Orchards Near Me &mdash; your friendly guide to orchards, farms, and garden centers across the USA. &copy; <span id="year"></span> orchards-nearme.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/vendor/leaflet/leaflet.js"></script>
+  <script src="/vendor/leaflet/leaflet.markercluster.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
+`;
+}
+
 // ---------- Main execution ----------
 
 const findDir = path.join(__dirname, '..', 'find');
@@ -835,6 +1391,7 @@ const fruits = [
   { fruitSlug: 'apple-picking', fruitLabel: 'Apple Picking' },
   { fruitSlug: 'cherry-picking', fruitLabel: 'Cherry Picking' },
   { fruitSlug: 'berry-picking', fruitLabel: 'Berry Picking' },
+  { fruitSlug: 'peach-picking', fruitLabel: 'Peach Picking' },
 ];
 
 for (const fruit of fruits) {
@@ -848,6 +1405,17 @@ for (const fruit of fruits) {
     allUrls.push(url);
     console.log('Generated:', filename);
   }
+}
+
+for (const cap of capitals) {
+  const citySlug = slugify(cap.city);
+  const stateSlug = slugify(cap.state);
+  const filename = `garden-centers-near-${citySlug}-${stateSlug}.html`;
+  const filePath = path.join(findDir, filename);
+  fs.writeFileSync(filePath, generateGardenCenterPage(cap), 'utf8');
+  const url = `https://orchards-nearme.com/find/garden-centers-near-${citySlug}-${stateSlug}`;
+  allUrls.push(url);
+  console.log('Generated:', filename);
 }
 
 console.log(`\nDone. Generated ${allUrls.length} pages.`);
