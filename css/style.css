@@ -742,6 +742,12 @@ h3 {
   border-color: #f5b8cc;
 }
 
+.fit-chip--pumpkin-patch {
+  background: #fdead3;
+  color: #b3560a;
+  border-color: #f2c98a;
+}
+
 .map-popup .fit-chips {
   margin: 4px 0;
 }
@@ -1163,6 +1169,14 @@ h3 {
   border-top-color: #8b6f47;
 }
 
+.find-directory-card--orchard {
+  border-top-color: #8b5a2b;
+}
+
+.find-directory-card--pumpkin {
+  border-top-color: #d9720c;
+}
+
 .find-directory-card-icon {
   font-size: 2.4rem;
   line-height: 1;
@@ -1201,6 +1215,14 @@ h3 {
 
 .find-directory-card--youpick .find-directory-card-body h3 {
   color: #6b4f2a;
+}
+
+.find-directory-card--orchard .find-directory-card-body h3 {
+  color: #8b5a2b;
+}
+
+.find-directory-card--pumpkin .find-directory-card-body h3 {
+  color: #d9720c;
 }
 
 .find-directory-card-body p {
@@ -1242,6 +1264,14 @@ h3 {
 
 .find-directory-card--youpick .find-directory-card-cta {
   color: #8b6f47;
+}
+
+.find-directory-card--orchard .find-directory-card-cta {
+  color: #8b5a2b;
+}
+
+.find-directory-card--pumpkin .find-directory-card-cta {
+  color: #d9720c;
 }
 
 .find-directory-city-list {

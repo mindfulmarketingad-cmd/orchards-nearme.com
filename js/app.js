@@ -78,6 +78,12 @@
       label: 'Strawberry Picking',
       icon: '🍓',
       test: function (item, text) { return text.includes('strawberr'); }
+    },
+    {
+      slug: 'pumpkin-patch',
+      label: 'Pumpkin Patch',
+      icon: '🎃',
+      test: function (item, text) { return text.includes('pumpkin'); }
     }
   ];
 
@@ -572,6 +578,7 @@
     'peach-picking': 'Peach Picking',
     'blueberry-picking': 'Blueberry Picking',
     'strawberry-picking': 'Strawberry Picking',
+    'pumpkin-patch': 'Pumpkin Patches',
     'Orchard': 'Orchards',
     'Farm': 'Farms',
     'Garden Center': 'Garden Centers',
@@ -584,7 +591,8 @@
     'peach-picking': '/find/peach-picking-orchards-near-me',
     'blueberry-picking': '/find/blueberry-picking-orchards-near-me',
     'strawberry-picking': '/find/strawberry-picking-orchards-near-me',
-    'Orchard': '/find',
+    'pumpkin-patch': '/find/pumpkin-patches-near-me',
+    'Orchard': '/find/orchards-near-me',
     'Farm': '/find/you-pick-farms-near-me',
     'Garden Center': '/find/garden-centers-near-me',
   };
@@ -636,7 +644,7 @@
         Array.prototype.forEach.call(el.filters.children, function (c) { c.classList.remove('active'); });
         chip.classList.add('active');
       }
-      if (defaultFilter === 'apple-picking' || defaultFilter === 'cherry-picking' || defaultFilter === 'berry-picking' || defaultFilter === 'peach-picking' || defaultFilter === 'blueberry-picking' || defaultFilter === 'strawberry-picking') {
+      if (defaultFilter === 'apple-picking' || defaultFilter === 'cherry-picking' || defaultFilter === 'berry-picking' || defaultFilter === 'peach-picking' || defaultFilter === 'blueberry-picking' || defaultFilter === 'strawberry-picking' || defaultFilter === 'pumpkin-patch') {
         state.keyword = defaultFilter;
         state.category = 'all';
       } else {

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orchards Near Pierre, South Dakota | Orchards Near Me</title>
+  <meta name="description" content="Find orchards near Pierre, South Dakota. Browse pick-your-own orchards on an interactive map. Search by ZIP code to find the closest location." />
+  <link rel="canonical" href="https://orchards-nearme.com/find/orchards-near-pierre-south-dakota" />
+  <meta property="og:title" content="Orchards Near Pierre, South Dakota | Orchards Near Me" />
+  <meta property="og:description" content="Find orchards near Pierre, South Dakota on an interactive map." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://orchards-nearme.com/find/orchards-near-pierre-south-dakota" />
+
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/vendor/leaflet/leaflet.css" />
+  <link rel="stylesheet" href="/vendor/leaflet/MarkerCluster.css" />
+  <link rel="stylesheet" href="/vendor/leaflet/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2173008413459742" crossorigin="anonymous"></script>
+</head>
+<body>
+  <a class="skip-link" href="#find">Skip to map</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="/" aria-label="Orchards Near Me home">
+        <img src="/logo.png" alt="" class="logo-icon" />
+        Orchards Near Me
+      </a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/blog">Blog</a>
+        <a href="/listings">Listings</a>
+        <a href="/find" class="cta">Find</a>
+      </nav>
+      <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Primary mobile">
+      <a href="/">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/blog">Blog</a>
+      <a href="/listings">Listings</a>
+      <a href="/find" class="cta">Find</a>
+    </nav>
+  </header>
+  <script>
+    (function () {
+      var toggle = document.getElementById('navToggle');
+      var menu = document.getElementById('mobileNav');
+      if (!toggle || !menu) return;
+      toggle.addEventListener('click', function () {
+        var isOpen = menu.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+      menu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          menu.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+  </script>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Orchards Near Pierre South Dakota</h1>
+        <p>Discover orchards near Pierre, South Dakota. Search by ZIP code to find the closest orchard, check ratings, and read real visitor reviews before you go.</p>
+      </div>
+    </section>
+
+    <section class="controls" id="find">
+      <div class="container">
+        <form class="search-form" id="searchForm">
+          <input type="text" id="zipInput" inputmode="numeric" placeholder="Enter your ZIP code (e.g. 05346)" aria-label="Search by ZIP code" />
+          <button type="submit" class="btn">Search</button>
+          <p id="zipError" hidden class="zip-error-msg" role="alert"></p>
+        </form>
+        <div class="filters-wrap">
+          <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
+            <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
+          </button>
+          <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="Orchard" data-default-state="South Dakota">
+            <button class="filter-chip" data-cat="all">All Listings</button>
+          <button class="filter-chip active" data-cat="Orchard">Orchards</button>
+          <button class="filter-chip" data-cat="Farm">Farms</button>
+          <button class="filter-chip" data-cat="Garden Center">Garden Centers</button>
+          </div>
+        </div>
+        <select class="state-select" id="stateSelect" aria-label="Filter by state">
+          <option value="all">All states</option>
+        </select>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="view-toggle" id="viewToggle">
+        <button class="active" data-view="map">Map</button>
+        <button data-view="list">List</button>
+      </div>
+      <div class="find-layout">
+        <div class="results-col">
+          <div class="results-head">
+            <h2>Orchards Near Pierre, SD</h2>
+            <span class="results-count" id="resultsCount">Loading...</span>
+          </div>
+          <div class="cards" id="cards"></div>
+        </div>
+        <div class="map-col">
+          <div id="map" role="application" aria-label="Map of orchards near Pierre, South Dakota"></div>
+          <div class="map-legend" aria-label="Map key">
+            <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
+            <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
+            <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="seo-content">
+      <div class="container">
+        <article class="seo-article">
+
+          <h2>Orchards Near Pierre: What You Need to Know</h2>
+          <p>Pierre sits within the Midwest, where local orchards work rich prairie soil to grow a mix of tree fruit and other pick-your-own crops across the growing season. Many orchards near Pierre post their current harvest status online, which is worth checking before a visit.</p>
+
+          <h2>Orchards Across the Midwest</h2>
+          <p>Orchards throughout the Midwest grow in rich prairie soil, and most diversify across more than one fruit crop to spread their picking season out rather than relying on a single narrow window. Orchards here typically open with early stone fruit or berries in spring and build toward a fall peak of apples and pumpkins, giving visitors more than one reason to return across the season. Checking a specific orchard's current harvest status before visiting is always worth the extra step, since conditions can shift from week to week.</p>
+
+          <h2>Best Time to Visit an Orchard Near Pierre</h2>
+          <p>Orchard season in South Dakota runs from late may through june for the earliest crops through a fall peak of apples and pumpkins that typically draws the biggest crowds.</p>
+
+          <h2>Tips for Your Pierre Orchard Visit</h2>
+          <p>Since orchards around Pierre often grow several crops across the year, it pays to check current picking conditions rather than assume a farm is open for the crop you have in mind. Bring your own bags or containers if the orchard allows it, and cash for smaller family operations.</p>
+
+        </article>
+      </div>
+    </section>
+
+    <section class="seo-content related-links">
+      <div class="container">
+        <h2>More to Explore Near Pierre, South Dakota</h2>
+        <ul class="related-links-list">
+          <li><a href="/find/apple-picking-orchards-near-pierre-south-dakota">Apple Picking Near Pierre, South Dakota</a></li>
+          <li><a href="/find/cherry-picking-orchards-near-pierre-south-dakota">Cherry Picking Near Pierre, South Dakota</a></li>
+          <li><a href="/find/berry-picking-orchards-near-pierre-south-dakota">Berry Picking Near Pierre, South Dakota</a></li>
+          <li><a href="/find/peach-picking-orchards-near-pierre-south-dakota">Peach Picking Near Pierre, South Dakota</a></li>
+          <li><a href="/find/blueberry-picking-orchards-near-pierre-south-dakota">Blueberry Picking Near Pierre, South Dakota</a></li>
+          <li><a href="/find/strawberry-picking-orchards-near-pierre-south-dakota">Strawberry Picking Near Pierre, South Dakota</a></li>
+          <li><a href="/find/garden-centers-near-pierre-south-dakota">Garden Centers Near Pierre, South Dakota</a></li>
+          <li><a href="/find/you-pick-farms-near-pierre-south-dakota">You Pick Farms Near Pierre, South Dakota</a></li>
+          <li><a href="/find/pumpkin-patches-near-pierre-south-dakota">Pumpkin Patches Near Pierre, South Dakota</a></li>
+        </ul>
+        <p class="related-links-all"><a href="/find">Browse all pick-your-own categories and states</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul class="footer-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/disclaimer.html">Disclaimer</a></li>
+        <li><a href="/privacy.html">Privacy</a></li>
+        <li><a href="/terms.html">Terms</a></li>
+        <li><a href="/sitemap.html">Sitemap</a></li>
+      </ul>
+      <div class="footer-bottom">
+        <p>Orchards Near Me &mdash; your friendly guide to orchards, farms, and garden centers across the USA. &copy; <span id="year"></span> orchards-nearme.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/vendor/leaflet/leaflet.js"></script>
+  <script src="/vendor/leaflet/leaflet.markercluster.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

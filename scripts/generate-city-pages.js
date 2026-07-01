@@ -70,6 +70,8 @@ const allCategories = [
   { slug: 'strawberry-picking', label: 'Strawberry Picking', urlPrefix: 'strawberry-picking-orchards-near-', nearMeUrl: '/find/strawberry-picking-orchards-near-me', nearMeLabel: 'Strawberry Picking Orchards Near Me' },
   { slug: 'garden-centers', label: 'Garden Centers', urlPrefix: 'garden-centers-near-', nearMeUrl: '/find/garden-centers-near-me', nearMeLabel: 'Garden Centers Near Me' },
   { slug: 'you-pick-farms', label: 'You Pick Farms', urlPrefix: 'you-pick-farms-near-', nearMeUrl: '/find/you-pick-farms-near-me', nearMeLabel: 'You Pick Farms Near Me' },
+  { slug: 'orchards', label: 'Orchards', urlPrefix: 'orchards-near-', nearMeUrl: '/find/orchards-near-me', nearMeLabel: 'Orchards Near Me' },
+  { slug: 'pumpkin-patches', label: 'Pumpkin Patches', urlPrefix: 'pumpkin-patches-near-', nearMeUrl: '/find/pumpkin-patches-near-me', nearMeLabel: 'Pumpkin Patches Near Me' },
 ];
 
 function relatedLinksHtml(currentSlug, citySlug, stateSlug, city, state) {
@@ -1151,6 +1153,79 @@ capitals.forEach((cap) => {
   youPickSeason[cap.state] = `Pick-your-own season in ${cap.state} runs from spring strawberries through summer berries and stone fruit, into a fall peak of apples and pumpkins that usually draws the largest crowds.`;
 });
 
+// ---------- Orchards content (general orchard category, all fruit types) ----------
+
+const ORCHARD_INTRO_VARIANTS = [
+  (city, state, r) => `Orchards near ${city} reflect ${r.name}'s growing conditions, with ${r.soil} supporting everything from tree fruit to berry rows depending on the farm. Most orchards within driving distance of ${city} grow more than one crop, so the same property is often worth visiting at different points across the year.`,
+  (city, state, r) => `${city} sits within ${r.name}, where local orchards work ${r.soil} to grow a mix of tree fruit and other pick-your-own crops across the growing season. Many orchards near ${city} post their current harvest status online, which is worth checking before a visit.`,
+  (city, state, r) => `Orchards within reach of ${city} take advantage of ${r.name}'s ${r.soil}, and most run more than one u-pick season a year rather than a single narrow window. Whether you are after tree fruit, berries, or a fall visit for pumpkins and apples, there is usually an orchard near ${city} in season.`,
+];
+
+const ORCHARD_TIP_VARIANTS = [
+  (city, state, r) => `Orchards near ${city} run on ${r.name}'s growing calendar, so call ahead or check a farm's website to confirm what is actually ripe before you drive out. Weekday mornings tend to be quieter than weekend afternoons, especially once a crop peaks.`,
+  (city, state, r) => `Since orchards around ${city} often grow several crops across the year, it pays to check current picking conditions rather than assume a farm is open for the crop you have in mind. Bring your own bags or containers if the orchard allows it, and cash for smaller family operations.`,
+  (city, state, r) => `Plan an orchard visit near ${city} around whatever is currently in season rather than a fixed calendar date, since ${r.name}'s weather can shift harvest timing by a couple of weeks either way. Wear closed-toe shoes and dress for field conditions, which can be muddy after rain.`,
+];
+
+const orchardIntros = {};
+const orchardTips = {};
+capitals.forEach((cap, i) => {
+  const r = REGION_INFO[cap.region];
+  orchardIntros[cap.city] = ORCHARD_INTRO_VARIANTS[i % ORCHARD_INTRO_VARIANTS.length](cap.city, cap.state, r);
+  orchardTips[cap.city] = ORCHARD_TIP_VARIANTS[i % ORCHARD_TIP_VARIANTS.length](cap.city, cap.state, r);
+});
+
+const orchardRegion = {};
+Object.keys(REGION_INFO).forEach((key) => {
+  const r = REGION_INFO[key];
+  orchardRegion[key] = {
+    h2: `Orchards Across ${r.name}`,
+    body: `Orchards throughout ${r.name} grow in ${r.soil}, and most diversify across more than one fruit crop to spread their picking season out rather than relying on a single narrow window. ${r.early ? 'The region\'s milder spring temperatures tend to push harvests ahead of most of the country, so orchards here often open earlier in the year than growers farther north.' : 'Orchards here typically open with early stone fruit or berries in spring and build toward a fall peak of apples and pumpkins, giving visitors more than one reason to return across the season.'} Checking a specific orchard's current harvest status before visiting is always worth the extra step, since conditions can shift from week to week.`,
+  };
+});
+
+const orchardSeason = {};
+capitals.forEach((cap) => {
+  const r = REGION_INFO[cap.region];
+  orchardSeason[cap.state] = `Orchard season in ${cap.state} runs from ${r.season.toLowerCase()} for the earliest crops through a fall peak of apples and pumpkins that typically draws the biggest crowds.`;
+});
+
+// ---------- Pumpkin patch content (fall seasonal keyword) ----------
+
+const PUMPKIN_INTRO_VARIANTS = [
+  (city, state, r) => `Pumpkin patches near ${city} open each fall as part of ${r.name}'s harvest season, with farms growing in ${r.soil} timing their fields to ripen from late September through October. Many patches near ${city} pair pumpkin picking with hayrides, corn mazes, and other fall activities.`,
+  (city, state, r) => `${city}'s pumpkin patches follow the same fall calendar as the rest of ${r.name}, with fields typically opening in late September and running through Halloween. Farms near ${city} growing in ${r.soil} often combine u-pick pumpkins with a broader fall festival atmosphere.`,
+  (city, state, r) => `Fall brings pumpkin patches to farms throughout the area around ${city}, part of ${r.name}'s broader harvest season. Most patches near ${city} are open from late September into late October, and many add seasonal extras like hayrides or cider alongside the pumpkins themselves.`,
+];
+
+const PUMPKIN_TIP_VARIANTS = [
+  (city, state, r) => `Pumpkin patches near ${city} are busiest on October weekends, so a weekday visit or an early weekend morning means shorter lines and better selection. Bring cash, since smaller family-run patches near ${city} are not always set up for cards.`,
+  (city, state, r) => `Visit a pumpkin patch near ${city} early in October for the best selection before the biggest pumpkins are picked over closer to Halloween. Check whether the patch charges by weight or a flat admission price, since pricing models vary quite a bit farm to farm.`,
+  (city, state, r) => `The pumpkins themselves are usually available from late September through the end of October near ${city}, but the patch itself and any add-on activities may close earlier, so check hours before visiting late in the season. Dress for outdoor field conditions, which can be muddy after fall rain.`,
+];
+
+const pumpkinIntros = {};
+const pumpkinTips = {};
+capitals.forEach((cap, i) => {
+  const r = REGION_INFO[cap.region];
+  pumpkinIntros[cap.city] = PUMPKIN_INTRO_VARIANTS[i % PUMPKIN_INTRO_VARIANTS.length](cap.city, cap.state, r);
+  pumpkinTips[cap.city] = PUMPKIN_TIP_VARIANTS[i % PUMPKIN_TIP_VARIANTS.length](cap.city, cap.state, r);
+});
+
+const pumpkinRegion = {};
+Object.keys(REGION_INFO).forEach((key) => {
+  const r = REGION_INFO[key];
+  pumpkinRegion[key] = {
+    h2: `Pumpkin Patches Across ${r.name}`,
+    body: `Pumpkin patches across ${r.name} follow a consistent fall calendar, with fields planted in ${r.soil} typically ready from late September through October regardless of how early or late the rest of the region's growing season runs. Many farms across the region pair u-pick pumpkins with fall extras like hayrides, corn mazes, and cider, making a patch visit as much a seasonal outing as a produce trip.`,
+  };
+});
+
+const pumpkinSeason = {};
+capitals.forEach((cap) => {
+  pumpkinSeason[cap.state] = `Pumpkin patch season in ${cap.state} runs from late September through late October, with the best selection typically available in the first half of that window before the closest-in pumpkins sell out.`;
+});
+
 // ---------- Page generator ----------
 
 function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
@@ -1961,6 +2036,412 @@ function generateYouPickFarmsPage({ city, state, code, region }) {
 `;
 }
 
+// ---------- Orchards page generator ----------
+
+function generateOrchardsPage({ city, state, code }) {
+  const citySlug = slugify(city);
+  const stateSlug = slugify(state);
+  const urlSlug = `orchards-near-${citySlug}-${stateSlug}`;
+  const canonicalUrl = `https://orchards-nearme.com/find/${urlSlug}`;
+  const titleTag = `Orchards Near ${city}, ${state} | Orchards Near Me`;
+  const h1 = `Orchards Near ${city} ${state}`;
+  const desc = `Find orchards near ${city}, ${state}. Browse pick-your-own orchards on an interactive map. Search by ZIP code to find the closest location.`;
+  const resultsHeading = `Orchards Near ${city}, ${code}`;
+  const relatedLinks = relatedLinksHtml('orchards', citySlug, stateSlug, city, state);
+
+  const capital = capitals.find(c => c.city === city);
+  const regionKey = capital ? capital.region : undefined;
+  const regionData = orchardRegion[regionKey];
+  const intro = orchardIntros[city];
+  const tips = orchardTips[city];
+  const seasonText = orchardSeason[state];
+
+  const seasonH2 = `Best Time to Visit an Orchard Near ${city}`;
+  const tipsH2 = `Tips for Your ${city} Orchard Visit`;
+  const mainH2 = `Orchards Near ${city}: What You Need to Know`;
+
+  const filterChips = `<button class="filter-chip" data-cat="all">All Listings</button>
+          <button class="filter-chip active" data-cat="Orchard">Orchards</button>
+          <button class="filter-chip" data-cat="Farm">Farms</button>
+          <button class="filter-chip" data-cat="Garden Center">Garden Centers</button>`;
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${titleTag}</title>
+  <meta name="description" content="${desc}" />
+  <link rel="canonical" href="${canonicalUrl}" />
+  <meta property="og:title" content="${titleTag}" />
+  <meta property="og:description" content="Find orchards near ${city}, ${state} on an interactive map." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="${canonicalUrl}" />
+
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/vendor/leaflet/leaflet.css" />
+  <link rel="stylesheet" href="/vendor/leaflet/MarkerCluster.css" />
+  <link rel="stylesheet" href="/vendor/leaflet/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2173008413459742" crossorigin="anonymous"></script>
+</head>
+<body>
+  <a class="skip-link" href="#find">Skip to map</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="/" aria-label="Orchards Near Me home">
+        <img src="/logo.png" alt="" class="logo-icon" />
+        Orchards Near Me
+      </a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/blog">Blog</a>
+        <a href="/listings">Listings</a>
+        <a href="/find" class="cta">Find</a>
+      </nav>
+      <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Primary mobile">
+      <a href="/">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/blog">Blog</a>
+      <a href="/listings">Listings</a>
+      <a href="/find" class="cta">Find</a>
+    </nav>
+  </header>
+  <script>
+    (function () {
+      var toggle = document.getElementById('navToggle');
+      var menu = document.getElementById('mobileNav');
+      if (!toggle || !menu) return;
+      toggle.addEventListener('click', function () {
+        var isOpen = menu.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+      menu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          menu.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+  </script>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>${h1}</h1>
+        <p>Discover orchards near ${city}, ${state}. Search by ZIP code to find the closest orchard, check ratings, and read real visitor reviews before you go.</p>
+      </div>
+    </section>
+
+    <section class="controls" id="find">
+      <div class="container">
+        <form class="search-form" id="searchForm">
+          <input type="text" id="zipInput" inputmode="numeric" placeholder="Enter your ZIP code (e.g. 05346)" aria-label="Search by ZIP code" />
+          <button type="submit" class="btn">Search</button>
+          <p id="zipError" hidden class="zip-error-msg" role="alert"></p>
+        </form>
+        <div class="filters-wrap">
+          <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
+            <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
+          </button>
+          <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="Orchard" data-default-state="${state}">
+            ${filterChips}
+          </div>
+        </div>
+        <select class="state-select" id="stateSelect" aria-label="Filter by state">
+          <option value="all">All states</option>
+        </select>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="view-toggle" id="viewToggle">
+        <button class="active" data-view="map">Map</button>
+        <button data-view="list">List</button>
+      </div>
+      <div class="find-layout">
+        <div class="results-col">
+          <div class="results-head">
+            <h2>${resultsHeading}</h2>
+            <span class="results-count" id="resultsCount">Loading...</span>
+          </div>
+          <div class="cards" id="cards"></div>
+        </div>
+        <div class="map-col">
+          <div id="map" role="application" aria-label="Map of orchards near ${city}, ${state}"></div>
+          <div class="map-legend" aria-label="Map key">
+            <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
+            <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
+            <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="seo-content">
+      <div class="container">
+        <article class="seo-article">
+
+          <h2>${mainH2}</h2>
+          <p>${intro}</p>
+
+          <h2>${regionData.h2}</h2>
+          <p>${regionData.body}</p>
+
+          <h2>${seasonH2}</h2>
+          <p>${seasonText}</p>
+
+          <h2>${tipsH2}</h2>
+          <p>${tips}</p>
+
+        </article>
+      </div>
+    </section>
+
+    ${relatedLinks}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul class="footer-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/disclaimer.html">Disclaimer</a></li>
+        <li><a href="/privacy.html">Privacy</a></li>
+        <li><a href="/terms.html">Terms</a></li>
+        <li><a href="/sitemap.html">Sitemap</a></li>
+      </ul>
+      <div class="footer-bottom">
+        <p>Orchards Near Me &mdash; your friendly guide to orchards, farms, and garden centers across the USA. &copy; <span id="year"></span> orchards-nearme.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/vendor/leaflet/leaflet.js"></script>
+  <script src="/vendor/leaflet/leaflet.markercluster.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
+`;
+}
+
+// ---------- Pumpkin patch page generator ----------
+
+function generatePumpkinPatchPage({ city, state, code }) {
+  const citySlug = slugify(city);
+  const stateSlug = slugify(state);
+  const urlSlug = `pumpkin-patches-near-${citySlug}-${stateSlug}`;
+  const canonicalUrl = `https://orchards-nearme.com/find/${urlSlug}`;
+  const titleTag = `Pumpkin Patches Near ${city}, ${state} | Orchards Near Me`;
+  const h1 = `Pumpkin Patches Near ${city} ${state}`;
+  const desc = `Find pumpkin patches near ${city}, ${state}. Browse pick-your-own pumpkin patches on an interactive map. Search by ZIP code to find the closest location.`;
+  const resultsHeading = `Pumpkin Patches Near ${city}, ${code}`;
+  const relatedLinks = relatedLinksHtml('pumpkin-patches', citySlug, stateSlug, city, state);
+
+  const capital = capitals.find(c => c.city === city);
+  const regionKey = capital ? capital.region : undefined;
+  const regionData = pumpkinRegion[regionKey];
+  const intro = pumpkinIntros[city];
+  const tips = pumpkinTips[city];
+  const seasonText = pumpkinSeason[state];
+
+  const seasonH2 = `Best Time to Visit a Pumpkin Patch Near ${city}`;
+  const tipsH2 = `Tips for Your ${city} Pumpkin Patch Visit`;
+  const mainH2 = `Pumpkin Patches Near ${city}: What You Need to Know`;
+
+  const filterChips = `<button class="filter-chip" data-cat="all">All Listings</button>
+          <button class="filter-chip active" data-cat="pumpkin-patch">🎃 Pumpkin Patches</button>
+          <button class="filter-chip" data-cat="Orchard">Orchards</button>
+          <button class="filter-chip" data-cat="Farm">Farms</button>`;
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${titleTag}</title>
+  <meta name="description" content="${desc}" />
+  <link rel="canonical" href="${canonicalUrl}" />
+  <meta property="og:title" content="${titleTag}" />
+  <meta property="og:description" content="Find pumpkin patches near ${city}, ${state} on an interactive map." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="${canonicalUrl}" />
+
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/vendor/leaflet/leaflet.css" />
+  <link rel="stylesheet" href="/vendor/leaflet/MarkerCluster.css" />
+  <link rel="stylesheet" href="/vendor/leaflet/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2173008413459742" crossorigin="anonymous"></script>
+</head>
+<body>
+  <a class="skip-link" href="#find">Skip to map</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="/" aria-label="Orchards Near Me home">
+        <img src="/logo.png" alt="" class="logo-icon" />
+        Orchards Near Me
+      </a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/blog">Blog</a>
+        <a href="/listings">Listings</a>
+        <a href="/find" class="cta">Find</a>
+      </nav>
+      <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Primary mobile">
+      <a href="/">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/blog">Blog</a>
+      <a href="/listings">Listings</a>
+      <a href="/find" class="cta">Find</a>
+    </nav>
+  </header>
+  <script>
+    (function () {
+      var toggle = document.getElementById('navToggle');
+      var menu = document.getElementById('mobileNav');
+      if (!toggle || !menu) return;
+      toggle.addEventListener('click', function () {
+        var isOpen = menu.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+      menu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          menu.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+  </script>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>${h1}</h1>
+        <p>Discover pumpkin patches near ${city}, ${state}. Search by ZIP code to find the closest patch, check ratings, and read real visitor reviews before you go.</p>
+      </div>
+    </section>
+
+    <section class="controls" id="find">
+      <div class="container">
+        <form class="search-form" id="searchForm">
+          <input type="text" id="zipInput" inputmode="numeric" placeholder="Enter your ZIP code (e.g. 05346)" aria-label="Search by ZIP code" />
+          <button type="submit" class="btn">Search</button>
+          <p id="zipError" hidden class="zip-error-msg" role="alert"></p>
+        </form>
+        <div class="filters-wrap">
+          <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
+            <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
+          </button>
+          <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="pumpkin-patch" data-default-state="${state}">
+            ${filterChips}
+          </div>
+        </div>
+        <select class="state-select" id="stateSelect" aria-label="Filter by state">
+          <option value="all">All states</option>
+        </select>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="view-toggle" id="viewToggle">
+        <button class="active" data-view="map">Map</button>
+        <button data-view="list">List</button>
+      </div>
+      <div class="find-layout">
+        <div class="results-col">
+          <div class="results-head">
+            <h2>${resultsHeading}</h2>
+            <span class="results-count" id="resultsCount">Loading...</span>
+          </div>
+          <div class="cards" id="cards"></div>
+        </div>
+        <div class="map-col">
+          <div id="map" role="application" aria-label="Map of pumpkin patches near ${city}, ${state}"></div>
+          <div class="map-legend" aria-label="Map key">
+            <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
+            <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
+            <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="seo-content">
+      <div class="container">
+        <article class="seo-article">
+
+          <h2>${mainH2}</h2>
+          <p>${intro}</p>
+
+          <h2>${regionData.h2}</h2>
+          <p>${regionData.body}</p>
+
+          <h2>${seasonH2}</h2>
+          <p>${seasonText}</p>
+
+          <h2>${tipsH2}</h2>
+          <p>${tips}</p>
+
+        </article>
+      </div>
+    </section>
+
+    ${relatedLinks}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul class="footer-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/disclaimer.html">Disclaimer</a></li>
+        <li><a href="/privacy.html">Privacy</a></li>
+        <li><a href="/terms.html">Terms</a></li>
+        <li><a href="/sitemap.html">Sitemap</a></li>
+      </ul>
+      <div class="footer-bottom">
+        <p>Orchards Near Me &mdash; your friendly guide to orchards, farms, and garden centers across the USA. &copy; <span id="year"></span> orchards-nearme.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/vendor/leaflet/leaflet.js"></script>
+  <script src="/vendor/leaflet/leaflet.markercluster.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
+`;
+}
+
 // ---------- Main execution ----------
 
 const findDir = path.join(__dirname, '..', 'find');
@@ -2008,6 +2489,28 @@ for (const cap of capitals) {
   const filePath = path.join(findDir, filename);
   fs.writeFileSync(filePath, generateYouPickFarmsPage(cap), 'utf8');
   const url = `https://orchards-nearme.com/find/you-pick-farms-near-${citySlug}-${stateSlug}`;
+  allUrls.push(url);
+  console.log('Generated:', filename);
+}
+
+for (const cap of capitals) {
+  const citySlug = slugify(cap.city);
+  const stateSlug = slugify(cap.state);
+  const filename = `orchards-near-${citySlug}-${stateSlug}.html`;
+  const filePath = path.join(findDir, filename);
+  fs.writeFileSync(filePath, generateOrchardsPage(cap), 'utf8');
+  const url = `https://orchards-nearme.com/find/orchards-near-${citySlug}-${stateSlug}`;
+  allUrls.push(url);
+  console.log('Generated:', filename);
+}
+
+for (const cap of capitals) {
+  const citySlug = slugify(cap.city);
+  const stateSlug = slugify(cap.state);
+  const filename = `pumpkin-patches-near-${citySlug}-${stateSlug}.html`;
+  const filePath = path.join(findDir, filename);
+  fs.writeFileSync(filePath, generatePumpkinPatchPage(cap), 'utf8');
+  const url = `https://orchards-nearme.com/find/pumpkin-patches-near-${citySlug}-${stateSlug}`;
   allUrls.push(url);
   console.log('Generated:', filename);
 }

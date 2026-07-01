@@ -70,6 +70,12 @@ const KEYWORD_DEFS = [
     icon: '🍓',
     test: function (item, text) { return text.includes('strawberr'); },
   },
+  {
+    slug: 'pumpkin-patch',
+    label: 'Pumpkin Patch',
+    icon: '🎃',
+    test: function (item, text) { return text.includes('pumpkin'); },
+  },
 ];
 
 function getFitChips(item) {
