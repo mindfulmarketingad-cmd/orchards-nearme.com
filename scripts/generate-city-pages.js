@@ -74,6 +74,31 @@ const allCategories = [
   { slug: 'pumpkin-patches', label: 'Pumpkin Patches', urlPrefix: 'pumpkin-patches-near-', nearMeUrl: '/find/pumpkin-patches-near-me', nearMeLabel: 'Pumpkin Patches Near Me' },
 ];
 
+// Full site-wide filter chip set, shared by every category hub page (fruit
+// pages, garden centers, you-pick farms, orchards, pumpkin patches) so no
+// page shows only a narrow subset of the available filters.
+const ALL_FILTER_CHIPS = [
+  { cat: 'apple-picking', label: 'Apple Picking' },
+  { cat: 'cherry-picking', label: 'Cherry Picking' },
+  { cat: 'berry-picking', label: 'Berry Picking' },
+  { cat: 'peach-picking', label: 'Peach Picking' },
+  { cat: 'blueberry-picking', label: 'Blueberry Picking' },
+  { cat: 'strawberry-picking', label: 'Strawberry Picking' },
+  { cat: 'pumpkin-patch', label: '🎃 Pumpkin Patches' },
+  { cat: 'Orchard', label: 'Orchards' },
+  { cat: 'Farm', label: 'Farms' },
+  { cat: 'Garden Center', label: 'Garden Centers' },
+];
+
+function buildFilterChips(activeCat) {
+  const all = `<button class="filter-chip${activeCat === 'all' ? ' active' : ''}" data-cat="all">All Listings</button>`;
+  const rest = ALL_FILTER_CHIPS.map(function (c) {
+    const cls = 'filter-chip' + (c.cat === activeCat ? ' active' : '');
+    return `          <button class="${cls}" data-cat="${c.cat}">${c.label}</button>`;
+  }).join('\n');
+  return `${all}\n${rest}`;
+}
+
 function relatedLinksHtml(currentSlug, citySlug, stateSlug, city, state) {
   const items = allCategories
     .filter(function (c) { return c.slug !== currentSlug; })
@@ -1259,10 +1284,7 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
 
   const mainH2 = `${fruitLabel} Near ${city}: What You Need to Know`;
 
-  const filterChips = `<button class="filter-chip" data-cat="all">All Orchards</button>
-          <button class="filter-chip active" data-cat="${fruitSlug}">${fruitLabel}</button>
-          <button class="filter-chip" data-cat="Orchard">All Orchard Types</button>
-          <button class="filter-chip" data-cat="Farm">Farms</button>`;
+  const filterChips = buildFilterChips(fruitSlug);
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -1676,10 +1698,7 @@ function generateGardenCenterPage({ city, state, code }) {
   const tipsH2 = `Tips for Your ${city} Garden Center Visit`;
   const mainH2 = `Garden Centers Near ${city}: What You Need to Know`;
 
-  const filterChips = `<button class="filter-chip" data-cat="all">All Listings</button>
-          <button class="filter-chip active" data-cat="Garden Center">Garden Centers</button>
-          <button class="filter-chip" data-cat="Orchard">Orchards</button>
-          <button class="filter-chip" data-cat="Farm">Farms</button>`;
+  const filterChips = buildFilterChips('Garden Center');
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -1893,10 +1912,7 @@ function generateYouPickFarmsPage({ city, state, code, region }) {
   const tipsH2 = `Tips for Your ${city} You Pick Farm Visit`;
   const mainH2 = `You Pick Farms Near ${city}: What You Need to Know`;
 
-  const filterChips = `<button class="filter-chip" data-cat="all">All Listings</button>
-          <button class="filter-chip active" data-cat="Farm">Farms</button>
-          <button class="filter-chip" data-cat="Orchard">Orchards</button>
-          <button class="filter-chip" data-cat="Garden Center">Garden Centers</button>`;
+  const filterChips = buildFilterChips('Farm');
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -2114,10 +2130,7 @@ function generateOrchardsPage({ city, state, code }) {
   const tipsH2 = `Tips for Your ${city} Orchard Visit`;
   const mainH2 = `Orchards Near ${city}: What You Need to Know`;
 
-  const filterChips = `<button class="filter-chip" data-cat="all">All Listings</button>
-          <button class="filter-chip active" data-cat="Orchard">Orchards</button>
-          <button class="filter-chip" data-cat="Farm">Farms</button>
-          <button class="filter-chip" data-cat="Garden Center">Garden Centers</button>`;
+  const filterChips = buildFilterChips('Orchard');
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -2335,10 +2348,7 @@ function generatePumpkinPatchPage({ city, state, code }) {
   const tipsH2 = `Tips for Your ${city} Pumpkin Patch Visit`;
   const mainH2 = `Pumpkin Patches Near ${city}: What You Need to Know`;
 
-  const filterChips = `<button class="filter-chip" data-cat="all">All Listings</button>
-          <button class="filter-chip active" data-cat="pumpkin-patch">🎃 Pumpkin Patches</button>
-          <button class="filter-chip" data-cat="Orchard">Orchards</button>
-          <button class="filter-chip" data-cat="Farm">Farms</button>`;
+  const filterChips = buildFilterChips('pumpkin-patch');
 
   return `<!DOCTYPE html>
 <html lang="en">
