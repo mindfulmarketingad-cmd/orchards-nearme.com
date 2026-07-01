@@ -81,6 +81,14 @@
       </div>
 
       <div class="listings-filters">
+        <select class="sort-select" id="sortSelect" aria-label="Sort listings">
+          <option value="featured">Sort: Featured</option>
+          <option value="az">Name: A-Z</option>
+          <option value="za">Name: Z-A</option>
+          <option value="reviews">Most Reviews</option>
+          <option value="trending">Trending</option>
+          <option value="closest">Closest to Me</option>
+        </select>
         <div class="filters-wrap">
           <button type="button" class="filters-toggle" id="listingsFiltersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="listingsFilterChips">
             <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
@@ -163,6 +171,7 @@
         const tableBody = document.getElementById('listingsTableBody');
         const searchInput = document.getElementById('listingsSearch');
         const stateSelect = document.getElementById('listingsStateSelect');
+        const sortSelect = document.getElementById('sortSelect');
         const filterChips = document.querySelectorAll('#listingsFilterChips .filter-chip');
         const filtersToggle = document.getElementById('listingsFiltersToggle');
         const filtersContainer = document.getElementById('listingsFilterChips');
@@ -171,6 +180,43 @@
         let selectedCategory = 'all';
         let selectedState = 'all';
         let searchQuery = '';
+        let selectedSort = 'featured';
+        let origin = null;
+
+        function distanceMiles(a, b) {
+          const R = 3958.8;
+          const dLat = ((b.lat - a.lat) * Math.PI) / 180;
+          const dLng = ((b.lng - a.lng) * Math.PI) / 180;
+          const lat1 = (a.lat * Math.PI) / 180;
+          const lat2 = (b.lat * Math.PI) / 180;
+          const h = Math.sin(dLat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLng / 2) ** 2;
+          return R * 2 * Math.atan2(Math.sqrt(h), Math.sqrt(1 - h));
+        }
+
+        function trendingScore(listing) {
+          return (listing.rating || 0) * Math.log2((listing.reviewCount || 0) + 2);
+        }
+
+        function sortListings(list) {
+          const featuredSort = (a, b) => (b.rating || 0) - (a.rating || 0) || (b.reviewCount || 0) - (a.reviewCount || 0);
+          switch (selectedSort) {
+            case 'az':
+              return list.sort((a, b) => a.name.localeCompare(b.name));
+            case 'za':
+              return list.sort((a, b) => b.name.localeCompare(a.name));
+            case 'reviews':
+              return list.sort((a, b) => (b.reviewCount || 0) - (a.reviewCount || 0));
+            case 'trending':
+              return list.sort((a, b) => trendingScore(b) - trendingScore(a));
+            case 'closest':
+              if (origin) {
+                return list.sort((a, b) => distanceMiles(origin, a) - distanceMiles(origin, b));
+              }
+              return list.sort(featuredSort);
+            default:
+              return list.sort(featuredSort);
+          }
+        }
 
         // Populate state options
         const states = [...new Set(listings.map(l => l.state))].sort();
@@ -232,6 +278,8 @@
             filtered = filtered.filter(listing => listing.state === selectedState);
           }
 
+          filtered = sortListings(filtered.slice());
+
           renderListings(filtered);
         }
 
@@ -254,13 +302,54 @@
           applyFilters();
         });
 
+        if (sortSelect) {
+          sortSelect.addEventListener('change', () => {
+            const val = sortSelect.value;
+
+            if (val !== 'closest') {
+              selectedSort = val;
+              applyFilters();
+              return;
+            }
+
+            if (origin) {
+              selectedSort = 'closest';
+              applyFilters();
+              return;
+            }
+
+            if (!navigator.geolocation) {
+              alert('Your browser does not support location access. Try searching by state instead.');
+              sortSelect.value = selectedSort;
+              return;
+            }
+
+            const previousSort = selectedSort;
+            sortSelect.disabled = true;
+            navigator.geolocation.getCurrentPosition(
+              (pos) => {
+                origin = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+                selectedSort = 'closest';
+                sortSelect.disabled = false;
+                applyFilters();
+              },
+              () => {
+                sortSelect.disabled = false;
+                sortSelect.value = previousSort;
+                alert('We could not access your location. Please allow location access or choose a different sort.');
+              },
+              { timeout: 8000 }
+            );
+          });
+        }
+
         filtersToggle.addEventListener('click', () => {
           const isExpanded = filtersToggle.getAttribute('aria-expanded') === 'true';
           filtersToggle.setAttribute('aria-expanded', !isExpanded);
           filtersContainer.style.display = isExpanded ? 'none' : 'flex';
         });
 
-        renderListings(listings);
+        applyFilters();
       } catch (error) {
         console.error('Error loading listings:', error);
         document.getElementById('listingsTableBody').innerHTML = '<tr><td colspan="6" class="listings-error">Error loading listings. Please refresh the page.</td></tr>';

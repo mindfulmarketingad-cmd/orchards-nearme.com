@@ -33,6 +33,7 @@
     stateFilter: 'all',
     origin: null,
     rendered: 0,
+    sort: 'featured', // 'featured', 'az', 'za', 'reviews', 'trending', 'closest'
   };
 
   // Single source of truth for keyword filters, reused by the filter logic
@@ -131,6 +132,7 @@
     filters: document.getElementById('filters'),
     filtersToggle: document.getElementById('filtersToggle'),
     stateSelect: document.getElementById('stateSelect'),
+    sortSelect: document.getElementById('sortSelect'),
     searchForm: document.getElementById('searchForm'),
     zipInput: document.getElementById('zipInput'),
     zipError: document.getElementById('zipError'),
@@ -180,6 +182,13 @@
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
       Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
     return R * 2 * Math.atan2(Math.sqrt(h), Math.sqrt(1 - h));
+  }
+
+  // Popularity proxy used for the "Trending" sort: rating weighted by review
+  // volume, so a highly-rated place with lots of reviews ranks above a
+  // 5-star listing with only one or two.
+  function trendingScore(item) {
+    return (item.rating || 0) * Math.log2((item.reviewCount || 0) + 2);
   }
 
   // ---------- map ----------
@@ -272,13 +281,38 @@
       list.forEach(function (i) {
         i._dist = distanceMiles(state.origin, i);
       });
-      list.sort(function (a, b) {
-        return a._dist - b._dist;
-      });
     } else {
-      list.sort(function (a, b) {
-        return (b.rating || 0) - (a.rating || 0) || (b.reviewCount || 0) - (a.reviewCount || 0);
+      list.forEach(function (i) {
+        i._dist = null;
       });
+    }
+
+    var featuredSort = function (a, b) {
+      return (b.rating || 0) - (a.rating || 0) || (b.reviewCount || 0) - (a.reviewCount || 0);
+    };
+
+    switch (state.sort) {
+      case 'az':
+        list.sort(function (a, b) { return a.name.localeCompare(b.name); });
+        break;
+      case 'za':
+        list.sort(function (a, b) { return b.name.localeCompare(a.name); });
+        break;
+      case 'reviews':
+        list.sort(function (a, b) { return (b.reviewCount || 0) - (a.reviewCount || 0); });
+        break;
+      case 'trending':
+        list.sort(function (a, b) { return trendingScore(b) - trendingScore(a); });
+        break;
+      case 'closest':
+        if (state.origin) {
+          list.sort(function (a, b) { return a._dist - b._dist; });
+        } else {
+          list.sort(featuredSort);
+        }
+        break;
+      default:
+        list.sort(featuredSort);
     }
 
     state.filtered = list;
@@ -293,7 +327,7 @@
   function updateCount() {
     var n = state.filtered.length;
     var label = n === 1 ? '1 location' : n.toLocaleString() + ' locations';
-    if (state.origin) label += ' · nearest first';
+    if (state.sort === 'closest' && state.origin) label += ' · nearest first';
     el.count.textContent = label;
   }
 
@@ -395,6 +429,8 @@
           .addTo(map)
           .bindPopup('Your ZIP: ' + zip);
         map.setView([state.origin.lat, state.origin.lng], 11);
+        state.sort = 'closest';
+        if (el.sortSelect) el.sortSelect.value = 'closest';
         applyFilters();
       })
       .catch(function () {
@@ -466,6 +502,10 @@
     el.stateSelect.addEventListener('change', function () {
       state.stateFilter = el.stateSelect.value;
       state.origin = null;
+      if (state.sort === 'closest') {
+        state.sort = 'featured';
+        if (el.sortSelect) el.sortSelect.value = 'featured';
+      }
       if (originMarker) {
         map.removeLayer(originMarker);
         originMarker = null;
@@ -476,6 +516,50 @@
       }
       applyFilters();
     });
+
+    if (el.sortSelect) {
+      el.sortSelect.addEventListener('change', function () {
+        var val = el.sortSelect.value;
+
+        if (val !== 'closest') {
+          state.sort = val;
+          applyFilters();
+          return;
+        }
+
+        if (state.origin) {
+          state.sort = 'closest';
+          applyFilters();
+          return;
+        }
+
+        if (!navigator.geolocation) {
+          alert('Your browser does not support location access. Try searching by ZIP code instead.');
+          el.sortSelect.value = state.sort;
+          return;
+        }
+
+        var previousSort = state.sort;
+        el.sortSelect.disabled = true;
+        navigator.geolocation.getCurrentPosition(
+          function (pos) {
+            state.origin = {
+              lat: pos.coords.latitude,
+              lng: pos.coords.longitude,
+            };
+            state.sort = 'closest';
+            el.sortSelect.disabled = false;
+            applyFilters();
+          },
+          function () {
+            el.sortSelect.disabled = false;
+            el.sortSelect.value = previousSort;
+            alert('We could not access your location. Please allow location access or search by ZIP code instead.');
+          },
+          { timeout: 8000 }
+        );
+      });
+    }
 
     el.searchForm.addEventListener('submit', function (e) {
       e.preventDefault();

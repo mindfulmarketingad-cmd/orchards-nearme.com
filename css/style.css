@@ -411,6 +411,22 @@ h3 {
   cursor: pointer;
 }
 
+.sort-select {
+  padding: 10px 14px;
+  border: 2px solid var(--border);
+  border-radius: 999px;
+  font-family: inherit;
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--white);
+  cursor: pointer;
+}
+
+.sort-select:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
 /* ---------- Find layout (cards + map) ---------- */
 .find-layout {
   display: grid;

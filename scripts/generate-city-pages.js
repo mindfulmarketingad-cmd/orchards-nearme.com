@@ -1351,6 +1351,14 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
           <button type="submit" class="btn">Search</button>
           <p id="zipError" hidden class="zip-error-msg" role="alert"></p>
         </form>
+        <select class="sort-select" id="sortSelect" aria-label="Sort listings">
+          <option value="featured">Sort: Featured</option>
+          <option value="az">Name: A-Z</option>
+          <option value="za">Name: Z-A</option>
+          <option value="reviews">Most Reviews</option>
+          <option value="trending">Trending</option>
+          <option value="closest">Closest to Me</option>
+        </select>
         <div class="filters-wrap">
           <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
             <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
@@ -1750,6 +1758,14 @@ function generateGardenCenterPage({ city, state, code }) {
           <button type="submit" class="btn">Search</button>
           <p id="zipError" hidden class="zip-error-msg" role="alert"></p>
         </form>
+        <select class="sort-select" id="sortSelect" aria-label="Sort listings">
+          <option value="featured">Sort: Featured</option>
+          <option value="az">Name: A-Z</option>
+          <option value="za">Name: Z-A</option>
+          <option value="reviews">Most Reviews</option>
+          <option value="trending">Trending</option>
+          <option value="closest">Closest to Me</option>
+        </select>
         <div class="filters-wrap">
           <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
             <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
@@ -1949,6 +1965,14 @@ function generateYouPickFarmsPage({ city, state, code, region }) {
           <button type="submit" class="btn">Search</button>
           <p id="zipError" hidden class="zip-error-msg" role="alert"></p>
         </form>
+        <select class="sort-select" id="sortSelect" aria-label="Sort listings">
+          <option value="featured">Sort: Featured</option>
+          <option value="az">Name: A-Z</option>
+          <option value="za">Name: Z-A</option>
+          <option value="reviews">Most Reviews</option>
+          <option value="trending">Trending</option>
+          <option value="closest">Closest to Me</option>
+        </select>
         <div class="filters-wrap">
           <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
             <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
@@ -2152,6 +2176,14 @@ function generateOrchardsPage({ city, state, code }) {
           <button type="submit" class="btn">Search</button>
           <p id="zipError" hidden class="zip-error-msg" role="alert"></p>
         </form>
+        <select class="sort-select" id="sortSelect" aria-label="Sort listings">
+          <option value="featured">Sort: Featured</option>
+          <option value="az">Name: A-Z</option>
+          <option value="za">Name: Z-A</option>
+          <option value="reviews">Most Reviews</option>
+          <option value="trending">Trending</option>
+          <option value="closest">Closest to Me</option>
+        </select>
         <div class="filters-wrap">
           <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
             <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
@@ -2355,6 +2387,14 @@ function generatePumpkinPatchPage({ city, state, code }) {
           <button type="submit" class="btn">Search</button>
           <p id="zipError" hidden class="zip-error-msg" role="alert"></p>
         </form>
+        <select class="sort-select" id="sortSelect" aria-label="Sort listings">
+          <option value="featured">Sort: Featured</option>
+          <option value="az">Name: A-Z</option>
+          <option value="za">Name: Z-A</option>
+          <option value="reviews">Most Reviews</option>
+          <option value="trending">Trending</option>
+          <option value="closest">Closest to Me</option>
+        </select>
         <div class="filters-wrap">
           <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
             <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
