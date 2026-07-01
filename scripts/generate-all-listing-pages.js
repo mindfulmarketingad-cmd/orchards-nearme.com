@@ -104,6 +104,17 @@ function escapeHtml(s) {
     .replace(/"/g, '&quot;');
 }
 
+function haversineDistance(lat1, lon1, lat2, lon2) {
+  const R = 3959; // Earth's radius in miles
+  const dLat = ((lat2 - lat1) * Math.PI) / 180;
+  const dLon = ((lon2 - lon1) * Math.PI) / 180;
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos((lat1 * Math.PI) / 180) * Math.cos((lat2 * Math.PI) / 180) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c;
+}
+
 function stars(rating) {
   if (!rating) return '';
   var full = Math.round(rating);
@@ -164,7 +175,7 @@ function reviewsHtml(reviews) {
     .join('\n');
 }
 
-function generatePage(item, details, slug) {
+function generatePage(item, details, slug, nearbyListings) {
   const name = item.name;
   const city = item.city || '';
   const state = item.state || '';
@@ -251,6 +262,7 @@ ${JSON.stringify(jsonLd, null, 2)}
         <a href="/">Home</a>
         <a href="/about.html">About</a>
         <a href="/blog">Blog</a>
+        <a href="/listings">Listings</a>
         <a href="/find" class="cta">Find</a>
       </nav>
     </div>
@@ -325,6 +337,18 @@ ${JSON.stringify(jsonLd, null, 2)}
         </div>
       </div>
     </div>
+
+    ${nearbyListings && nearbyListings.length > 0 ? `
+    <section class="nearby-listings">
+      <div class="container">
+        <h2>Nearby Listings</h2>
+        <p class="nearby-listings-intro">Other orchards and farms near ${escapeHtml(name)} in ${escapeHtml(city)}, ${escapeHtml(stateCode)}:</p>
+        <ul class="nearby-listings-list">
+          ${nearbyListings.map(n => `<li><a href="/find/${n.slug}">${escapeHtml(n.name)}</a> <span class="nearby-listings-distance">${n.distance.toFixed(1)} miles away</span></li>`).join('')}
+        </ul>
+      </div>
+    </section>
+    ` : ''}
 
     <section class="seo-content related-links">
       <div class="container">
@@ -406,7 +430,20 @@ function main() {
       missingDetails++;
       details = null;
     }
-    const html = generatePage(item, details, slug);
+
+    // Calculate nearby listings
+    const nearbyListings = listings
+      .map((other) => {
+        if (other.id === item.id) return null;
+        if (!other.lat || !other.lng) return null;
+        const distance = haversineDistance(item.lat, item.lng, other.lat, other.lng);
+        return { ...other, distance, slug: finalSlugs[other.id] };
+      })
+      .filter((x) => x !== null)
+      .sort((a, b) => a.distance - b.distance)
+      .slice(0, 8);
+
+    const html = generatePage(item, details, slug, nearbyListings);
     fs.writeFileSync(path.join(findDir, `${slug}.html`), html, 'utf8');
     item.slug = slug;
     generated++;

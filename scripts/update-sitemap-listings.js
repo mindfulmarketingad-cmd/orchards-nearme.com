@@ -34,6 +34,13 @@ const lines = slugList.map(
   (slug) =>
     `  <url><loc>https://orchards-nearme.com/find/${slug}</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>`
 );
+
+// Add /listings hub page if not already present
+const listingsUrlLine = `  <url><loc>https://orchards-nearme.com/listings</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>`;
+if (!sitemap.includes('orchards-nearme.com/listings')) {
+  lines.push(listingsUrlLine);
+}
+
 const addition = lines.join('\n') + '\n';
 
 if (!sitemap.trim().endsWith('</urlset>')) {

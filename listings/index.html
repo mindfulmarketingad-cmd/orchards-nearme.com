@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Orchard Listings | Orchards Near Me</title>
+  <meta name="description" content="Browse all 2,427 orchard, farm, and garden center listings on Orchards Near Me. Search and filter by city, state, or business name." />
+  <link rel="canonical" href="https://orchards-nearme.com/listings" />
+  <meta property="og:title" content="All Orchard Listings | Orchards Near Me" />
+  <meta property="og:description" content="Browse all 2,427 listings across pick-your-own orchards, farms, and garden centers." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://orchards-nearme.com/listings" />
+
+  <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2173008413459742" crossorigin="anonymous"></script>
+</head>
+<body>
+  <a class="skip-link" href="#listings-table">Skip to listings</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="/" aria-label="Orchards Near Me home">
+        <img src="/logo.svg" alt="" class="logo-icon" />
+        Orchards Near Me
+      </a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/blog">Blog</a>
+        <a href="/listings" class="active">Listings</a>
+        <a href="/find" class="cta">Find</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page listings-hub">
+    <section class="hero">
+      <div class="container">
+        <h1>All Orchard Listings</h1>
+        <p>Browse all 2,427 pick-your-own orchards, farms, and garden centers across the United States.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="listings-search-bar">
+        <input type="text" id="listingsSearch" placeholder="Search by business name, city, or state (e.g. 'Apple Orchards, Austin, Texas')" aria-label="Search listings" />
+        <span class="listings-result-count" id="listingsResultCount">Loading...</span>
+      </div>
+
+      <div class="listings-table-wrap">
+        <table class="listings-table" id="listingsTable">
+          <thead>
+            <tr>
+              <th>Business Name</th>
+              <th>City</th>
+              <th>State</th>
+              <th>Category</th>
+              <th>Rating</th>
+            </tr>
+          </thead>
+          <tbody id="listingsTableBody">
+            <tr>
+              <td colspan="5" class="listings-loading">Loading listings...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2024 Orchards Near Me. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Fetch and display all listings
+    async function initListings() {
+      try {
+        const response = await fetch('/data/listings.json');
+        const data = await response.json();
+        const listings = data.listings;
+
+        const tableBody = document.getElementById('listingsTableBody');
+        const searchInput = document.getElementById('listingsSearch');
+        const resultCount = document.getElementById('listingsResultCount');
+
+        function renderListings(filtered) {
+          tableBody.innerHTML = '';
+          if (filtered.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="5" class="listings-no-results">No listings found. Try a different search.</td></tr>';
+          } else {
+            filtered.forEach(listing => {
+              const row = document.createElement('tr');
+              row.innerHTML = `
+                <td><a href="/find/${listing.slug}" class="listings-link">${listing.name}</a></td>
+                <td>${listing.city}</td>
+                <td>${listing.state}</td>
+                <td><span class="listings-category">${listing.category}</span></td>
+                <td class="listings-rating">${listing.rating ? listing.rating.toFixed(1) : 'N/A'}</td>
+              `;
+              tableBody.appendChild(row);
+            });
+          }
+          resultCount.textContent = `${filtered.length} of ${listings.length} listings`;
+        }
+
+        function search() {
+          const query = searchInput.value.toLowerCase();
+          if (!query) {
+            renderListings(listings);
+            return;
+          }
+          const filtered = listings.filter(listing =>
+            listing.name.toLowerCase().includes(query) ||
+            listing.city.toLowerCase().includes(query) ||
+            listing.state.toLowerCase().includes(query) ||
+            listing.category.toLowerCase().includes(query)
+          );
+          renderListings(filtered);
+        }
+
+        searchInput.addEventListener('input', search);
+        renderListings(listings);
+      } catch (error) {
+        console.error('Error loading listings:', error);
+        document.getElementById('listingsTableBody').innerHTML = '<tr><td colspan="5" class="listings-error">Error loading listings. Please refresh the page.</td></tr>';
+      }
+    }
+
+    initListings();
+  </script>
+</body>
+</html>
