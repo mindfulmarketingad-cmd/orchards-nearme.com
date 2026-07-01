@@ -198,6 +198,9 @@
       ? '<a href="' + escapeHtml(item.website) + '" target="_blank" rel="noopener nofollow">Visit website</a>'
       : '';
     var claim = '<a class="card-claim" href="' + CLAIM_LISTING_URL + '" target="_blank" rel="noopener">Own This Business?</a>';
+    var details = item.slug
+      ? '<a href="/find/' + escapeHtml(item.slug) + '">Full details</a>'
+      : '';
     return (
       '<div class="map-popup">' +
       '<h4>' + escapeHtml(item.name) + '</h4>' +
@@ -205,7 +208,7 @@
       fitChipsHtml(item) +
       rating +
       '<p class="pop-meta">' + escapeHtml(item.address) + '</p>' +
-      '<div class="pop-links">' + site + claim + '</div>' +
+      '<div class="pop-links">' + details + site + claim + '</div>' +
       '</div>'
     );
   }
@@ -308,11 +311,17 @@
       : '';
     var claimListing =
       '<a class="card-claim" href="' + CLAIM_LISTING_URL + '" target="_blank" rel="noopener">Own This Business?</a>';
+    var name = item.slug
+      ? '<a href="/find/' + escapeHtml(item.slug) + '">' + escapeHtml(item.name) + '</a>'
+      : escapeHtml(item.name);
+    var fullDetails = item.slug
+      ? '<a href="/find/' + escapeHtml(item.slug) + '">Full details</a>'
+      : '';
 
     return (
       '<article class="card" data-id="' + escapeHtml(item.id) + '">' +
       '<div class="card-top">' +
-      '<div><h3>' + escapeHtml(item.name) + '</h3>' +
+      '<div><h3>' + name + '</h3>' +
       '<p class="card-meta">' + ratingLine + '</p></div>' +
       '<span class="badge ' + catClass(item.category) + '">' + escapeHtml(item.category) + '</span>' +
       '</div>' +
@@ -320,6 +329,7 @@
       '<p class="card-address">' + escapeHtml(meta) + dist + '<br>' + escapeHtml(item.address) + '</p>' +
       review +
       '<div class="card-links">' +
+      fullDetails +
       '<a href="' + directions + '" target="_blank" rel="noopener nofollow">Get directions</a>' +
       website +
       claimListing +

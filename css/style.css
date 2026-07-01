@@ -437,6 +437,16 @@ h3 {
   white-space: nowrap;
 }
 
+.card h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.card h3 a:hover {
+  color: var(--green-dark);
+  text-decoration: underline;
+}
+
 .badge {
   flex: none;
   font-size: 0.68rem;
@@ -651,6 +661,12 @@ h3 {
   background: #e8edfa;
   color: #2c4ea3;
   border-color: #bfcdef;
+}
+
+.fit-chip--strawberry {
+  background: #fde6ec;
+  color: #b3184a;
+  border-color: #f5b8cc;
 }
 
 .map-popup .fit-chips {
