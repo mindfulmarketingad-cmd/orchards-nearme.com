@@ -308,15 +308,6 @@
       : '';
     var claimListing =
       '<a class="card-claim" href="' + CLAIM_LISTING_URL + '" target="_blank" rel="noopener">Own This Business?</a>';
-    var distanceForm =
-      '<form class="card-distance-form" data-id="' + escapeHtml(item.id) + '">' +
-      '<label class="card-distance-label" for="card-dist-' + escapeHtml(item.id) + '">Distance from your address</label>' +
-      '<div class="card-distance-row">' +
-      '<input type="text" inputmode="numeric" maxlength="5" id="card-dist-' + escapeHtml(item.id) + '" class="card-distance-input" placeholder="Enter your ZIP code" aria-label="Your ZIP code">' +
-      '<button type="submit" class="card-distance-btn">Check</button>' +
-      '</div>' +
-      '<p class="card-distance-result" aria-live="polite"></p>' +
-      '</form>';
 
     return (
       '<article class="card" data-id="' + escapeHtml(item.id) + '">' +
@@ -328,7 +319,6 @@
       fitChipsHtml(item) +
       '<p class="card-address">' + escapeHtml(meta) + dist + '<br>' + escapeHtml(item.address) + '</p>' +
       review +
-      distanceForm +
       '<div class="card-links">' +
       '<a href="' + directions + '" target="_blank" rel="noopener nofollow">Get directions</a>' +
       website +
@@ -393,52 +383,6 @@
       })
       .catch(function () {
         setZipError('We could not find that ZIP code. Please double-check and try again.');
-      });
-  }
-
-  function findItemById(id) {
-    for (var i = 0; i < state.all.length; i++) {
-      if (state.all[i].id === id) return state.all[i];
-    }
-    return null;
-  }
-
-  function checkCardDistance(form) {
-    var id = form.getAttribute('data-id');
-    var item = findItemById(id);
-    var input = form.querySelector('.card-distance-input');
-    var result = form.querySelector('.card-distance-result');
-    var zip = (input.value || '').trim();
-    if (!item || !result) return;
-
-    if (!/^\d{5}$/.test(zip)) {
-      result.textContent = 'Please enter a valid 5-digit US ZIP code.';
-      result.classList.add('card-distance-error');
-      return;
-    }
-
-    result.textContent = 'Checking…';
-    result.classList.remove('card-distance-error');
-
-    fetch('https://api.zippopotam.us/us/' + zip)
-      .then(function (r) {
-        if (!r.ok) throw new Error('not found');
-        return r.json();
-      })
-      .then(function (data) {
-        var place = data.places && data.places[0];
-        if (!place) throw new Error('not found');
-        var origin = {
-          lat: parseFloat(place.latitude),
-          lng: parseFloat(place.longitude),
-        };
-        var miles = distanceMiles(origin, item);
-        result.classList.remove('card-distance-error');
-        result.textContent = miles.toFixed(miles < 10 ? 1 : 0) + ' miles from ' + zip;
-      })
-      .catch(function () {
-        result.classList.add('card-distance-error');
-        result.textContent = 'We could not find that ZIP code. Please double-check and try again.';
       });
   }
 
@@ -531,16 +475,7 @@
       }
     });
 
-    el.cards.addEventListener('submit', function (e) {
-      var form = e.target.closest('.card-distance-form');
-      if (!form) return;
-      e.preventDefault();
-      e.stopPropagation();
-      checkCardDistance(form);
-    });
-
     el.cards.addEventListener('click', function (e) {
-      if (e.target.closest('.card-distance-form')) return;
       var card = e.target.closest('.card');
       if (!card || e.target.tagName === 'A') return;
       var id = card.getAttribute('data-id');
