@@ -739,6 +739,19 @@ function generateIndex(states) {
       <p>Every state's peak window, side by side. Find your state's row to see which months to plan around, then click through for the full guide.</p>
 ${seasonChartTable(states)}
 
+      <h2 class="season-chart-heading">Tips &amp; Guides</h2>
+      <div class="blog-grid">
+      <a class="blog-card" href="/blog/how-to-store-fresh-picked-strawberries">
+        <div class="blog-card-body">
+          <h2 class="blog-card-title">How to Store Fresh-Picked Strawberries So They Last All Week</h2>
+          <p class="blog-card-meta">Storage tips</p>
+          <p class="blog-card-excerpt">A flat of fresh-picked strawberries can go from perfect to moldy in two days if you store it wrong. Here's the vinegar-rinse method, the right container, and the mistakes to avoid.</p>
+          <span class="blog-card-cta">Read guide &rarr;</span>
+        </div>
+      </a>
+      </div>
+
+      <h2 class="season-chart-heading">State-by-State Apple Picking Guides</h2>
       <div class="blog-grid">
 ${cards}
       </div>
