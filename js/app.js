@@ -549,6 +549,67 @@
     }
   }
 
+  var KEYWORD_LABELS = {
+    'apple-picking': 'Apple Picking',
+    'cherry-picking': 'Cherry Picking',
+    'berry-picking': 'Berry Picking',
+    'peach-picking': 'Peach Picking',
+    'blueberry-picking': 'Blueberry Picking',
+    'Orchard': 'Orchards',
+    'Farm': 'Farms',
+    'Garden Center': 'Garden Centers',
+  };
+
+  var KEYWORD_HREFS = {
+    'apple-picking': '/find/apple-picking-orchards-near-me',
+    'cherry-picking': '/find/cherry-picking-orchards-near-me',
+    'berry-picking': '/find/berry-picking-orchards-near-me',
+    'peach-picking': '/find/peach-picking-orchards-near-me',
+    'blueberry-picking': '/find/blueberry-picking-orchards-near-me',
+    'Orchard': '/find',
+    'Farm': '/find',
+    'Garden Center': '/find/garden-centers-near-me',
+  };
+
+  function injectBreadcrumb() {
+    if (!el.filters) return;
+    var defaultFilter = el.filters.getAttribute('data-default-filter');
+    var defaultState = el.filters.getAttribute('data-default-state');
+    if (!defaultFilter) return;
+
+    var label = KEYWORD_LABELS[defaultFilter] || defaultFilter;
+    var href = KEYWORD_HREFS[defaultFilter] || '/find';
+
+    var h2 = document.querySelector('.results-head h2');
+    var crumbText = h2 ? h2.textContent : null;
+
+    var nav = document.createElement('nav');
+    nav.className = 'breadcrumb';
+    nav.setAttribute('aria-label', 'Breadcrumb');
+
+    var inner = '<a href="/">Home</a>' +
+      '<span aria-hidden="true"> &rsaquo; </span>' +
+      '<a href="/find">Find</a>' +
+      '<span aria-hidden="true"> &rsaquo; </span>';
+
+    if (defaultState) {
+      inner += '<a href="' + escapeHtml(href) + '">' + escapeHtml(label) + '</a>' +
+        '<span aria-hidden="true"> &rsaquo; </span>' +
+        '<span aria-current="page">' + escapeHtml(crumbText || defaultState) + '</span>';
+    } else {
+      inner += '<span aria-current="page">' + escapeHtml(label) + '</span>';
+    }
+
+    nav.innerHTML = inner;
+
+    var hero = document.querySelector('.hero .container');
+    if (hero) hero.insertAdjacentElement('afterend', nav);
+    else {
+      var controls = document.getElementById('find');
+      if (controls) controls.insertAdjacentElement('beforebegin', nav);
+    }
+  }
+
   function applyPageDefaultFilter() {
     var defaultFilter = el.filters.getAttribute('data-default-filter');
     if (defaultFilter) {
@@ -571,6 +632,7 @@
     }
   }
 
+  injectBreadcrumb();
   initMap();
   bindEvents();
   applyPageDefaultFilter();
