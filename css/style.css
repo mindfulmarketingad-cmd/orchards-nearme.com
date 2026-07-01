@@ -2120,6 +2120,17 @@ select:focus-visible {
   font-weight: 600;
 }
 
+.blog-post-item.featured {
+  background: linear-gradient(135deg, var(--green-light) 0%, rgba(232, 246, 234, 0.5) 100%);
+  border-left-width: 6px;
+  padding: 32px;
+}
+
+.blog-post-item.featured h3 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+
 /* Nearby Listings Section */
 
 .nearby-listings {
