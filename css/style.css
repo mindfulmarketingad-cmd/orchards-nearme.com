@@ -1444,6 +1444,29 @@ select:focus-visible {
   color: var(--green-dark);
 }
 
+.hero .breadcrumb {
+  color: rgba(255, 255, 255, 0.92);
+  text-align: center;
+  margin: 10px 0 0;
+}
+
+.hero .breadcrumb a {
+  color: #fff;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.5);
+  text-underline-offset: 2px;
+}
+
+.hero .breadcrumb a:hover {
+  text-decoration-color: #fff;
+}
+
+.hero .breadcrumb [aria-current="page"] {
+  color: #fff;
+  font-weight: 700;
+}
+
 .blog-post-header {
   margin-bottom: 24px;
 }
