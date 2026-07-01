@@ -373,7 +373,17 @@
   function closeFiltersDropdown() {
     if (!el.filtersToggle) return;
     el.filters.classList.remove('open');
+    el.filters.classList.remove('filters--align-right');
     el.filtersToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  function positionFiltersDropdown() {
+    // Default left-aligned; flip to right-aligned if it would overflow the viewport.
+    el.filters.classList.remove('filters--align-right');
+    var rect = el.filters.getBoundingClientRect();
+    if (rect.right > window.innerWidth) {
+      el.filters.classList.add('filters--align-right');
+    }
   }
 
   function toggleFiltersDropdown() {
@@ -381,6 +391,7 @@
     var willOpen = !el.filters.classList.contains('open');
     el.filters.classList.toggle('open', willOpen);
     el.filtersToggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+    if (willOpen) positionFiltersDropdown();
   }
 
   // ---------- events ----------

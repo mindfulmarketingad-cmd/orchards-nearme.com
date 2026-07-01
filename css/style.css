@@ -264,6 +264,7 @@ h3 {
 .filters {
   display: none;
   flex-wrap: wrap;
+  align-content: flex-start;
   gap: 8px;
   position: absolute;
   top: calc(100% + 8px);
@@ -276,10 +277,17 @@ h3 {
   padding: 14px;
   width: max-content;
   max-width: min(420px, 90vw);
+  max-height: min(420px, calc(100vh - 140px));
+  overflow-y: auto;
 }
 
 .filters.open {
   display: flex;
+}
+
+.filters.filters--align-right {
+  left: auto;
+  right: 0;
 }
 
 .filter-chip {
