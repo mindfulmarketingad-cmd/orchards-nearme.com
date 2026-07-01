@@ -67,7 +67,9 @@ const allCategories = [
   { slug: 'berry-picking', label: 'Berry Picking', urlPrefix: 'berry-picking-orchards-near-', nearMeUrl: '/find/berry-picking-orchards-near-me', nearMeLabel: 'Berry Picking Orchards Near Me' },
   { slug: 'peach-picking', label: 'Peach Picking', urlPrefix: 'peach-picking-orchards-near-', nearMeUrl: '/find/peach-picking-orchards-near-me', nearMeLabel: 'Peach Picking Orchards Near Me' },
   { slug: 'blueberry-picking', label: 'Blueberry Picking', urlPrefix: 'blueberry-picking-orchards-near-', nearMeUrl: '/find/blueberry-picking-orchards-near-me', nearMeLabel: 'Blueberry Picking Orchards Near Me' },
+  { slug: 'strawberry-picking', label: 'Strawberry Picking', urlPrefix: 'strawberry-picking-orchards-near-', nearMeUrl: '/find/strawberry-picking-orchards-near-me', nearMeLabel: 'Strawberry Picking Orchards Near Me' },
   { slug: 'garden-centers', label: 'Garden Centers', urlPrefix: 'garden-centers-near-', nearMeUrl: '/find/garden-centers-near-me', nearMeLabel: 'Garden Centers Near Me' },
+  { slug: 'you-pick-farms', label: 'You Pick Farms', urlPrefix: 'you-pick-farms-near-', nearMeUrl: '/find/you-pick-farms-near-me', nearMeLabel: 'You Pick Farms Near Me' },
 ];
 
 function relatedLinksHtml(currentSlug, citySlug, stateSlug, city, state) {
@@ -1064,6 +1066,91 @@ const blueberrySeason = {
   Wyoming: 'No meaningful commercial blueberry season given the state\'s elevation, winters, and alkaline soil.',
 };
 
+// ---------- Strawberry-picking content (generated per region template) ----------
+
+const REGION_INFO = {
+  'new-england': { name: 'New England', soil: 'cool, glacially-formed soil', season: 'June through early July', early: false },
+  'mid-atlantic': { name: 'the Mid-Atlantic', soil: 'fertile valley and coastal-plain soil', season: 'May through June', early: false },
+  southeast: { name: 'the Southeast', soil: 'sandy, well-drained soil', season: 'April through May', early: true },
+  midwest: { name: 'the Midwest', soil: 'rich prairie soil', season: 'late May through June', early: false },
+  mountain: { name: 'the Mountain West', soil: 'well-drained, high-elevation soil', season: 'June through July', early: false },
+  'south-central': { name: 'the South Central states', soil: 'warm, sandy soil', season: 'April through May', early: true },
+  pacific: { name: 'the Pacific Coast', soil: 'mild, coastal-influenced soil', season: 'April through June', early: true },
+  southwest: { name: 'the Southwest', soil: 'high-desert or irrigated valley soil', season: 'March through May', early: true },
+};
+
+const STRAWBERRY_INTRO_VARIANTS = [
+  (city, state, r) => `Strawberry season near ${city} follows the rhythm of ${r.name}, where June-bearing varieties planted in ${r.soil} ripen over a short, intense window each spring. Local u-pick farms within driving distance of ${city} open their rows as soon as the fruit colors up, and the season moves quickly once it starts.`,
+  (city, state, r) => `${city} sits within ${r.name}'s strawberry belt, where farms growing in ${r.soil} time their pick-your-own rows to a compact spring window. Families in and around ${city} treat opening day as a genuine seasonal event, since the best berries disappear from the rows fast.`,
+  (city, state, r) => `Strawberry farms within reach of ${city} take advantage of ${r.name}'s ${r.soil}, planting June-bearing and day-neutral varieties that give visitors a few solid weeks of picking each year. It is one of the first pick-your-own crops of the year for most farms near ${city}.`,
+];
+
+const STRAWBERRY_TIP_VARIANTS = [
+  (city, state, r) => `Strawberries near ${city} ripen fast in ${r.season}, so call ahead or check a farm's picking status online before making the drive — a field can go from full to picked-over within a few days. Go in the morning for the coolest conditions and the best-looking berries.`,
+  (city, state, r) => `Because the season around ${city} is short (typically ${r.season}), it pays to visit early in the week rather than waiting for the weekend, when popular rows near ${city} are often stripped by Saturday afternoon. Bring your own containers if the farm allows it — strawberries bruise easily in stacked buckets.`,
+  (city, state, r) => `Plan a ${city}-area strawberry trip for ${r.season} and go early in the day, since the fruit softens quickly once temperatures climb. Many farms near ${city} also sell fresh-picked flats at the stand if you would rather skip the fields and still get the same fruit.`,
+];
+
+const strawberryIntros = {};
+const strawberryTips = {};
+capitals.forEach((cap, i) => {
+  const r = REGION_INFO[cap.region];
+  strawberryIntros[cap.city] = STRAWBERRY_INTRO_VARIANTS[i % STRAWBERRY_INTRO_VARIANTS.length](cap.city, cap.state, r);
+  strawberryTips[cap.city] = STRAWBERRY_TIP_VARIANTS[i % STRAWBERRY_TIP_VARIANTS.length](cap.city, cap.state, r);
+});
+
+const strawberryRegion = {};
+Object.keys(REGION_INFO).forEach((key) => {
+  const r = REGION_INFO[key];
+  strawberryRegion[key] = {
+    h2: `Strawberry Picking in ${r.name}`,
+    body: `Strawberry farms across ${r.name} grow in ${r.soil}, which sets the pace for a season that typically runs ${r.season}. ${r.early ? 'The region\'s milder spring temperatures push the harvest ahead of most of the country, making it one of the earliest strawberry destinations nationally.' : 'Farms here plant a mix of June-bearing varieties for a concentrated peak and day-neutral varieties that stretch picking out over a longer stretch of the season.'} Pick-your-own rows tend to open on short notice once the fruit is ready, so checking a farm's current status before visiting is worth the extra step.`,
+  };
+});
+
+const strawberrySeason = {};
+capitals.forEach((cap) => {
+  const r = REGION_INFO[cap.region];
+  strawberrySeason[cap.state] = `${r.season}, with the earliest berries in ${r.name.replace(/^the /, '')} typically leading the harvest and the window closing quickly once temperatures rise.`;
+});
+
+// ---------- You Pick Farms content (generic pick-your-own category, all crops) ----------
+
+const YOU_PICK_INTRO_VARIANTS = [
+  (city, state, r) => `You-pick farms near ${city} follow the full arc of the growing season in ${r.name}, opening for strawberries in spring, moving through berries and stone fruit in summer, and finishing with apples, pumpkins, and fall crops. Farms working ${r.soil} near ${city} typically run more than one u-pick crop across the year, so it is worth checking what is currently in season before you go.`,
+  (city, state, r) => `Around ${city}, u-pick farms rotate through crops the way ${r.name} growers always have — spring strawberries, summer berries and peaches, and a long fall run of apples and pumpkins. Several farms within driving distance of ${city} grow more than one of these crops, making repeat visits worthwhile across the year.`,
+  (city, state, r) => `${city}'s u-pick farms track the same seasonal calendar as the rest of ${r.name}: early strawberries, summer stone fruit and berries, then a fall stretch dominated by apples and pumpkins. Farms in ${r.soil} near ${city} often post current picking conditions online, which is worth checking before a trip.`,
+];
+
+const YOU_PICK_TIP_VARIANTS = [
+  (city, state, r) => `Since u-pick farms near ${city} grow different crops at different times of year, call ahead or check a farm's website to confirm what is actually ready before you drive out. Weekday mornings are consistently less crowded than weekend afternoons, especially during peak fall weekends near ${city}.`,
+  (city, state, r) => `The best strategy for a u-pick trip near ${city} is to check current availability first — a farm advertised for one crop may already be past peak or not yet open for another. Bring your own bags or containers if the farm allows it, and cash for smaller family operations that are not set up for cards.`,
+  (city, state, r) => `Because u-pick farms near ${city} run through several harvests a year, confirm what is currently being picked before making the trip. Wear closed-toe shoes and dress for the field conditions — mornings can be cool near ${city} even when the afternoon warms up.`,
+];
+
+const youPickIntros = {};
+const youPickTips = {};
+capitals.forEach((cap, i) => {
+  const r = REGION_INFO[cap.region];
+  youPickIntros[cap.city] = YOU_PICK_INTRO_VARIANTS[i % YOU_PICK_INTRO_VARIANTS.length](cap.city, cap.state, r);
+  youPickTips[cap.city] = YOU_PICK_TIP_VARIANTS[i % YOU_PICK_TIP_VARIANTS.length](cap.city, cap.state, r);
+});
+
+const youPickRegion = {};
+Object.keys(REGION_INFO).forEach((key) => {
+  const r = REGION_INFO[key];
+  youPickRegion[key] = {
+    h2: `You Pick Farms in ${r.name}`,
+    body: `${r.name} supports a genuine year-round pick-your-own calendar, starting with strawberries in ${r.season.split(' through ')[0]}-adjacent spring weeks and continuing through summer berries, stone fruit, and a long fall run of apples, pumpkins, and other harvest crops. Farms growing in ${r.soil} across the region often diversify across several of these crops, which is why the same farm can be worth visiting more than once a year.`,
+  };
+});
+
+const youPickSeason = {};
+capitals.forEach((cap) => {
+  const r = REGION_INFO[cap.region];
+  youPickSeason[cap.state] = `Pick-your-own season in ${cap.state} runs from spring strawberries through summer berries and stone fruit, into a fall peak of apples and pumpkins that usually draws the largest crowds.`;
+});
+
 // ---------- Page generator ----------
 
 function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
@@ -1077,11 +1164,11 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
   const resultsHeading = `${fruitLabel} Near ${city}, ${code}`;
   const relatedLinks = relatedLinksHtml(fruitSlug, citySlug, stateSlug, city, state);
 
-  const introsByFruit = { 'apple-picking': appleIntros, 'cherry-picking': cherryIntros, 'berry-picking': berryIntros, 'peach-picking': peachIntros, 'blueberry-picking': blueberryIntros };
-  const tipsByFruit = { 'apple-picking': appleTips, 'cherry-picking': cherryTips, 'berry-picking': berryTips, 'peach-picking': peachTips, 'blueberry-picking': blueberryTips };
-  const regionByFruit = { 'apple-picking': appleRegion, 'cherry-picking': cherryRegion, 'berry-picking': berryRegion, 'peach-picking': peachRegion, 'blueberry-picking': blueberryRegion };
-  const seasonByFruit = { 'apple-picking': appleSeason, 'cherry-picking': cherrySeason, 'berry-picking': berrySeason, 'peach-picking': peachSeason, 'blueberry-picking': blueberrySeason };
-  const regionKeyField = { 'apple-picking': 'region', 'cherry-picking': 'cherryRegion', 'berry-picking': 'region', 'peach-picking': 'region', 'blueberry-picking': 'region' };
+  const introsByFruit = { 'apple-picking': appleIntros, 'cherry-picking': cherryIntros, 'berry-picking': berryIntros, 'peach-picking': peachIntros, 'blueberry-picking': blueberryIntros, 'strawberry-picking': strawberryIntros };
+  const tipsByFruit = { 'apple-picking': appleTips, 'cherry-picking': cherryTips, 'berry-picking': berryTips, 'peach-picking': peachTips, 'blueberry-picking': blueberryTips, 'strawberry-picking': strawberryTips };
+  const regionByFruit = { 'apple-picking': appleRegion, 'cherry-picking': cherryRegion, 'berry-picking': berryRegion, 'peach-picking': peachRegion, 'blueberry-picking': blueberryRegion, 'strawberry-picking': strawberryRegion };
+  const seasonByFruit = { 'apple-picking': appleSeason, 'cherry-picking': cherrySeason, 'berry-picking': berrySeason, 'peach-picking': peachSeason, 'blueberry-picking': blueberrySeason, 'strawberry-picking': strawberrySeason };
+  const regionKeyField = { 'apple-picking': 'region', 'cherry-picking': 'cherryRegion', 'berry-picking': 'region', 'peach-picking': 'region', 'blueberry-picking': 'region', 'strawberry-picking': 'region' };
 
   const defaultFilter = fruitSlug;
   const capital = capitals.find(c => c.city === city);
@@ -1613,6 +1700,174 @@ function generateGardenCenterPage({ city, state, code }) {
 `;
 }
 
+function generateYouPickFarmsPage({ city, state, code, region }) {
+  const citySlug = slugify(city);
+  const stateSlug = slugify(state);
+  const urlSlug = `you-pick-farms-near-${citySlug}-${stateSlug}`;
+  const canonicalUrl = `https://orchards-nearme.com/find/${urlSlug}`;
+  const titleTag = `You Pick Farms Near ${city}, ${state} | Orchards Near Me`;
+  const h1 = `You Pick Farms Near ${city} ${state}`;
+  const desc = `Find you pick farms near ${city}, ${state}. Browse pick-your-own orchards and farms on an interactive map. Search by ZIP code to find the closest location.`;
+  const resultsHeading = `You Pick Farms Near ${city}, ${code}`;
+  const relatedLinks = relatedLinksHtml('you-pick-farms', citySlug, stateSlug, city, state);
+
+  const regionData = youPickRegion[region];
+  const intro = youPickIntros[city];
+  const tips = youPickTips[city];
+  const seasonText = youPickSeason[state];
+
+  const seasonH2 = `Best Time to Visit a You Pick Farm Near ${city}`;
+  const tipsH2 = `Tips for Your ${city} You Pick Farm Visit`;
+  const mainH2 = `You Pick Farms Near ${city}: What You Need to Know`;
+
+  const filterChips = `<button class="filter-chip" data-cat="all">All Listings</button>
+          <button class="filter-chip active" data-cat="Farm">Farms</button>
+          <button class="filter-chip" data-cat="Orchard">Orchards</button>
+          <button class="filter-chip" data-cat="Garden Center">Garden Centers</button>`;
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${titleTag}</title>
+  <meta name="description" content="${desc}" />
+  <link rel="canonical" href="${canonicalUrl}" />
+  <meta property="og:title" content="${titleTag}" />
+  <meta property="og:description" content="Find you pick farms near ${city}, ${state} on an interactive map." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="${canonicalUrl}" />
+
+  <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/vendor/leaflet/leaflet.css" />
+  <link rel="stylesheet" href="/vendor/leaflet/MarkerCluster.css" />
+  <link rel="stylesheet" href="/vendor/leaflet/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2173008413459742" crossorigin="anonymous"></script>
+</head>
+<body>
+  <a class="skip-link" href="#find">Skip to map</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="/" aria-label="Orchards Near Me home">
+        <img src="/logo.svg" alt="" class="logo-icon" />
+        Orchards Near Me
+      </a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/blog">Blog</a>
+        <a href="/find" class="cta">Find</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>${h1}</h1>
+        <p>Discover you pick farms near ${city}, ${state}. Search by ZIP code to find the closest farm, check ratings, and read real visitor reviews before you go.</p>
+      </div>
+    </section>
+
+    <section class="controls" id="find">
+      <div class="container">
+        <form class="search-form" id="searchForm">
+          <input type="text" id="zipInput" inputmode="numeric" placeholder="Enter your ZIP code (e.g. 05346)" aria-label="Search by ZIP code" />
+          <button type="submit" class="btn">Search</button>
+          <p id="zipError" hidden class="zip-error-msg" role="alert"></p>
+        </form>
+        <div class="filters-wrap">
+          <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
+            <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
+          </button>
+          <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="Farm" data-default-state="${state}">
+            ${filterChips}
+          </div>
+        </div>
+        <select class="state-select" id="stateSelect" aria-label="Filter by state">
+          <option value="all">All states</option>
+        </select>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="view-toggle" id="viewToggle">
+        <button class="active" data-view="map">Map</button>
+        <button data-view="list">List</button>
+      </div>
+      <div class="find-layout">
+        <div class="results-col">
+          <div class="results-head">
+            <h2>${resultsHeading}</h2>
+            <span class="results-count" id="resultsCount">Loading...</span>
+          </div>
+          <div class="cards" id="cards"></div>
+        </div>
+        <div class="map-col">
+          <div id="map" role="application" aria-label="Map of you pick farms near ${city}, ${state}"></div>
+          <div class="map-legend" aria-label="Map key">
+            <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
+            <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
+            <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="seo-content">
+      <div class="container">
+        <article class="seo-article">
+
+          <h2>${mainH2}</h2>
+          <p>${intro}</p>
+
+          <h2>${regionData.h2}</h2>
+          <p>${regionData.body}</p>
+
+          <h2>${seasonH2}</h2>
+          <p>${seasonText}</p>
+
+          <h2>${tipsH2}</h2>
+          <p>${tips}</p>
+
+        </article>
+      </div>
+    </section>
+
+    ${relatedLinks}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul class="footer-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/disclaimer.html">Disclaimer</a></li>
+        <li><a href="/privacy.html">Privacy</a></li>
+        <li><a href="/terms.html">Terms</a></li>
+        <li><a href="/sitemap.html">Sitemap</a></li>
+      </ul>
+      <div class="footer-bottom">
+        <p>Orchards Near Me &mdash; your friendly guide to orchards, farms, and garden centers across the USA. &copy; <span id="year"></span> orchards-nearme.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/vendor/leaflet/leaflet.js"></script>
+  <script src="/vendor/leaflet/leaflet.markercluster.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
+`;
+}
+
 // ---------- Main execution ----------
 
 const findDir = path.join(__dirname, '..', 'find');
@@ -1626,6 +1881,7 @@ const fruits = [
   { fruitSlug: 'berry-picking', fruitLabel: 'Berry Picking' },
   { fruitSlug: 'peach-picking', fruitLabel: 'Peach Picking' },
   { fruitSlug: 'blueberry-picking', fruitLabel: 'Blueberry Picking' },
+  { fruitSlug: 'strawberry-picking', fruitLabel: 'Strawberry Picking' },
 ];
 
 for (const fruit of fruits) {
@@ -1648,6 +1904,17 @@ for (const cap of capitals) {
   const filePath = path.join(findDir, filename);
   fs.writeFileSync(filePath, generateGardenCenterPage(cap), 'utf8');
   const url = `https://orchards-nearme.com/find/garden-centers-near-${citySlug}-${stateSlug}`;
+  allUrls.push(url);
+  console.log('Generated:', filename);
+}
+
+for (const cap of capitals) {
+  const citySlug = slugify(cap.city);
+  const stateSlug = slugify(cap.state);
+  const filename = `you-pick-farms-near-${citySlug}-${stateSlug}.html`;
+  const filePath = path.join(findDir, filename);
+  fs.writeFileSync(filePath, generateYouPickFarmsPage(cap), 'utf8');
+  const url = `https://orchards-nearme.com/find/you-pick-farms-near-${citySlug}-${stateSlug}`;
   allUrls.push(url);
   console.log('Generated:', filename);
 }

@@ -72,6 +72,12 @@
       label: 'Blueberry Picking',
       icon: '🫐',
       test: function (item, text) { return text.includes('blueberr'); }
+    },
+    {
+      slug: 'strawberry-picking',
+      label: 'Strawberry Picking',
+      icon: '🍓',
+      test: function (item, text) { return text.includes('strawberr'); }
     }
   ];
 
@@ -486,7 +492,7 @@
       });
       btn.classList.add('active');
       var cat = btn.getAttribute('data-cat');
-      if (cat === 'apple-picking' || cat === 'cherry-picking' || cat === 'berry-picking' || cat === 'peach-picking' || cat === 'blueberry-picking') {
+      if (cat === 'apple-picking' || cat === 'cherry-picking' || cat === 'berry-picking' || cat === 'peach-picking' || cat === 'blueberry-picking' || cat === 'strawberry-picking') {
         state.keyword = cat;
         state.category = 'all';
       } else {
@@ -620,6 +626,7 @@
     'berry-picking': 'Berry Picking',
     'peach-picking': 'Peach Picking',
     'blueberry-picking': 'Blueberry Picking',
+    'strawberry-picking': 'Strawberry Picking',
     'Orchard': 'Orchards',
     'Farm': 'Farms',
     'Garden Center': 'Garden Centers',
@@ -631,8 +638,9 @@
     'berry-picking': '/find/berry-picking-orchards-near-me',
     'peach-picking': '/find/peach-picking-orchards-near-me',
     'blueberry-picking': '/find/blueberry-picking-orchards-near-me',
+    'strawberry-picking': '/find/strawberry-picking-orchards-near-me',
     'Orchard': '/find',
-    'Farm': '/find',
+    'Farm': '/find/you-pick-farms-near-me',
     'Garden Center': '/find/garden-centers-near-me',
   };
 
@@ -683,7 +691,7 @@
         Array.prototype.forEach.call(el.filters.children, function (c) { c.classList.remove('active'); });
         chip.classList.add('active');
       }
-      if (defaultFilter === 'apple-picking' || defaultFilter === 'cherry-picking' || defaultFilter === 'berry-picking' || defaultFilter === 'peach-picking' || defaultFilter === 'blueberry-picking') {
+      if (defaultFilter === 'apple-picking' || defaultFilter === 'cherry-picking' || defaultFilter === 'berry-picking' || defaultFilter === 'peach-picking' || defaultFilter === 'blueberry-picking' || defaultFilter === 'strawberry-picking') {
         state.keyword = defaultFilter;
         state.category = 'all';
       } else {
