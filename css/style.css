@@ -2131,6 +2131,39 @@ select:focus-visible {
   margin-bottom: 16px;
 }
 
+/* UGC Video Section */
+
+.ugc-video {
+  padding: 50px 0;
+  text-align: center;
+}
+
+.ugc-video h2 {
+  margin-bottom: 8px;
+}
+
+.ugc-video > .container > p {
+  color: var(--muted);
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+.ugc-video-wrap {
+  max-width: 420px;
+  margin: 0 auto;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: #000;
+}
+
+.ugc-video-wrap video {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 720px;
+}
+
 /* Nearby Listings Section */
 
 .nearby-listings {
