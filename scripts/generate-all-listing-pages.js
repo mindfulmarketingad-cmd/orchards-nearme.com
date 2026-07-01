@@ -331,9 +331,9 @@ ${JSON.stringify(jsonLd, null, 2)}
         <h2>Explore More Near ${escapeHtml(city)}, ${escapeHtml(stateCode)}</h2>
         <ul class="related-links-list">
           <li><a href="${hub.url}">${escapeHtml(hub.label)}</a></li>
-          <li><a href="/find/apple-picking-orchards-near-me">Apple Picking Orchards Near Me</a></li>
+          ${hub.url !== '/find/apple-picking-orchards-near-me' ? '<li><a href="/find/apple-picking-orchards-near-me">Apple Picking Orchards Near Me</a></li>' : ''}
           <li><a href="/find/strawberry-picking-orchards-near-me">Strawberry Picking Orchards Near Me</a></li>
-          <li><a href="/find/garden-centers-near-me">Garden Centers Near Me</a></li>
+          ${hub.url !== '/find/garden-centers-near-me' ? '<li><a href="/find/garden-centers-near-me">Garden Centers Near Me</a></li>' : ''}
         </ul>
         <p class="related-links-all"><a href="/find">Browse all orchards and farms by state</a></p>
       </div>
