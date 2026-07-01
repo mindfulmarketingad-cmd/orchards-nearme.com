@@ -121,7 +121,6 @@
     stateSelect: document.getElementById('stateSelect'),
     searchForm: document.getElementById('searchForm'),
     zipInput: document.getElementById('zipInput'),
-    resetBtn: document.getElementById('resetBtn'),
     viewToggle: document.getElementById('viewToggle'),
     resultsCol: document.querySelector('.results-col'),
     mapCol: document.querySelector('.map-col'),
@@ -183,6 +182,7 @@
     var site = item.website
       ? '<a href="' + escapeHtml(item.website) + '" target="_blank" rel="noopener nofollow">Visit website</a>'
       : '';
+    var claim = '<a class="card-claim" href="' + CLAIM_LISTING_URL + '" target="_blank" rel="noopener">Claim listing</a>';
     return (
       '<div class="map-popup">' +
       '<h4>' + escapeHtml(item.name) + '</h4>' +
@@ -190,7 +190,7 @@
       fitChipsHtml(item) +
       rating +
       '<p class="pop-meta">' + escapeHtml(item.address) + '</p>' +
-      site +
+      '<div class="pop-links">' + site + claim + '</div>' +
       '</div>'
     );
   }
@@ -447,22 +447,6 @@
     el.searchForm.addEventListener('submit', function (e) {
       e.preventDefault();
       searchZip(el.zipInput.value);
-    });
-
-    el.resetBtn.addEventListener('click', function () {
-      el.zipInput.value = '';
-      state.origin = null;
-      state.stateFilter = 'all';
-      el.stateSelect.value = 'all';
-      if (originMarker) {
-        map.removeLayer(originMarker);
-        originMarker = null;
-      }
-      if (zipAreaCircle) {
-        map.removeLayer(zipAreaCircle);
-        zipAreaCircle = null;
-      }
-      applyFilters();
     });
 
     // Infinite scroll — load next page as user nears bottom of card list

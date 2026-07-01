@@ -1136,6 +1136,7 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
       <nav class="main-nav" aria-label="Primary">
         <a href="/">Home</a>
         <a href="/about.html">About</a>
+        <a href="/blog">Blog</a>
         <a href="/find" class="cta">Find</a>
       </nav>
     </div>
@@ -1146,11 +1147,6 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
       <div class="container">
         <h1>${h1}</h1>
         <p>Discover ${fruitLabel.toLowerCase()} orchards near ${city}, ${state}. Search by ZIP code to find the closest orchard, check ratings, and read real visitor reviews before you go.</p>
-        <div class="pills">
-          <span>${fruitLabel}</span>
-          <span>Pick Your Own</span>
-          <span>${state}</span>
-        </div>
       </div>
     </section>
 
@@ -1159,7 +1155,6 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
         <form class="search-form" id="searchForm">
           <input type="text" id="zipInput" inputmode="numeric" placeholder="Enter your ZIP code (e.g. 05346)" aria-label="Search by ZIP code" />
           <button type="submit" class="btn">Search</button>
-          <button type="button" class="btn btn-ghost" id="resetBtn">Reset</button>
         </form>
         <div class="filters-wrap">
           <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
@@ -1506,6 +1501,7 @@ function generateGardenCenterPage({ city, state, code }) {
       <nav class="main-nav" aria-label="Primary">
         <a href="/">Home</a>
         <a href="/about.html">About</a>
+        <a href="/blog">Blog</a>
         <a href="/find" class="cta">Find</a>
       </nav>
     </div>
@@ -1516,11 +1512,6 @@ function generateGardenCenterPage({ city, state, code }) {
       <div class="container">
         <h1>${h1}</h1>
         <p>Discover garden centers near ${city}, ${state}. Search by ZIP code to find the closest nursery, check ratings, and read real visitor reviews before you go.</p>
-        <div class="pills">
-          <span>Garden Centers</span>
-          <span>Plant Nurseries</span>
-          <span>${state}</span>
-        </div>
       </div>
     </section>
 
@@ -1529,7 +1520,6 @@ function generateGardenCenterPage({ city, state, code }) {
         <form class="search-form" id="searchForm">
           <input type="text" id="zipInput" inputmode="numeric" placeholder="Enter your ZIP code (e.g. 05346)" aria-label="Search by ZIP code" />
           <button type="submit" class="btn">Search</button>
-          <button type="button" class="btn btn-ghost" id="resetBtn">Reset</button>
         </form>
         <div class="filters-wrap">
           <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">

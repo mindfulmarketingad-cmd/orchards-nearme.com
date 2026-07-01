@@ -28,6 +28,7 @@
       <nav class="main-nav" aria-label="Primary">
         <a href="/">Home</a>
         <a href="/about.html">About</a>
+        <a href="/blog">Blog</a>
         <a href="/find" class="cta active">Find</a>
       </nav>
     </div>
@@ -37,19 +38,15 @@
     <section class="hero">
       <div class="container">
         <h1>Find Orchards Near Me</h1>
-        <p>Every pick-your-own orchard finder and garden center listing on the site, in one place. Search for your city or browse the full list below.</p>
-        <div class="pills">
-          <span>Apple Picking</span>
-          <span>Cherry Picking</span>
-          <span>Berry Picking</span>
-          <span>Peach Picking</span>
-          <span>Blueberry Picking</span>
-          <span>Garden Centers</span>
-        </div>
+        <p>Every pick-your-own orchard finder and garden center listing on the site, in one place. Search by city or state below, or browse by category.</p>
       </div>
     </section>
 
     <div class="container">
+
+      <div class="find-hub-search">
+        <input type="text" id="findFlatSearch" placeholder="Search by state or city (e.g. Texas, Austin)" aria-label="Search by state or city" />
+      </div>
 
       <section class="find-directory-section">
         <h2>Browse by Category</h2>
@@ -108,11 +105,7 @@
 
       <section class="find-directory-section">
         <h2>All Pages</h2>
-        <p class="lead">Search by city or state to jump straight to the page you need.</p>
-
-        <div class="find-flat-search">
-          <input type="text" id="findFlatSearch" placeholder="Search by state or city (e.g. Texas, Austin)" aria-label="Search by state or city" />
-        </div>
+        <p class="lead">Use the search bar above or browse by category below.</p>
 
         <p class="find-flat-empty" id="findFlatEmpty" hidden>No pages match your search.</p>
 
