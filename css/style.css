@@ -128,6 +128,79 @@ h3 {
   background: var(--red-dark);
 }
 
+/* ---------- Mobile nav toggle ---------- */
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--green-dark);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.mobile-nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  flex-direction: column;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  border-bottom: 4px solid var(--green);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-nav.open {
+  display: flex;
+}
+
+.mobile-nav a {
+  padding: 15px 24px;
+  font-weight: 700;
+  color: var(--ink);
+  border-bottom: 1px solid var(--border);
+}
+
+.mobile-nav a:hover,
+.mobile-nav a.active {
+  background: var(--green-light);
+  color: var(--green-dark);
+  text-decoration: none;
+}
+
+.mobile-nav a.cta {
+  color: var(--red-dark);
+}
+
 /* ---------- Hero ---------- */
 .hero {
   background: linear-gradient(160deg, var(--green) 0%, var(--green-dark) 100%);
@@ -969,10 +1042,16 @@ h3 {
   }
 }
 
-@media (max-width: 560px) {
-  .main-nav a {
-    padding: 8px 12px;
+@media (max-width: 720px) {
+  .main-nav {
+    display: none;
   }
+  .nav-toggle {
+    display: flex;
+  }
+}
+
+@media (max-width: 560px) {
   .brand {
     font-size: 1.15rem;
     gap: 6px;
@@ -1013,21 +1092,6 @@ h3 {
   .logo-icon {
     width: 26px;
     height: 26px;
-  }
-  .main-nav {
-    gap: 3px;
-  }
-  .main-nav a {
-    padding: 7px 9px;
-    font-size: 0.82rem;
-  }
-  .main-nav a.cta {
-    padding: 7px 11px;
-  }
-  /* Home & About are accessible via logo/footer — hide on very small screens */
-  .main-nav a[href="/"],
-  .main-nav a[href="/about.html"] {
-    display: none;
   }
   .controls {
     top: 60px;

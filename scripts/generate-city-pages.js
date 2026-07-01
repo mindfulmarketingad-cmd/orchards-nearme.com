@@ -1228,10 +1228,38 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
         <a href="/">Home</a>
         <a href="/about.html">About</a>
         <a href="/blog">Blog</a>
+        <a href="/listings">Listings</a>
         <a href="/find" class="cta">Find</a>
       </nav>
+      <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Primary mobile">
+      <a href="/">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/blog">Blog</a>
+      <a href="/listings">Listings</a>
+      <a href="/find" class="cta">Find</a>
+    </nav>
   </header>
+  <script>
+    (function () {
+      var toggle = document.getElementById('navToggle');
+      var menu = document.getElementById('mobileNav');
+      if (!toggle || !menu) return;
+      toggle.addEventListener('click', function () {
+        var isOpen = menu.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+      menu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          menu.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+  </script>
 
   <main>
     <section class="hero">
@@ -1599,10 +1627,38 @@ function generateGardenCenterPage({ city, state, code }) {
         <a href="/">Home</a>
         <a href="/about.html">About</a>
         <a href="/blog">Blog</a>
+        <a href="/listings">Listings</a>
         <a href="/find" class="cta">Find</a>
       </nav>
+      <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Primary mobile">
+      <a href="/">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/blog">Blog</a>
+      <a href="/listings">Listings</a>
+      <a href="/find" class="cta">Find</a>
+    </nav>
   </header>
+  <script>
+    (function () {
+      var toggle = document.getElementById('navToggle');
+      var menu = document.getElementById('mobileNav');
+      if (!toggle || !menu) return;
+      toggle.addEventListener('click', function () {
+        var isOpen = menu.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+      menu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          menu.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+  </script>
 
   <main>
     <section class="hero">
@@ -1770,10 +1826,38 @@ function generateYouPickFarmsPage({ city, state, code, region }) {
         <a href="/">Home</a>
         <a href="/about.html">About</a>
         <a href="/blog">Blog</a>
+        <a href="/listings">Listings</a>
         <a href="/find" class="cta">Find</a>
       </nav>
+      <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Primary mobile">
+      <a href="/">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/blog">Blog</a>
+      <a href="/listings">Listings</a>
+      <a href="/find" class="cta">Find</a>
+    </nav>
   </header>
+  <script>
+    (function () {
+      var toggle = document.getElementById('navToggle');
+      var menu = document.getElementById('mobileNav');
+      if (!toggle || !menu) return;
+      toggle.addEventListener('click', function () {
+        var isOpen = menu.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+      menu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          menu.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+  </script>
 
   <main>
     <section class="hero">
