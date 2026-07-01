@@ -23,6 +23,7 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2173008413459742" crossorigin="anonymous"></script>
 </head>
 <body>
+  <a class="skip-link" href="#find">Skip to map</a>
   <header class="site-header">
     <div class="container">
       <a class="brand" href="/" aria-label="Orchards Near Me home">
@@ -52,6 +53,7 @@
           <input type="text" id="zipInput" inputmode="numeric" placeholder="Enter your ZIP code (e.g. 05346)" aria-label="Search by ZIP code" />
           <button type="submit" class="btn">Search</button>
         </form>
+        <p id="zipError" hidden class="zip-error-msg" role="alert"></p>
         <div class="filters-wrap">
           <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
             <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
@@ -132,6 +134,7 @@
       <ul class="footer-nav">
         <li><a href="/">Home</a></li>
         <li><a href="/about.html">About</a></li>
+        <li><a href="/blog">Blog</a></li>
         <li><a href="/contact.html">Contact</a></li>
         <li><a href="/disclaimer.html">Disclaimer</a></li>
         <li><a href="/privacy.html">Privacy</a></li>

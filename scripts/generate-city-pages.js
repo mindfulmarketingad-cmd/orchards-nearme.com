@@ -1222,6 +1222,7 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
       <ul class="footer-nav">
         <li><a href="/">Home</a></li>
         <li><a href="/about.html">About</a></li>
+        <li><a href="/blog">Blog</a></li>
         <li><a href="/contact.html">Contact</a></li>
         <li><a href="/disclaimer.html">Disclaimer</a></li>
         <li><a href="/privacy.html">Privacy</a></li>
@@ -1587,6 +1588,7 @@ function generateGardenCenterPage({ city, state, code }) {
       <ul class="footer-nav">
         <li><a href="/">Home</a></li>
         <li><a href="/about.html">About</a></li>
+        <li><a href="/blog">Blog</a></li>
         <li><a href="/contact.html">Contact</a></li>
         <li><a href="/disclaimer.html">Disclaimer</a></li>
         <li><a href="/privacy.html">Privacy</a></li>

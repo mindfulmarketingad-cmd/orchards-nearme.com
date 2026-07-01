@@ -121,10 +121,19 @@
     stateSelect: document.getElementById('stateSelect'),
     searchForm: document.getElementById('searchForm'),
     zipInput: document.getElementById('zipInput'),
+    zipError: document.getElementById('zipError'),
     viewToggle: document.getElementById('viewToggle'),
     resultsCol: document.querySelector('.results-col'),
     mapCol: document.querySelector('.map-col'),
   };
+
+  function setZipError(msg) {
+    if (!el.zipError) return;
+    el.zipError.textContent = msg;
+    el.zipError.hidden = !msg;
+    if (msg) el.zipInput.setAttribute('aria-invalid', 'true');
+    else el.zipInput.removeAttribute('aria-invalid');
+  }
 
   document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -328,9 +337,10 @@
   function searchZip(zip) {
     zip = (zip || '').trim();
     if (!/^\d{5}$/.test(zip)) {
-      alert('Please enter a valid 5-digit US ZIP code.');
+      setZipError('Please enter a valid 5-digit US ZIP code.');
       return;
     }
+    setZipError('');
     fetch('https://api.zippopotam.us/us/' + zip)
       .then(function (r) {
         if (!r.ok) throw new Error('not found');
@@ -339,6 +349,7 @@
       .then(function (data) {
         var place = data.places && data.places[0];
         if (!place) throw new Error('not found');
+        setZipError('');
         state.origin = {
           lat: parseFloat(place.latitude),
           lng: parseFloat(place.longitude),
@@ -365,7 +376,7 @@
         applyFilters();
       })
       .catch(function () {
-        alert('We could not find that ZIP code. Please double-check and try again.');
+        setZipError('We could not find that ZIP code. Please double-check and try again.');
       });
   }
 
