@@ -461,6 +461,68 @@ const STATES = [
 
 const SITE_URL = 'https://orchards-nearme.com';
 const PUB_DATE = '2025-07-01';
+const UPDATED_DATE = '2026-07-01';
+const UPDATED_LABEL = 'July 2026';
+
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const MONTHS_FULL = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+// Turns a natural-language peak-season string ("late July through August") into
+// the set of month indexes (0-11) it spans, for rendering as a visual chart.
+function parsePeakMonths(peak) {
+  if (/year-round/i.test(peak)) {
+    return { yearRound: true, months: MONTHS_FULL.map(function (_, i) { return i; }) };
+  }
+  var found = [];
+  MONTHS_FULL.forEach(function (name, i) {
+    var pos = peak.toLowerCase().indexOf(name.toLowerCase());
+    if (pos !== -1) found.push({ i: i, pos: pos });
+  });
+  found.sort(function (a, b) { return a.pos - b.pos; });
+  if (!found.length) return { yearRound: false, months: [] };
+  var start = found[0].i;
+  var end = found[found.length - 1].i;
+  var months = [];
+  for (var m = start; m <= end; m++) months.push(m);
+  return { yearRound: false, months: months };
+}
+
+// Compact 12-cell month timeline for a single state's blog post.
+function seasonMiniChartHtml(peak) {
+  var parsed = parsePeakMonths(peak);
+  var label = parsed.yearRound ? 'year-round' : parsed.months.map(function (i) { return MONTHS_FULL[i]; }).join(', ');
+  var cells = MONTHS.map(function (m, i) {
+    var active = parsed.yearRound || parsed.months.indexOf(i) !== -1;
+    return '<div class="season-mini-cell' + (active ? ' is-active' : '') + '"><span class="season-mini-month">' + m + '</span></div>';
+  }).join('');
+  return '<div class="season-mini-chart" role="img" aria-label="Peak apple picking months: ' + label + '">' + cells + '</div>';
+}
+
+// Full states x months chart for the blog index, so visitors can compare peak
+// timing across the country at a glance.
+function seasonChartTable(states) {
+  var header = MONTHS.map(function (m) { return '<th scope="col">' + m + '</th>'; }).join('');
+  var rows = states.map(function (s) {
+    var parsed = parsePeakMonths(s.peak);
+    var cells = MONTHS.map(function (_, i) {
+      var active = parsed.yearRound || parsed.months.indexOf(i) !== -1;
+      return '<td class="season-cell' + (active ? ' is-active' : '') + '">' + (active ? '<span class="sr-only">Peak</span>' : '') + '</td>';
+    }).join('');
+    return '        <tr><th scope="row"><a href="/blog/apple-picking-season-' + s.slug + '">' + s.name + '</a></th>' + cells + '</tr>';
+  }).join('\n');
+  return `      <div class="season-chart-wrap">
+        <table class="season-chart">
+          <caption class="sr-only">Apple picking peak season by state, month by month</caption>
+          <thead>
+            <tr><th scope="col">State</th>${header}</tr>
+          </thead>
+          <tbody>
+${rows}
+          </tbody>
+        </table>
+      </div>
+      <p class="season-chart-legend"><span class="season-cell is-active season-chart-legend-swatch" aria-hidden="true"></span> Peak apple picking window</p>`;
+}
 
 function stateSlugToFindSlug(stateSlug) {
   return stateSlug;
@@ -480,7 +542,7 @@ function generatePage(state) {
     "description": desc,
     "url": canonical,
     "datePublished": PUB_DATE,
-    "dateModified": PUB_DATE,
+    "dateModified": UPDATED_DATE,
     "author": {
       "@type": "Organization",
       "name": "Orchards Near Me",
@@ -553,12 +615,17 @@ ${jsonLd}
       <article class="blog-post">
         <header class="blog-post-header">
           <h1>Apple Picking Season ${name}</h1>
-          <p class="blog-post-meta"><time datetime="${PUB_DATE}">July 1, 2025</time> &middot; Orchards Near Me</p>
+          <p class="blog-post-lead">${intro}</p>
+          <p class="blog-post-meta">Last updated: ${UPDATED_LABEL} &middot; Orchards Near Me</p>
         </header>
 
-        <div class="blog-post-body">
-          <p class="lead">${intro}</p>
+        <section class="season-snapshot" aria-labelledby="season-snapshot-heading-${slug}">
+          <h2 id="season-snapshot-heading-${slug}" class="season-snapshot-title">Peak Season at a Glance</h2>
+          ${seasonMiniChartHtml(peak)}
+          <p class="season-snapshot-caption">Peak: <strong>${peak}</strong></p>
+        </section>
 
+        <div class="blog-post-body">
           <h2>When Is Apple Picking Season in ${name}?</h2>
           <p>${seasonDetail}</p>
 
@@ -666,6 +733,11 @@ function generateIndex(states) {
     <div class="container">
       <h1>Apple Picking Season Guides</h1>
       <p class="lead">When does apple picking season start in your state? Browse our state-by-state guides to peak harvest timing, the best regions, top varieties, and tips for planning your visit.</p>
+      <p class="blog-post-meta">Last updated: ${UPDATED_LABEL} &middot; Orchards Near Me</p>
+
+      <h2 class="season-chart-heading">Apple Picking Season by State: Peak Months at a Glance</h2>
+      <p>Every state's peak window, side by side. Find your state's row to see which months to plan around, then click through for the full guide.</p>
+${seasonChartTable(states)}
 
       <div class="blog-grid">
 ${cards}

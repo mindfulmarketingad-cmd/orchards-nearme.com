@@ -1421,13 +1421,155 @@ select:focus-visible {
 }
 
 .blog-post-header {
-  margin-bottom: 32px;
+  margin-bottom: 24px;
+}
+
+.blog-post-lead {
+  font-size: 1.08rem;
+  color: var(--text);
+  line-height: 1.6;
+  margin: 10px 0 0;
 }
 
 .blog-post-meta {
   font-size: 0.9rem;
   color: var(--muted);
-  margin-top: 4px;
+  margin-top: 8px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Per-post "peak season at a glance" mini chart */
+.season-snapshot {
+  background: var(--green-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin-bottom: 32px;
+}
+
+.season-snapshot-title {
+  margin: 0 0 12px;
+  font-size: 1.05rem;
+  color: var(--green-dark);
+}
+
+.season-mini-chart {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 4px;
+}
+
+.season-mini-cell {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 2px;
+  text-align: center;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.season-mini-cell.is-active {
+  background: var(--green);
+  border-color: var(--green-dark);
+  color: #fff;
+}
+
+.season-snapshot-caption {
+  margin: 12px 0 0;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+/* Blog index: all-states season comparison chart */
+.season-chart-heading {
+  margin-top: 32px;
+}
+
+.season-chart-wrap {
+  overflow-x: auto;
+  margin: 16px 0 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.season-chart {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 720px;
+  font-size: 0.82rem;
+}
+
+.season-chart th,
+.season-chart td {
+  border: 1px solid var(--border);
+  text-align: center;
+  padding: 6px 4px;
+}
+
+.season-chart thead th {
+  background: var(--green-light);
+  color: var(--green-dark);
+  font-weight: 800;
+  position: sticky;
+  top: 0;
+}
+
+.season-chart tbody th {
+  text-align: left;
+  white-space: nowrap;
+  background: var(--white);
+  position: sticky;
+  left: 0;
+  font-weight: 700;
+}
+
+.season-chart tbody th a {
+  color: var(--ink);
+}
+
+.season-chart tbody th a:hover {
+  color: var(--green-dark);
+}
+
+.season-cell.is-active {
+  background: var(--green);
+}
+
+.season-chart-legend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0 0 24px;
+}
+
+.season-chart-legend-swatch {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1px solid var(--green-dark);
+}
+
+@media (max-width: 600px) {
+  .season-mini-cell {
+    font-size: 0.6rem;
+    padding: 5px 1px;
+  }
 }
 
 .blog-post-body h2 {
