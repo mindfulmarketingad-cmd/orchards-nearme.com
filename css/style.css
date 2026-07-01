@@ -512,6 +512,71 @@ h3 {
   content: '\2014 ';
 }
 
+.card-distance-form {
+  margin: 0 0 8px;
+}
+
+.card-distance-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+  margin: 0 0 4px;
+}
+
+.card-distance-row {
+  display: flex;
+  gap: 6px;
+}
+
+.card-distance-input {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-family: inherit;
+}
+
+.card-distance-input:focus {
+  outline: none;
+  border-color: var(--green);
+}
+
+.card-distance-btn {
+  border: 1px solid var(--green);
+  background: var(--green-light);
+  color: var(--green-dark);
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 6px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.card-distance-btn:hover {
+  background: var(--green);
+  color: #fff;
+}
+
+.card-distance-result {
+  margin: 4px 0 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--green-dark);
+}
+
+.card-distance-result:empty {
+  display: none;
+}
+
+.card-distance-error {
+  color: #c0392b;
+}
+
 .card-links {
   display: flex;
   align-items: center;
