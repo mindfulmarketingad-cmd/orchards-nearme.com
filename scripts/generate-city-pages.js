@@ -1202,7 +1202,10 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
   <meta property="og:type" content="website" />
   <meta property="og:url" content="${canonicalUrl}" />
 
-  <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
@@ -1218,7 +1221,7 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
   <header class="site-header">
     <div class="container">
       <a class="brand" href="/" aria-label="Orchards Near Me home">
-        <img src="/logo.svg" alt="" class="logo-icon" />
+        <img src="/logo.png" alt="" class="logo-icon" />
         Orchards Near Me
       </a>
       <nav class="main-nav" aria-label="Primary">
@@ -1570,7 +1573,10 @@ function generateGardenCenterPage({ city, state, code }) {
   <meta property="og:type" content="website" />
   <meta property="og:url" content="${canonicalUrl}" />
 
-  <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
@@ -1586,7 +1592,7 @@ function generateGardenCenterPage({ city, state, code }) {
   <header class="site-header">
     <div class="container">
       <a class="brand" href="/" aria-label="Orchards Near Me home">
-        <img src="/logo.svg" alt="" class="logo-icon" />
+        <img src="/logo.png" alt="" class="logo-icon" />
         Orchards Near Me
       </a>
       <nav class="main-nav" aria-label="Primary">
@@ -1738,7 +1744,10 @@ function generateYouPickFarmsPage({ city, state, code, region }) {
   <meta property="og:type" content="website" />
   <meta property="og:url" content="${canonicalUrl}" />
 
-  <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
@@ -1754,7 +1763,7 @@ function generateYouPickFarmsPage({ city, state, code, region }) {
   <header class="site-header">
     <div class="container">
       <a class="brand" href="/" aria-label="Orchards Near Me home">
-        <img src="/logo.svg" alt="" class="logo-icon" />
+        <img src="/logo.png" alt="" class="logo-icon" />
         Orchards Near Me
       </a>
       <nav class="main-nav" aria-label="Primary">
