@@ -1,0 +1,19 @@
+{
+  "name": "orchards-nearme.com",
+  "version": "1.0.0",
+  "description": "A friendly, family-focused directory website that helps people **find orchards near me** — apple and cherry picking locations, pick-your-own farms, and garden centers — across all 50 US states, shown on an interactive Leaflet map.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://local_proxy@127.0.0.1:41729/git/mindfulmarketingad-cmd/orchards-nearme.com"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "playwright": "^1.56.1"
+  }
+}
