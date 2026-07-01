@@ -36,6 +36,61 @@
     <priority>0.4</priority>
   </url>
   <url>
+    <loc>https://orchards-nearme.com/blog</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-alabama</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-alaska</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-arizona</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-arkansas</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-california</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-colorado</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-connecticut</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-delaware</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-florida</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-georgia</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-hawaii</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-idaho</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-illinois</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-indiana</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-iowa</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-kansas</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-kentucky</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-louisiana</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-maine</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-maryland</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-massachusetts</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-michigan</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-minnesota</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-mississippi</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-missouri</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-montana</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-nebraska</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-nevada</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-new-hampshire</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-new-jersey</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-new-mexico</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-new-york</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-north-carolina</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-north-dakota</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-ohio</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-oklahoma</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-oregon</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-pennsylvania</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-rhode-island</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-south-carolina</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-south-dakota</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-tennessee</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-texas</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-utah</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-vermont</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-virginia</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-washington</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-west-virginia</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-wisconsin</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://orchards-nearme.com/blog/apple-picking-season-wyoming</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url>
     <loc>https://orchards-nearme.com/find</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
