@@ -1127,6 +1127,7 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2173008413459742" crossorigin="anonymous"></script>
 </head>
 <body>
+  <a class="skip-link" href="#find">Skip to map</a>
   <header class="site-header">
     <div class="container">
       <a class="brand" href="/" aria-label="Orchards Near Me home">
@@ -1155,6 +1156,7 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
         <form class="search-form" id="searchForm">
           <input type="text" id="zipInput" inputmode="numeric" placeholder="Enter your ZIP code (e.g. 05346)" aria-label="Search by ZIP code" />
           <button type="submit" class="btn">Search</button>
+          <p id="zipError" hidden class="zip-error-msg" role="alert"></p>
         </form>
         <div class="filters-wrap">
           <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
@@ -1493,6 +1495,7 @@ function generateGardenCenterPage({ city, state, code }) {
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2173008413459742" crossorigin="anonymous"></script>
 </head>
 <body>
+  <a class="skip-link" href="#find">Skip to map</a>
   <header class="site-header">
     <div class="container">
       <a class="brand" href="/" aria-label="Orchards Near Me home">
@@ -1521,6 +1524,7 @@ function generateGardenCenterPage({ city, state, code }) {
         <form class="search-form" id="searchForm">
           <input type="text" id="zipInput" inputmode="numeric" placeholder="Enter your ZIP code (e.g. 05346)" aria-label="Search by ZIP code" />
           <button type="submit" class="btn">Search</button>
+          <p id="zipError" hidden class="zip-error-msg" role="alert"></p>
         </form>
         <div class="filters-wrap">
           <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
