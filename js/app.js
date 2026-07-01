@@ -452,7 +452,7 @@
       });
       btn.classList.add('active');
       var cat = btn.getAttribute('data-cat');
-      if (cat === 'apple-picking' || cat === 'cherry-picking' || cat === 'berry-picking' || cat === 'peach-picking' || cat === 'blueberry-picking' || cat === 'strawberry-picking') {
+      if (cat === 'apple-picking' || cat === 'cherry-picking' || cat === 'berry-picking' || cat === 'peach-picking' || cat === 'blueberry-picking' || cat === 'strawberry-picking' || cat === 'pumpkin-patch') {
         state.keyword = cat;
         state.category = 'all';
       } else {
