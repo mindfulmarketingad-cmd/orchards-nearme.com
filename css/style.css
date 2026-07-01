@@ -1698,3 +1698,118 @@ select:focus-visible {
     grid-template-columns: 1fr;
   }
 }
+
+/* ---------- Single listing detail page ---------- */
+.listing-detail-card {
+  cursor: default;
+  overflow: visible;
+}
+
+.listing-detail-card:hover {
+  border-color: var(--border);
+  box-shadow: 0 1px 4px rgba(31, 110, 44, 0.08);
+}
+
+.listing-detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 12px 0 16px;
+}
+
+.listing-detail-actions a {
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--green-dark);
+}
+
+.listing-detail-actions a:hover {
+  border-color: var(--green);
+  background: var(--green-light);
+}
+
+.listing-detail-actions a.card-claim {
+  margin-left: 0;
+}
+
+.listing-section {
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  margin-top: 16px;
+}
+
+.listing-section h2 {
+  margin: 0 0 10px;
+  font-size: 1.05rem;
+  color: var(--green-dark);
+}
+
+.listing-hours-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.listing-hours-table td {
+  padding: 4px 0;
+  border-bottom: 1px dashed var(--border);
+}
+
+.listing-hours-table td:first-child {
+  font-weight: 700;
+  width: 40%;
+}
+
+.listing-hours-table tr.is-today td {
+  color: var(--green-dark);
+  font-weight: 800;
+}
+
+.listing-hours-note {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+.listing-review-item {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.listing-review-item:last-child {
+  border-bottom: none;
+}
+
+.listing-review-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.listing-review-author {
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+.listing-review-time {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.listing-review-text {
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .find-layout--single {
+    height: auto;
+  }
+}
