@@ -50,6 +50,29 @@
         <span class="listings-result-count" id="listingsResultCount">Loading...</span>
       </div>
 
+      <div class="listings-filters">
+        <div class="filters-wrap">
+          <button type="button" class="filters-toggle" id="listingsFiltersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="listingsFilterChips">
+            <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
+          </button>
+          <div class="filters" id="listingsFilterChips" role="group" aria-label="Filter by type">
+            <button class="filter-chip active" data-cat="all">All</button>
+            <button class="filter-chip" data-cat="apple-picking">🍎 Apple Picking</button>
+            <button class="filter-chip" data-cat="cherry-picking">🍒 Cherry Picking</button>
+            <button class="filter-chip" data-cat="berry-picking">🍓 Berry Picking</button>
+            <button class="filter-chip" data-cat="peach-picking">🍑 Peach Picking</button>
+            <button class="filter-chip" data-cat="blueberry-picking">🫐 Blueberry Picking</button>
+            <button class="filter-chip" data-cat="strawberry-picking">🍓 Strawberry Picking</button>
+            <button class="filter-chip" data-cat="Orchard">Orchards</button>
+            <button class="filter-chip" data-cat="Farm">Farms</button>
+            <button class="filter-chip" data-cat="Garden Center">Garden Centers</button>
+          </div>
+        </div>
+        <select class="listings-state-select" id="listingsStateSelect" aria-label="Filter by state">
+          <option value="all">All states</option>
+        </select>
+      </div>
+
       <div class="listings-table-wrap">
         <table class="listings-table" id="listingsTable">
           <thead>
@@ -58,6 +81,7 @@
               <th>City</th>
               <th>State</th>
               <th>Category</th>
+              <th>What They Offer</th>
               <th>Rating</th>
             </tr>
           </thead>
@@ -78,7 +102,26 @@
   </footer>
 
   <script>
-    // Fetch and display all listings
+    const KEYWORD_DEFS = [
+      { slug: 'apple-picking', label: 'Apple Picking', icon: '🍎', test: (item, text) => item.category === 'Orchard' || (text.includes('apple') && (text.includes('pick') || text.includes('orchard') || text.includes('u-pick'))) },
+      { slug: 'cherry-picking', label: 'Cherry Picking', icon: '🍒', test: (item, text) => text.includes('cherry') },
+      { slug: 'berry-picking', label: 'Berry Picking', icon: '🍓', test: (item, text) => text.includes('berry') || text.includes('berries') || text.includes('strawberr') || text.includes('blueberr') || text.includes('raspberr') || text.includes('blackberr') },
+      { slug: 'peach-picking', label: 'Peach Picking', icon: '🍑', test: (item, text) => text.includes('peach') },
+      { slug: 'blueberry-picking', label: 'Blueberry Picking', icon: '🫐', test: (item, text) => text.includes('blueberr') },
+      { slug: 'strawberry-picking', label: 'Strawberry Picking', icon: '🍓', test: (item, text) => text.includes('strawberr') },
+    ];
+
+    function getFitChips(listing) {
+      const text = (listing.name + ' ' + (listing.review || '')).toLowerCase();
+      return KEYWORD_DEFS.filter(k => k.test(listing, text));
+    }
+
+    function fitChipsHtml(listing) {
+      const chips = getFitChips(listing);
+      if (!chips.length) return '-';
+      return chips.map(c => `<span class="fit-chip fit-chip--${c.slug.replace('-picking', '')}">${c.icon} ${c.label}</span>`).join('');
+    }
+
     async function initListings() {
       try {
         const response = await fetch('/data/listings.json');
@@ -87,12 +130,34 @@
 
         const tableBody = document.getElementById('listingsTableBody');
         const searchInput = document.getElementById('listingsSearch');
+        const stateSelect = document.getElementById('listingsStateSelect');
+        const filterChips = document.querySelectorAll('#listingsFilterChips .filter-chip');
+        const filtersToggle = document.getElementById('listingsFiltersToggle');
+        const filtersContainer = document.getElementById('listingsFilterChips');
         const resultCount = document.getElementById('listingsResultCount');
+
+        let selectedCategory = 'all';
+        let selectedState = 'all';
+        let searchQuery = '';
+
+        // Populate state options
+        const states = [...new Set(listings.map(l => l.state))].sort();
+        states.forEach(state => {
+          const option = document.createElement('option');
+          option.value = state;
+          option.textContent = state;
+          stateSelect.appendChild(option);
+        });
+
+        function matchesFitChip(listing, chipSlug) {
+          const chips = getFitChips(listing);
+          return chips.some(c => c.slug === chipSlug);
+        }
 
         function renderListings(filtered) {
           tableBody.innerHTML = '';
           if (filtered.length === 0) {
-            tableBody.innerHTML = '<tr><td colspan="5" class="listings-no-results">No listings found. Try a different search.</td></tr>';
+            tableBody.innerHTML = '<tr><td colspan="6" class="listings-no-results">No listings found. Try different filters or search terms.</td></tr>';
           } else {
             filtered.forEach(listing => {
               const row = document.createElement('tr');
@@ -101,6 +166,7 @@
                 <td>${listing.city}</td>
                 <td>${listing.state}</td>
                 <td><span class="listings-category">${listing.category}</span></td>
+                <td>${fitChipsHtml(listing)}</td>
                 <td class="listings-rating">${listing.rating ? listing.rating.toFixed(1) : 'N/A'}</td>
               `;
               tableBody.appendChild(row);
@@ -109,26 +175,63 @@
           resultCount.textContent = `${filtered.length} of ${listings.length} listings`;
         }
 
-        function search() {
-          const query = searchInput.value.toLowerCase();
-          if (!query) {
-            renderListings(listings);
-            return;
+        function applyFilters() {
+          let filtered = listings;
+
+          if (searchQuery) {
+            filtered = filtered.filter(listing =>
+              listing.name.toLowerCase().includes(searchQuery) ||
+              listing.city.toLowerCase().includes(searchQuery) ||
+              listing.state.toLowerCase().includes(searchQuery) ||
+              listing.category.toLowerCase().includes(searchQuery)
+            );
           }
-          const filtered = listings.filter(listing =>
-            listing.name.toLowerCase().includes(query) ||
-            listing.city.toLowerCase().includes(query) ||
-            listing.state.toLowerCase().includes(query) ||
-            listing.category.toLowerCase().includes(query)
-          );
+
+          if (selectedCategory !== 'all') {
+            filtered = filtered.filter(listing => {
+              if (['Orchard', 'Farm', 'Garden Center'].includes(selectedCategory)) {
+                return listing.category === selectedCategory;
+              }
+              return matchesFitChip(listing, selectedCategory);
+            });
+          }
+
+          if (selectedState !== 'all') {
+            filtered = filtered.filter(listing => listing.state === selectedState);
+          }
+
           renderListings(filtered);
         }
 
-        searchInput.addEventListener('input', search);
+        searchInput.addEventListener('input', (e) => {
+          searchQuery = e.target.value.toLowerCase();
+          applyFilters();
+        });
+
+        filterChips.forEach(chip => {
+          chip.addEventListener('click', () => {
+            filterChips.forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+            selectedCategory = chip.dataset.cat;
+            applyFilters();
+          });
+        });
+
+        stateSelect.addEventListener('change', (e) => {
+          selectedState = e.target.value;
+          applyFilters();
+        });
+
+        filtersToggle.addEventListener('click', () => {
+          const isExpanded = filtersToggle.getAttribute('aria-expanded') === 'true';
+          filtersToggle.setAttribute('aria-expanded', !isExpanded);
+          filtersContainer.style.display = isExpanded ? 'none' : 'flex';
+        });
+
         renderListings(listings);
       } catch (error) {
         console.error('Error loading listings:', error);
-        document.getElementById('listingsTableBody').innerHTML = '<tr><td colspan="5" class="listings-error">Error loading listings. Please refresh the page.</td></tr>';
+        document.getElementById('listingsTableBody').innerHTML = '<tr><td colspan="6" class="listings-error">Error loading listings. Please refresh the page.</td></tr>';
       }
     }
 
