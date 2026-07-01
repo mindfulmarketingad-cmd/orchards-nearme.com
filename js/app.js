@@ -197,7 +197,7 @@
     var site = item.website
       ? '<a href="' + escapeHtml(item.website) + '" target="_blank" rel="noopener nofollow">Visit website</a>'
       : '';
-    var claim = '<a class="card-claim" href="' + CLAIM_LISTING_URL + '" target="_blank" rel="noopener">Claim listing</a>';
+    var claim = '<a class="card-claim" href="' + CLAIM_LISTING_URL + '" target="_blank" rel="noopener">Own This Business?</a>';
     return (
       '<div class="map-popup">' +
       '<h4>' + escapeHtml(item.name) + '</h4>' +
@@ -307,7 +307,7 @@
       ? '<a href="' + escapeHtml(item.website) + '" target="_blank" rel="noopener nofollow">Website</a>'
       : '';
     var claimListing =
-      '<a class="card-claim" href="' + CLAIM_LISTING_URL + '" target="_blank" rel="noopener">Claim your listing</a>';
+      '<a class="card-claim" href="' + CLAIM_LISTING_URL + '" target="_blank" rel="noopener">Own This Business?</a>';
     var distanceForm =
       '<form class="card-distance-form" data-id="' + escapeHtml(item.id) + '">' +
       '<label class="card-distance-label" for="card-dist-' + escapeHtml(item.id) + '">Distance from your address</label>' +
