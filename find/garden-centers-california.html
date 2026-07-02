@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3CMJFS74HE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-3CMJFS74HE');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Garden Centers in California | All Locations</title>
+  <meta name="description" content="Find garden centers locations across California. Browse every listing on an interactive map, filter by city or ZIP code, and read real visitor reviews before you go." />
+  <link rel="canonical" href="https://orchards-nearme.com/find/garden-centers-california" />
+  <meta property="og:title" content="Garden Centers in California | All Locations" />
+  <meta property="og:description" content="Find garden centers locations across California on an interactive map." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://orchards-nearme.com/find/garden-centers-california" />
+
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/vendor/leaflet/leaflet.css" />
+  <link rel="stylesheet" href="/vendor/leaflet/MarkerCluster.css" />
+  <link rel="stylesheet" href="/vendor/leaflet/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2173008413459742" crossorigin="anonymous"></script>
+</head>
+<body>
+  <a class="skip-link" href="#find">Skip to map</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="/" aria-label="Orchards Near Me home">
+        <img src="/logo.png" alt="" class="logo-icon" />
+        Orchards Near Me
+      </a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/blog">Blog</a>
+        <a href="/listings">Listings</a>
+        <a href="/find" class="cta">Find</a>
+      </nav>
+      <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Primary mobile">
+      <a href="/">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/blog">Blog</a>
+      <a href="/listings">Listings</a>
+      <a href="/find" class="cta">Find</a>
+    </nav>
+  </header>
+  <script>
+    (function () {
+      var toggle = document.getElementById('navToggle');
+      var menu = document.getElementById('mobileNav');
+      if (!toggle || !menu) return;
+      toggle.addEventListener('click', function () {
+        var isOpen = menu.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+      menu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          menu.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+  </script>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Garden Centers in California</h1>
+        <p>Discover garden centers across California. Search by ZIP code to find the closest location, check ratings, and read real visitor reviews before you go.</p>
+      </div>
+    </section>
+
+    <section class="controls" id="find">
+      <div class="container">
+        <form class="search-form" id="searchForm">
+          <input type="text" id="zipInput" inputmode="numeric" placeholder="Enter your ZIP code (e.g. 05346)" aria-label="Search by ZIP code" />
+          <button type="submit" class="btn">Search</button>
+        </form>
+        <p id="zipError" hidden class="zip-error-msg" role="alert"></p>
+        <select class="sort-select" id="sortSelect" aria-label="Sort listings">
+          <option value="featured">Sort: Featured</option>
+          <option value="az">Name: A-Z</option>
+          <option value="za">Name: Z-A</option>
+          <option value="reviews">Most Reviews</option>
+          <option value="trending">Trending</option>
+          <option value="closest">Closest to Me</option>
+        </select>
+        <div class="filters-wrap">
+          <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
+            <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
+          </button>
+          <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="Garden Center" data-default-state="California">
+            <button class="filter-chip" data-cat="all">All Listings</button>
+          <button class="filter-chip" data-cat="apple-picking">Apple Picking</button>
+          <button class="filter-chip" data-cat="cherry-picking">Cherry Picking</button>
+          <button class="filter-chip" data-cat="berry-picking">Berry Picking</button>
+          <button class="filter-chip" data-cat="peach-picking">Peach Picking</button>
+          <button class="filter-chip" data-cat="blueberry-picking">Blueberry Picking</button>
+          <button class="filter-chip" data-cat="strawberry-picking">Strawberry Picking</button>
+          <button class="filter-chip" data-cat="pumpkin-patch">🎃 Pumpkin Patches</button>
+          <button class="filter-chip" data-cat="Orchard">Orchards</button>
+          <button class="filter-chip" data-cat="Farm">Farms</button>
+          <button class="filter-chip active" data-cat="Garden Center">Garden Centers</button>
+          </div>
+        </div>
+        <select class="state-select" id="stateSelect" aria-label="Filter by state">
+          <option value="all">All states</option>
+        </select>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="view-toggle" id="viewToggle">
+        <button class="active" data-view="map">Map</button>
+        <button data-view="list">List</button>
+      </div>
+      <div class="find-layout">
+        <div class="results-col">
+          <div class="results-head">
+            <h2>Garden Centers in California</h2>
+            <span class="results-count" id="resultsCount">Loading...</span>
+          </div>
+          <div class="cards" id="cards"></div>
+        </div>
+        <div class="map-col">
+          <div id="map" role="application" aria-label="Map of garden centers in California"></div>
+          <div class="map-legend" aria-label="Map key">
+            <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
+            <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
+            <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="seo-content">
+      <div class="container">
+        <article class="seo-article">
+
+          <h2>Garden Centers in California: What You Need to Know</h2>
+          <p>Looking for visiting garden centers in California? Below is every location mapped across the state, filterable by city or ZIP code so you can find the one closest to you.</p>
+
+          <h2>Pacific Coast Garden Centers</h2>
+          <p>The Pacific Northwest, particularly Oregon's Willamette Valley and western Washington, is home to one of the largest commercial nursery-growing regions in the entire country, and local garden centers benefit from that proximity with exceptionally deep, often locally grown inventories of conifers, rhododendrons, and perennials. California's Mediterranean climate supports nearly year-round gardening and a strong focus on drought-tolerant natives given the state's recurring water concerns, while Alaska's milder coastal pockets support a more limited but genuine gardening culture shaped by heavy rainfall and short winter daylight.</p>
+
+          <h2>Best Time for Garden Centers in California</h2>
+          <p>Sacramento's Mediterranean climate supports planting across most of the year, with spring and fall as the two most active seasons at local centers.</p>
+
+          <h2>Tips for Garden Centers in California</h2>
+          <p>Conditions for visiting garden centers in California can shift quickly with the weather, so it's worth checking a location's current status before making the drive. Bring cash, since smaller family-run spots aren't always set up to take cards.</p>
+
+        </article>
+      </div>
+    </section>
+
+    <section class="seo-content related-links">
+      <div class="container">
+        <h2>More to Explore in California</h2>
+        <ul class="related-links-list">
+          <li><a href="/find/apple-picking-california">Apple Picking in California</a></li>
+          <li><a href="/find/cherry-picking-california">Cherry Picking in California</a></li>
+          <li><a href="/find/berry-picking-california">Berry Picking in California</a></li>
+          <li><a href="/find/peach-picking-california">Peach Picking in California</a></li>
+          <li><a href="/find/blueberry-picking-california">Blueberry Picking in California</a></li>
+          <li><a href="/find/strawberry-picking-california">Strawberry Picking in California</a></li>
+          <li><a href="/find/pumpkin-patches-california">Pumpkin Patches in California</a></li>
+          <li><a href="/find/orchards-california">Orchards in California</a></li>
+          <li><a href="/find/farms-california">Farms in California</a></li>
+        </ul>
+        <p class="related-links-all"><a href="/find">Browse all pick-your-own categories and states</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul class="footer-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/disclaimer.html">Disclaimer</a></li>
+        <li><a href="/privacy.html">Privacy</a></li>
+        <li><a href="/terms.html">Terms</a></li>
+        <li><a href="/sitemap.html">Sitemap</a></li>
+      </ul>
+      <div class="footer-bottom">
+        <p>Orchards Near Me &mdash; your friendly guide to orchards, farms, and garden centers across the USA. &copy; <span id="year"></span> orchards-nearme.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/vendor/leaflet/leaflet.js"></script>
+  <script src="/vendor/leaflet/leaflet.markercluster.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

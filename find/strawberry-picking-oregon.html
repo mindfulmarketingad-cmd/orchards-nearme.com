@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3CMJFS74HE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-3CMJFS74HE');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Strawberry Picking in Oregon | All Locations</title>
+  <meta name="description" content="Find strawberry picking locations across Oregon. Browse every listing on an interactive map, filter by city or ZIP code, and read real visitor reviews before you go." />
+  <link rel="canonical" href="https://orchards-nearme.com/find/strawberry-picking-oregon" />
+  <meta property="og:title" content="Strawberry Picking in Oregon | All Locations" />
+  <meta property="og:description" content="Find strawberry picking locations across Oregon on an interactive map." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://orchards-nearme.com/find/strawberry-picking-oregon" />
+
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/vendor/leaflet/leaflet.css" />
+  <link rel="stylesheet" href="/vendor/leaflet/MarkerCluster.css" />
+  <link rel="stylesheet" href="/vendor/leaflet/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2173008413459742" crossorigin="anonymous"></script>
+</head>
+<body>
+  <a class="skip-link" href="#find">Skip to map</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="/" aria-label="Orchards Near Me home">
+        <img src="/logo.png" alt="" class="logo-icon" />
+        Orchards Near Me
+      </a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/blog">Blog</a>
+        <a href="/listings">Listings</a>
+        <a href="/find" class="cta">Find</a>
+      </nav>
+      <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Primary mobile">
+      <a href="/">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/blog">Blog</a>
+      <a href="/listings">Listings</a>
+      <a href="/find" class="cta">Find</a>
+    </nav>
+  </header>
+  <script>
+    (function () {
+      var toggle = document.getElementById('navToggle');
+      var menu = document.getElementById('mobileNav');
+      if (!toggle || !menu) return;
+      toggle.addEventListener('click', function () {
+        var isOpen = menu.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+      menu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          menu.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+  </script>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Strawberry Picking in Oregon</h1>
+        <p>Discover strawberry picking across Oregon. Search by ZIP code to find the closest location, check ratings, and read real visitor reviews before you go.</p>
+      </div>
+    </section>
+
+    <section class="controls" id="find">
+      <div class="container">
+        <form class="search-form" id="searchForm">
+          <input type="text" id="zipInput" inputmode="numeric" placeholder="Enter your ZIP code (e.g. 05346)" aria-label="Search by ZIP code" />
+          <button type="submit" class="btn">Search</button>
+        </form>
+        <p id="zipError" hidden class="zip-error-msg" role="alert"></p>
+        <select class="sort-select" id="sortSelect" aria-label="Sort listings">
+          <option value="featured">Sort: Featured</option>
+          <option value="az">Name: A-Z</option>
+          <option value="za">Name: Z-A</option>
+          <option value="reviews">Most Reviews</option>
+          <option value="trending">Trending</option>
+          <option value="closest">Closest to Me</option>
+        </select>
+        <div class="filters-wrap">
+          <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
+            <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
+          </button>
+          <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="strawberry-picking" data-default-state="Oregon">
+            <button class="filter-chip" data-cat="all">All Listings</button>
+          <button class="filter-chip" data-cat="apple-picking">Apple Picking</button>
+          <button class="filter-chip" data-cat="cherry-picking">Cherry Picking</button>
+          <button class="filter-chip" data-cat="berry-picking">Berry Picking</button>
+          <button class="filter-chip" data-cat="peach-picking">Peach Picking</button>
+          <button class="filter-chip" data-cat="blueberry-picking">Blueberry Picking</button>
+          <button class="filter-chip active" data-cat="strawberry-picking">Strawberry Picking</button>
+          <button class="filter-chip" data-cat="pumpkin-patch">🎃 Pumpkin Patches</button>
+          <button class="filter-chip" data-cat="Orchard">Orchards</button>
+          <button class="filter-chip" data-cat="Farm">Farms</button>
+          <button class="filter-chip" data-cat="Garden Center">Garden Centers</button>
+          </div>
+        </div>
+        <select class="state-select" id="stateSelect" aria-label="Filter by state">
+          <option value="all">All states</option>
+        </select>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="view-toggle" id="viewToggle">
+        <button class="active" data-view="map">Map</button>
+        <button data-view="list">List</button>
+      </div>
+      <div class="find-layout">
+        <div class="results-col">
+          <div class="results-head">
+            <h2>Strawberry Picking in Oregon</h2>
+            <span class="results-count" id="resultsCount">Loading...</span>
+          </div>
+          <div class="cards" id="cards"></div>
+        </div>
+        <div class="map-col">
+          <div id="map" role="application" aria-label="Map of strawberry picking in Oregon"></div>
+          <div class="map-legend" aria-label="Map key">
+            <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
+            <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
+            <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="seo-content">
+      <div class="container">
+        <article class="seo-article">
+
+          <h2>Strawberry Picking in Oregon: What You Need to Know</h2>
+          <p>Oregon is home to a range of spots for strawberry picking, spread across the state's different growing regions. This page rounds up every strawberry picking location listed in Oregon so you can compare distance, ratings, and reviews before deciding where to go.</p>
+
+          <h2>Strawberry Picking in the Pacific Coast</h2>
+          <p>Strawberry farms across the Pacific Coast grow in mild, coastal-influenced soil, which sets the pace for a season that typically runs April through June. The region's milder spring temperatures push the harvest ahead of most of the country, making it one of the earliest strawberry destinations nationally. Pick-your-own rows tend to open on short notice once the fruit is ready, so checking a farm's current status before visiting is worth the extra step.</p>
+
+          <h2>Best Time for Strawberry Picking in Oregon</h2>
+          <p>April through June, with the earliest berries in Pacific Coast typically leading the harvest and the window closing quickly once temperatures rise.</p>
+
+          <h2>Tips for Strawberry Picking in Oregon</h2>
+          <p>Call ahead or check a location's website before visiting, since hours and availability for strawberry picking can change with the weather and time of year. Weekday visits are usually less crowded than weekends.</p>
+
+        </article>
+      </div>
+    </section>
+
+    <section class="seo-content related-links">
+      <div class="container">
+        <h2>More to Explore in Oregon</h2>
+        <ul class="related-links-list">
+          <li><a href="/find/apple-picking-oregon">Apple Picking in Oregon</a></li>
+          <li><a href="/find/cherry-picking-oregon">Cherry Picking in Oregon</a></li>
+          <li><a href="/find/berry-picking-oregon">Berry Picking in Oregon</a></li>
+          <li><a href="/find/peach-picking-oregon">Peach Picking in Oregon</a></li>
+          <li><a href="/find/blueberry-picking-oregon">Blueberry Picking in Oregon</a></li>
+          <li><a href="/find/pumpkin-patches-oregon">Pumpkin Patches in Oregon</a></li>
+          <li><a href="/find/orchards-oregon">Orchards in Oregon</a></li>
+          <li><a href="/find/farms-oregon">Farms in Oregon</a></li>
+          <li><a href="/find/garden-centers-oregon">Garden Centers in Oregon</a></li>
+        </ul>
+        <p class="related-links-all"><a href="/find">Browse all pick-your-own categories and states</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul class="footer-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/disclaimer.html">Disclaimer</a></li>
+        <li><a href="/privacy.html">Privacy</a></li>
+        <li><a href="/terms.html">Terms</a></li>
+        <li><a href="/sitemap.html">Sitemap</a></li>
+      </ul>
+      <div class="footer-bottom">
+        <p>Orchards Near Me &mdash; your friendly guide to orchards, farms, and garden centers across the USA. &copy; <span id="year"></span> orchards-nearme.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/vendor/leaflet/leaflet.js"></script>
+  <script src="/vendor/leaflet/leaflet.markercluster.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

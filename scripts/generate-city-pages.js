@@ -2544,6 +2544,7 @@ function generatePumpkinPatchPage({ city, state, code }) {
 
 // ---------- Main execution ----------
 
+function main() {
 const findDir = path.join(__dirname, '..', 'find');
 if (!fs.existsSync(findDir)) fs.mkdirSync(findDir, { recursive: true });
 
@@ -2616,3 +2617,37 @@ for (const cap of capitals) {
 }
 
 console.log(`\nDone. Generated ${allUrls.length} pages.`);
+}
+
+if (require.main === module) {
+  main();
+}
+
+module.exports = {
+  slugify,
+  capitals,
+  allCategories,
+  buildFilterChips,
+  relatedLinksHtml,
+  REGION_INFO,
+  appleRegion,
+  appleSeason,
+  cherryRegion,
+  cherrySeason,
+  berryRegion,
+  berrySeason,
+  peachRegion,
+  peachSeason,
+  blueberryRegion,
+  blueberrySeason,
+  strawberryRegion,
+  strawberrySeason,
+  orchardRegion,
+  orchardSeason,
+  pumpkinRegion,
+  pumpkinSeason,
+  gardenCenterRegion,
+  gardenCenterSeason,
+  youPickRegion,
+  youPickSeason,
+};
