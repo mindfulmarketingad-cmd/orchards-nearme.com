@@ -1128,6 +1128,7 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
 </head>
 <body>
   <a class="skip-link" href="#find">Skip to map</a>
+  <button id="backToTop" class="back-to-top" type="button" tabindex="-1" aria-label="Back to top">&#8593;</button>
   <header class="site-header">
     <div class="container">
       <a class="brand" href="/" aria-label="Orchards Near Me home">
@@ -1496,6 +1497,7 @@ function generateGardenCenterPage({ city, state, code }) {
 </head>
 <body>
   <a class="skip-link" href="#find">Skip to map</a>
+  <button id="backToTop" class="back-to-top" type="button" tabindex="-1" aria-label="Back to top">&#8593;</button>
   <header class="site-header">
     <div class="container">
       <a class="brand" href="/" aria-label="Orchards Near Me home">

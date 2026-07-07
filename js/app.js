@@ -632,11 +632,25 @@
     }
   }
 
+  function initBackToTop() {
+    var btn = document.getElementById('backToTop');
+    if (!btn) return;
+    window.addEventListener('scroll', function () {
+      var show = window.scrollY > 600;
+      btn.classList.toggle('visible', show);
+      btn.tabIndex = show ? 0 : -1;
+    });
+    btn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
   injectBreadcrumb();
   initMap();
   bindEvents();
   applyPageDefaultFilter();
   initViewToggle();
+  initBackToTop();
   window.addEventListener('resize', initViewToggle);
 
   fetch('/data/listings.json')

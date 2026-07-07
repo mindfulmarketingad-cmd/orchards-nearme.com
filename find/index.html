@@ -20,6 +20,7 @@
 </head>
 <body>
   <a class="skip-link" href="#find">Skip to map</a>
+  <button id="backToTop" class="back-to-top" type="button" tabindex="-1" aria-label="Back to top">&#8593;</button>
   <header class="site-header">
     <div class="container">
       <a class="brand" href="/" aria-label="Orchards Near Me home">
@@ -105,348 +106,563 @@
       </section>
 
       <section class="find-directory-section">
-        <h2>All Pages</h2>
-        <p class="lead">Use the search bar above or browse by category below.</p>
+        <h2>Browse by State</h2>
+        <p class="lead">Use the search bar above, or expand a state below to see every pick-your-own category near its capital.</p>
 
-        <p class="find-flat-empty" id="findFlatEmpty" hidden>No pages match your search.</p>
+        <p class="find-flat-empty" id="findFlatEmpty" hidden>No states match your search.</p>
 
-        <div class="find-flat-group" data-group="apple-picking">
-          <h3>Apple Picking</h3>
-          <ul class="find-flat-list">
-            <li data-search="apple picking orchards near me"><a href="/find/apple-picking-orchards-near-me">Apple Picking Orchards Near Me</a></li>
-            <li data-search="apple picking near montgomery, alabama"><a href="/find/apple-picking-orchards-near-montgomery-alabama">Apple Picking Near Montgomery, Alabama</a></li>
-            <li data-search="apple picking near juneau, alaska"><a href="/find/apple-picking-orchards-near-juneau-alaska">Apple Picking Near Juneau, Alaska</a></li>
-            <li data-search="apple picking near phoenix, arizona"><a href="/find/apple-picking-orchards-near-phoenix-arizona">Apple Picking Near Phoenix, Arizona</a></li>
-            <li data-search="apple picking near little rock, arkansas"><a href="/find/apple-picking-orchards-near-little-rock-arkansas">Apple Picking Near Little Rock, Arkansas</a></li>
-            <li data-search="apple picking near sacramento, california"><a href="/find/apple-picking-orchards-near-sacramento-california">Apple Picking Near Sacramento, California</a></li>
-            <li data-search="apple picking near denver, colorado"><a href="/find/apple-picking-orchards-near-denver-colorado">Apple Picking Near Denver, Colorado</a></li>
-            <li data-search="apple picking near hartford, connecticut"><a href="/find/apple-picking-orchards-near-hartford-connecticut">Apple Picking Near Hartford, Connecticut</a></li>
-            <li data-search="apple picking near dover, delaware"><a href="/find/apple-picking-orchards-near-dover-delaware">Apple Picking Near Dover, Delaware</a></li>
-            <li data-search="apple picking near tallahassee, florida"><a href="/find/apple-picking-orchards-near-tallahassee-florida">Apple Picking Near Tallahassee, Florida</a></li>
-            <li data-search="apple picking near atlanta, georgia"><a href="/find/apple-picking-orchards-near-atlanta-georgia">Apple Picking Near Atlanta, Georgia</a></li>
-            <li data-search="apple picking near honolulu, hawaii"><a href="/find/apple-picking-orchards-near-honolulu-hawaii">Apple Picking Near Honolulu, Hawaii</a></li>
-            <li data-search="apple picking near boise, idaho"><a href="/find/apple-picking-orchards-near-boise-idaho">Apple Picking Near Boise, Idaho</a></li>
-            <li data-search="apple picking near springfield, illinois"><a href="/find/apple-picking-orchards-near-springfield-illinois">Apple Picking Near Springfield, Illinois</a></li>
-            <li data-search="apple picking near indianapolis, indiana"><a href="/find/apple-picking-orchards-near-indianapolis-indiana">Apple Picking Near Indianapolis, Indiana</a></li>
-            <li data-search="apple picking near des moines, iowa"><a href="/find/apple-picking-orchards-near-des-moines-iowa">Apple Picking Near Des Moines, Iowa</a></li>
-            <li data-search="apple picking near topeka, kansas"><a href="/find/apple-picking-orchards-near-topeka-kansas">Apple Picking Near Topeka, Kansas</a></li>
-            <li data-search="apple picking near frankfort, kentucky"><a href="/find/apple-picking-orchards-near-frankfort-kentucky">Apple Picking Near Frankfort, Kentucky</a></li>
-            <li data-search="apple picking near baton rouge, louisiana"><a href="/find/apple-picking-orchards-near-baton-rouge-louisiana">Apple Picking Near Baton Rouge, Louisiana</a></li>
-            <li data-search="apple picking near augusta, maine"><a href="/find/apple-picking-orchards-near-augusta-maine">Apple Picking Near Augusta, Maine</a></li>
-            <li data-search="apple picking near annapolis, maryland"><a href="/find/apple-picking-orchards-near-annapolis-maryland">Apple Picking Near Annapolis, Maryland</a></li>
-            <li data-search="apple picking near boston, massachusetts"><a href="/find/apple-picking-orchards-near-boston-massachusetts">Apple Picking Near Boston, Massachusetts</a></li>
-            <li data-search="apple picking near lansing, michigan"><a href="/find/apple-picking-orchards-near-lansing-michigan">Apple Picking Near Lansing, Michigan</a></li>
-            <li data-search="apple picking near saint paul, minnesota"><a href="/find/apple-picking-orchards-near-saint-paul-minnesota">Apple Picking Near Saint Paul, Minnesota</a></li>
-            <li data-search="apple picking near jackson, mississippi"><a href="/find/apple-picking-orchards-near-jackson-mississippi">Apple Picking Near Jackson, Mississippi</a></li>
-            <li data-search="apple picking near jefferson city, missouri"><a href="/find/apple-picking-orchards-near-jefferson-city-missouri">Apple Picking Near Jefferson City, Missouri</a></li>
-            <li data-search="apple picking near helena, montana"><a href="/find/apple-picking-orchards-near-helena-montana">Apple Picking Near Helena, Montana</a></li>
-            <li data-search="apple picking near lincoln, nebraska"><a href="/find/apple-picking-orchards-near-lincoln-nebraska">Apple Picking Near Lincoln, Nebraska</a></li>
-            <li data-search="apple picking near carson city, nevada"><a href="/find/apple-picking-orchards-near-carson-city-nevada">Apple Picking Near Carson City, Nevada</a></li>
-            <li data-search="apple picking near concord, new hampshire"><a href="/find/apple-picking-orchards-near-concord-new-hampshire">Apple Picking Near Concord, New Hampshire</a></li>
-            <li data-search="apple picking near trenton, new jersey"><a href="/find/apple-picking-orchards-near-trenton-new-jersey">Apple Picking Near Trenton, New Jersey</a></li>
-            <li data-search="apple picking near santa fe, new mexico"><a href="/find/apple-picking-orchards-near-santa-fe-new-mexico">Apple Picking Near Santa Fe, New Mexico</a></li>
-            <li data-search="apple picking near albany, new york"><a href="/find/apple-picking-orchards-near-albany-new-york">Apple Picking Near Albany, New York</a></li>
-            <li data-search="apple picking near raleigh, north carolina"><a href="/find/apple-picking-orchards-near-raleigh-north-carolina">Apple Picking Near Raleigh, North Carolina</a></li>
-            <li data-search="apple picking near bismarck, north dakota"><a href="/find/apple-picking-orchards-near-bismarck-north-dakota">Apple Picking Near Bismarck, North Dakota</a></li>
-            <li data-search="apple picking near columbus, ohio"><a href="/find/apple-picking-orchards-near-columbus-ohio">Apple Picking Near Columbus, Ohio</a></li>
-            <li data-search="apple picking near oklahoma city, oklahoma"><a href="/find/apple-picking-orchards-near-oklahoma-city-oklahoma">Apple Picking Near Oklahoma City, Oklahoma</a></li>
-            <li data-search="apple picking near salem, oregon"><a href="/find/apple-picking-orchards-near-salem-oregon">Apple Picking Near Salem, Oregon</a></li>
-            <li data-search="apple picking near harrisburg, pennsylvania"><a href="/find/apple-picking-orchards-near-harrisburg-pennsylvania">Apple Picking Near Harrisburg, Pennsylvania</a></li>
-            <li data-search="apple picking near providence, rhode island"><a href="/find/apple-picking-orchards-near-providence-rhode-island">Apple Picking Near Providence, Rhode Island</a></li>
-            <li data-search="apple picking near columbia, south carolina"><a href="/find/apple-picking-orchards-near-columbia-south-carolina">Apple Picking Near Columbia, South Carolina</a></li>
-            <li data-search="apple picking near pierre, south dakota"><a href="/find/apple-picking-orchards-near-pierre-south-dakota">Apple Picking Near Pierre, South Dakota</a></li>
-            <li data-search="apple picking near nashville, tennessee"><a href="/find/apple-picking-orchards-near-nashville-tennessee">Apple Picking Near Nashville, Tennessee</a></li>
-            <li data-search="apple picking near austin, texas"><a href="/find/apple-picking-orchards-near-austin-texas">Apple Picking Near Austin, Texas</a></li>
-            <li data-search="apple picking near salt lake city, utah"><a href="/find/apple-picking-orchards-near-salt-lake-city-utah">Apple Picking Near Salt Lake City, Utah</a></li>
-            <li data-search="apple picking near montpelier, vermont"><a href="/find/apple-picking-orchards-near-montpelier-vermont">Apple Picking Near Montpelier, Vermont</a></li>
-            <li data-search="apple picking near richmond, virginia"><a href="/find/apple-picking-orchards-near-richmond-virginia">Apple Picking Near Richmond, Virginia</a></li>
-            <li data-search="apple picking near olympia, washington"><a href="/find/apple-picking-orchards-near-olympia-washington">Apple Picking Near Olympia, Washington</a></li>
-            <li data-search="apple picking near charleston, west virginia"><a href="/find/apple-picking-orchards-near-charleston-west-virginia">Apple Picking Near Charleston, West Virginia</a></li>
-            <li data-search="apple picking near madison, wisconsin"><a href="/find/apple-picking-orchards-near-madison-wisconsin">Apple Picking Near Madison, Wisconsin</a></li>
-            <li data-search="apple picking near cheyenne, wyoming"><a href="/find/apple-picking-orchards-near-cheyenne-wyoming">Apple Picking Near Cheyenne, Wyoming</a></li>
+        <div class="state-list" id="stateList">
+        <details class="state-item" data-search="alabama montgomery">
+          <summary>Alabama <span class="state-item-sub">Montgomery</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-montgomery-alabama">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-montgomery-alabama">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-montgomery-alabama">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-montgomery-alabama">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-montgomery-alabama">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-montgomery-alabama">Garden Centers</a></li>
           </ul>
-        </div>
-        <div class="find-flat-group" data-group="cherry-picking">
-          <h3>Cherry Picking</h3>
-          <ul class="find-flat-list">
-            <li data-search="cherry picking orchards near me"><a href="/find/cherry-picking-orchards-near-me">Cherry Picking Orchards Near Me</a></li>
-            <li data-search="cherry picking near montgomery, alabama"><a href="/find/cherry-picking-orchards-near-montgomery-alabama">Cherry Picking Near Montgomery, Alabama</a></li>
-            <li data-search="cherry picking near juneau, alaska"><a href="/find/cherry-picking-orchards-near-juneau-alaska">Cherry Picking Near Juneau, Alaska</a></li>
-            <li data-search="cherry picking near phoenix, arizona"><a href="/find/cherry-picking-orchards-near-phoenix-arizona">Cherry Picking Near Phoenix, Arizona</a></li>
-            <li data-search="cherry picking near little rock, arkansas"><a href="/find/cherry-picking-orchards-near-little-rock-arkansas">Cherry Picking Near Little Rock, Arkansas</a></li>
-            <li data-search="cherry picking near sacramento, california"><a href="/find/cherry-picking-orchards-near-sacramento-california">Cherry Picking Near Sacramento, California</a></li>
-            <li data-search="cherry picking near denver, colorado"><a href="/find/cherry-picking-orchards-near-denver-colorado">Cherry Picking Near Denver, Colorado</a></li>
-            <li data-search="cherry picking near hartford, connecticut"><a href="/find/cherry-picking-orchards-near-hartford-connecticut">Cherry Picking Near Hartford, Connecticut</a></li>
-            <li data-search="cherry picking near dover, delaware"><a href="/find/cherry-picking-orchards-near-dover-delaware">Cherry Picking Near Dover, Delaware</a></li>
-            <li data-search="cherry picking near tallahassee, florida"><a href="/find/cherry-picking-orchards-near-tallahassee-florida">Cherry Picking Near Tallahassee, Florida</a></li>
-            <li data-search="cherry picking near atlanta, georgia"><a href="/find/cherry-picking-orchards-near-atlanta-georgia">Cherry Picking Near Atlanta, Georgia</a></li>
-            <li data-search="cherry picking near honolulu, hawaii"><a href="/find/cherry-picking-orchards-near-honolulu-hawaii">Cherry Picking Near Honolulu, Hawaii</a></li>
-            <li data-search="cherry picking near boise, idaho"><a href="/find/cherry-picking-orchards-near-boise-idaho">Cherry Picking Near Boise, Idaho</a></li>
-            <li data-search="cherry picking near springfield, illinois"><a href="/find/cherry-picking-orchards-near-springfield-illinois">Cherry Picking Near Springfield, Illinois</a></li>
-            <li data-search="cherry picking near indianapolis, indiana"><a href="/find/cherry-picking-orchards-near-indianapolis-indiana">Cherry Picking Near Indianapolis, Indiana</a></li>
-            <li data-search="cherry picking near des moines, iowa"><a href="/find/cherry-picking-orchards-near-des-moines-iowa">Cherry Picking Near Des Moines, Iowa</a></li>
-            <li data-search="cherry picking near topeka, kansas"><a href="/find/cherry-picking-orchards-near-topeka-kansas">Cherry Picking Near Topeka, Kansas</a></li>
-            <li data-search="cherry picking near frankfort, kentucky"><a href="/find/cherry-picking-orchards-near-frankfort-kentucky">Cherry Picking Near Frankfort, Kentucky</a></li>
-            <li data-search="cherry picking near baton rouge, louisiana"><a href="/find/cherry-picking-orchards-near-baton-rouge-louisiana">Cherry Picking Near Baton Rouge, Louisiana</a></li>
-            <li data-search="cherry picking near augusta, maine"><a href="/find/cherry-picking-orchards-near-augusta-maine">Cherry Picking Near Augusta, Maine</a></li>
-            <li data-search="cherry picking near annapolis, maryland"><a href="/find/cherry-picking-orchards-near-annapolis-maryland">Cherry Picking Near Annapolis, Maryland</a></li>
-            <li data-search="cherry picking near boston, massachusetts"><a href="/find/cherry-picking-orchards-near-boston-massachusetts">Cherry Picking Near Boston, Massachusetts</a></li>
-            <li data-search="cherry picking near lansing, michigan"><a href="/find/cherry-picking-orchards-near-lansing-michigan">Cherry Picking Near Lansing, Michigan</a></li>
-            <li data-search="cherry picking near saint paul, minnesota"><a href="/find/cherry-picking-orchards-near-saint-paul-minnesota">Cherry Picking Near Saint Paul, Minnesota</a></li>
-            <li data-search="cherry picking near jackson, mississippi"><a href="/find/cherry-picking-orchards-near-jackson-mississippi">Cherry Picking Near Jackson, Mississippi</a></li>
-            <li data-search="cherry picking near jefferson city, missouri"><a href="/find/cherry-picking-orchards-near-jefferson-city-missouri">Cherry Picking Near Jefferson City, Missouri</a></li>
-            <li data-search="cherry picking near helena, montana"><a href="/find/cherry-picking-orchards-near-helena-montana">Cherry Picking Near Helena, Montana</a></li>
-            <li data-search="cherry picking near lincoln, nebraska"><a href="/find/cherry-picking-orchards-near-lincoln-nebraska">Cherry Picking Near Lincoln, Nebraska</a></li>
-            <li data-search="cherry picking near carson city, nevada"><a href="/find/cherry-picking-orchards-near-carson-city-nevada">Cherry Picking Near Carson City, Nevada</a></li>
-            <li data-search="cherry picking near concord, new hampshire"><a href="/find/cherry-picking-orchards-near-concord-new-hampshire">Cherry Picking Near Concord, New Hampshire</a></li>
-            <li data-search="cherry picking near trenton, new jersey"><a href="/find/cherry-picking-orchards-near-trenton-new-jersey">Cherry Picking Near Trenton, New Jersey</a></li>
-            <li data-search="cherry picking near santa fe, new mexico"><a href="/find/cherry-picking-orchards-near-santa-fe-new-mexico">Cherry Picking Near Santa Fe, New Mexico</a></li>
-            <li data-search="cherry picking near albany, new york"><a href="/find/cherry-picking-orchards-near-albany-new-york">Cherry Picking Near Albany, New York</a></li>
-            <li data-search="cherry picking near raleigh, north carolina"><a href="/find/cherry-picking-orchards-near-raleigh-north-carolina">Cherry Picking Near Raleigh, North Carolina</a></li>
-            <li data-search="cherry picking near bismarck, north dakota"><a href="/find/cherry-picking-orchards-near-bismarck-north-dakota">Cherry Picking Near Bismarck, North Dakota</a></li>
-            <li data-search="cherry picking near columbus, ohio"><a href="/find/cherry-picking-orchards-near-columbus-ohio">Cherry Picking Near Columbus, Ohio</a></li>
-            <li data-search="cherry picking near oklahoma city, oklahoma"><a href="/find/cherry-picking-orchards-near-oklahoma-city-oklahoma">Cherry Picking Near Oklahoma City, Oklahoma</a></li>
-            <li data-search="cherry picking near salem, oregon"><a href="/find/cherry-picking-orchards-near-salem-oregon">Cherry Picking Near Salem, Oregon</a></li>
-            <li data-search="cherry picking near harrisburg, pennsylvania"><a href="/find/cherry-picking-orchards-near-harrisburg-pennsylvania">Cherry Picking Near Harrisburg, Pennsylvania</a></li>
-            <li data-search="cherry picking near providence, rhode island"><a href="/find/cherry-picking-orchards-near-providence-rhode-island">Cherry Picking Near Providence, Rhode Island</a></li>
-            <li data-search="cherry picking near columbia, south carolina"><a href="/find/cherry-picking-orchards-near-columbia-south-carolina">Cherry Picking Near Columbia, South Carolina</a></li>
-            <li data-search="cherry picking near pierre, south dakota"><a href="/find/cherry-picking-orchards-near-pierre-south-dakota">Cherry Picking Near Pierre, South Dakota</a></li>
-            <li data-search="cherry picking near nashville, tennessee"><a href="/find/cherry-picking-orchards-near-nashville-tennessee">Cherry Picking Near Nashville, Tennessee</a></li>
-            <li data-search="cherry picking near austin, texas"><a href="/find/cherry-picking-orchards-near-austin-texas">Cherry Picking Near Austin, Texas</a></li>
-            <li data-search="cherry picking near salt lake city, utah"><a href="/find/cherry-picking-orchards-near-salt-lake-city-utah">Cherry Picking Near Salt Lake City, Utah</a></li>
-            <li data-search="cherry picking near montpelier, vermont"><a href="/find/cherry-picking-orchards-near-montpelier-vermont">Cherry Picking Near Montpelier, Vermont</a></li>
-            <li data-search="cherry picking near richmond, virginia"><a href="/find/cherry-picking-orchards-near-richmond-virginia">Cherry Picking Near Richmond, Virginia</a></li>
-            <li data-search="cherry picking near olympia, washington"><a href="/find/cherry-picking-orchards-near-olympia-washington">Cherry Picking Near Olympia, Washington</a></li>
-            <li data-search="cherry picking near charleston, west virginia"><a href="/find/cherry-picking-orchards-near-charleston-west-virginia">Cherry Picking Near Charleston, West Virginia</a></li>
-            <li data-search="cherry picking near madison, wisconsin"><a href="/find/cherry-picking-orchards-near-madison-wisconsin">Cherry Picking Near Madison, Wisconsin</a></li>
-            <li data-search="cherry picking near cheyenne, wyoming"><a href="/find/cherry-picking-orchards-near-cheyenne-wyoming">Cherry Picking Near Cheyenne, Wyoming</a></li>
+        </details>
+        <details class="state-item" data-search="alaska juneau">
+          <summary>Alaska <span class="state-item-sub">Juneau</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-juneau-alaska">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-juneau-alaska">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-juneau-alaska">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-juneau-alaska">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-juneau-alaska">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-juneau-alaska">Garden Centers</a></li>
           </ul>
-        </div>
-        <div class="find-flat-group" data-group="berry-picking">
-          <h3>Berry Picking</h3>
-          <ul class="find-flat-list">
-            <li data-search="berry picking orchards near me"><a href="/find/berry-picking-orchards-near-me">Berry Picking Orchards Near Me</a></li>
-            <li data-search="berry picking near montgomery, alabama"><a href="/find/berry-picking-orchards-near-montgomery-alabama">Berry Picking Near Montgomery, Alabama</a></li>
-            <li data-search="berry picking near juneau, alaska"><a href="/find/berry-picking-orchards-near-juneau-alaska">Berry Picking Near Juneau, Alaska</a></li>
-            <li data-search="berry picking near phoenix, arizona"><a href="/find/berry-picking-orchards-near-phoenix-arizona">Berry Picking Near Phoenix, Arizona</a></li>
-            <li data-search="berry picking near little rock, arkansas"><a href="/find/berry-picking-orchards-near-little-rock-arkansas">Berry Picking Near Little Rock, Arkansas</a></li>
-            <li data-search="berry picking near sacramento, california"><a href="/find/berry-picking-orchards-near-sacramento-california">Berry Picking Near Sacramento, California</a></li>
-            <li data-search="berry picking near denver, colorado"><a href="/find/berry-picking-orchards-near-denver-colorado">Berry Picking Near Denver, Colorado</a></li>
-            <li data-search="berry picking near hartford, connecticut"><a href="/find/berry-picking-orchards-near-hartford-connecticut">Berry Picking Near Hartford, Connecticut</a></li>
-            <li data-search="berry picking near dover, delaware"><a href="/find/berry-picking-orchards-near-dover-delaware">Berry Picking Near Dover, Delaware</a></li>
-            <li data-search="berry picking near tallahassee, florida"><a href="/find/berry-picking-orchards-near-tallahassee-florida">Berry Picking Near Tallahassee, Florida</a></li>
-            <li data-search="berry picking near atlanta, georgia"><a href="/find/berry-picking-orchards-near-atlanta-georgia">Berry Picking Near Atlanta, Georgia</a></li>
-            <li data-search="berry picking near honolulu, hawaii"><a href="/find/berry-picking-orchards-near-honolulu-hawaii">Berry Picking Near Honolulu, Hawaii</a></li>
-            <li data-search="berry picking near boise, idaho"><a href="/find/berry-picking-orchards-near-boise-idaho">Berry Picking Near Boise, Idaho</a></li>
-            <li data-search="berry picking near springfield, illinois"><a href="/find/berry-picking-orchards-near-springfield-illinois">Berry Picking Near Springfield, Illinois</a></li>
-            <li data-search="berry picking near indianapolis, indiana"><a href="/find/berry-picking-orchards-near-indianapolis-indiana">Berry Picking Near Indianapolis, Indiana</a></li>
-            <li data-search="berry picking near des moines, iowa"><a href="/find/berry-picking-orchards-near-des-moines-iowa">Berry Picking Near Des Moines, Iowa</a></li>
-            <li data-search="berry picking near topeka, kansas"><a href="/find/berry-picking-orchards-near-topeka-kansas">Berry Picking Near Topeka, Kansas</a></li>
-            <li data-search="berry picking near frankfort, kentucky"><a href="/find/berry-picking-orchards-near-frankfort-kentucky">Berry Picking Near Frankfort, Kentucky</a></li>
-            <li data-search="berry picking near baton rouge, louisiana"><a href="/find/berry-picking-orchards-near-baton-rouge-louisiana">Berry Picking Near Baton Rouge, Louisiana</a></li>
-            <li data-search="berry picking near augusta, maine"><a href="/find/berry-picking-orchards-near-augusta-maine">Berry Picking Near Augusta, Maine</a></li>
-            <li data-search="berry picking near annapolis, maryland"><a href="/find/berry-picking-orchards-near-annapolis-maryland">Berry Picking Near Annapolis, Maryland</a></li>
-            <li data-search="berry picking near boston, massachusetts"><a href="/find/berry-picking-orchards-near-boston-massachusetts">Berry Picking Near Boston, Massachusetts</a></li>
-            <li data-search="berry picking near lansing, michigan"><a href="/find/berry-picking-orchards-near-lansing-michigan">Berry Picking Near Lansing, Michigan</a></li>
-            <li data-search="berry picking near saint paul, minnesota"><a href="/find/berry-picking-orchards-near-saint-paul-minnesota">Berry Picking Near Saint Paul, Minnesota</a></li>
-            <li data-search="berry picking near jackson, mississippi"><a href="/find/berry-picking-orchards-near-jackson-mississippi">Berry Picking Near Jackson, Mississippi</a></li>
-            <li data-search="berry picking near jefferson city, missouri"><a href="/find/berry-picking-orchards-near-jefferson-city-missouri">Berry Picking Near Jefferson City, Missouri</a></li>
-            <li data-search="berry picking near helena, montana"><a href="/find/berry-picking-orchards-near-helena-montana">Berry Picking Near Helena, Montana</a></li>
-            <li data-search="berry picking near lincoln, nebraska"><a href="/find/berry-picking-orchards-near-lincoln-nebraska">Berry Picking Near Lincoln, Nebraska</a></li>
-            <li data-search="berry picking near carson city, nevada"><a href="/find/berry-picking-orchards-near-carson-city-nevada">Berry Picking Near Carson City, Nevada</a></li>
-            <li data-search="berry picking near concord, new hampshire"><a href="/find/berry-picking-orchards-near-concord-new-hampshire">Berry Picking Near Concord, New Hampshire</a></li>
-            <li data-search="berry picking near trenton, new jersey"><a href="/find/berry-picking-orchards-near-trenton-new-jersey">Berry Picking Near Trenton, New Jersey</a></li>
-            <li data-search="berry picking near santa fe, new mexico"><a href="/find/berry-picking-orchards-near-santa-fe-new-mexico">Berry Picking Near Santa Fe, New Mexico</a></li>
-            <li data-search="berry picking near albany, new york"><a href="/find/berry-picking-orchards-near-albany-new-york">Berry Picking Near Albany, New York</a></li>
-            <li data-search="berry picking near raleigh, north carolina"><a href="/find/berry-picking-orchards-near-raleigh-north-carolina">Berry Picking Near Raleigh, North Carolina</a></li>
-            <li data-search="berry picking near bismarck, north dakota"><a href="/find/berry-picking-orchards-near-bismarck-north-dakota">Berry Picking Near Bismarck, North Dakota</a></li>
-            <li data-search="berry picking near columbus, ohio"><a href="/find/berry-picking-orchards-near-columbus-ohio">Berry Picking Near Columbus, Ohio</a></li>
-            <li data-search="berry picking near oklahoma city, oklahoma"><a href="/find/berry-picking-orchards-near-oklahoma-city-oklahoma">Berry Picking Near Oklahoma City, Oklahoma</a></li>
-            <li data-search="berry picking near salem, oregon"><a href="/find/berry-picking-orchards-near-salem-oregon">Berry Picking Near Salem, Oregon</a></li>
-            <li data-search="berry picking near harrisburg, pennsylvania"><a href="/find/berry-picking-orchards-near-harrisburg-pennsylvania">Berry Picking Near Harrisburg, Pennsylvania</a></li>
-            <li data-search="berry picking near providence, rhode island"><a href="/find/berry-picking-orchards-near-providence-rhode-island">Berry Picking Near Providence, Rhode Island</a></li>
-            <li data-search="berry picking near columbia, south carolina"><a href="/find/berry-picking-orchards-near-columbia-south-carolina">Berry Picking Near Columbia, South Carolina</a></li>
-            <li data-search="berry picking near pierre, south dakota"><a href="/find/berry-picking-orchards-near-pierre-south-dakota">Berry Picking Near Pierre, South Dakota</a></li>
-            <li data-search="berry picking near nashville, tennessee"><a href="/find/berry-picking-orchards-near-nashville-tennessee">Berry Picking Near Nashville, Tennessee</a></li>
-            <li data-search="berry picking near austin, texas"><a href="/find/berry-picking-orchards-near-austin-texas">Berry Picking Near Austin, Texas</a></li>
-            <li data-search="berry picking near salt lake city, utah"><a href="/find/berry-picking-orchards-near-salt-lake-city-utah">Berry Picking Near Salt Lake City, Utah</a></li>
-            <li data-search="berry picking near montpelier, vermont"><a href="/find/berry-picking-orchards-near-montpelier-vermont">Berry Picking Near Montpelier, Vermont</a></li>
-            <li data-search="berry picking near richmond, virginia"><a href="/find/berry-picking-orchards-near-richmond-virginia">Berry Picking Near Richmond, Virginia</a></li>
-            <li data-search="berry picking near olympia, washington"><a href="/find/berry-picking-orchards-near-olympia-washington">Berry Picking Near Olympia, Washington</a></li>
-            <li data-search="berry picking near charleston, west virginia"><a href="/find/berry-picking-orchards-near-charleston-west-virginia">Berry Picking Near Charleston, West Virginia</a></li>
-            <li data-search="berry picking near madison, wisconsin"><a href="/find/berry-picking-orchards-near-madison-wisconsin">Berry Picking Near Madison, Wisconsin</a></li>
-            <li data-search="berry picking near cheyenne, wyoming"><a href="/find/berry-picking-orchards-near-cheyenne-wyoming">Berry Picking Near Cheyenne, Wyoming</a></li>
+        </details>
+        <details class="state-item" data-search="arizona phoenix">
+          <summary>Arizona <span class="state-item-sub">Phoenix</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-phoenix-arizona">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-phoenix-arizona">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-phoenix-arizona">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-phoenix-arizona">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-phoenix-arizona">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-phoenix-arizona">Garden Centers</a></li>
           </ul>
-        </div>
-        <div class="find-flat-group" data-group="peach-picking">
-          <h3>Peach Picking</h3>
-          <ul class="find-flat-list">
-            <li data-search="peach picking orchards near me"><a href="/find/peach-picking-orchards-near-me">Peach Picking Orchards Near Me</a></li>
-            <li data-search="peach picking near montgomery, alabama"><a href="/find/peach-picking-orchards-near-montgomery-alabama">Peach Picking Near Montgomery, Alabama</a></li>
-            <li data-search="peach picking near juneau, alaska"><a href="/find/peach-picking-orchards-near-juneau-alaska">Peach Picking Near Juneau, Alaska</a></li>
-            <li data-search="peach picking near phoenix, arizona"><a href="/find/peach-picking-orchards-near-phoenix-arizona">Peach Picking Near Phoenix, Arizona</a></li>
-            <li data-search="peach picking near little rock, arkansas"><a href="/find/peach-picking-orchards-near-little-rock-arkansas">Peach Picking Near Little Rock, Arkansas</a></li>
-            <li data-search="peach picking near sacramento, california"><a href="/find/peach-picking-orchards-near-sacramento-california">Peach Picking Near Sacramento, California</a></li>
-            <li data-search="peach picking near denver, colorado"><a href="/find/peach-picking-orchards-near-denver-colorado">Peach Picking Near Denver, Colorado</a></li>
-            <li data-search="peach picking near hartford, connecticut"><a href="/find/peach-picking-orchards-near-hartford-connecticut">Peach Picking Near Hartford, Connecticut</a></li>
-            <li data-search="peach picking near dover, delaware"><a href="/find/peach-picking-orchards-near-dover-delaware">Peach Picking Near Dover, Delaware</a></li>
-            <li data-search="peach picking near tallahassee, florida"><a href="/find/peach-picking-orchards-near-tallahassee-florida">Peach Picking Near Tallahassee, Florida</a></li>
-            <li data-search="peach picking near atlanta, georgia"><a href="/find/peach-picking-orchards-near-atlanta-georgia">Peach Picking Near Atlanta, Georgia</a></li>
-            <li data-search="peach picking near honolulu, hawaii"><a href="/find/peach-picking-orchards-near-honolulu-hawaii">Peach Picking Near Honolulu, Hawaii</a></li>
-            <li data-search="peach picking near boise, idaho"><a href="/find/peach-picking-orchards-near-boise-idaho">Peach Picking Near Boise, Idaho</a></li>
-            <li data-search="peach picking near springfield, illinois"><a href="/find/peach-picking-orchards-near-springfield-illinois">Peach Picking Near Springfield, Illinois</a></li>
-            <li data-search="peach picking near indianapolis, indiana"><a href="/find/peach-picking-orchards-near-indianapolis-indiana">Peach Picking Near Indianapolis, Indiana</a></li>
-            <li data-search="peach picking near des moines, iowa"><a href="/find/peach-picking-orchards-near-des-moines-iowa">Peach Picking Near Des Moines, Iowa</a></li>
-            <li data-search="peach picking near topeka, kansas"><a href="/find/peach-picking-orchards-near-topeka-kansas">Peach Picking Near Topeka, Kansas</a></li>
-            <li data-search="peach picking near frankfort, kentucky"><a href="/find/peach-picking-orchards-near-frankfort-kentucky">Peach Picking Near Frankfort, Kentucky</a></li>
-            <li data-search="peach picking near baton rouge, louisiana"><a href="/find/peach-picking-orchards-near-baton-rouge-louisiana">Peach Picking Near Baton Rouge, Louisiana</a></li>
-            <li data-search="peach picking near augusta, maine"><a href="/find/peach-picking-orchards-near-augusta-maine">Peach Picking Near Augusta, Maine</a></li>
-            <li data-search="peach picking near annapolis, maryland"><a href="/find/peach-picking-orchards-near-annapolis-maryland">Peach Picking Near Annapolis, Maryland</a></li>
-            <li data-search="peach picking near boston, massachusetts"><a href="/find/peach-picking-orchards-near-boston-massachusetts">Peach Picking Near Boston, Massachusetts</a></li>
-            <li data-search="peach picking near lansing, michigan"><a href="/find/peach-picking-orchards-near-lansing-michigan">Peach Picking Near Lansing, Michigan</a></li>
-            <li data-search="peach picking near saint paul, minnesota"><a href="/find/peach-picking-orchards-near-saint-paul-minnesota">Peach Picking Near Saint Paul, Minnesota</a></li>
-            <li data-search="peach picking near jackson, mississippi"><a href="/find/peach-picking-orchards-near-jackson-mississippi">Peach Picking Near Jackson, Mississippi</a></li>
-            <li data-search="peach picking near jefferson city, missouri"><a href="/find/peach-picking-orchards-near-jefferson-city-missouri">Peach Picking Near Jefferson City, Missouri</a></li>
-            <li data-search="peach picking near helena, montana"><a href="/find/peach-picking-orchards-near-helena-montana">Peach Picking Near Helena, Montana</a></li>
-            <li data-search="peach picking near lincoln, nebraska"><a href="/find/peach-picking-orchards-near-lincoln-nebraska">Peach Picking Near Lincoln, Nebraska</a></li>
-            <li data-search="peach picking near carson city, nevada"><a href="/find/peach-picking-orchards-near-carson-city-nevada">Peach Picking Near Carson City, Nevada</a></li>
-            <li data-search="peach picking near concord, new hampshire"><a href="/find/peach-picking-orchards-near-concord-new-hampshire">Peach Picking Near Concord, New Hampshire</a></li>
-            <li data-search="peach picking near trenton, new jersey"><a href="/find/peach-picking-orchards-near-trenton-new-jersey">Peach Picking Near Trenton, New Jersey</a></li>
-            <li data-search="peach picking near santa fe, new mexico"><a href="/find/peach-picking-orchards-near-santa-fe-new-mexico">Peach Picking Near Santa Fe, New Mexico</a></li>
-            <li data-search="peach picking near albany, new york"><a href="/find/peach-picking-orchards-near-albany-new-york">Peach Picking Near Albany, New York</a></li>
-            <li data-search="peach picking near raleigh, north carolina"><a href="/find/peach-picking-orchards-near-raleigh-north-carolina">Peach Picking Near Raleigh, North Carolina</a></li>
-            <li data-search="peach picking near bismarck, north dakota"><a href="/find/peach-picking-orchards-near-bismarck-north-dakota">Peach Picking Near Bismarck, North Dakota</a></li>
-            <li data-search="peach picking near columbus, ohio"><a href="/find/peach-picking-orchards-near-columbus-ohio">Peach Picking Near Columbus, Ohio</a></li>
-            <li data-search="peach picking near oklahoma city, oklahoma"><a href="/find/peach-picking-orchards-near-oklahoma-city-oklahoma">Peach Picking Near Oklahoma City, Oklahoma</a></li>
-            <li data-search="peach picking near salem, oregon"><a href="/find/peach-picking-orchards-near-salem-oregon">Peach Picking Near Salem, Oregon</a></li>
-            <li data-search="peach picking near harrisburg, pennsylvania"><a href="/find/peach-picking-orchards-near-harrisburg-pennsylvania">Peach Picking Near Harrisburg, Pennsylvania</a></li>
-            <li data-search="peach picking near providence, rhode island"><a href="/find/peach-picking-orchards-near-providence-rhode-island">Peach Picking Near Providence, Rhode Island</a></li>
-            <li data-search="peach picking near columbia, south carolina"><a href="/find/peach-picking-orchards-near-columbia-south-carolina">Peach Picking Near Columbia, South Carolina</a></li>
-            <li data-search="peach picking near pierre, south dakota"><a href="/find/peach-picking-orchards-near-pierre-south-dakota">Peach Picking Near Pierre, South Dakota</a></li>
-            <li data-search="peach picking near nashville, tennessee"><a href="/find/peach-picking-orchards-near-nashville-tennessee">Peach Picking Near Nashville, Tennessee</a></li>
-            <li data-search="peach picking near austin, texas"><a href="/find/peach-picking-orchards-near-austin-texas">Peach Picking Near Austin, Texas</a></li>
-            <li data-search="peach picking near salt lake city, utah"><a href="/find/peach-picking-orchards-near-salt-lake-city-utah">Peach Picking Near Salt Lake City, Utah</a></li>
-            <li data-search="peach picking near montpelier, vermont"><a href="/find/peach-picking-orchards-near-montpelier-vermont">Peach Picking Near Montpelier, Vermont</a></li>
-            <li data-search="peach picking near richmond, virginia"><a href="/find/peach-picking-orchards-near-richmond-virginia">Peach Picking Near Richmond, Virginia</a></li>
-            <li data-search="peach picking near olympia, washington"><a href="/find/peach-picking-orchards-near-olympia-washington">Peach Picking Near Olympia, Washington</a></li>
-            <li data-search="peach picking near charleston, west virginia"><a href="/find/peach-picking-orchards-near-charleston-west-virginia">Peach Picking Near Charleston, West Virginia</a></li>
-            <li data-search="peach picking near madison, wisconsin"><a href="/find/peach-picking-orchards-near-madison-wisconsin">Peach Picking Near Madison, Wisconsin</a></li>
-            <li data-search="peach picking near cheyenne, wyoming"><a href="/find/peach-picking-orchards-near-cheyenne-wyoming">Peach Picking Near Cheyenne, Wyoming</a></li>
+        </details>
+        <details class="state-item" data-search="arkansas little rock">
+          <summary>Arkansas <span class="state-item-sub">Little Rock</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-little-rock-arkansas">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-little-rock-arkansas">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-little-rock-arkansas">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-little-rock-arkansas">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-little-rock-arkansas">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-little-rock-arkansas">Garden Centers</a></li>
           </ul>
-        </div>
-        <div class="find-flat-group" data-group="blueberry-picking">
-          <h3>Blueberry Picking</h3>
-          <ul class="find-flat-list">
-            <li data-search="blueberry picking orchards near me"><a href="/find/blueberry-picking-orchards-near-me">Blueberry Picking Orchards Near Me</a></li>
-            <li data-search="blueberry picking near montgomery, alabama"><a href="/find/blueberry-picking-orchards-near-montgomery-alabama">Blueberry Picking Near Montgomery, Alabama</a></li>
-            <li data-search="blueberry picking near juneau, alaska"><a href="/find/blueberry-picking-orchards-near-juneau-alaska">Blueberry Picking Near Juneau, Alaska</a></li>
-            <li data-search="blueberry picking near phoenix, arizona"><a href="/find/blueberry-picking-orchards-near-phoenix-arizona">Blueberry Picking Near Phoenix, Arizona</a></li>
-            <li data-search="blueberry picking near little rock, arkansas"><a href="/find/blueberry-picking-orchards-near-little-rock-arkansas">Blueberry Picking Near Little Rock, Arkansas</a></li>
-            <li data-search="blueberry picking near sacramento, california"><a href="/find/blueberry-picking-orchards-near-sacramento-california">Blueberry Picking Near Sacramento, California</a></li>
-            <li data-search="blueberry picking near denver, colorado"><a href="/find/blueberry-picking-orchards-near-denver-colorado">Blueberry Picking Near Denver, Colorado</a></li>
-            <li data-search="blueberry picking near hartford, connecticut"><a href="/find/blueberry-picking-orchards-near-hartford-connecticut">Blueberry Picking Near Hartford, Connecticut</a></li>
-            <li data-search="blueberry picking near dover, delaware"><a href="/find/blueberry-picking-orchards-near-dover-delaware">Blueberry Picking Near Dover, Delaware</a></li>
-            <li data-search="blueberry picking near tallahassee, florida"><a href="/find/blueberry-picking-orchards-near-tallahassee-florida">Blueberry Picking Near Tallahassee, Florida</a></li>
-            <li data-search="blueberry picking near atlanta, georgia"><a href="/find/blueberry-picking-orchards-near-atlanta-georgia">Blueberry Picking Near Atlanta, Georgia</a></li>
-            <li data-search="blueberry picking near honolulu, hawaii"><a href="/find/blueberry-picking-orchards-near-honolulu-hawaii">Blueberry Picking Near Honolulu, Hawaii</a></li>
-            <li data-search="blueberry picking near boise, idaho"><a href="/find/blueberry-picking-orchards-near-boise-idaho">Blueberry Picking Near Boise, Idaho</a></li>
-            <li data-search="blueberry picking near springfield, illinois"><a href="/find/blueberry-picking-orchards-near-springfield-illinois">Blueberry Picking Near Springfield, Illinois</a></li>
-            <li data-search="blueberry picking near indianapolis, indiana"><a href="/find/blueberry-picking-orchards-near-indianapolis-indiana">Blueberry Picking Near Indianapolis, Indiana</a></li>
-            <li data-search="blueberry picking near des moines, iowa"><a href="/find/blueberry-picking-orchards-near-des-moines-iowa">Blueberry Picking Near Des Moines, Iowa</a></li>
-            <li data-search="blueberry picking near topeka, kansas"><a href="/find/blueberry-picking-orchards-near-topeka-kansas">Blueberry Picking Near Topeka, Kansas</a></li>
-            <li data-search="blueberry picking near frankfort, kentucky"><a href="/find/blueberry-picking-orchards-near-frankfort-kentucky">Blueberry Picking Near Frankfort, Kentucky</a></li>
-            <li data-search="blueberry picking near baton rouge, louisiana"><a href="/find/blueberry-picking-orchards-near-baton-rouge-louisiana">Blueberry Picking Near Baton Rouge, Louisiana</a></li>
-            <li data-search="blueberry picking near augusta, maine"><a href="/find/blueberry-picking-orchards-near-augusta-maine">Blueberry Picking Near Augusta, Maine</a></li>
-            <li data-search="blueberry picking near annapolis, maryland"><a href="/find/blueberry-picking-orchards-near-annapolis-maryland">Blueberry Picking Near Annapolis, Maryland</a></li>
-            <li data-search="blueberry picking near boston, massachusetts"><a href="/find/blueberry-picking-orchards-near-boston-massachusetts">Blueberry Picking Near Boston, Massachusetts</a></li>
-            <li data-search="blueberry picking near lansing, michigan"><a href="/find/blueberry-picking-orchards-near-lansing-michigan">Blueberry Picking Near Lansing, Michigan</a></li>
-            <li data-search="blueberry picking near saint paul, minnesota"><a href="/find/blueberry-picking-orchards-near-saint-paul-minnesota">Blueberry Picking Near Saint Paul, Minnesota</a></li>
-            <li data-search="blueberry picking near jackson, mississippi"><a href="/find/blueberry-picking-orchards-near-jackson-mississippi">Blueberry Picking Near Jackson, Mississippi</a></li>
-            <li data-search="blueberry picking near jefferson city, missouri"><a href="/find/blueberry-picking-orchards-near-jefferson-city-missouri">Blueberry Picking Near Jefferson City, Missouri</a></li>
-            <li data-search="blueberry picking near helena, montana"><a href="/find/blueberry-picking-orchards-near-helena-montana">Blueberry Picking Near Helena, Montana</a></li>
-            <li data-search="blueberry picking near lincoln, nebraska"><a href="/find/blueberry-picking-orchards-near-lincoln-nebraska">Blueberry Picking Near Lincoln, Nebraska</a></li>
-            <li data-search="blueberry picking near carson city, nevada"><a href="/find/blueberry-picking-orchards-near-carson-city-nevada">Blueberry Picking Near Carson City, Nevada</a></li>
-            <li data-search="blueberry picking near concord, new hampshire"><a href="/find/blueberry-picking-orchards-near-concord-new-hampshire">Blueberry Picking Near Concord, New Hampshire</a></li>
-            <li data-search="blueberry picking near trenton, new jersey"><a href="/find/blueberry-picking-orchards-near-trenton-new-jersey">Blueberry Picking Near Trenton, New Jersey</a></li>
-            <li data-search="blueberry picking near santa fe, new mexico"><a href="/find/blueberry-picking-orchards-near-santa-fe-new-mexico">Blueberry Picking Near Santa Fe, New Mexico</a></li>
-            <li data-search="blueberry picking near albany, new york"><a href="/find/blueberry-picking-orchards-near-albany-new-york">Blueberry Picking Near Albany, New York</a></li>
-            <li data-search="blueberry picking near raleigh, north carolina"><a href="/find/blueberry-picking-orchards-near-raleigh-north-carolina">Blueberry Picking Near Raleigh, North Carolina</a></li>
-            <li data-search="blueberry picking near bismarck, north dakota"><a href="/find/blueberry-picking-orchards-near-bismarck-north-dakota">Blueberry Picking Near Bismarck, North Dakota</a></li>
-            <li data-search="blueberry picking near columbus, ohio"><a href="/find/blueberry-picking-orchards-near-columbus-ohio">Blueberry Picking Near Columbus, Ohio</a></li>
-            <li data-search="blueberry picking near oklahoma city, oklahoma"><a href="/find/blueberry-picking-orchards-near-oklahoma-city-oklahoma">Blueberry Picking Near Oklahoma City, Oklahoma</a></li>
-            <li data-search="blueberry picking near salem, oregon"><a href="/find/blueberry-picking-orchards-near-salem-oregon">Blueberry Picking Near Salem, Oregon</a></li>
-            <li data-search="blueberry picking near harrisburg, pennsylvania"><a href="/find/blueberry-picking-orchards-near-harrisburg-pennsylvania">Blueberry Picking Near Harrisburg, Pennsylvania</a></li>
-            <li data-search="blueberry picking near providence, rhode island"><a href="/find/blueberry-picking-orchards-near-providence-rhode-island">Blueberry Picking Near Providence, Rhode Island</a></li>
-            <li data-search="blueberry picking near columbia, south carolina"><a href="/find/blueberry-picking-orchards-near-columbia-south-carolina">Blueberry Picking Near Columbia, South Carolina</a></li>
-            <li data-search="blueberry picking near pierre, south dakota"><a href="/find/blueberry-picking-orchards-near-pierre-south-dakota">Blueberry Picking Near Pierre, South Dakota</a></li>
-            <li data-search="blueberry picking near nashville, tennessee"><a href="/find/blueberry-picking-orchards-near-nashville-tennessee">Blueberry Picking Near Nashville, Tennessee</a></li>
-            <li data-search="blueberry picking near austin, texas"><a href="/find/blueberry-picking-orchards-near-austin-texas">Blueberry Picking Near Austin, Texas</a></li>
-            <li data-search="blueberry picking near salt lake city, utah"><a href="/find/blueberry-picking-orchards-near-salt-lake-city-utah">Blueberry Picking Near Salt Lake City, Utah</a></li>
-            <li data-search="blueberry picking near montpelier, vermont"><a href="/find/blueberry-picking-orchards-near-montpelier-vermont">Blueberry Picking Near Montpelier, Vermont</a></li>
-            <li data-search="blueberry picking near richmond, virginia"><a href="/find/blueberry-picking-orchards-near-richmond-virginia">Blueberry Picking Near Richmond, Virginia</a></li>
-            <li data-search="blueberry picking near olympia, washington"><a href="/find/blueberry-picking-orchards-near-olympia-washington">Blueberry Picking Near Olympia, Washington</a></li>
-            <li data-search="blueberry picking near charleston, west virginia"><a href="/find/blueberry-picking-orchards-near-charleston-west-virginia">Blueberry Picking Near Charleston, West Virginia</a></li>
-            <li data-search="blueberry picking near madison, wisconsin"><a href="/find/blueberry-picking-orchards-near-madison-wisconsin">Blueberry Picking Near Madison, Wisconsin</a></li>
-            <li data-search="blueberry picking near cheyenne, wyoming"><a href="/find/blueberry-picking-orchards-near-cheyenne-wyoming">Blueberry Picking Near Cheyenne, Wyoming</a></li>
+        </details>
+        <details class="state-item" data-search="california sacramento">
+          <summary>California <span class="state-item-sub">Sacramento</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-sacramento-california">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-sacramento-california">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-sacramento-california">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-sacramento-california">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-sacramento-california">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-sacramento-california">Garden Centers</a></li>
           </ul>
-        </div>
-        <div class="find-flat-group" data-group="garden-centers">
-          <h3>Garden Centers</h3>
-          <ul class="find-flat-list">
-            <li data-search="garden centers near me"><a href="/find/garden-centers-near-me">Garden Centers Near Me</a></li>
-            <li data-search="garden centers near montgomery, alabama"><a href="/find/garden-centers-near-montgomery-alabama">Garden Centers Near Montgomery, Alabama</a></li>
-            <li data-search="garden centers near juneau, alaska"><a href="/find/garden-centers-near-juneau-alaska">Garden Centers Near Juneau, Alaska</a></li>
-            <li data-search="garden centers near phoenix, arizona"><a href="/find/garden-centers-near-phoenix-arizona">Garden Centers Near Phoenix, Arizona</a></li>
-            <li data-search="garden centers near little rock, arkansas"><a href="/find/garden-centers-near-little-rock-arkansas">Garden Centers Near Little Rock, Arkansas</a></li>
-            <li data-search="garden centers near sacramento, california"><a href="/find/garden-centers-near-sacramento-california">Garden Centers Near Sacramento, California</a></li>
-            <li data-search="garden centers near denver, colorado"><a href="/find/garden-centers-near-denver-colorado">Garden Centers Near Denver, Colorado</a></li>
-            <li data-search="garden centers near hartford, connecticut"><a href="/find/garden-centers-near-hartford-connecticut">Garden Centers Near Hartford, Connecticut</a></li>
-            <li data-search="garden centers near dover, delaware"><a href="/find/garden-centers-near-dover-delaware">Garden Centers Near Dover, Delaware</a></li>
-            <li data-search="garden centers near tallahassee, florida"><a href="/find/garden-centers-near-tallahassee-florida">Garden Centers Near Tallahassee, Florida</a></li>
-            <li data-search="garden centers near atlanta, georgia"><a href="/find/garden-centers-near-atlanta-georgia">Garden Centers Near Atlanta, Georgia</a></li>
-            <li data-search="garden centers near honolulu, hawaii"><a href="/find/garden-centers-near-honolulu-hawaii">Garden Centers Near Honolulu, Hawaii</a></li>
-            <li data-search="garden centers near boise, idaho"><a href="/find/garden-centers-near-boise-idaho">Garden Centers Near Boise, Idaho</a></li>
-            <li data-search="garden centers near springfield, illinois"><a href="/find/garden-centers-near-springfield-illinois">Garden Centers Near Springfield, Illinois</a></li>
-            <li data-search="garden centers near indianapolis, indiana"><a href="/find/garden-centers-near-indianapolis-indiana">Garden Centers Near Indianapolis, Indiana</a></li>
-            <li data-search="garden centers near des moines, iowa"><a href="/find/garden-centers-near-des-moines-iowa">Garden Centers Near Des Moines, Iowa</a></li>
-            <li data-search="garden centers near topeka, kansas"><a href="/find/garden-centers-near-topeka-kansas">Garden Centers Near Topeka, Kansas</a></li>
-            <li data-search="garden centers near frankfort, kentucky"><a href="/find/garden-centers-near-frankfort-kentucky">Garden Centers Near Frankfort, Kentucky</a></li>
-            <li data-search="garden centers near baton rouge, louisiana"><a href="/find/garden-centers-near-baton-rouge-louisiana">Garden Centers Near Baton Rouge, Louisiana</a></li>
-            <li data-search="garden centers near augusta, maine"><a href="/find/garden-centers-near-augusta-maine">Garden Centers Near Augusta, Maine</a></li>
-            <li data-search="garden centers near annapolis, maryland"><a href="/find/garden-centers-near-annapolis-maryland">Garden Centers Near Annapolis, Maryland</a></li>
-            <li data-search="garden centers near boston, massachusetts"><a href="/find/garden-centers-near-boston-massachusetts">Garden Centers Near Boston, Massachusetts</a></li>
-            <li data-search="garden centers near lansing, michigan"><a href="/find/garden-centers-near-lansing-michigan">Garden Centers Near Lansing, Michigan</a></li>
-            <li data-search="garden centers near saint paul, minnesota"><a href="/find/garden-centers-near-saint-paul-minnesota">Garden Centers Near Saint Paul, Minnesota</a></li>
-            <li data-search="garden centers near jackson, mississippi"><a href="/find/garden-centers-near-jackson-mississippi">Garden Centers Near Jackson, Mississippi</a></li>
-            <li data-search="garden centers near jefferson city, missouri"><a href="/find/garden-centers-near-jefferson-city-missouri">Garden Centers Near Jefferson City, Missouri</a></li>
-            <li data-search="garden centers near helena, montana"><a href="/find/garden-centers-near-helena-montana">Garden Centers Near Helena, Montana</a></li>
-            <li data-search="garden centers near lincoln, nebraska"><a href="/find/garden-centers-near-lincoln-nebraska">Garden Centers Near Lincoln, Nebraska</a></li>
-            <li data-search="garden centers near carson city, nevada"><a href="/find/garden-centers-near-carson-city-nevada">Garden Centers Near Carson City, Nevada</a></li>
-            <li data-search="garden centers near concord, new hampshire"><a href="/find/garden-centers-near-concord-new-hampshire">Garden Centers Near Concord, New Hampshire</a></li>
-            <li data-search="garden centers near trenton, new jersey"><a href="/find/garden-centers-near-trenton-new-jersey">Garden Centers Near Trenton, New Jersey</a></li>
-            <li data-search="garden centers near santa fe, new mexico"><a href="/find/garden-centers-near-santa-fe-new-mexico">Garden Centers Near Santa Fe, New Mexico</a></li>
-            <li data-search="garden centers near albany, new york"><a href="/find/garden-centers-near-albany-new-york">Garden Centers Near Albany, New York</a></li>
-            <li data-search="garden centers near raleigh, north carolina"><a href="/find/garden-centers-near-raleigh-north-carolina">Garden Centers Near Raleigh, North Carolina</a></li>
-            <li data-search="garden centers near bismarck, north dakota"><a href="/find/garden-centers-near-bismarck-north-dakota">Garden Centers Near Bismarck, North Dakota</a></li>
-            <li data-search="garden centers near columbus, ohio"><a href="/find/garden-centers-near-columbus-ohio">Garden Centers Near Columbus, Ohio</a></li>
-            <li data-search="garden centers near oklahoma city, oklahoma"><a href="/find/garden-centers-near-oklahoma-city-oklahoma">Garden Centers Near Oklahoma City, Oklahoma</a></li>
-            <li data-search="garden centers near salem, oregon"><a href="/find/garden-centers-near-salem-oregon">Garden Centers Near Salem, Oregon</a></li>
-            <li data-search="garden centers near harrisburg, pennsylvania"><a href="/find/garden-centers-near-harrisburg-pennsylvania">Garden Centers Near Harrisburg, Pennsylvania</a></li>
-            <li data-search="garden centers near providence, rhode island"><a href="/find/garden-centers-near-providence-rhode-island">Garden Centers Near Providence, Rhode Island</a></li>
-            <li data-search="garden centers near columbia, south carolina"><a href="/find/garden-centers-near-columbia-south-carolina">Garden Centers Near Columbia, South Carolina</a></li>
-            <li data-search="garden centers near pierre, south dakota"><a href="/find/garden-centers-near-pierre-south-dakota">Garden Centers Near Pierre, South Dakota</a></li>
-            <li data-search="garden centers near nashville, tennessee"><a href="/find/garden-centers-near-nashville-tennessee">Garden Centers Near Nashville, Tennessee</a></li>
-            <li data-search="garden centers near austin, texas"><a href="/find/garden-centers-near-austin-texas">Garden Centers Near Austin, Texas</a></li>
-            <li data-search="garden centers near salt lake city, utah"><a href="/find/garden-centers-near-salt-lake-city-utah">Garden Centers Near Salt Lake City, Utah</a></li>
-            <li data-search="garden centers near montpelier, vermont"><a href="/find/garden-centers-near-montpelier-vermont">Garden Centers Near Montpelier, Vermont</a></li>
-            <li data-search="garden centers near richmond, virginia"><a href="/find/garden-centers-near-richmond-virginia">Garden Centers Near Richmond, Virginia</a></li>
-            <li data-search="garden centers near olympia, washington"><a href="/find/garden-centers-near-olympia-washington">Garden Centers Near Olympia, Washington</a></li>
-            <li data-search="garden centers near charleston, west virginia"><a href="/find/garden-centers-near-charleston-west-virginia">Garden Centers Near Charleston, West Virginia</a></li>
-            <li data-search="garden centers near madison, wisconsin"><a href="/find/garden-centers-near-madison-wisconsin">Garden Centers Near Madison, Wisconsin</a></li>
-            <li data-search="garden centers near cheyenne, wyoming"><a href="/find/garden-centers-near-cheyenne-wyoming">Garden Centers Near Cheyenne, Wyoming</a></li>
+        </details>
+        <details class="state-item" data-search="colorado denver">
+          <summary>Colorado <span class="state-item-sub">Denver</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-denver-colorado">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-denver-colorado">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-denver-colorado">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-denver-colorado">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-denver-colorado">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-denver-colorado">Garden Centers</a></li>
           </ul>
+        </details>
+        <details class="state-item" data-search="connecticut hartford">
+          <summary>Connecticut <span class="state-item-sub">Hartford</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-hartford-connecticut">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-hartford-connecticut">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-hartford-connecticut">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-hartford-connecticut">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-hartford-connecticut">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-hartford-connecticut">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="delaware dover">
+          <summary>Delaware <span class="state-item-sub">Dover</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-dover-delaware">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-dover-delaware">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-dover-delaware">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-dover-delaware">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-dover-delaware">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-dover-delaware">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="florida tallahassee">
+          <summary>Florida <span class="state-item-sub">Tallahassee</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-tallahassee-florida">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-tallahassee-florida">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-tallahassee-florida">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-tallahassee-florida">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-tallahassee-florida">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-tallahassee-florida">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="georgia atlanta">
+          <summary>Georgia <span class="state-item-sub">Atlanta</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-atlanta-georgia">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-atlanta-georgia">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-atlanta-georgia">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-atlanta-georgia">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-atlanta-georgia">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-atlanta-georgia">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="hawaii honolulu">
+          <summary>Hawaii <span class="state-item-sub">Honolulu</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-honolulu-hawaii">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-honolulu-hawaii">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-honolulu-hawaii">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-honolulu-hawaii">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-honolulu-hawaii">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-honolulu-hawaii">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="idaho boise">
+          <summary>Idaho <span class="state-item-sub">Boise</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-boise-idaho">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-boise-idaho">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-boise-idaho">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-boise-idaho">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-boise-idaho">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-boise-idaho">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="illinois springfield">
+          <summary>Illinois <span class="state-item-sub">Springfield</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-springfield-illinois">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-springfield-illinois">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-springfield-illinois">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-springfield-illinois">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-springfield-illinois">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-springfield-illinois">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="indiana indianapolis">
+          <summary>Indiana <span class="state-item-sub">Indianapolis</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-indianapolis-indiana">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-indianapolis-indiana">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-indianapolis-indiana">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-indianapolis-indiana">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-indianapolis-indiana">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-indianapolis-indiana">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="iowa des moines">
+          <summary>Iowa <span class="state-item-sub">Des Moines</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-des-moines-iowa">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-des-moines-iowa">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-des-moines-iowa">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-des-moines-iowa">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-des-moines-iowa">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-des-moines-iowa">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="kansas topeka">
+          <summary>Kansas <span class="state-item-sub">Topeka</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-topeka-kansas">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-topeka-kansas">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-topeka-kansas">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-topeka-kansas">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-topeka-kansas">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-topeka-kansas">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="kentucky frankfort">
+          <summary>Kentucky <span class="state-item-sub">Frankfort</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-frankfort-kentucky">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-frankfort-kentucky">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-frankfort-kentucky">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-frankfort-kentucky">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-frankfort-kentucky">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-frankfort-kentucky">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="louisiana baton rouge">
+          <summary>Louisiana <span class="state-item-sub">Baton Rouge</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-baton-rouge-louisiana">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-baton-rouge-louisiana">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-baton-rouge-louisiana">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-baton-rouge-louisiana">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-baton-rouge-louisiana">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-baton-rouge-louisiana">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="maine augusta">
+          <summary>Maine <span class="state-item-sub">Augusta</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-augusta-maine">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-augusta-maine">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-augusta-maine">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-augusta-maine">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-augusta-maine">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-augusta-maine">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="maryland annapolis">
+          <summary>Maryland <span class="state-item-sub">Annapolis</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-annapolis-maryland">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-annapolis-maryland">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-annapolis-maryland">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-annapolis-maryland">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-annapolis-maryland">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-annapolis-maryland">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="massachusetts boston">
+          <summary>Massachusetts <span class="state-item-sub">Boston</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-boston-massachusetts">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-boston-massachusetts">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-boston-massachusetts">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-boston-massachusetts">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-boston-massachusetts">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-boston-massachusetts">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="michigan lansing">
+          <summary>Michigan <span class="state-item-sub">Lansing</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-lansing-michigan">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-lansing-michigan">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-lansing-michigan">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-lansing-michigan">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-lansing-michigan">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-lansing-michigan">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="minnesota saint paul">
+          <summary>Minnesota <span class="state-item-sub">Saint Paul</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-saint-paul-minnesota">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-saint-paul-minnesota">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-saint-paul-minnesota">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-saint-paul-minnesota">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-saint-paul-minnesota">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-saint-paul-minnesota">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="mississippi jackson">
+          <summary>Mississippi <span class="state-item-sub">Jackson</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-jackson-mississippi">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-jackson-mississippi">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-jackson-mississippi">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-jackson-mississippi">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-jackson-mississippi">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-jackson-mississippi">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="missouri jefferson city">
+          <summary>Missouri <span class="state-item-sub">Jefferson City</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-jefferson-city-missouri">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-jefferson-city-missouri">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-jefferson-city-missouri">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-jefferson-city-missouri">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-jefferson-city-missouri">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-jefferson-city-missouri">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="montana helena">
+          <summary>Montana <span class="state-item-sub">Helena</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-helena-montana">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-helena-montana">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-helena-montana">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-helena-montana">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-helena-montana">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-helena-montana">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="nebraska lincoln">
+          <summary>Nebraska <span class="state-item-sub">Lincoln</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-lincoln-nebraska">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-lincoln-nebraska">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-lincoln-nebraska">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-lincoln-nebraska">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-lincoln-nebraska">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-lincoln-nebraska">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="nevada carson city">
+          <summary>Nevada <span class="state-item-sub">Carson City</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-carson-city-nevada">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-carson-city-nevada">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-carson-city-nevada">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-carson-city-nevada">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-carson-city-nevada">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-carson-city-nevada">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="new hampshire concord">
+          <summary>New Hampshire <span class="state-item-sub">Concord</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-concord-new-hampshire">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-concord-new-hampshire">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-concord-new-hampshire">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-concord-new-hampshire">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-concord-new-hampshire">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-concord-new-hampshire">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="new jersey trenton">
+          <summary>New Jersey <span class="state-item-sub">Trenton</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-trenton-new-jersey">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-trenton-new-jersey">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-trenton-new-jersey">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-trenton-new-jersey">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-trenton-new-jersey">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-trenton-new-jersey">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="new mexico santa fe">
+          <summary>New Mexico <span class="state-item-sub">Santa Fe</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-santa-fe-new-mexico">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-santa-fe-new-mexico">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-santa-fe-new-mexico">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-santa-fe-new-mexico">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-santa-fe-new-mexico">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-santa-fe-new-mexico">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="new york albany">
+          <summary>New York <span class="state-item-sub">Albany</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-albany-new-york">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-albany-new-york">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-albany-new-york">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-albany-new-york">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-albany-new-york">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-albany-new-york">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="north carolina raleigh">
+          <summary>North Carolina <span class="state-item-sub">Raleigh</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-raleigh-north-carolina">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-raleigh-north-carolina">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-raleigh-north-carolina">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-raleigh-north-carolina">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-raleigh-north-carolina">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-raleigh-north-carolina">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="north dakota bismarck">
+          <summary>North Dakota <span class="state-item-sub">Bismarck</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-bismarck-north-dakota">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-bismarck-north-dakota">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-bismarck-north-dakota">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-bismarck-north-dakota">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-bismarck-north-dakota">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-bismarck-north-dakota">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="ohio columbus">
+          <summary>Ohio <span class="state-item-sub">Columbus</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-columbus-ohio">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-columbus-ohio">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-columbus-ohio">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-columbus-ohio">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-columbus-ohio">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-columbus-ohio">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="oklahoma oklahoma city">
+          <summary>Oklahoma <span class="state-item-sub">Oklahoma City</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-oklahoma-city-oklahoma">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-oklahoma-city-oklahoma">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-oklahoma-city-oklahoma">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-oklahoma-city-oklahoma">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-oklahoma-city-oklahoma">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-oklahoma-city-oklahoma">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="oregon salem">
+          <summary>Oregon <span class="state-item-sub">Salem</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-salem-oregon">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-salem-oregon">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-salem-oregon">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-salem-oregon">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-salem-oregon">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-salem-oregon">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="pennsylvania harrisburg">
+          <summary>Pennsylvania <span class="state-item-sub">Harrisburg</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-harrisburg-pennsylvania">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-harrisburg-pennsylvania">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-harrisburg-pennsylvania">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-harrisburg-pennsylvania">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-harrisburg-pennsylvania">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-harrisburg-pennsylvania">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="rhode island providence">
+          <summary>Rhode Island <span class="state-item-sub">Providence</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-providence-rhode-island">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-providence-rhode-island">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-providence-rhode-island">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-providence-rhode-island">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-providence-rhode-island">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-providence-rhode-island">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="south carolina columbia">
+          <summary>South Carolina <span class="state-item-sub">Columbia</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-columbia-south-carolina">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-columbia-south-carolina">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-columbia-south-carolina">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-columbia-south-carolina">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-columbia-south-carolina">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-columbia-south-carolina">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="south dakota pierre">
+          <summary>South Dakota <span class="state-item-sub">Pierre</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-pierre-south-dakota">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-pierre-south-dakota">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-pierre-south-dakota">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-pierre-south-dakota">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-pierre-south-dakota">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-pierre-south-dakota">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="tennessee nashville">
+          <summary>Tennessee <span class="state-item-sub">Nashville</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-nashville-tennessee">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-nashville-tennessee">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-nashville-tennessee">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-nashville-tennessee">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-nashville-tennessee">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-nashville-tennessee">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="texas austin">
+          <summary>Texas <span class="state-item-sub">Austin</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-austin-texas">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-austin-texas">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-austin-texas">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-austin-texas">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-austin-texas">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-austin-texas">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="utah salt lake city">
+          <summary>Utah <span class="state-item-sub">Salt Lake City</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-salt-lake-city-utah">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-salt-lake-city-utah">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-salt-lake-city-utah">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-salt-lake-city-utah">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-salt-lake-city-utah">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-salt-lake-city-utah">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="vermont montpelier">
+          <summary>Vermont <span class="state-item-sub">Montpelier</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-montpelier-vermont">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-montpelier-vermont">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-montpelier-vermont">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-montpelier-vermont">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-montpelier-vermont">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-montpelier-vermont">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="virginia richmond">
+          <summary>Virginia <span class="state-item-sub">Richmond</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-richmond-virginia">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-richmond-virginia">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-richmond-virginia">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-richmond-virginia">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-richmond-virginia">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-richmond-virginia">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="washington olympia">
+          <summary>Washington <span class="state-item-sub">Olympia</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-olympia-washington">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-olympia-washington">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-olympia-washington">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-olympia-washington">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-olympia-washington">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-olympia-washington">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="west virginia charleston">
+          <summary>West Virginia <span class="state-item-sub">Charleston</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-charleston-west-virginia">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-charleston-west-virginia">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-charleston-west-virginia">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-charleston-west-virginia">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-charleston-west-virginia">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-charleston-west-virginia">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="wisconsin madison">
+          <summary>Wisconsin <span class="state-item-sub">Madison</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-madison-wisconsin">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-madison-wisconsin">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-madison-wisconsin">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-madison-wisconsin">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-madison-wisconsin">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-madison-wisconsin">Garden Centers</a></li>
+          </ul>
+        </details>
+        <details class="state-item" data-search="wyoming cheyenne">
+          <summary>Wyoming <span class="state-item-sub">Cheyenne</span></summary>
+          <ul class="state-item-links">
+            <li><a href="/find/apple-picking-orchards-near-cheyenne-wyoming">Apple Picking</a></li>
+            <li><a href="/find/cherry-picking-orchards-near-cheyenne-wyoming">Cherry Picking</a></li>
+            <li><a href="/find/berry-picking-orchards-near-cheyenne-wyoming">Berry Picking</a></li>
+            <li><a href="/find/peach-picking-orchards-near-cheyenne-wyoming">Peach Picking</a></li>
+            <li><a href="/find/blueberry-picking-orchards-near-cheyenne-wyoming">Blueberry Picking</a></li>
+            <li><a href="/find/garden-centers-near-cheyenne-wyoming">Garden Centers</a></li>
+          </ul>
+        </details>
         </div>
-
       </section>
 
     </div>
@@ -475,28 +691,38 @@
     (function () {
       var searchInput = document.getElementById('findFlatSearch');
       var emptyMsg = document.getElementById('findFlatEmpty');
-      var groups = Array.prototype.slice.call(document.querySelectorAll('.find-flat-group'));
-      var items = Array.prototype.slice.call(document.querySelectorAll('.find-flat-list li'));
+      var states = Array.prototype.slice.call(document.querySelectorAll('.state-item'));
 
       function applySearch() {
         var query = searchInput.value.trim().toLowerCase();
         var visibleTotal = 0;
 
-        groups.forEach(function (group) {
-          var groupItems = group.querySelectorAll('li');
-          var visibleInGroup = 0;
-          groupItems.forEach(function (li) {
-            var match = !query || li.getAttribute('data-search').indexOf(query) !== -1;
-            li.hidden = !match;
-            if (match) { visibleInGroup++; visibleTotal++; }
-          });
-          group.hidden = visibleInGroup === 0;
+        states.forEach(function (item) {
+          var match = !query || item.getAttribute('data-search').indexOf(query) !== -1;
+          item.classList.toggle('hidden-by-search', !match);
+          if (match) {
+            visibleTotal++;
+            if (query) item.open = true;
+          } else {
+            item.open = false;
+          }
         });
 
         emptyMsg.hidden = visibleTotal !== 0;
       }
 
       searchInput.addEventListener('input', applySearch);
+    })();
+
+    (function () {
+      var b = document.getElementById('backToTop');
+      if (!b) return;
+      window.addEventListener('scroll', function () {
+        b.classList.toggle('visible', window.scrollY > 600);
+      });
+      b.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     })();
   </script>
 </body>

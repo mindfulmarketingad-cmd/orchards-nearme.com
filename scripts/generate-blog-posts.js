@@ -524,6 +524,7 @@ ${jsonLd}
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
+  <button id="backToTop" class="back-to-top" type="button" tabindex="-1" aria-label="Back to top">&#8593;</button>
   <header class="site-header">
     <div class="container">
       <a class="brand" href="/" aria-label="Orchards Near Me home">
@@ -611,6 +612,7 @@ ${jsonLd}
     </div>
   </footer>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>(function(){var b=document.getElementById('backToTop');if(!b)return;window.addEventListener('scroll',function(){var s=window.scrollY>600;b.classList.toggle('visible',s);b.tabIndex=s?0:-1;});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script>
 </body>
 </html>`;
 }
@@ -647,6 +649,7 @@ function generateIndex(states) {
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
+  <button id="backToTop" class="back-to-top" type="button" tabindex="-1" aria-label="Back to top">&#8593;</button>
   <header class="site-header">
     <div class="container">
       <a class="brand" href="/" aria-label="Orchards Near Me home">
@@ -691,6 +694,7 @@ ${cards}
     </div>
   </footer>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>(function(){var b=document.getElementById('backToTop');if(!b)return;window.addEventListener('scroll',function(){var s=window.scrollY>600;b.classList.toggle('visible',s);b.tabIndex=s?0:-1;});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script>
 </body>
 </html>`;
 }
