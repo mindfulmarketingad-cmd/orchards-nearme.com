@@ -1121,8 +1121,6 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="/vendor/leaflet/leaflet.css" />
-  <link rel="stylesheet" href="/vendor/leaflet/MarkerCluster.css" />
-  <link rel="stylesheet" href="/vendor/leaflet/MarkerCluster.Default.css" />
   <link rel="stylesheet" href="/css/style.css" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9332749804326149" crossorigin="anonymous"></script>
 </head>
@@ -1239,7 +1237,6 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
   </footer>
 
   <script src="/vendor/leaflet/leaflet.js"></script>
-  <script src="/vendor/leaflet/leaflet.markercluster.js"></script>
   <script src="/js/app.js"></script>
 </body>
 </html>
@@ -1490,8 +1487,6 @@ function generateGardenCenterPage({ city, state, code }) {
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="/vendor/leaflet/leaflet.css" />
-  <link rel="stylesheet" href="/vendor/leaflet/MarkerCluster.css" />
-  <link rel="stylesheet" href="/vendor/leaflet/MarkerCluster.Default.css" />
   <link rel="stylesheet" href="/css/style.css" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9332749804326149" crossorigin="anonymous"></script>
 </head>
@@ -1608,7 +1603,6 @@ function generateGardenCenterPage({ city, state, code }) {
   </footer>
 
   <script src="/vendor/leaflet/leaflet.js"></script>
-  <script src="/vendor/leaflet/leaflet.markercluster.js"></script>
   <script src="/js/app.js"></script>
 </body>
 </html>

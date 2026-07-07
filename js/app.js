@@ -110,7 +110,7 @@
     return html;
   }
 
-  var map, clusterGroup, originMarker, zipAreaCircle;
+  var map, markersLayer, originMarker, zipAreaCircle;
   var markersById = {};
 
   var el = {
@@ -177,8 +177,8 @@
       maxZoom: 19,
       attribution: '&copy; OpenStreetMap contributors',
     }).addTo(map);
-    clusterGroup = L.markerClusterGroup({ chunkedLoading: true, maxClusterRadius: 55 });
-    map.addLayer(clusterGroup);
+    markersLayer = L.layerGroup();
+    map.addLayer(markersLayer);
   }
 
   function popupHtml(item) {
@@ -205,16 +205,14 @@
   }
 
   function rebuildMarkers() {
-    clusterGroup.clearLayers();
+    markersLayer.clearLayers();
     markersById = {};
-    var markers = [];
     state.filtered.forEach(function (item) {
       var m = L.marker([item.lat, item.lng], { icon: getMarkerIcon(item.category) });
       m.bindPopup(popupHtml(item));
       markersById[item.id] = m;
-      markers.push(m);
+      markersLayer.addLayer(m);
     });
-    clusterGroup.addLayers(markers);
   }
 
   function fitMap() {
@@ -476,9 +474,8 @@
       var marker = markersById[id];
       if (marker) {
         map.scrollWheelZoom.enable();
-        clusterGroup.zoomToShowLayer(marker, function () {
-          marker.openPopup();
-        });
+        map.setView(marker.getLatLng(), Math.max(map.getZoom(), 13), { animate: true });
+        marker.openPopup();
         if (window.innerWidth <= 768) {
           switchView('map');
         } else if (window.innerWidth <= 900) {
