@@ -1124,7 +1124,7 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
   <link rel="stylesheet" href="/vendor/leaflet/MarkerCluster.css" />
   <link rel="stylesheet" href="/vendor/leaflet/MarkerCluster.Default.css" />
   <link rel="stylesheet" href="/css/style.css" />
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2173008413459742" crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9332749804326149" crossorigin="anonymous"></script>
 </head>
 <body>
   <a class="skip-link" href="#find">Skip to map</a>
@@ -1492,7 +1492,7 @@ function generateGardenCenterPage({ city, state, code }) {
   <link rel="stylesheet" href="/vendor/leaflet/MarkerCluster.css" />
   <link rel="stylesheet" href="/vendor/leaflet/MarkerCluster.Default.css" />
   <link rel="stylesheet" href="/css/style.css" />
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2173008413459742" crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9332749804326149" crossorigin="anonymous"></script>
 </head>
 <body>
   <a class="skip-link" href="#find">Skip to map</a>
