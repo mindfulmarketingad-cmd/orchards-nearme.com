@@ -8,6 +8,47 @@ function slugify(str) {
   return str.toLowerCase().replace(/\s+/g, '-');
 }
 
+// ---------- Per-category, per-state location counts ----------
+// Mirrors the exact matching logic used client-side in js/app.js
+// (KEYWORD_DEFS test functions + Garden Center category match) so the
+// counts baked into titles/H1s/descriptions match what visitors see.
+
+const KEYWORD_MATCHERS = {
+  'apple-picking': (item, text) => {
+    if (item.category === 'Orchard') return true;
+    return text.includes('apple') && (text.includes('pick') || text.includes('orchard') || text.includes('u-pick') || text.includes('u pick'));
+  },
+  'cherry-picking': (item, text) => text.includes('cherry'),
+  'berry-picking': (item, text) => text.includes('berry') || text.includes('berries') || text.includes('strawberr') || text.includes('blueberr') || text.includes('raspberr') || text.includes('blackberr'),
+  'peach-picking': (item, text) => text.includes('peach'),
+  'blueberry-picking': (item, text) => text.includes('blueberr'),
+};
+
+function computeCategoryStateCounts() {
+  const listingsPath = path.join(__dirname, '..', 'data', 'listings.json');
+  const data = JSON.parse(fs.readFileSync(listingsPath, 'utf8'));
+  const counts = {};
+  for (const slug of Object.keys(KEYWORD_MATCHERS)) counts[slug] = {};
+  counts['garden-centers'] = {};
+
+  for (const item of data.listings) {
+    const state = item.state;
+    if (!state) continue;
+    const text = ((item.name || '') + ' ' + (item.review || '')).toLowerCase();
+    for (const slug of Object.keys(KEYWORD_MATCHERS)) {
+      if (KEYWORD_MATCHERS[slug](item, text)) {
+        counts[slug][state] = (counts[slug][state] || 0) + 1;
+      }
+    }
+    if (item.category === 'Garden Center') {
+      counts['garden-centers'][state] = (counts['garden-centers'][state] || 0) + 1;
+    }
+  }
+  return counts;
+}
+
+const CATEGORY_STATE_COUNTS = computeCategoryStateCounts();
+
 const capitals = [
   { city: 'Montgomery', state: 'Alabama', code: 'AL', region: 'southeast', cherryRegion: 'limited' },
   { city: 'Juneau', state: 'Alaska', code: 'AK', region: 'pacific', cherryRegion: 'limited' },
@@ -1071,9 +1112,10 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
   const stateSlug = slugify(state);
   const urlSlug = `${fruitSlug}-orchards-near-${citySlug}-${stateSlug}`;
   const canonicalUrl = `https://orchards-nearme.com/find/${urlSlug}`;
-  const titleTag = `${fruitLabel} Orchards Near ${city}, ${state} | Orchards Near Me`;
-  const h1 = `${fruitLabel} Orchards Near ${city} ${state}`;
-  const desc = `Find ${fruitLabel.toLowerCase()} orchards near ${city}, ${state}. Browse pick-your-own farms and orchards on an interactive map. Search by ZIP code to find the closest location.`;
+  const locationCount = CATEGORY_STATE_COUNTS[fruitSlug][state] || 0;
+  const titleTag = `${fruitLabel} Near ${city}, ${state} | ${locationCount} Locations`;
+  const h1 = `${fruitLabel} Near ${city}, ${state} - ${locationCount} Locations`;
+  const desc = `There are ${locationCount} ${fruitLabel.toLowerCase()} locations near ${city}, ${state}. Browse all u-pick farms and orchards on an interactive map. Search, filter and sort by ZIP code to find the closest location.`;
   const resultsHeading = `${fruitLabel} Near ${city}, ${code}`;
   const relatedLinks = relatedLinksHtml(fruitSlug, citySlug, stateSlug, city, state);
 
@@ -1446,9 +1488,10 @@ function generateGardenCenterPage({ city, state, code }) {
   const stateSlug = slugify(state);
   const urlSlug = `garden-centers-near-${citySlug}-${stateSlug}`;
   const canonicalUrl = `https://orchards-nearme.com/find/${urlSlug}`;
-  const titleTag = `Garden Centers Near ${city}, ${state} | Orchards Near Me`;
-  const h1 = `Garden Centers Near ${city} ${state}`;
-  const desc = `Find garden centers near ${city}, ${state}. Browse plant nurseries and garden centers on an interactive map. Search by ZIP code to find the closest location.`;
+  const locationCount = CATEGORY_STATE_COUNTS['garden-centers'][state] || 0;
+  const titleTag = `Garden Centers Near ${city}, ${state} | ${locationCount} Locations`;
+  const h1 = `Garden Centers Near ${city}, ${state} - ${locationCount} Locations`;
+  const desc = `There are ${locationCount} garden center locations near ${city}, ${state}. Browse all garden centers and plant nurseries on an interactive map. Search, filter and sort by ZIP code to find the closest location.`;
   const resultsHeading = `Garden Centers Near ${city}, ${code}`;
   const relatedLinks = relatedLinksHtml('garden-centers', citySlug, stateSlug, city, state);
 
