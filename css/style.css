@@ -1926,6 +1926,85 @@ select:focus-visible {
   margin: 0;
 }
 
+/* Storage / spoilage guide chart */
+.storage-chart-wrap {
+  overflow-x: auto;
+  margin: 16px 0;
+}
+
+.storage-chart {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 560px;
+}
+
+.storage-chart th,
+.storage-chart td {
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 0.92rem;
+  vertical-align: top;
+}
+
+.storage-chart thead th {
+  background: var(--green);
+  color: #fff;
+  font-weight: 700;
+}
+
+.storage-chart tbody tr:nth-child(even) {
+  background: #f7faf7;
+}
+
+.storage-chart tbody th {
+  color: var(--green-dark);
+  font-weight: 700;
+  background: #f0f7f1;
+}
+
+/* PRO TIP callout */
+.pro-tip {
+  background: var(--green-light);
+  border-left: 4px solid var(--green);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  margin: 18px 0;
+}
+
+.pro-tip p {
+  margin: 0;
+}
+
+.pro-tip-label {
+  display: inline-block;
+  font-weight: 800;
+  color: var(--green-dark);
+  letter-spacing: 0.03em;
+  margin-right: 6px;
+}
+
+/* Myth vs fact callout */
+.myth-fact {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  margin: 12px 0;
+}
+
+.myth-fact .myth {
+  color: var(--red-dark);
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+
+.myth-fact .fact {
+  color: var(--green-dark);
+  font-weight: 700;
+  margin: 0;
+}
+
 /* Blog region jump nav */
 .blog-region-nav {
   display: flex;

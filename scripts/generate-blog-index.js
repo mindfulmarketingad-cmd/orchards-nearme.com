@@ -74,6 +74,26 @@ ${items}
       </ul>`;
 }).join('\n');
 
+// Fixed how-to guide series (not state-based) — add a new entry here whenever
+// a new guide series is generated (e.g. by generate-storage-guides.js).
+const GUIDE_FRUITS = ['strawberries', 'apples', 'peaches', 'pears', 'blueberries', 'cherries', 'oranges'];
+const guideLinks = [];
+for (const fruit of GUIDE_FRUITS) {
+  const storagePath = path.join(OUT_DIR, `how-to-store-fresh-picked-${fruit}.html`);
+  if (fs.existsSync(storagePath)) {
+    guideLinks.push({ href: `/blog/how-to-store-fresh-picked-${fruit}`, label: `How to Store Fresh Picked ${fruit.charAt(0).toUpperCase()}${fruit.slice(1)}` });
+  }
+  const spoilagePath = path.join(OUT_DIR, `how-to-tell-if-${fruit}-are-bad.html`);
+  if (fs.existsSync(spoilagePath)) {
+    guideLinks.push({ href: `/blog/how-to-tell-if-${fruit}-are-bad`, label: `How to Tell If ${fruit.charAt(0).toUpperCase()}${fruit.slice(1)} Are Bad` });
+  }
+}
+const guideSection = guideLinks.length ? `      <h2 id="region-guides" class="blog-region-heading">Storage &amp; Freshness Guides</h2>
+      <ul class="blog-link-list">
+${guideLinks.map(g => `            <li><a href="${g.href}">${g.label}</a></li>`).join('\n')}
+      </ul>` : '';
+const guideNav = guideLinks.length ? '        <a href="#region-guides">Storage &amp; Freshness Guides</a>' : '';
+
 const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -128,9 +148,11 @@ const html = `<!DOCTYPE html>
       <p class="lead">All of our seasonal picking guides in one place. Browse state-by-state picking season guides below, organized by region.</p>
 
       <nav class="blog-region-nav" aria-label="Jump to region">
+${guideNav}
 ${nav}
       </nav>
 
+${guideSection}
 ${sections}
     </div>
   </main>
