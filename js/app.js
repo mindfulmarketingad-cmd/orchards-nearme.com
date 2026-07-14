@@ -6,7 +6,7 @@
   'use strict';
 
   var PAGE_SIZE = 24;
-  var CLAIM_LISTING_URL = 'https://buy.stripe.com/3cIfZi96i6cM7My9pIfrW09';
+  var CLAIM_LISTING_URL = 'https://buy.stripe.com/28E4gAfuG58I9UG9pIfrW04';
 
   // Fruit icons (tiny SVGs for markers)
   var iconSvgs = {

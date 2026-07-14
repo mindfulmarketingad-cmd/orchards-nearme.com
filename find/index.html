@@ -106,13 +106,18 @@
       </section>
 
       <section class="find-directory-section">
-        <h2>Browse by State</h2>
-        <p class="lead">Use the search bar above, or expand a state below to see every pick-your-own category near its capital.</p>
+        <h2>Browse by State or City</h2>
+        <p class="lead">Use the search bar above, or expand an entry below to see every pick-your-own category near that city.</p>
+
+        <div class="state-sort-toggle" role="group" aria-label="Sort list by">
+          <button type="button" class="state-sort-btn active" data-sort="state">Sort by State</button>
+          <button type="button" class="state-sort-btn" data-sort="city">Sort by City</button>
+        </div>
 
         <p class="find-flat-empty" id="findFlatEmpty" hidden>No states match your search.</p>
 
         <div class="state-list" id="stateList">
-        <details class="state-item" data-search="alabama montgomery">
+        <details class="state-item" data-search="alabama montgomery" data-state="alabama" data-city="montgomery">
           <summary>Alabama <span class="state-item-sub">Montgomery</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-montgomery-alabama">Apple Picking</a></li>
@@ -123,7 +128,7 @@
             <li><a href="/find/garden-centers-near-montgomery-alabama">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="alaska juneau">
+        <details class="state-item" data-search="alaska juneau" data-state="alaska" data-city="juneau">
           <summary>Alaska <span class="state-item-sub">Juneau</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-juneau-alaska">Apple Picking</a></li>
@@ -134,7 +139,7 @@
             <li><a href="/find/garden-centers-near-juneau-alaska">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="arizona phoenix">
+        <details class="state-item" data-search="arizona phoenix" data-state="arizona" data-city="phoenix">
           <summary>Arizona <span class="state-item-sub">Phoenix</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-phoenix-arizona">Apple Picking</a></li>
@@ -145,7 +150,7 @@
             <li><a href="/find/garden-centers-near-phoenix-arizona">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="arkansas little rock">
+        <details class="state-item" data-search="arkansas little rock" data-state="arkansas" data-city="little rock">
           <summary>Arkansas <span class="state-item-sub">Little Rock</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-little-rock-arkansas">Apple Picking</a></li>
@@ -156,7 +161,7 @@
             <li><a href="/find/garden-centers-near-little-rock-arkansas">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="california sacramento">
+        <details class="state-item" data-search="california sacramento" data-state="california" data-city="sacramento">
           <summary>California <span class="state-item-sub">Sacramento</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-sacramento-california">Apple Picking</a></li>
@@ -167,7 +172,7 @@
             <li><a href="/find/garden-centers-near-sacramento-california">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="colorado denver">
+        <details class="state-item" data-search="colorado denver" data-state="colorado" data-city="denver">
           <summary>Colorado <span class="state-item-sub">Denver</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-denver-colorado">Apple Picking</a></li>
@@ -178,7 +183,7 @@
             <li><a href="/find/garden-centers-near-denver-colorado">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="connecticut hartford">
+        <details class="state-item" data-search="connecticut hartford" data-state="connecticut" data-city="hartford">
           <summary>Connecticut <span class="state-item-sub">Hartford</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-hartford-connecticut">Apple Picking</a></li>
@@ -189,7 +194,7 @@
             <li><a href="/find/garden-centers-near-hartford-connecticut">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="delaware dover">
+        <details class="state-item" data-search="delaware dover" data-state="delaware" data-city="dover">
           <summary>Delaware <span class="state-item-sub">Dover</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-dover-delaware">Apple Picking</a></li>
@@ -200,7 +205,7 @@
             <li><a href="/find/garden-centers-near-dover-delaware">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="florida tallahassee">
+        <details class="state-item" data-search="florida tallahassee" data-state="florida" data-city="tallahassee">
           <summary>Florida <span class="state-item-sub">Tallahassee</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-tallahassee-florida">Apple Picking</a></li>
@@ -211,7 +216,7 @@
             <li><a href="/find/garden-centers-near-tallahassee-florida">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="georgia atlanta">
+        <details class="state-item" data-search="georgia atlanta" data-state="georgia" data-city="atlanta">
           <summary>Georgia <span class="state-item-sub">Atlanta</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-atlanta-georgia">Apple Picking</a></li>
@@ -222,7 +227,7 @@
             <li><a href="/find/garden-centers-near-atlanta-georgia">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="hawaii honolulu">
+        <details class="state-item" data-search="hawaii honolulu" data-state="hawaii" data-city="honolulu">
           <summary>Hawaii <span class="state-item-sub">Honolulu</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-honolulu-hawaii">Apple Picking</a></li>
@@ -233,7 +238,7 @@
             <li><a href="/find/garden-centers-near-honolulu-hawaii">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="idaho boise">
+        <details class="state-item" data-search="idaho boise" data-state="idaho" data-city="boise">
           <summary>Idaho <span class="state-item-sub">Boise</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-boise-idaho">Apple Picking</a></li>
@@ -244,7 +249,7 @@
             <li><a href="/find/garden-centers-near-boise-idaho">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="illinois springfield">
+        <details class="state-item" data-search="illinois springfield" data-state="illinois" data-city="springfield">
           <summary>Illinois <span class="state-item-sub">Springfield</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-springfield-illinois">Apple Picking</a></li>
@@ -255,7 +260,7 @@
             <li><a href="/find/garden-centers-near-springfield-illinois">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="indiana indianapolis">
+        <details class="state-item" data-search="indiana indianapolis" data-state="indiana" data-city="indianapolis">
           <summary>Indiana <span class="state-item-sub">Indianapolis</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-indianapolis-indiana">Apple Picking</a></li>
@@ -266,7 +271,7 @@
             <li><a href="/find/garden-centers-near-indianapolis-indiana">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="iowa des moines">
+        <details class="state-item" data-search="iowa des moines" data-state="iowa" data-city="des moines">
           <summary>Iowa <span class="state-item-sub">Des Moines</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-des-moines-iowa">Apple Picking</a></li>
@@ -277,7 +282,7 @@
             <li><a href="/find/garden-centers-near-des-moines-iowa">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="kansas topeka">
+        <details class="state-item" data-search="kansas topeka" data-state="kansas" data-city="topeka">
           <summary>Kansas <span class="state-item-sub">Topeka</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-topeka-kansas">Apple Picking</a></li>
@@ -288,7 +293,7 @@
             <li><a href="/find/garden-centers-near-topeka-kansas">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="kentucky frankfort">
+        <details class="state-item" data-search="kentucky frankfort" data-state="kentucky" data-city="frankfort">
           <summary>Kentucky <span class="state-item-sub">Frankfort</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-frankfort-kentucky">Apple Picking</a></li>
@@ -299,7 +304,7 @@
             <li><a href="/find/garden-centers-near-frankfort-kentucky">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="louisiana baton rouge">
+        <details class="state-item" data-search="louisiana baton rouge" data-state="louisiana" data-city="baton rouge">
           <summary>Louisiana <span class="state-item-sub">Baton Rouge</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-baton-rouge-louisiana">Apple Picking</a></li>
@@ -310,7 +315,7 @@
             <li><a href="/find/garden-centers-near-baton-rouge-louisiana">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="maine augusta">
+        <details class="state-item" data-search="maine augusta" data-state="maine" data-city="augusta">
           <summary>Maine <span class="state-item-sub">Augusta</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-augusta-maine">Apple Picking</a></li>
@@ -321,7 +326,7 @@
             <li><a href="/find/garden-centers-near-augusta-maine">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="maryland annapolis">
+        <details class="state-item" data-search="maryland annapolis" data-state="maryland" data-city="annapolis">
           <summary>Maryland <span class="state-item-sub">Annapolis</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-annapolis-maryland">Apple Picking</a></li>
@@ -332,7 +337,7 @@
             <li><a href="/find/garden-centers-near-annapolis-maryland">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="massachusetts boston">
+        <details class="state-item" data-search="massachusetts boston" data-state="massachusetts" data-city="boston">
           <summary>Massachusetts <span class="state-item-sub">Boston</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-boston-massachusetts">Apple Picking</a></li>
@@ -343,7 +348,7 @@
             <li><a href="/find/garden-centers-near-boston-massachusetts">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="michigan lansing">
+        <details class="state-item" data-search="michigan lansing" data-state="michigan" data-city="lansing">
           <summary>Michigan <span class="state-item-sub">Lansing</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-lansing-michigan">Apple Picking</a></li>
@@ -354,7 +359,7 @@
             <li><a href="/find/garden-centers-near-lansing-michigan">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="minnesota saint paul">
+        <details class="state-item" data-search="minnesota saint paul" data-state="minnesota" data-city="saint paul">
           <summary>Minnesota <span class="state-item-sub">Saint Paul</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-saint-paul-minnesota">Apple Picking</a></li>
@@ -365,7 +370,7 @@
             <li><a href="/find/garden-centers-near-saint-paul-minnesota">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="mississippi jackson">
+        <details class="state-item" data-search="mississippi jackson" data-state="mississippi" data-city="jackson">
           <summary>Mississippi <span class="state-item-sub">Jackson</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-jackson-mississippi">Apple Picking</a></li>
@@ -376,7 +381,7 @@
             <li><a href="/find/garden-centers-near-jackson-mississippi">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="missouri jefferson city">
+        <details class="state-item" data-search="missouri jefferson city" data-state="missouri" data-city="jefferson city">
           <summary>Missouri <span class="state-item-sub">Jefferson City</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-jefferson-city-missouri">Apple Picking</a></li>
@@ -387,7 +392,7 @@
             <li><a href="/find/garden-centers-near-jefferson-city-missouri">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="montana helena">
+        <details class="state-item" data-search="montana helena" data-state="montana" data-city="helena">
           <summary>Montana <span class="state-item-sub">Helena</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-helena-montana">Apple Picking</a></li>
@@ -398,7 +403,7 @@
             <li><a href="/find/garden-centers-near-helena-montana">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="nebraska lincoln">
+        <details class="state-item" data-search="nebraska lincoln" data-state="nebraska" data-city="lincoln">
           <summary>Nebraska <span class="state-item-sub">Lincoln</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-lincoln-nebraska">Apple Picking</a></li>
@@ -409,7 +414,7 @@
             <li><a href="/find/garden-centers-near-lincoln-nebraska">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="nevada carson city">
+        <details class="state-item" data-search="nevada carson city" data-state="nevada" data-city="carson city">
           <summary>Nevada <span class="state-item-sub">Carson City</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-carson-city-nevada">Apple Picking</a></li>
@@ -420,7 +425,7 @@
             <li><a href="/find/garden-centers-near-carson-city-nevada">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="new hampshire concord">
+        <details class="state-item" data-search="new hampshire concord" data-state="new" data-city="hampshire concord">
           <summary>New Hampshire <span class="state-item-sub">Concord</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-concord-new-hampshire">Apple Picking</a></li>
@@ -431,7 +436,7 @@
             <li><a href="/find/garden-centers-near-concord-new-hampshire">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="new jersey trenton">
+        <details class="state-item" data-search="new jersey trenton" data-state="new" data-city="jersey trenton">
           <summary>New Jersey <span class="state-item-sub">Trenton</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-trenton-new-jersey">Apple Picking</a></li>
@@ -442,7 +447,7 @@
             <li><a href="/find/garden-centers-near-trenton-new-jersey">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="new mexico santa fe">
+        <details class="state-item" data-search="new mexico santa fe" data-state="new" data-city="mexico santa fe">
           <summary>New Mexico <span class="state-item-sub">Santa Fe</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-santa-fe-new-mexico">Apple Picking</a></li>
@@ -453,7 +458,7 @@
             <li><a href="/find/garden-centers-near-santa-fe-new-mexico">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="new york albany">
+        <details class="state-item" data-search="new york albany" data-state="new" data-city="york albany">
           <summary>New York <span class="state-item-sub">Albany</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-albany-new-york">Apple Picking</a></li>
@@ -464,7 +469,7 @@
             <li><a href="/find/garden-centers-near-albany-new-york">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="north carolina raleigh">
+        <details class="state-item" data-search="north carolina raleigh" data-state="north" data-city="carolina raleigh">
           <summary>North Carolina <span class="state-item-sub">Raleigh</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-raleigh-north-carolina">Apple Picking</a></li>
@@ -475,7 +480,7 @@
             <li><a href="/find/garden-centers-near-raleigh-north-carolina">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="north dakota bismarck">
+        <details class="state-item" data-search="north dakota bismarck" data-state="north" data-city="dakota bismarck">
           <summary>North Dakota <span class="state-item-sub">Bismarck</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-bismarck-north-dakota">Apple Picking</a></li>
@@ -486,7 +491,7 @@
             <li><a href="/find/garden-centers-near-bismarck-north-dakota">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="ohio columbus">
+        <details class="state-item" data-search="ohio columbus" data-state="ohio" data-city="columbus">
           <summary>Ohio <span class="state-item-sub">Columbus</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-columbus-ohio">Apple Picking</a></li>
@@ -497,7 +502,7 @@
             <li><a href="/find/garden-centers-near-columbus-ohio">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="oklahoma oklahoma city">
+        <details class="state-item" data-search="oklahoma oklahoma city" data-state="oklahoma" data-city="oklahoma city">
           <summary>Oklahoma <span class="state-item-sub">Oklahoma City</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-oklahoma-city-oklahoma">Apple Picking</a></li>
@@ -508,7 +513,7 @@
             <li><a href="/find/garden-centers-near-oklahoma-city-oklahoma">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="oregon salem">
+        <details class="state-item" data-search="oregon salem" data-state="oregon" data-city="salem">
           <summary>Oregon <span class="state-item-sub">Salem</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-salem-oregon">Apple Picking</a></li>
@@ -519,7 +524,7 @@
             <li><a href="/find/garden-centers-near-salem-oregon">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="pennsylvania harrisburg">
+        <details class="state-item" data-search="pennsylvania harrisburg" data-state="pennsylvania" data-city="harrisburg">
           <summary>Pennsylvania <span class="state-item-sub">Harrisburg</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-harrisburg-pennsylvania">Apple Picking</a></li>
@@ -530,7 +535,7 @@
             <li><a href="/find/garden-centers-near-harrisburg-pennsylvania">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="rhode island providence">
+        <details class="state-item" data-search="rhode island providence" data-state="rhode" data-city="island providence">
           <summary>Rhode Island <span class="state-item-sub">Providence</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-providence-rhode-island">Apple Picking</a></li>
@@ -541,7 +546,7 @@
             <li><a href="/find/garden-centers-near-providence-rhode-island">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="south carolina columbia">
+        <details class="state-item" data-search="south carolina columbia" data-state="south" data-city="carolina columbia">
           <summary>South Carolina <span class="state-item-sub">Columbia</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-columbia-south-carolina">Apple Picking</a></li>
@@ -552,7 +557,7 @@
             <li><a href="/find/garden-centers-near-columbia-south-carolina">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="south dakota pierre">
+        <details class="state-item" data-search="south dakota pierre" data-state="south" data-city="dakota pierre">
           <summary>South Dakota <span class="state-item-sub">Pierre</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-pierre-south-dakota">Apple Picking</a></li>
@@ -563,7 +568,7 @@
             <li><a href="/find/garden-centers-near-pierre-south-dakota">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="tennessee nashville">
+        <details class="state-item" data-search="tennessee nashville" data-state="tennessee" data-city="nashville">
           <summary>Tennessee <span class="state-item-sub">Nashville</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-nashville-tennessee">Apple Picking</a></li>
@@ -574,7 +579,7 @@
             <li><a href="/find/garden-centers-near-nashville-tennessee">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="texas austin">
+        <details class="state-item" data-search="texas austin" data-state="texas" data-city="austin">
           <summary>Texas <span class="state-item-sub">Austin</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-austin-texas">Apple Picking</a></li>
@@ -585,7 +590,7 @@
             <li><a href="/find/garden-centers-near-austin-texas">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="utah salt lake city">
+        <details class="state-item" data-search="utah salt lake city" data-state="utah" data-city="salt lake city">
           <summary>Utah <span class="state-item-sub">Salt Lake City</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-salt-lake-city-utah">Apple Picking</a></li>
@@ -596,7 +601,7 @@
             <li><a href="/find/garden-centers-near-salt-lake-city-utah">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="vermont montpelier">
+        <details class="state-item" data-search="vermont montpelier" data-state="vermont" data-city="montpelier">
           <summary>Vermont <span class="state-item-sub">Montpelier</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-montpelier-vermont">Apple Picking</a></li>
@@ -607,7 +612,7 @@
             <li><a href="/find/garden-centers-near-montpelier-vermont">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="virginia richmond">
+        <details class="state-item" data-search="virginia richmond" data-state="virginia" data-city="richmond">
           <summary>Virginia <span class="state-item-sub">Richmond</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-richmond-virginia">Apple Picking</a></li>
@@ -618,7 +623,7 @@
             <li><a href="/find/garden-centers-near-richmond-virginia">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="washington olympia">
+        <details class="state-item" data-search="washington olympia" data-state="washington" data-city="olympia">
           <summary>Washington <span class="state-item-sub">Olympia</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-olympia-washington">Apple Picking</a></li>
@@ -629,7 +634,7 @@
             <li><a href="/find/garden-centers-near-olympia-washington">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="west virginia charleston">
+        <details class="state-item" data-search="west virginia charleston" data-state="west" data-city="virginia charleston">
           <summary>West Virginia <span class="state-item-sub">Charleston</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-charleston-west-virginia">Apple Picking</a></li>
@@ -640,7 +645,7 @@
             <li><a href="/find/garden-centers-near-charleston-west-virginia">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="wisconsin madison">
+        <details class="state-item" data-search="wisconsin madison" data-state="wisconsin" data-city="madison">
           <summary>Wisconsin <span class="state-item-sub">Madison</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-madison-wisconsin">Apple Picking</a></li>
@@ -651,7 +656,7 @@
             <li><a href="/find/garden-centers-near-madison-wisconsin">Garden Centers</a></li>
           </ul>
         </details>
-        <details class="state-item" data-search="wyoming cheyenne">
+        <details class="state-item" data-search="wyoming cheyenne" data-state="wyoming" data-city="cheyenne">
           <summary>Wyoming <span class="state-item-sub">Cheyenne</span></summary>
           <ul class="state-item-links">
             <li><a href="/find/apple-picking-orchards-near-cheyenne-wyoming">Apple Picking</a></li>
@@ -712,6 +717,28 @@
       }
 
       searchInput.addEventListener('input', applySearch);
+    })();
+
+    (function () {
+      var list = document.getElementById('stateList');
+      var buttons = Array.prototype.slice.call(document.querySelectorAll('.state-sort-btn'));
+      if (!list || !buttons.length) return;
+      var items = Array.prototype.slice.call(list.querySelectorAll('.state-item'));
+
+      function sortBy(key) {
+        var sorted = items.slice().sort(function (a, b) {
+          return a.getAttribute('data-' + key).localeCompare(b.getAttribute('data-' + key));
+        });
+        sorted.forEach(function (item) { list.appendChild(item); });
+      }
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          buttons.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          sortBy(btn.getAttribute('data-sort'));
+        });
+      });
     })();
 
     (function () {

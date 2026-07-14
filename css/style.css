@@ -1442,6 +1442,15 @@ select:focus-visible {
   margin-top: 4px;
 }
 
+.blog-post-featured-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin: 18px 0 0;
+}
+
 .blog-post-body h2 {
   margin-top: 2em;
   font-size: 1.35rem;
@@ -1520,6 +1529,99 @@ select:focus-visible {
   .blog-grid {
     grid-template-columns: 1fr;
   }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Simple hyperlinked blog hub list */
+.blog-link-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 8px;
+  columns: 2;
+  column-gap: 32px;
+}
+
+.blog-link-list li {
+  margin: 8px 0;
+  break-inside: avoid;
+}
+
+.blog-link-list a {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--green-dark);
+}
+
+.blog-link-list a:hover {
+  color: var(--green);
+}
+
+@media (max-width: 600px) {
+  .blog-link-list {
+    columns: 1;
+  }
+}
+
+/* Apple picking season chart */
+.season-chart-wrap {
+  overflow-x: auto;
+  margin: 16px 0 4px;
+}
+
+.season-chart {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 480px;
+}
+
+.season-chart th,
+.season-chart td {
+  border: 1px solid var(--border);
+  padding: 8px 10px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.season-chart-label {
+  text-align: left !important;
+  font-weight: 700;
+  color: var(--green-dark);
+  background: #f7faf7;
+}
+
+.season-chart-cell.is-peak {
+  background: var(--green);
+  color: #fff;
+  font-weight: 700;
+}
+
+.season-chart-caption {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin: 6px 0 0;
+}
+
+.season-chart-note {
+  background: #f7faf7;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin: 16px 0;
+}
+
+.season-chart-note p {
+  margin: 0;
 }
 
 /* Blog region jump nav */
@@ -1679,4 +1781,33 @@ select:focus-visible {
 
 .state-item.hidden-by-search {
   display: none;
+}
+
+.state-sort-toggle {
+  display: flex;
+  gap: 8px;
+  margin: 16px 0 20px;
+}
+
+.state-sort-btn {
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  background: #fff;
+  border: 2px solid var(--border);
+  border-radius: 999px;
+  padding: 7px 16px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.state-sort-btn:hover {
+  border-color: var(--green);
+}
+
+.state-sort-btn.active {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fff;
 }

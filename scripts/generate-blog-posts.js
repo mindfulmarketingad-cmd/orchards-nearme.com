@@ -6,6 +6,13 @@ const path = require('path');
 
 const OUT_DIR = path.join(__dirname, '..', 'blog');
 
+const FEATURED_IMAGES = [
+  { file: 'apple-basket-farm-stand.webp', alt: 'Baskets of freshly picked apples at a farm stand' },
+  { file: 'apple-picking-kids-orchard.jpg', alt: 'Kids picking apples together in an orchard' },
+  { file: 'apple-orchard-harvest-crate.jpg', alt: 'A crate of harvested apples on a tractor at an orchard' },
+  { file: 'apple-picking-family-orchard.jpg', alt: 'A family picking apples together at an orchard' },
+];
+
 const STATES = [
   {
     slug: 'alabama', name: 'Alabama', capital: 'Montgomery', capitalSlug: 'montgomery',
@@ -466,18 +473,93 @@ function stateSlugToFindSlug(stateSlug) {
   return stateSlug;
 }
 
-function generatePage(state) {
+const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const CHART_MONTHS = ['June', 'July', 'August', 'September', 'October', 'November'];
+
+function parsePeakRange(peakText) {
+  if (/year-round/i.test(peakText)) return { yearRound: true };
+  const indices = [];
+  MONTH_NAMES.forEach((m, i) => {
+    if (new RegExp('\\b' + m + '\\b', 'i').test(peakText)) indices.push(i);
+  });
+  if (!indices.length) return { yearRound: false, start: null, end: null };
+  return { yearRound: false, start: Math.min(...indices), end: Math.max(...indices) };
+}
+
+function renderSeasonChart(state) {
+  const range = parsePeakRange(state.peak);
+  if (range.yearRound) {
+    return `<div class="season-chart-note">
+            <p>Apple picking is available <strong>year-round</strong> at ${state.name}'s high-elevation orchards, since low-chill varieties can be coaxed into fruiting outside the typical temperate calendar.</p>
+          </div>`;
+  }
+  const headerCells = CHART_MONTHS.map(m => `<th scope="col">${m.slice(0, 3)}</th>`).join('');
+  const bodyCells = CHART_MONTHS.map(label => {
+    const monthIndex = MONTH_NAMES.indexOf(label);
+    const isPeak = range.start !== null && monthIndex >= range.start && monthIndex <= range.end;
+    return `<td class="season-chart-cell${isPeak ? ' is-peak' : ''}">${isPeak ? 'Peak' : '—'}</td>`;
+  }).join('');
+  return `<div class="season-chart-wrap">
+            <table class="season-chart">
+              <caption class="sr-only">Apple picking season chart for ${state.name}</caption>
+              <thead>
+                <tr><th scope="col" class="season-chart-label">Month</th>${headerCells}</tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row" class="season-chart-label">${state.name}</th>${bodyCells}</tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="season-chart-caption">Peak visiting window: <strong>${state.peak}</strong>. Exact timing shifts a week or two earlier or later depending on the year's weather.</p>`;
+}
+
+function getRelatedStates(index, list, count = 6) {
+  const related = [];
+  for (let i = 1; i <= count; i++) {
+    related.push(list[(index + i) % list.length]);
+  }
+  return related;
+}
+
+function buildFaqs(state) {
+  const { name, capital, regions, varieties, peak } = state;
+  return [
+    {
+      q: `When is apple picking season in ${name}?`,
+      a: `Apple picking season in ${name} peaks from ${peak}.`,
+    },
+    {
+      q: `Where can I go apple picking near ${capital}, ${name}?`,
+      a: `The best apple picking near ${capital} is concentrated in ${regions}.`,
+    },
+    {
+      q: `What apple varieties can I pick in ${name}?`,
+      a: `${name} orchards commonly grow ${varieties}.`,
+    },
+    {
+      q: `How much does apple picking cost in ${name}?`,
+      a: `Most orchards charge by the pound or by the bag for what you pick, typically $2 to $4 per pound, with some farms adding a small admission fee for hayrides or other activities. Exact pricing varies by orchard, so check the listing or call ahead.`,
+    },
+  ];
+}
+
+function generatePage(state, index, allStates) {
   const { slug, name, capital, capitalSlug, peak, regions, varieties, intro, seasonDetail, tip } = state;
-  const title = `Apple Picking Season ${name} | Granny Smith, Honeycrisp Apples Peak Times`;
+  const title = `Apple Picking Season ${name}`;
   const desc = `${intro} Find pick-your-own apple orchards near ${capital}, ${name} on an interactive map.`;
   const canonical = `${SITE_URL}/blog/apple-picking-season-${slug}`;
   const findLink = `/find/apple-picking-orchards-near-${capitalSlug}-${slug.replace(/-/g, '-')}`;
+  const image = FEATURED_IMAGES[index % FEATURED_IMAGES.length];
+  const imageUrl = `${SITE_URL}/images/blog/${image.file}`;
+  const faqs = buildFaqs(state);
+  const relatedStates = getRelatedStates(index, allStates);
 
   const jsonLd = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": `Apple Picking Season ${name}`,
+    "headline": title,
     "description": desc,
+    "image": imageUrl,
     "url": canonical,
     "datePublished": PUB_DATE,
     "dateModified": PUB_DATE,
@@ -498,6 +580,27 @@ function generatePage(state) {
     "keywords": `apple picking season ${name}, apple picking ${name}, pick your own apples ${name}, apple orchards ${name}, best time to pick apples ${name}`,
   }, null, 2);
 
+  const faqJsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(f => ({
+      "@type": "Question",
+      "name": f.q,
+      "acceptedAnswer": { "@type": "Answer", "text": f.a }
+    })),
+  }, null, 2);
+
+  const faqHtml = faqs.map(f => `          <details class="faq-item">
+            <summary>${f.q}</summary>
+            <div class="faq-answer">
+              <p>${f.a}</p>
+            </div>
+          </details>`).join('\n');
+
+  const relatedStatesHtml = relatedStates.map(s =>
+    `          <li><a href="/blog/apple-picking-season-${s.slug}">Apple Picking Season ${s.name}</a></li>`
+  ).join('\n');
+
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -510,6 +613,7 @@ function generatePage(state) {
   <meta property="og:description" content="${desc.replace(/"/g, '&quot;')}" />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="${canonical}" />
+  <meta property="og:image" content="${imageUrl}" />
   <meta property="article:published_time" content="${PUB_DATE}" />
 
   <link rel="icon" href="/logo.svg" type="image/svg+xml" />
@@ -519,6 +623,9 @@ function generatePage(state) {
   <link rel="stylesheet" href="/css/style.css" />
   <script type="application/ld+json">
 ${jsonLd}
+  </script>
+  <script type="application/ld+json">
+${faqJsonLd}
   </script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9332749804326149" crossorigin="anonymous"></script>
 </head>
@@ -555,6 +662,7 @@ ${jsonLd}
         <header class="blog-post-header">
           <h1>Apple Picking Season ${name}</h1>
           <p class="blog-post-meta"><time datetime="${PUB_DATE}">July 1, 2025</time> &middot; Orchards Near Me</p>
+          <img class="blog-post-featured-image" src="/images/blog/${image.file}" alt="${image.alt}" loading="lazy" width="1200" height="675" />
         </header>
 
         <div class="blog-post-body">
@@ -562,6 +670,7 @@ ${jsonLd}
 
           <h2>When Is Apple Picking Season in ${name}?</h2>
           <p>${seasonDetail}</p>
+          ${renderSeasonChart(state)}
 
           <h2>Where to Pick Apples in ${name}</h2>
           <p>The best apple picking in ${name} is concentrated in ${regions}. These areas combine the climate, soil, and agricultural tradition that makes pick-your-own orchards viable and worthwhile as a destination.</p>
@@ -576,8 +685,20 @@ ${jsonLd}
 
           <h2>Find Apple Orchards Near You in ${name}</h2>
           <p>Our interactive map pulls from hundreds of orchards across the state. <a href="${findLink}">Search apple picking near ${capital}</a> to see what is closest to you, or browse the full <a href="/find/apple-picking-orchards-near-me">Apple Picking Near Me</a> directory for the whole country.</p>
+
+          <h2>Frequently Asked Questions About Apple Picking in ${name}</h2>
+          <div class="faq-list">
+${faqHtml}
+          </div>
         </div>
       </article>
+
+      <section class="related-links seo-content" style="padding-top: 0;">
+        <h2>Apple Picking Season in Other States</h2>
+        <ul class="related-links-list">
+${relatedStatesHtml}
+        </ul>
+      </section>
 
       <section class="related-links seo-content" style="padding-top: 0;">
         <h2>More Apple Picking Guides</h2>
@@ -617,26 +738,51 @@ ${jsonLd}
 </html>`;
 }
 
-function generateIndex(states) {
-  const cards = states.map(s => `      <a class="blog-card" href="/blog/apple-picking-season-${s.slug}">
-        <div class="blog-card-body">
-          <h2 class="blog-card-title">Apple Picking Season ${s.name}</h2>
-          <p class="blog-card-meta">Peak season: ${s.peak}</p>
-          <p class="blog-card-excerpt">${s.intro}</p>
-          <span class="blog-card-cta">Read guide &rarr;</span>
-        </div>
-      </a>`).join('\n');
+const REGION_LABELS = {
+  'new-england': 'New England',
+  'mid-atlantic': 'Mid-Atlantic',
+  'southeast': 'Southeast',
+  'midwest': 'Midwest',
+  'south-central': 'South Central',
+  'mountain': 'Mountain West',
+  'pacific': 'Pacific',
+  'southwest': 'Southwest',
+};
+const REGION_ORDER = ['new-england', 'mid-atlantic', 'southeast', 'midwest', 'south-central', 'mountain', 'pacific', 'southwest'];
+
+function generateIndex(states, stateRegions) {
+  const byRegion = {};
+  REGION_ORDER.forEach(r => { byRegion[r] = []; });
+  states.forEach(s => {
+    const region = stateRegions[s.name];
+    if (region && byRegion[region]) byRegion[region].push(s);
+  });
+  REGION_ORDER.forEach(r => { byRegion[r].sort((a, b) => a.name.localeCompare(b.name)); });
+
+  const nav = REGION_ORDER.filter(r => byRegion[r].length).map(r =>
+    `        <a href="#region-${r}">${REGION_LABELS[r]}</a>`
+  ).join('\n');
+
+  const sections = REGION_ORDER.filter(r => byRegion[r].length).map(r => {
+    const items = byRegion[r].map(s =>
+      `            <li><a href="/blog/apple-picking-season-${s.slug}">Apple Picking Season ${s.name}</a></li>`
+    ).join('\n');
+    return `      <h2 id="region-${r}" class="blog-region-heading">${REGION_LABELS[r]}</h2>
+      <ul class="blog-link-list">
+${items}
+      </ul>`;
+  }).join('\n');
 
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Apple Picking Season Guides by State | Orchards Near Me Blog</title>
-  <meta name="description" content="Find out when apple picking season starts in every state. State-by-state guides to peak apple harvest times, best orchards, and top apple varieties across all 50 states." />
+  <title>Blog | Orchards Near Me</title>
+  <meta name="description" content="All of our seasonal picking guides in one place. Find out when apple picking season starts in every state, organized by region." />
   <link rel="canonical" href="https://orchards-nearme.com/blog" />
-  <meta property="og:title" content="Apple Picking Season Guides by State | Orchards Near Me Blog" />
-  <meta property="og:description" content="State-by-state guides to apple picking season timing, best orchards, and top apple varieties across all 50 states." />
+  <meta property="og:title" content="Blog | Orchards Near Me" />
+  <meta property="og:description" content="All of our seasonal picking guides in one place, organized by region." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://orchards-nearme.com/blog" />
 
@@ -667,12 +813,14 @@ function generateIndex(states) {
 
   <main id="main" class="page">
     <div class="container">
-      <h1>Apple Picking Season Guides</h1>
-      <p class="lead">When does apple picking season start in your state? Browse our state-by-state guides to peak harvest timing, the best regions, top varieties, and tips for planning your visit.</p>
+      <h1>Blog</h1>
+      <p class="lead">All of our seasonal picking guides in one place. Browse state-by-state apple picking season guides below, organized by region.</p>
 
-      <div class="blog-grid">
-${cards}
-      </div>
+      <nav class="blog-region-nav" aria-label="Jump to region">
+${nav}
+      </nav>
+
+${sections}
     </div>
   </main>
 
@@ -699,16 +847,32 @@ ${cards}
 </html>`;
 }
 
+const STATE_REGIONS = {
+  'Alabama': 'southeast', 'Alaska': 'pacific', 'Arizona': 'southwest', 'Arkansas': 'southeast',
+  'California': 'pacific', 'Colorado': 'mountain', 'Connecticut': 'new-england', 'Delaware': 'mid-atlantic',
+  'Florida': 'southeast', 'Georgia': 'southeast', 'Hawaii': 'pacific', 'Idaho': 'mountain',
+  'Illinois': 'midwest', 'Indiana': 'midwest', 'Iowa': 'midwest', 'Kansas': 'midwest',
+  'Kentucky': 'southeast', 'Louisiana': 'south-central', 'Maine': 'new-england', 'Maryland': 'mid-atlantic',
+  'Massachusetts': 'new-england', 'Michigan': 'midwest', 'Minnesota': 'midwest', 'Mississippi': 'southeast',
+  'Missouri': 'midwest', 'Montana': 'mountain', 'Nebraska': 'midwest', 'Nevada': 'mountain',
+  'New Hampshire': 'new-england', 'New Jersey': 'mid-atlantic', 'New Mexico': 'mountain', 'New York': 'mid-atlantic',
+  'North Carolina': 'southeast', 'North Dakota': 'midwest', 'Ohio': 'midwest', 'Oklahoma': 'south-central',
+  'Oregon': 'pacific', 'Pennsylvania': 'mid-atlantic', 'Rhode Island': 'new-england', 'South Carolina': 'southeast',
+  'South Dakota': 'midwest', 'Tennessee': 'southeast', 'Texas': 'south-central', 'Utah': 'mountain',
+  'Vermont': 'new-england', 'Virginia': 'mid-atlantic', 'Washington': 'pacific', 'West Virginia': 'mid-atlantic',
+  'Wisconsin': 'midwest', 'Wyoming': 'mountain',
+};
+
 // Generate all files
 let count = 0;
-for (const state of STATES) {
-  const html = generatePage(state);
+STATES.forEach((state, index) => {
+  const html = generatePage(state, index, STATES);
   const outPath = path.join(OUT_DIR, `apple-picking-season-${state.slug}.html`);
   fs.writeFileSync(outPath, html, 'utf8');
   count++;
-}
+});
 console.log(`Generated ${count} state blog pages.`);
 
-const indexHtml = generateIndex(STATES);
+const indexHtml = generateIndex(STATES, STATE_REGIONS);
 fs.writeFileSync(path.join(OUT_DIR, 'index.html'), indexHtml, 'utf8');
 console.log('Generated blog/index.html');
