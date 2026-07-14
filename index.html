@@ -121,21 +121,23 @@
     </div>
   </header>
 
-  <main>
-    <section class="hero">
+  <main class="find-page-full">
+    <section class="find-titlebar">
       <div class="container">
         <h1>Find Orchards Near Me</h1>
         <p>Explore apple and cherry picking spots, pick-your-own farms, and garden centers across all 50 states. Plant the seed, pick the fun, make it a family day out.</p>
       </div>
     </section>
 
-    <section class="controls" id="find">
-      <div class="container">
+    <div class="find-stage">
+      <div id="map" role="application" aria-label="Map of orchards, farms and garden centers"></div>
+
+      <div class="find-topbar">
         <form class="search-form" id="searchForm">
           <input type="text" id="zipInput" inputmode="numeric" placeholder="Enter your ZIP code (e.g. 05346)" aria-label="Search by ZIP code" />
           <button type="submit" class="btn">Search</button>
+          <p id="zipError" hidden class="zip-error-msg" role="alert"></p>
         </form>
-        <p id="zipError" hidden class="zip-error-msg" role="alert"></p>
         <div class="filters-wrap">
           <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
             <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
@@ -147,6 +149,9 @@
             <button class="filter-chip" data-cat="berry-picking">Berry Picking</button>
             <button class="filter-chip" data-cat="peach-picking">Peach Picking</button>
             <button class="filter-chip" data-cat="blueberry-picking">Blueberry Picking</button>
+            <button class="filter-chip" data-cat="strawberry-patch">Strawberry Patch</button>
+            <button class="filter-chip" data-cat="pumpkin-patch">Pumpkin Patch</button>
+            <button class="filter-chip" data-cat="hayrides">Hayrides</button>
             <button class="filter-chip" data-cat="Orchard">Orchards</button>
             <button class="filter-chip" data-cat="Farm">Farms</button>
             <button class="filter-chip" data-cat="Garden Center">Garden Centers</button>
@@ -156,29 +161,23 @@
           <option value="all">All states</option>
         </select>
       </div>
-    </section>
 
-    <div class="container">
-      <div class="view-toggle" id="viewToggle">
-        <button class="active" data-view="map">Map</button>
-        <button data-view="list">List</button>
+      <button type="button" class="find-layers-btn" id="layersToggle" aria-pressed="false">
+        <span aria-hidden="true">🛰️</span> Satellite
+      </button>
+
+      <div class="find-legend-float" aria-label="Map key">
+        <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
+        <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
+        <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
       </div>
-      <div class="find-layout">
-        <div class="results-col">
-          <div class="results-head">
-            <h2>Listings</h2>
-            <span class="results-count" id="resultsCount">Loading...</span>
-          </div>
-          <div class="cards" id="cards"></div>
+
+      <div class="find-strip">
+        <div class="find-strip-head">
+          <h2>Listings</h2>
+          <span class="results-count" id="resultsCount">Loading...</span>
         </div>
-        <div class="map-col">
-          <div id="map" role="application" aria-label="Map of orchards, farms and garden centers"></div>
-          <div class="map-legend" aria-label="Map key">
-            <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
-            <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
-            <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
-          </div>
-        </div>
+        <div class="cards cards-horizontal" id="cards"></div>
       </div>
     </div>
 

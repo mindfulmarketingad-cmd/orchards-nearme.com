@@ -49,16 +49,18 @@
     </div>
   </header>
 
-  <main>
-    <section class="hero">
+  <main class="find-page-full">
+    <section class="find-titlebar">
       <div class="container">
         <h1>Apple Picking Orchards Near Me</h1>
         <p>Discover apple picking orchards across all 50 states. Search by ZIP code to find the closest orchard, check ratings, and read real visitor reviews before you go.</p>
       </div>
     </section>
 
-    <section class="controls" id="find">
-      <div class="container">
+    <div class="find-stage">
+      <div id="map" role="application" aria-label="Map of apple picking orchards near me"></div>
+
+      <div class="find-topbar">
         <form class="search-form" id="searchForm">
           <input type="text" id="zipInput" inputmode="numeric" placeholder="Enter your ZIP code (e.g. 05346)" aria-label="Search by ZIP code" />
           <button type="submit" class="btn">Search</button>
@@ -78,30 +80,25 @@
         <select class="state-select" id="stateSelect" aria-label="Filter by state">
           <option value="all">All states</option>
         </select>
+      
       </div>
-    </section>
 
-    <div class="container">
-      <div class="view-toggle" id="viewToggle">
-        <button class="active" data-view="map">Map</button>
-        <button data-view="list">List</button>
-      </div>
-      <div class="find-layout">
-        <div class="results-col">
-          <div class="results-head">
-            <h2>Apple Picking Locations</h2>
-            <span class="results-count" id="resultsCount">Loading...</span>
-          </div>
-          <div class="cards" id="cards"></div>
-        </div>
-        <div class="map-col">
-          <div id="map" role="application" aria-label="Map of apple picking orchards near me"></div>
-          <div class="map-legend" aria-label="Map key">
+      <button type="button" class="find-layers-btn" id="layersToggle" aria-pressed="false">
+        <span aria-hidden="true">🛰️</span> Satellite
+      </button>
+
+      <div class="find-legend-float" aria-label="Map key">
             <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
             <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
             <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
           </div>
+
+      <div class="find-strip">
+        <div class="find-strip-head">
+          <h2>Apple Picking Locations</h2>
+          <span class="results-count" id="resultsCount">Loading...</span>
         </div>
+        <div class="cards cards-horizontal" id="cards"></div>
       </div>
     </div>
 

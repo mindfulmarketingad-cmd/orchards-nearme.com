@@ -146,9 +146,7 @@
     searchForm: document.getElementById('searchForm'),
     zipInput: document.getElementById('zipInput'),
     zipError: document.getElementById('zipError'),
-    viewToggle: document.getElementById('viewToggle'),
-    resultsCol: document.querySelector('.results-col'),
-    mapCol: document.querySelector('.map-col'),
+    layersToggle: document.getElementById('layersToggle'),
   };
 
   function setZipError(msg) {
@@ -195,14 +193,46 @@
   }
 
   // ---------- map ----------
+  var streetLayer, satelliteLayer;
+
   function initMap() {
     map = L.map('map', { scrollWheelZoom: true }).setView([39.5, -98.35], 4);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; OpenStreetMap contributors',
     }).addTo(map);
+    satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 19,
+      attribution: 'Tiles &copy; Esri',
+    });
     markersLayer = L.layerGroup();
     map.addLayer(markersLayer);
+
+    if (window.ResizeObserver) {
+      new ResizeObserver(function () { map.invalidateSize(); }).observe(document.getElementById('map'));
+    }
+    setTimeout(function () { map.invalidateSize(); }, 200);
+  }
+
+  function initLayersToggle() {
+    if (!el.layersToggle) return;
+    var isSatellite = false;
+    el.layersToggle.addEventListener('click', function () {
+      isSatellite = !isSatellite;
+      if (isSatellite) {
+        map.removeLayer(streetLayer);
+        map.addLayer(satelliteLayer);
+        el.layersToggle.classList.add('active');
+        el.layersToggle.setAttribute('aria-pressed', 'true');
+        el.layersToggle.innerHTML = '<span aria-hidden="true">🗺️</span> Map';
+      } else {
+        map.removeLayer(satelliteLayer);
+        map.addLayer(streetLayer);
+        el.layersToggle.classList.remove('active');
+        el.layersToggle.setAttribute('aria-pressed', 'false');
+        el.layersToggle.innerHTML = '<span aria-hidden="true">🛰️</span> Satellite';
+      }
+    });
   }
 
   function popupHtml(item) {
@@ -484,11 +514,11 @@
       searchZip(el.zipInput.value);
     });
 
-    // Infinite scroll — load next page as user nears bottom of card list
+    // Infinite scroll — load next page as user nears the end of the horizontally scrolling card strip
     el.cards.addEventListener('scroll', function () {
       if (state.rendered >= state.filtered.length) return;
-      var threshold = 200;
-      if (el.cards.scrollTop + el.cards.clientHeight >= el.cards.scrollHeight - threshold) {
+      var threshold = 300;
+      if (el.cards.scrollLeft + el.cards.clientWidth >= el.cards.scrollWidth - threshold) {
         renderMore();
       }
     });
@@ -502,43 +532,8 @@
         map.scrollWheelZoom.enable();
         map.setView(marker.getLatLng(), Math.max(map.getZoom(), 13), { animate: true });
         marker.openPopup();
-        if (window.innerWidth <= 768) {
-          switchView('map');
-        } else if (window.innerWidth <= 900) {
-          document.getElementById('map').scrollIntoView({ behavior: 'smooth' });
-        }
       }
     });
-
-    // Mobile view toggle
-    if (el.viewToggle) {
-      el.viewToggle.addEventListener('click', function (e) {
-        var btn = e.target.closest('[data-view]');
-        if (!btn) return;
-        switchView(btn.getAttribute('data-view'));
-      });
-    }
-  }
-
-  function switchView(view) {
-    var isMobile = window.innerWidth <= 768;
-    if (!isMobile) return;
-
-    var mapBtn = document.querySelector('[data-view="map"]');
-    var listBtn = document.querySelector('[data-view="list"]');
-
-    if (view === 'map') {
-      el.mapCol.classList.remove('hidden');
-      el.resultsCol.classList.add('hidden');
-      if (mapBtn) mapBtn.classList.add('active');
-      if (listBtn) listBtn.classList.remove('active');
-      setTimeout(function () { map.invalidateSize(); }, 100);
-    } else {
-      el.mapCol.classList.add('hidden');
-      el.resultsCol.classList.remove('hidden');
-      if (mapBtn) mapBtn.classList.remove('active');
-      if (listBtn) listBtn.classList.add('active');
-    }
   }
 
   function populateStates() {
@@ -560,17 +555,6 @@
   }
 
   // ---------- init ----------
-  function initViewToggle() {
-    var isMobile = window.innerWidth <= 768;
-    if (isMobile) {
-      el.mapCol.classList.add('hidden');
-      el.resultsCol.classList.remove('hidden');
-      var mapBtn = document.querySelector('[data-view="map"]');
-      var listBtn = document.querySelector('[data-view="list"]');
-      if (mapBtn) mapBtn.classList.remove('active');
-      if (listBtn) listBtn.classList.add('active');
-    }
-  }
 
   var KEYWORD_LABELS = {
     'apple-picking': 'Apple Picking',
@@ -611,7 +595,7 @@
     var label = KEYWORD_LABELS[defaultFilter] || defaultFilter;
     var href = KEYWORD_HREFS[defaultFilter] || '/find';
 
-    var h2 = document.querySelector('.results-head h2');
+    var h2 = document.querySelector('.find-strip-head h2') || document.querySelector('.results-head h2');
     var crumbText = h2 ? h2.textContent : null;
 
     var nav = document.createElement('nav');
@@ -633,8 +617,10 @@
 
     nav.innerHTML = inner;
 
+    var titlebar = document.querySelector('.find-titlebar .container');
     var hero = document.querySelector('.hero .container');
-    if (hero) hero.insertAdjacentElement('afterend', nav);
+    if (titlebar) titlebar.appendChild(nav);
+    else if (hero) hero.insertAdjacentElement('afterend', nav);
     else {
       var controls = document.getElementById('find');
       if (controls) controls.insertAdjacentElement('beforebegin', nav);
@@ -678,11 +664,10 @@
 
   injectBreadcrumb();
   initMap();
+  initLayersToggle();
   bindEvents();
   applyPageDefaultFilter();
-  initViewToggle();
   initBackToTop();
-  window.addEventListener('resize', initViewToggle);
 
   fetch('/data/listings.json')
     .then(function (r) {

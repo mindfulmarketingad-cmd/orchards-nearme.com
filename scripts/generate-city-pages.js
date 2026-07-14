@@ -1279,19 +1279,18 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel, imageIn
     </div>
   </header>
 
-  <main>
-    <section class="hero${image ? ' hero--with-image' : ''}">
+  <main class="find-page-full">
+    <section class="find-titlebar">
       <div class="container">
-        <div class="hero-text">
-          <h1>${h1}</h1>
-          <p>Discover ${fruitLabel.toLowerCase()} orchards near ${city}, ${state}. Search by ZIP code to find the closest orchard, check ratings, and read real visitor reviews before you go.</p>
-        </div>
-        ${image ? `<img class="find-hero-image" src="/images/${imageDir}/${image.file}" alt="${imageAlt}" width="420" height="260" loading="eager" />` : ''}
+        <h1>${h1}</h1>
+        <p>Discover ${fruitLabel.toLowerCase()} orchards near ${city}, ${state}. Search by ZIP code to find the closest orchard, check ratings, and read real visitor reviews before you go.</p>
       </div>
     </section>
 
-    <section class="controls" id="find">
-      <div class="container">
+    <div class="find-stage">
+      <div id="map" role="application" aria-label="Map of ${fruitLabel.toLowerCase()} orchards near ${city}, ${state}"></div>
+
+      <div class="find-topbar">
         <form class="search-form" id="searchForm">
           <input type="text" id="zipInput" inputmode="numeric" placeholder="Enter your ZIP code (e.g. 05346)" aria-label="Search by ZIP code" />
           <button type="submit" class="btn">Search</button>
@@ -1309,29 +1308,23 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel, imageIn
           <option value="all">All states</option>
         </select>
       </div>
-    </section>
 
-    <div class="container">
-      <div class="view-toggle" id="viewToggle">
-        <button class="active" data-view="map">Map</button>
-        <button data-view="list">List</button>
+      <button type="button" class="find-layers-btn" id="layersToggle" aria-pressed="false">
+        <span aria-hidden="true">🛰️</span> Satellite
+      </button>
+
+      <div class="find-legend-float" aria-label="Map key">
+        <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
+        <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
+        <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
       </div>
-      <div class="find-layout">
-        <div class="results-col">
-          <div class="results-head">
-            <h2>${resultsHeading}</h2>
-            <span class="results-count" id="resultsCount">Loading...</span>
-          </div>
-          <div class="cards" id="cards"></div>
+
+      <div class="find-strip">
+        <div class="find-strip-head">
+          <h2>${resultsHeading}</h2>
+          <span class="results-count" id="resultsCount">Loading...</span>
         </div>
-        <div class="map-col">
-          <div id="map" role="application" aria-label="Map of ${fruitLabel.toLowerCase()} orchards near ${city}, ${state}"></div>
-          <div class="map-legend" aria-label="Map key">
-            <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
-            <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
-            <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
-          </div>
-        </div>
+        <div class="cards cards-horizontal" id="cards"></div>
       </div>
     </div>
 
@@ -1921,19 +1914,18 @@ ${otherStatePages}
     </div>
   </header>
 
-  <main>
-    <section class="hero hero--with-image">
+  <main class="find-page-full">
+    <section class="find-titlebar">
       <div class="container">
-        <div class="hero-text">
-          <h1>${h1}</h1>
-          <p>Discover ${config.label.toLowerCase()} across ${state}. Search by ZIP code to find the closest one, check ratings, and read real visitor reviews before you go.</p>
-        </div>
-        <img class="find-hero-image" src="/images/${image.dir}/${image.file}" alt="${imageAlt}" width="420" height="260" loading="eager" />
+        <h1>${h1}</h1>
+        <p>Discover ${config.label.toLowerCase()} across ${state}. Search by ZIP code to find the closest one, check ratings, and read real visitor reviews before you go.</p>
       </div>
     </section>
 
-    <section class="controls" id="find">
-      <div class="container">
+    <div class="find-stage">
+      <div id="map" role="application" aria-label="Map of ${config.label.toLowerCase()} in ${state}"></div>
+
+      <div class="find-topbar">
         <form class="search-form" id="searchForm">
           <input type="text" id="zipInput" inputmode="numeric" placeholder="Enter your ZIP code (e.g. 05346)" aria-label="Search by ZIP code" />
           <button type="submit" class="btn">Search</button>
@@ -1951,29 +1943,23 @@ ${otherStatePages}
           <option value="all">All states</option>
         </select>
       </div>
-    </section>
 
-    <div class="container">
-      <div class="view-toggle" id="viewToggle">
-        <button class="active" data-view="map">Map</button>
-        <button data-view="list">List</button>
+      <button type="button" class="find-layers-btn" id="layersToggle" aria-pressed="false">
+        <span aria-hidden="true">🛰️</span> Satellite
+      </button>
+
+      <div class="find-legend-float" aria-label="Map key">
+        <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
+        <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
+        <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
       </div>
-      <div class="find-layout">
-        <div class="results-col">
-          <div class="results-head">
-            <h2>${resultsHeading}</h2>
-            <span class="results-count" id="resultsCount">Loading...</span>
-          </div>
-          <div class="cards" id="cards"></div>
+
+      <div class="find-strip">
+        <div class="find-strip-head">
+          <h2>${resultsHeading}</h2>
+          <span class="results-count" id="resultsCount">Loading...</span>
         </div>
-        <div class="map-col">
-          <div id="map" role="application" aria-label="Map of ${config.label.toLowerCase()} in ${state}"></div>
-          <div class="map-legend" aria-label="Map key">
-            <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
-            <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
-            <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
-          </div>
-        </div>
+        <div class="cards cards-horizontal" id="cards"></div>
       </div>
     </div>
 
@@ -2184,19 +2170,18 @@ function generateHayridesPage({ city, state, code, imageIndex }) {
     </div>
   </header>
 
-  <main>
-    <section class="hero hero--with-image">
+  <main class="find-page-full">
+    <section class="find-titlebar">
       <div class="container">
-        <div class="hero-text">
-          <h1>${h1}</h1>
-          <p>Discover farms offering hayrides near ${city}, ${state}. Search by ZIP code to find the closest one, check ratings, and read real visitor reviews before you go.</p>
-        </div>
-        <img class="find-hero-image" src="/images/find/${image.file}" alt="${imageAlt}" width="420" height="260" loading="eager" />
+        <h1>${h1}</h1>
+        <p>Discover farms offering hayrides near ${city}, ${state}. Search by ZIP code to find the closest one, check ratings, and read real visitor reviews before you go.</p>
       </div>
     </section>
 
-    <section class="controls" id="find">
-      <div class="container">
+    <div class="find-stage">
+      <div id="map" role="application" aria-label="Map of hayride providers near ${city}, ${state}"></div>
+
+      <div class="find-topbar">
         <form class="search-form" id="searchForm">
           <input type="text" id="zipInput" inputmode="numeric" placeholder="Enter your ZIP code (e.g. 05346)" aria-label="Search by ZIP code" />
           <button type="submit" class="btn">Search</button>
@@ -2214,29 +2199,23 @@ function generateHayridesPage({ city, state, code, imageIndex }) {
           <option value="all">All states</option>
         </select>
       </div>
-    </section>
 
-    <div class="container">
-      <div class="view-toggle" id="viewToggle">
-        <button class="active" data-view="map">Map</button>
-        <button data-view="list">List</button>
+      <button type="button" class="find-layers-btn" id="layersToggle" aria-pressed="false">
+        <span aria-hidden="true">🛰️</span> Satellite
+      </button>
+
+      <div class="find-legend-float" aria-label="Map key">
+        <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
+        <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
+        <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
       </div>
-      <div class="find-layout">
-        <div class="results-col">
-          <div class="results-head">
-            <h2>${resultsHeading}</h2>
-            <span class="results-count" id="resultsCount">Loading...</span>
-          </div>
-          <div class="cards" id="cards"></div>
+
+      <div class="find-strip">
+        <div class="find-strip-head">
+          <h2>${resultsHeading}</h2>
+          <span class="results-count" id="resultsCount">Loading...</span>
         </div>
-        <div class="map-col">
-          <div id="map" role="application" aria-label="Map of hayride providers near ${city}, ${state}"></div>
-          <div class="map-legend" aria-label="Map key">
-            <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
-            <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
-            <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
-          </div>
-        </div>
+        <div class="cards cards-horizontal" id="cards"></div>
       </div>
     </div>
 
@@ -2434,19 +2413,18 @@ function generateUPickFarmsPage({ city, state, code, imageIndex }) {
     </div>
   </header>
 
-  <main>
-    <section class="hero hero--with-image">
+  <main class="find-page-full">
+    <section class="find-titlebar">
       <div class="container">
-        <div class="hero-text">
-          <h1>${h1}</h1>
-          <p>Discover u-pick farms and orchards near ${city}, ${state}. Search by ZIP code to find the closest one, check ratings, and read real visitor reviews before you go.</p>
-        </div>
-        <img class="find-hero-image" src="/images/${image.dir}/${image.file}" alt="${imageAlt}" width="420" height="260" loading="eager" />
+        <h1>${h1}</h1>
+        <p>Discover u-pick farms and orchards near ${city}, ${state}. Search by ZIP code to find the closest one, check ratings, and read real visitor reviews before you go.</p>
       </div>
     </section>
 
-    <section class="controls" id="find">
-      <div class="container">
+    <div class="find-stage">
+      <div id="map" role="application" aria-label="Map of u-pick farms near ${city}, ${state}"></div>
+
+      <div class="find-topbar">
         <form class="search-form" id="searchForm">
           <input type="text" id="zipInput" inputmode="numeric" placeholder="Enter your ZIP code (e.g. 05346)" aria-label="Search by ZIP code" />
           <button type="submit" class="btn">Search</button>
@@ -2464,29 +2442,23 @@ function generateUPickFarmsPage({ city, state, code, imageIndex }) {
           <option value="all">All states</option>
         </select>
       </div>
-    </section>
 
-    <div class="container">
-      <div class="view-toggle" id="viewToggle">
-        <button class="active" data-view="map">Map</button>
-        <button data-view="list">List</button>
+      <button type="button" class="find-layers-btn" id="layersToggle" aria-pressed="false">
+        <span aria-hidden="true">🛰️</span> Satellite
+      </button>
+
+      <div class="find-legend-float" aria-label="Map key">
+        <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
+        <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
+        <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
       </div>
-      <div class="find-layout">
-        <div class="results-col">
-          <div class="results-head">
-            <h2>${resultsHeading}</h2>
-            <span class="results-count" id="resultsCount">Loading...</span>
-          </div>
-          <div class="cards" id="cards"></div>
+
+      <div class="find-strip">
+        <div class="find-strip-head">
+          <h2>${resultsHeading}</h2>
+          <span class="results-count" id="resultsCount">Loading...</span>
         </div>
-        <div class="map-col">
-          <div id="map" role="application" aria-label="Map of u-pick farms near ${city}, ${state}"></div>
-          <div class="map-legend" aria-label="Map key">
-            <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
-            <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
-            <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
-          </div>
-        </div>
+        <div class="cards cards-horizontal" id="cards"></div>
       </div>
     </div>
 
@@ -2622,19 +2594,18 @@ function generatePatchPage({ city, state, code, patchSlug, patchLabel, imageSrc,
     </div>
   </header>
 
-  <main>
-    <section class="hero hero--with-image">
+  <main class="find-page-full">
+    <section class="find-titlebar">
       <div class="container">
-        <div class="hero-text">
-          <h1>${h1}</h1>
-          <p>Discover a ${patchLabel.toLowerCase()} near ${city}, ${state}. Search by ZIP code to find the closest farm, check ratings, and read real visitor reviews before you go.</p>
-        </div>
-        <img class="find-hero-image" src="${imageSrc}" alt="${imageAlt}" width="420" height="260" loading="eager" />
+        <h1>${h1}</h1>
+        <p>Discover a ${patchLabel.toLowerCase()} near ${city}, ${state}. Search by ZIP code to find the closest farm, check ratings, and read real visitor reviews before you go.</p>
       </div>
     </section>
 
-    <section class="controls" id="find">
-      <div class="container">
+    <div class="find-stage">
+      <div id="map" role="application" aria-label="Map of ${patchLabel.toLowerCase()}s near ${city}, ${state}"></div>
+
+      <div class="find-topbar">
         <form class="search-form" id="searchForm">
           <input type="text" id="zipInput" inputmode="numeric" placeholder="Enter your ZIP code (e.g. 05346)" aria-label="Search by ZIP code" />
           <button type="submit" class="btn">Search</button>
@@ -2652,29 +2623,23 @@ function generatePatchPage({ city, state, code, patchSlug, patchLabel, imageSrc,
           <option value="all">All states</option>
         </select>
       </div>
-    </section>
 
-    <div class="container">
-      <div class="view-toggle" id="viewToggle">
-        <button class="active" data-view="map">Map</button>
-        <button data-view="list">List</button>
+      <button type="button" class="find-layers-btn" id="layersToggle" aria-pressed="false">
+        <span aria-hidden="true">🛰️</span> Satellite
+      </button>
+
+      <div class="find-legend-float" aria-label="Map key">
+        <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
+        <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
+        <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
       </div>
-      <div class="find-layout">
-        <div class="results-col">
-          <div class="results-head">
-            <h2>${resultsHeading}</h2>
-            <span class="results-count" id="resultsCount">Loading...</span>
-          </div>
-          <div class="cards" id="cards"></div>
+
+      <div class="find-strip">
+        <div class="find-strip-head">
+          <h2>${resultsHeading}</h2>
+          <span class="results-count" id="resultsCount">Loading...</span>
         </div>
-        <div class="map-col">
-          <div id="map" role="application" aria-label="Map of ${patchLabel.toLowerCase()}s near ${city}, ${state}"></div>
-          <div class="map-legend" aria-label="Map key">
-            <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
-            <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
-            <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
-          </div>
-        </div>
+        <div class="cards cards-horizontal" id="cards"></div>
       </div>
     </div>
 
@@ -2811,19 +2776,18 @@ function generateGardenCenterPage({ city, state, code }) {
     </div>
   </header>
 
-  <main>
-    <section class="hero hero--with-image">
+  <main class="find-page-full">
+    <section class="find-titlebar">
       <div class="container">
-        <div class="hero-text">
-          <h1>${h1}</h1>
-          <p>Discover garden centers near ${city}, ${state}. Search by ZIP code to find the closest nursery, check ratings, and read real visitor reviews before you go.</p>
-        </div>
-        <img class="find-hero-image" src="/images/${image.dir}/${image.file}" alt="${imageAlt}" width="420" height="260" loading="eager" />
+        <h1>${h1}</h1>
+        <p>Discover garden centers near ${city}, ${state}. Search by ZIP code to find the closest nursery, check ratings, and read real visitor reviews before you go.</p>
       </div>
     </section>
 
-    <section class="controls" id="find">
-      <div class="container">
+    <div class="find-stage">
+      <div id="map" role="application" aria-label="Map of garden centers near ${city}, ${state}"></div>
+
+      <div class="find-topbar">
         <form class="search-form" id="searchForm">
           <input type="text" id="zipInput" inputmode="numeric" placeholder="Enter your ZIP code (e.g. 05346)" aria-label="Search by ZIP code" />
           <button type="submit" class="btn">Search</button>
@@ -2841,29 +2805,23 @@ function generateGardenCenterPage({ city, state, code }) {
           <option value="all">All states</option>
         </select>
       </div>
-    </section>
 
-    <div class="container">
-      <div class="view-toggle" id="viewToggle">
-        <button class="active" data-view="map">Map</button>
-        <button data-view="list">List</button>
+      <button type="button" class="find-layers-btn" id="layersToggle" aria-pressed="false">
+        <span aria-hidden="true">🛰️</span> Satellite
+      </button>
+
+      <div class="find-legend-float" aria-label="Map key">
+        <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
+        <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
+        <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
       </div>
-      <div class="find-layout">
-        <div class="results-col">
-          <div class="results-head">
-            <h2>${resultsHeading}</h2>
-            <span class="results-count" id="resultsCount">Loading...</span>
-          </div>
-          <div class="cards" id="cards"></div>
+
+      <div class="find-strip">
+        <div class="find-strip-head">
+          <h2>${resultsHeading}</h2>
+          <span class="results-count" id="resultsCount">Loading...</span>
         </div>
-        <div class="map-col">
-          <div id="map" role="application" aria-label="Map of garden centers near ${city}, ${state}"></div>
-          <div class="map-legend" aria-label="Map key">
-            <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
-            <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
-            <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
-          </div>
-        </div>
+        <div class="cards cards-horizontal" id="cards"></div>
       </div>
     </div>
 

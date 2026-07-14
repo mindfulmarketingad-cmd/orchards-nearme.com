@@ -44,25 +44,23 @@
         <a href="/">Home</a>
         <a href="/about.html">About</a>
         <a href="/blog">Blog</a>
-        <a href="/fruits">Fruits</a>
         <a href="/find" class="cta">Find</a>
       </nav>
     </div>
   </header>
 
-  <main>
-    <section class="hero hero--with-image">
+  <main class="find-page-full">
+    <section class="find-titlebar">
       <div class="container">
-        <div class="hero-text">
-          <h1>All Garden Centers in Pennsylvania - 20 Locations</h1>
-          <p>Discover garden centers across Pennsylvania. Search by ZIP code to find the closest one, check ratings, and read real visitor reviews before you go.</p>
-        </div>
-        <img class="find-hero-image" src="/images/find/garden-center-flower-tables.jpg" alt="Tables of colorful flowering plants at a garden center in Pennsylvania" width="420" height="260" loading="eager" />
+        <h1>All Garden Centers in Pennsylvania - 20 Locations</h1>
+        <p>Discover garden centers across Pennsylvania. Search by ZIP code to find the closest one, check ratings, and read real visitor reviews before you go.</p>
       </div>
     </section>
 
-    <section class="controls" id="find">
-      <div class="container">
+    <div class="find-stage">
+      <div id="map" role="application" aria-label="Map of garden centers in Pennsylvania"></div>
+
+      <div class="find-topbar">
         <form class="search-form" id="searchForm">
           <input type="text" id="zipInput" inputmode="numeric" placeholder="Enter your ZIP code (e.g. 05346)" aria-label="Search by ZIP code" />
           <button type="submit" class="btn">Search</button>
@@ -83,29 +81,23 @@
           <option value="all">All states</option>
         </select>
       </div>
-    </section>
 
-    <div class="container">
-      <div class="view-toggle" id="viewToggle">
-        <button class="active" data-view="map">Map</button>
-        <button data-view="list">List</button>
+      <button type="button" class="find-layers-btn" id="layersToggle" aria-pressed="false">
+        <span aria-hidden="true">🛰️</span> Satellite
+      </button>
+
+      <div class="find-legend-float" aria-label="Map key">
+        <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
+        <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
+        <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
       </div>
-      <div class="find-layout">
-        <div class="results-col">
-          <div class="results-head">
-            <h2>All Garden Centers in Pennsylvania</h2>
-            <span class="results-count" id="resultsCount">Loading...</span>
-          </div>
-          <div class="cards" id="cards"></div>
+
+      <div class="find-strip">
+        <div class="find-strip-head">
+          <h2>All Garden Centers in Pennsylvania</h2>
+          <span class="results-count" id="resultsCount">Loading...</span>
         </div>
-        <div class="map-col">
-          <div id="map" role="application" aria-label="Map of garden centers in Pennsylvania"></div>
-          <div class="map-legend" aria-label="Map key">
-            <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
-            <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
-            <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
-          </div>
-        </div>
+        <div class="cards cards-horizontal" id="cards"></div>
       </div>
     </div>
 
