@@ -1421,6 +1421,223 @@ select:focus-visible {
   color: var(--green);
 }
 
+/* ---------- Claim listing page ---------- */
+.claim-hero {
+  background: linear-gradient(160deg, var(--green) 0%, var(--green-dark) 100%);
+  color: var(--white);
+  padding: 56px 0 48px;
+  text-align: center;
+}
+
+.claim-hero h1 {
+  color: var(--white);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin: 0 0 14px;
+}
+
+.claim-hero p {
+  margin: 0 auto;
+  max-width: 640px;
+  font-size: 1.15rem;
+  opacity: 0.95;
+  line-height: 1.6;
+}
+
+.claim-hero-trial {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  padding: 8px 20px;
+  margin: 26px 0 22px;
+  font-weight: 800;
+  font-size: 0.98rem;
+}
+
+.claim-hero .btn {
+  font-size: 1.05rem;
+  padding: 16px 34px;
+}
+
+.claim-hero-note {
+  margin-top: 14px !important;
+  font-size: 0.88rem !important;
+  opacity: 0.8;
+}
+
+.claim-section {
+  padding: 52px 0;
+}
+
+.claim-section h2 {
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  color: var(--green-dark);
+  text-align: center;
+  margin: 0 0 10px;
+}
+
+.claim-section-lead {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 36px;
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.6;
+}
+
+.claim-benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 22px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.claim-benefit-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--green);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.claim-benefit-icon {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+}
+
+.claim-benefit-card h3 {
+  font-size: 1.1rem;
+  color: var(--green-dark);
+  margin: 0 0 10px;
+}
+
+.claim-benefit-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text);
+  margin: 0;
+}
+
+.claim-pricing-wrap {
+  background: #f7faf7;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.claim-pricing-card {
+  max-width: 440px;
+  margin: 0 auto;
+  background: #fff;
+  border: 2px solid var(--green);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 36px 32px;
+  text-align: center;
+}
+
+.claim-pricing-badge {
+  display: inline-block;
+  background: var(--green-light);
+  color: var(--green-dark);
+  font-weight: 800;
+  font-size: 0.82rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 999px;
+  margin-bottom: 18px;
+}
+
+.claim-price {
+  font-family: 'Baloo 2', sans-serif;
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--green-dark);
+  line-height: 1;
+}
+
+.claim-price-period {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.claim-price-trial {
+  font-size: 1rem;
+  color: var(--text);
+  margin: 14px 0 24px;
+}
+
+.claim-pricing-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  text-align: left;
+}
+
+.claim-pricing-list li {
+  padding: 8px 0 8px 28px;
+  position: relative;
+  font-size: 0.97rem;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+}
+
+.claim-pricing-list li:last-child {
+  border-bottom: none;
+}
+
+.claim-pricing-list li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  color: var(--green);
+  font-weight: 800;
+}
+
+.claim-pricing-card .btn {
+  width: 100%;
+  font-size: 1.05rem;
+  padding: 15px 0;
+}
+
+.claim-pricing-fine {
+  margin-top: 16px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.claim-cta-band {
+  background: linear-gradient(160deg, var(--green) 0%, var(--green-dark) 100%);
+  color: var(--white);
+  text-align: center;
+  padding: 48px 0;
+}
+
+.claim-cta-band h2 {
+  color: var(--white);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  margin: 0 0 12px;
+}
+
+.claim-cta-band p {
+  margin: 0 auto 24px;
+  max-width: 560px;
+  opacity: 0.95;
+}
+
+@media (max-width: 600px) {
+  .claim-pricing-card {
+    padding: 28px 22px;
+  }
+}
+
 /* ---------- Blog ---------- */
 .breadcrumb {
   font-size: 0.88rem;

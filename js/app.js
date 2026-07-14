@@ -6,7 +6,7 @@
   'use strict';
 
   var PAGE_SIZE = 24;
-  var CLAIM_LISTING_URL = 'https://buy.stripe.com/28E4gAfuG58I9UG9pIfrW04';
+  var CLAIM_LISTING_URL = '/claim.html';
 
   // Fruit icons (tiny SVGs for markers)
   var iconSvgs = {
@@ -191,7 +191,7 @@
     var site = item.website
       ? '<a href="' + escapeHtml(item.website) + '" target="_blank" rel="noopener nofollow">Visit website</a>'
       : '';
-    var claim = '<a class="card-claim" href="' + CLAIM_LISTING_URL + '" target="_blank" rel="noopener">Claim listing</a>';
+    var claim = '<a class="card-claim" href="' + CLAIM_LISTING_URL + '">Own This Business?</a>';
     return (
       '<div class="map-popup">' +
       '<h4>' + escapeHtml(item.name) + '</h4>' +
@@ -299,7 +299,7 @@
       ? '<a href="' + escapeHtml(item.website) + '" target="_blank" rel="noopener nofollow">Website</a>'
       : '';
     var claimListing =
-      '<a class="card-claim" href="' + CLAIM_LISTING_URL + '" target="_blank" rel="noopener">Claim your listing</a>';
+      '<a class="card-claim" href="' + CLAIM_LISTING_URL + '">Own This Business?</a>';
 
     return (
       '<article class="card" data-id="' + escapeHtml(item.id) + '">' +
