@@ -22,6 +22,8 @@ const KEYWORD_MATCHERS = {
   'berry-picking': (item, text) => text.includes('berry') || text.includes('berries') || text.includes('strawberr') || text.includes('blueberr') || text.includes('raspberr') || text.includes('blackberr'),
   'peach-picking': (item, text) => text.includes('peach'),
   'blueberry-picking': (item, text) => text.includes('blueberr'),
+  'strawberry-patch': (item, text) => text.includes('strawberr'),
+  'pumpkin-patch': (item, text) => text.includes('pumpkin'),
 };
 
 function computeCategoryStateCounts() {
@@ -109,6 +111,8 @@ const allCategories = [
   { slug: 'peach-picking', label: 'Peach Picking', urlPrefix: 'peach-picking-orchards-near-', nearMeUrl: '/find/peach-picking-orchards-near-me', nearMeLabel: 'Peach Picking Orchards Near Me' },
   { slug: 'blueberry-picking', label: 'Blueberry Picking', urlPrefix: 'blueberry-picking-orchards-near-', nearMeUrl: '/find/blueberry-picking-orchards-near-me', nearMeLabel: 'Blueberry Picking Orchards Near Me' },
   { slug: 'garden-centers', label: 'Garden Centers', urlPrefix: 'garden-centers-near-', nearMeUrl: '/find/garden-centers-near-me', nearMeLabel: 'Garden Centers Near Me' },
+  { slug: 'strawberry-patch', label: 'Strawberry Patch', urlPrefix: 'strawberry-patch-near-', nearMeUrl: '/find/strawberry-patch-near-me', nearMeLabel: 'Strawberry Patches Near Me' },
+  { slug: 'pumpkin-patch', label: 'Pumpkin Patch', urlPrefix: 'pumpkin-patch-near-', nearMeUrl: '/find/pumpkin-patch-near-me', nearMeLabel: 'Pumpkin Patches Near Me' },
 ];
 
 function relatedLinksHtml(currentSlug, citySlug, stateSlug, city, state) {
@@ -1147,6 +1151,16 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3CMJFS74HE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-3CMJFS74HE');
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${titleTag}</title>
@@ -1267,6 +1281,7 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
         <li><a href="/about.html">About</a></li>
         <li><a href="/blog">Blog</a></li>
         <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/claim.html">Claim Your Listing</a></li>
         <li><a href="/disclaimer.html">Disclaimer</a></li>
         <li><a href="/privacy.html">Privacy</a></li>
         <li><a href="/terms.html">Terms</a></li>
@@ -1481,6 +1496,321 @@ const gardenCenterSeason = {
   Wyoming: 'A short growing season around Cheyenne shaped by high-plains wind and a narrow frost-free window each summer.',
 };
 
+// ---------- Strawberry patch / pumpkin patch content ----------
+
+const regionLabels = {
+  'new-england': 'New England',
+  'mid-atlantic': 'the Mid-Atlantic',
+  southeast: 'the Southeast',
+  midwest: 'the Midwest',
+  mountain: 'the Mountain West',
+  'south-central': 'Texas, Oklahoma, and Louisiana',
+  pacific: 'the Pacific Coast',
+  southwest: 'Arizona and Hawaii',
+};
+
+const strawberryPatchRegion = {
+  'new-england': {
+    h2: 'Strawberry Patches Across New England',
+    body: `New England's strawberry season is short, intense, and beloved—typically running from early June through early July across Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, and Vermont before the summer heat pushes plants past their prime. Local u-pick farms tend to open and close within just a few weeks, so it pays to call ahead or check a farm's social media before making the trip.`,
+  },
+  'mid-atlantic': {
+    h2: 'Mid-Atlantic Strawberry Patches',
+    body: `The mid-Atlantic's strawberry season runs from mid-May into June across New Jersey, Pennsylvania, Delaware, Maryland, Virginia, and West Virginia, aided by the region's sandy coastal-plain soils that many growers favor for berries. New Jersey in particular has a long commercial strawberry-growing tradition that supports plenty of u-pick options each spring.`,
+  },
+  southeast: {
+    h2: 'Southeastern Strawberry Patches',
+    body: `The Southeast enjoys one of the earliest strawberry seasons in the country, often starting in March and running through May across Georgia, Alabama, Mississippi, Tennessee, Florida, North Carolina, South Carolina, Arkansas, Kentucky, and Louisiana. Florida's central growing region is especially known for winter and early-spring berries, while the rest of the region follows a few weeks behind.`,
+  },
+  midwest: {
+    h2: 'Midwest Strawberry Patches',
+    body: `Midwest strawberry patches have a compact June season across Illinois, Indiana, Iowa, Kansas, Michigan, Minnesota, Missouri, Nebraska, Ohio, North Dakota, South Dakota, and Wisconsin, squeezed between the last spring frost and the region's hot midsummer stretch. Because the window is so short, popular farms can sell out of picking slots on weekends, so weekday visits are worth considering.`,
+  },
+  mountain: {
+    h2: 'Mountain West Strawberry Patches',
+    body: `High altitude and cool nights give Mountain West strawberry patches a later, shorter season—typically late June into July—across Colorado, Idaho, Montana, Nevada, New Mexico, Utah, and Wyoming. The region's intense daytime sun combined with cold nights actually concentrates sugars in the berries, and local growers are often happy to talk about their high-altitude growing techniques.`,
+  },
+  'south-central': {
+    h2: 'Strawberry Patches in Texas, Oklahoma, and Louisiana',
+    body: `Texas and Louisiana see some of the earliest strawberries in the country, with picking often starting in March and wrapping up by May before summer heat takes over, while Oklahoma's season runs a few weeks later. Louisiana in particular has a long-standing strawberry tradition, especially around its southeastern parishes, with festivals built around the spring harvest.`,
+  },
+  pacific: {
+    h2: 'Pacific Coast Strawberry Patches',
+    body: `California grows more strawberries than any other state in the country, and its mild coastal climate supports an extended season that can run from spring well into fall in some areas, while Oregon and Washington have a shorter, more traditional June-into-July window. Alaska's limited but genuine strawberry patches take advantage of the state's long summer daylight hours for a brief midsummer season.`,
+  },
+  southwest: {
+    h2: 'Strawberry Patches in Arizona and Hawaii',
+    body: `Arizona's desert strawberry patches favor the cooler months, with picking typically running from winter into early spring before summer heat arrives, a very different rhythm from most of the country. Hawaii's tropical climate supports strawberry growing nearly year-round, though local patches tend to be smaller and less common than in mainland states.`,
+  },
+};
+
+const strawberryPatchSeason = {
+  'new-england': 'Late spring into early summer, typically a tight window from early June through early July before the season wraps up quickly.',
+  'mid-atlantic': 'Mid-spring into early summer, generally mid-May through June in the region\'s sandy coastal-plain soils.',
+  southeast: 'One of the earliest seasons in the country, generally running from March through May depending on how far south you are.',
+  midwest: 'A short, intense June window between the last spring frost and the region\'s midsummer heat.',
+  mountain: 'A later, shorter season shaped by altitude, typically running from late June into July.',
+  'south-central': 'An early season, generally March through May in Texas and Louisiana, with Oklahoma running a few weeks behind.',
+  pacific: 'California\'s mild coastal climate supports a long season into fall, while Oregon and Washington see a shorter June-into-July window.',
+  southwest: 'Arizona favors winter into early spring picking, while Hawaii\'s tropical climate supports growing nearly year-round.',
+};
+
+const strawberryPatchTips = {
+  'new-england': 'Call ahead or check a farm\'s social media before visiting—New England\'s strawberry season is short and popular farms can pick out fast on weekends. Bring your own containers if the farm allows it, and arrive earlier in the day when berries are cooler and firmer.',
+  'mid-atlantic': 'Weekday mornings tend to be quieter than weekend afternoons at popular mid-Atlantic patches. Look low in the plant for fully red berries, since the reddest fruit is often hidden beneath the leaves rather than sitting on top.',
+  southeast: 'Since the Southeast\'s season starts earlier than almost anywhere else in the country, check with individual farms in late winter to confirm their opening date. Morning visits help you beat both the crowds and the heat later in the day.',
+  midwest: 'Midwest strawberry season moves fast, so don\'t wait too long to plan your visit once picking opens. Bring a wide, shallow container rather than a deep bucket to avoid crushing the berries at the bottom.',
+  mountain: 'Mountain patches often open later than you\'d expect given the altitude, so call ahead to confirm timing rather than assuming an early-June start. Sun protection matters even on a cool morning at elevation.',
+  'south-central': 'Louisiana and Texas patches move through their season quickly given the early heat, so plan a visit as soon as you hear picking has started. Many farms in the region pair picking with a small festival or market day worth checking for.',
+  pacific: 'California\'s long season means less urgency about timing than elsewhere, but coastal farms can still get busy on weekends. In Oregon and Washington, a rainy spring can shift the opening date, so a quick call ahead is worth it.',
+  southwest: 'Arizona\'s cooler-season picking means dressing warmer than you might expect for a desert visit. Hawaii patches are less common, so calling ahead to confirm hours is especially useful.',
+};
+
+const pumpkinPatchRegion = {
+  'new-england': {
+    h2: 'Pumpkin Patches Across New England',
+    body: `New England's pumpkin patches hit their stride in late September and October, often timed alongside the region's famous fall foliage, with hayrides, corn mazes, and cider offerings rounding out a visit to farms across Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, and Vermont. Weekends in mid-October tend to be the busiest, so a weekday trip usually means shorter lines.`,
+  },
+  'mid-atlantic': {
+    h2: 'Mid-Atlantic Pumpkin Patches',
+    body: `Pumpkin patches across New Jersey, Pennsylvania, Delaware, Maryland, Virginia, and West Virginia often share space with the region's well-known apple orchards each fall, letting visitors combine both in a single trip through late September and October. Pennsylvania and New Jersey in particular have deep agricultural traditions that support large, well-established patches with extensive fall activities.`,
+  },
+  southeast: {
+    h2: 'Southeastern Pumpkin Patches',
+    body: `Southeastern pumpkin patches across Georgia, Alabama, Mississippi, Tennessee, Florida, North Carolina, South Carolina, Arkansas, Kentucky, and Louisiana typically run from late September through October, with the region's milder fall weather extending comfortable picking conditions later into the season than farther north. Many farms in hotter, lower-lying areas bring in pumpkins from cooler-climate growers to supplement their own harvest.`,
+  },
+  midwest: {
+    h2: 'Midwest Pumpkin Patches',
+    body: `The Midwest is the heart of the country's pumpkin industry—Illinois alone grows more pumpkins than any other state—and patches across Indiana, Iowa, Kansas, Michigan, Minnesota, Missouri, Nebraska, Ohio, North Dakota, South Dakota, and Wisconsin turn the September-through-October season into a major regional tradition complete with corn mazes and harvest festivals.`,
+  },
+  mountain: {
+    h2: 'Mountain West Pumpkin Patches',
+    body: `Mountain West pumpkin patches across Colorado, Idaho, Montana, Nevada, New Mexico, Utah, and Wyoming run a slightly compressed season from mid-September into October, shaped by the region's earlier-arriving fall frosts at altitude. Cool, sunny days make for pleasant picking conditions even later in the season.`,
+  },
+  'south-central': {
+    h2: 'Pumpkin Patches in Texas, Oklahoma, and Louisiana',
+    body: `Texas, Oklahoma, and Louisiana pumpkin patches generally get going in late September once the worst of the summer heat has broken, running through October and into early November in the warmer parts of the region. Many patches double as full fall festivals with hayrides and corn mazes alongside the pumpkins themselves.`,
+  },
+  pacific: {
+    h2: 'Pacific Coast Pumpkin Patches',
+    body: `Oregon and Washington are known for large, well-developed pumpkin patches with elaborate corn mazes, typically running from late September through October in the Willamette Valley and around Puget Sound. California's mild climate supports a similar fall season, while Alaska's shorter, cooler autumn means an earlier and more compressed picking window.`,
+  },
+  southwest: {
+    h2: 'Pumpkin Patches in Arizona and Hawaii',
+    body: `Arizona pumpkin patches typically wait until October or even November to open, letting the desert's summer heat fully break before pumpkins and visitors alike can handle a day in the field. Hawaii's tropical climate makes traditional pumpkin patches uncommon, though some farms and markets still offer pumpkins and fall-themed activities around Halloween.`,
+  },
+};
+
+const pumpkinPatchSeason = {
+  'new-england': 'Late September through October, often timed alongside the region\'s peak fall foliage.',
+  'mid-atlantic': 'Late September through October, frequently paired with the region\'s apple harvest at the same farms.',
+  southeast: 'Late September through October, with the region\'s milder fall weather extending the season later than farther north.',
+  midwest: 'September through October, the heart of the country\'s pumpkin-growing season and a major regional tradition.',
+  mountain: 'Mid-September into October, slightly compressed by earlier-arriving fall frosts at altitude.',
+  'south-central': 'Late September through October, sometimes stretching into early November in the warmer parts of the region.',
+  pacific: 'Late September through October in Oregon and Washington, with Alaska\'s season arriving earlier and wrapping up sooner.',
+  southwest: 'October into November in Arizona, once summer heat has fully broken; less traditional and more limited in Hawaii.',
+};
+
+const pumpkinPatchTips = {
+  'new-england': 'Mid-October weekends are the busiest time at New England patches thanks to overlapping leaf-peeping traffic, so a weekday visit usually means shorter lines. Bring cash or check ahead, since some smaller farm stands don\'t take cards.',
+  'mid-atlantic': 'Many mid-Atlantic farms combine pumpkin picking with apple picking in the same visit, so check what else is in season before you go. Wagons or carts are often available for hauling larger pumpkins back to the car.',
+  southeast: 'Southeastern patches can stay comfortable well into October thanks to the region\'s milder fall weather, making it a good time for a relaxed weekday visit. Ask whether pumpkins are grown on-site or brought in, since many farms in hotter areas do both.',
+  midwest: 'Midwest patches get busy on fall weekends with school groups and families, so a weekday morning tends to be quieter. Many farms combine a pumpkin patch with a corn maze, so plan extra time if you want to do both.',
+  mountain: 'Layer up for cool mornings even in early fall at higher elevations. Patches here can sell out of larger pumpkins earlier than expected, so visiting midseason rather than waiting for late October is a safe bet.',
+  'south-central': 'Wait until late September or later for cooler, more comfortable picking conditions in Texas, Oklahoma, and Louisiana. Many patches double as full fall festivals, so check what activities are included before you go.',
+  pacific: 'Oregon and Washington patches with elaborate corn mazes can take a full afternoon, so plan accordingly if you want to see everything. California\'s milder climate means less time pressure if you\'d rather visit on a quieter weekday.',
+  southwest: 'Wait for October or November in Arizona rather than visiting during the tail end of summer heat. In Hawaii, call ahead since traditional pumpkin patches are far less common than on the mainland.',
+};
+
+// ---------- Strawberry patch / pumpkin patch page generator ----------
+
+function generatePatchPage({ city, state, code, patchSlug, patchLabel, imageSrc, imageAlt, regionData: regionMap, seasonData, tipsData }) {
+  const citySlug = slugify(city);
+  const stateSlug = slugify(state);
+  const urlSlug = `${patchSlug}-near-${citySlug}-${stateSlug}`;
+  const canonicalUrl = `https://orchards-nearme.com/find/${urlSlug}`;
+  const locationCount = CATEGORY_STATE_COUNTS[patchSlug][state] || 0;
+  const titleTag = `${patchLabel} Near ${city}, ${state} | ${locationCount} Locations`;
+  const h1 = `${patchLabel} Near ${city}, ${state} - ${locationCount} Locations`;
+  const desc = `There are ${locationCount} ${patchLabel.toLowerCase()} locations near ${city}, ${state}. Browse all u-pick farms and orchards on an interactive map. Search, filter and sort by ZIP code to find the closest location.`;
+  const resultsHeading = `${patchLabel} Near ${city}, ${code}`;
+  const relatedLinks = relatedLinksHtml(patchSlug, citySlug, stateSlug, city, state);
+
+  const capital = capitals.find(c => c.city === city);
+  const regionKey = capital ? capital.region : undefined;
+  const regionData = regionMap[regionKey];
+  const seasonText = seasonData[regionKey];
+  const tips = tipsData[regionKey];
+  const regionLabel = regionLabels[regionKey] || 'the region';
+
+  const intro = `${city} sits within ${regionLabel}, giving visitors easy access to ${patchLabel.toLowerCase()}s that reflect the area's growing conditions and picking calendar. Whether you're looking for a weekend outing with the family or a quick stop to stock up, the farms near ${city}, ${state} offer a genuine u-pick experience with real seasonal produce.`;
+
+  const seasonH2 = `Best Time to Visit a ${patchLabel} Near ${city}`;
+  const tipsH2 = `Tips for Your ${city} ${patchLabel} Visit`;
+  const mainH2 = `${patchLabel}s Near ${city}: What You Need to Know`;
+
+  const filterChips = `<button class="filter-chip" data-cat="all">All Listings</button>
+          <button class="filter-chip active" data-cat="${patchSlug}">${patchLabel}</button>
+          <button class="filter-chip" data-cat="Farm">Farms</button>
+          <button class="filter-chip" data-cat="Orchard">Orchards</button>`;
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3CMJFS74HE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-3CMJFS74HE');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${titleTag}</title>
+  <meta name="description" content="${desc}" />
+  <link rel="canonical" href="${canonicalUrl}" />
+  <meta property="og:title" content="${titleTag}" />
+  <meta property="og:description" content="Find a ${patchLabel.toLowerCase()} near ${city}, ${state} on an interactive map." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="${canonicalUrl}" />
+  <meta property="og:image" content="https://orchards-nearme.com${imageSrc}" />
+
+  <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/vendor/leaflet/leaflet.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9332749804326149" crossorigin="anonymous"></script>
+</head>
+<body>
+  <a class="skip-link" href="#find">Skip to map</a>
+  <button id="backToTop" class="back-to-top" type="button" tabindex="-1" aria-label="Back to top">&#8593;</button>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="/" aria-label="Orchards Near Me home">
+        <img src="/logo.svg" alt="" class="logo-icon" />
+        Orchards Near Me
+      </a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/blog">Blog</a>
+        <a href="/find" class="cta">Find</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero hero--with-image">
+      <div class="container">
+        <div class="hero-text">
+          <h1>${h1}</h1>
+          <p>Discover a ${patchLabel.toLowerCase()} near ${city}, ${state}. Search by ZIP code to find the closest farm, check ratings, and read real visitor reviews before you go.</p>
+        </div>
+        <img class="find-hero-image" src="${imageSrc}" alt="${imageAlt}" width="420" height="260" loading="eager" />
+      </div>
+    </section>
+
+    <section class="controls" id="find">
+      <div class="container">
+        <form class="search-form" id="searchForm">
+          <input type="text" id="zipInput" inputmode="numeric" placeholder="Enter your ZIP code (e.g. 05346)" aria-label="Search by ZIP code" />
+          <button type="submit" class="btn">Search</button>
+          <p id="zipError" hidden class="zip-error-msg" role="alert"></p>
+        </form>
+        <div class="filters-wrap">
+          <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
+            <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
+          </button>
+          <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="${patchSlug}" data-default-state="${state}">
+            ${filterChips}
+          </div>
+        </div>
+        <select class="state-select" id="stateSelect" aria-label="Filter by state">
+          <option value="all">All states</option>
+        </select>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="view-toggle" id="viewToggle">
+        <button class="active" data-view="map">Map</button>
+        <button data-view="list">List</button>
+      </div>
+      <div class="find-layout">
+        <div class="results-col">
+          <div class="results-head">
+            <h2>${resultsHeading}</h2>
+            <span class="results-count" id="resultsCount">Loading...</span>
+          </div>
+          <div class="cards" id="cards"></div>
+        </div>
+        <div class="map-col">
+          <div id="map" role="application" aria-label="Map of ${patchLabel.toLowerCase()}s near ${city}, ${state}"></div>
+          <div class="map-legend" aria-label="Map key">
+            <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
+            <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
+            <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="seo-content">
+      <div class="container">
+        <article class="seo-article">
+
+          <h2>${mainH2}</h2>
+          <p>${intro}</p>
+
+          <h2>${regionData.h2}</h2>
+          <p>${regionData.body}</p>
+
+          <h2>${seasonH2}</h2>
+          <p>${seasonText}</p>
+
+          <h2>${tipsH2}</h2>
+          <p>${tips}</p>
+
+        </article>
+      </div>
+    </section>
+
+    ${relatedLinks}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul class="footer-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/claim.html">Claim Your Listing</a></li>
+        <li><a href="/disclaimer.html">Disclaimer</a></li>
+        <li><a href="/privacy.html">Privacy</a></li>
+        <li><a href="/terms.html">Terms</a></li>
+        <li><a href="/sitemap.html">Sitemap</a></li>
+      </ul>
+      <div class="footer-bottom">
+        <p>Orchards Near Me &mdash; your friendly guide to orchards, farms, and garden centers across the USA. &copy; <span id="year"></span> orchards-nearme.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/vendor/leaflet/leaflet.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
+`;
+}
+
 // ---------- Garden center page generator ----------
 
 function generateGardenCenterPage({ city, state, code }) {
@@ -1514,6 +1844,16 @@ function generateGardenCenterPage({ city, state, code }) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3CMJFS74HE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-3CMJFS74HE');
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${titleTag}</title>
@@ -1634,6 +1974,7 @@ function generateGardenCenterPage({ city, state, code }) {
         <li><a href="/about.html">About</a></li>
         <li><a href="/blog">Blog</a></li>
         <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/claim.html">Claim Your Listing</a></li>
         <li><a href="/disclaimer.html">Disclaimer</a></li>
         <li><a href="/privacy.html">Privacy</a></li>
         <li><a href="/terms.html">Terms</a></li>
@@ -1689,6 +2030,41 @@ for (const cap of capitals) {
   const url = `https://orchards-nearme.com/find/garden-centers-near-${citySlug}-${stateSlug}`;
   allUrls.push(url);
   console.log('Generated:', filename);
+}
+
+const patches = [
+  {
+    patchSlug: 'strawberry-patch',
+    patchLabel: 'Strawberry Patch',
+    imageSrc: '/images/find/strawberry-field-rows.jpg',
+    imageAlt: 'Rows of strawberry plants in a u-pick strawberry patch',
+    regionData: strawberryPatchRegion,
+    seasonData: strawberryPatchSeason,
+    tipsData: strawberryPatchTips,
+  },
+  {
+    patchSlug: 'pumpkin-patch',
+    patchLabel: 'Pumpkin Patch',
+    imageSrc: '/images/find/pumpkin-patch-field.jpg',
+    imageAlt: 'Pumpkins growing in a fall pumpkin patch field',
+    regionData: pumpkinPatchRegion,
+    seasonData: pumpkinPatchSeason,
+    tipsData: pumpkinPatchTips,
+  },
+];
+
+for (const patch of patches) {
+  for (const cap of capitals) {
+    const citySlug = slugify(cap.city);
+    const stateSlug = slugify(cap.state);
+    const filename = `${patch.patchSlug}-near-${citySlug}-${stateSlug}.html`;
+    const filePath = path.join(findDir, filename);
+    const imageAlt = `${patch.imageAlt} near ${cap.city}, ${cap.state}`;
+    fs.writeFileSync(filePath, generatePatchPage({ ...cap, ...patch, imageAlt }), 'utf8');
+    const url = `https://orchards-nearme.com/find/${patch.patchSlug}-near-${citySlug}-${stateSlug}`;
+    allUrls.push(url);
+    console.log('Generated:', filename);
+  }
 }
 
 console.log(`\nDone. Generated ${allUrls.length} pages.`);

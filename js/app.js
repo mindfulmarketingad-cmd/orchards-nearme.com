@@ -29,7 +29,7 @@
     all: [],
     filtered: [],
     category: 'all',
-    keyword: null,   // 'apple-picking', 'cherry-picking', 'berry-picking', 'peach-picking', 'blueberry-picking', or null
+    keyword: null,   // 'apple-picking', 'cherry-picking', 'berry-picking', 'peach-picking', 'blueberry-picking', 'strawberry-patch', 'pumpkin-patch', or null
     stateFilter: 'all',
     origin: null,
     rendered: 0,
@@ -72,6 +72,18 @@
       label: 'Blueberry Picking',
       icon: '🫐',
       test: function (item, text) { return text.includes('blueberr'); }
+    },
+    {
+      slug: 'strawberry-patch',
+      label: 'Strawberry Patch',
+      icon: '🍓',
+      test: function (item, text) { return text.includes('strawberr'); }
+    },
+    {
+      slug: 'pumpkin-patch',
+      label: 'Pumpkin Patch',
+      icon: '🎃',
+      test: function (item, text) { return text.includes('pumpkin'); }
     }
   ];
 
@@ -428,7 +440,7 @@
       });
       btn.classList.add('active');
       var cat = btn.getAttribute('data-cat');
-      if (cat === 'apple-picking' || cat === 'cherry-picking' || cat === 'berry-picking' || cat === 'peach-picking' || cat === 'blueberry-picking') {
+      if (cat === 'apple-picking' || cat === 'cherry-picking' || cat === 'berry-picking' || cat === 'peach-picking' || cat === 'blueberry-picking' || cat === 'strawberry-patch' || cat === 'pumpkin-patch') {
         state.keyword = cat;
         state.category = 'all';
       } else {
@@ -552,6 +564,8 @@
     'berry-picking': 'Berry Picking',
     'peach-picking': 'Peach Picking',
     'blueberry-picking': 'Blueberry Picking',
+    'strawberry-patch': 'Strawberry Patch',
+    'pumpkin-patch': 'Pumpkin Patch',
     'Orchard': 'Orchards',
     'Farm': 'Farms',
     'Garden Center': 'Garden Centers',
@@ -563,6 +577,8 @@
     'berry-picking': '/find/berry-picking-orchards-near-me',
     'peach-picking': '/find/peach-picking-orchards-near-me',
     'blueberry-picking': '/find/blueberry-picking-orchards-near-me',
+    'strawberry-patch': '/find/strawberry-patch-near-me',
+    'pumpkin-patch': '/find/pumpkin-patch-near-me',
     'Orchard': '/find',
     'Farm': '/find',
     'Garden Center': '/find/garden-centers-near-me',
@@ -615,7 +631,7 @@
         Array.prototype.forEach.call(el.filters.children, function (c) { c.classList.remove('active'); });
         chip.classList.add('active');
       }
-      if (defaultFilter === 'apple-picking' || defaultFilter === 'cherry-picking' || defaultFilter === 'berry-picking' || defaultFilter === 'peach-picking' || defaultFilter === 'blueberry-picking') {
+      if (defaultFilter === 'apple-picking' || defaultFilter === 'cherry-picking' || defaultFilter === 'berry-picking' || defaultFilter === 'peach-picking' || defaultFilter === 'blueberry-picking' || defaultFilter === 'strawberry-patch' || defaultFilter === 'pumpkin-patch') {
         state.keyword = defaultFilter;
         state.category = 'all';
       } else {

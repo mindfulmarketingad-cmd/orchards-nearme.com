@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3CMJFS74HE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-3CMJFS74HE');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Find Pumpkin Patches Near Me | Orchards Near Me</title>
+  <meta name="description" content="Find pumpkin patches near me. Browse hundreds of fall pumpkin patches across all 50 states on an interactive map. Search by ZIP code to find the closest location." />
+  <link rel="canonical" href="https://orchards-nearme.com/find/pumpkin-patch-near-me" />
+  <meta property="og:title" content="Find Pumpkin Patches Near Me | Orchards Near Me" />
+  <meta property="og:description" content="Find fall pumpkin patches near you on an interactive map of all 50 states." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://orchards-nearme.com/find/pumpkin-patch-near-me" />
+  <meta property="og:image" content="https://orchards-nearme.com/images/find/pumpkin-patch-field.jpg" />
+
+  <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/vendor/leaflet/leaflet.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9332749804326149" crossorigin="anonymous"></script>
+</head>
+<body>
+  <a class="skip-link" href="#find">Skip to map</a>
+  <button id="backToTop" class="back-to-top" type="button" tabindex="-1" aria-label="Back to top">&#8593;</button>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="/" aria-label="Orchards Near Me home">
+        <img src="/logo.svg" alt="" class="logo-icon" />
+        Orchards Near Me
+      </a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/blog">Blog</a>
+        <a href="/find" class="cta">Find</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero hero--with-image">
+      <div class="container">
+        <div class="hero-text">
+          <h1>Pumpkin Patches Near Me</h1>
+          <p>Discover fall pumpkin patches across all 50 states. Search by ZIP code to find the closest one, check ratings, and read real visitor reviews before you go.</p>
+        </div>
+        <img class="find-hero-image" src="/images/find/pumpkin-patch-field.jpg" alt="Pumpkins growing in a fall pumpkin patch field" width="420" height="260" loading="eager" />
+      </div>
+    </section>
+
+    <section class="controls" id="find">
+      <div class="container">
+        <form class="search-form" id="searchForm">
+          <input type="text" id="zipInput" inputmode="numeric" placeholder="Enter your ZIP code (e.g. 05346)" aria-label="Search by ZIP code" />
+          <button type="submit" class="btn">Search</button>
+        </form>
+        <p id="zipError" hidden class="zip-error-msg" role="alert"></p>
+        <div class="filters-wrap">
+          <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
+            <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
+          </button>
+          <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="pumpkin-patch">
+            <button class="filter-chip" data-cat="all">All Listings</button>
+            <button class="filter-chip active" data-cat="pumpkin-patch">Pumpkin Patch</button>
+            <button class="filter-chip" data-cat="Farm">Farms</button>
+            <button class="filter-chip" data-cat="Orchard">Orchards</button>
+          </div>
+        </div>
+        <select class="state-select" id="stateSelect" aria-label="Filter by state">
+          <option value="all">All states</option>
+        </select>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="view-toggle" id="viewToggle">
+        <button class="active" data-view="map">Map</button>
+        <button data-view="list">List</button>
+      </div>
+      <div class="find-layout">
+        <div class="results-col">
+          <div class="results-head">
+            <h2>Pumpkin Patch Locations</h2>
+            <span class="results-count" id="resultsCount">Loading...</span>
+          </div>
+          <div class="cards" id="cards"></div>
+        </div>
+        <div class="map-col">
+          <div id="map" role="application" aria-label="Map of pumpkin patches near me"></div>
+          <div class="map-legend" aria-label="Map key">
+            <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
+            <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
+            <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="seo-content">
+      <div class="container">
+
+        <article class="seo-article">
+
+          <h2>Why Visit a Real Pumpkin Patch</h2>
+
+          <p>A grocery store pumpkin display is convenient, but it's usually just a pallet of pumpkins trucked in and stacked outside the entrance. A real pumpkin patch is a working part of a farm's fall harvest, often paired with hayrides, corn mazes, and cider, and it gives you the chance to walk the actual field, choose a pumpkin still on the vine, and cut it yourself. For families, it's less an errand and more a fall tradition, and the pumpkins themselves are often fresher and hold up longer than ones that have already spent time in transit and storage.</p>
+
+          <h2>What to Expect at a Pumpkin Patch</h2>
+
+          <p>Most patches charge either by the pumpkin, by weight, or a flat field-admission fee that includes a certain number of pumpkins plus access to extras like a corn maze or hay wagon rides. Bigger farms often separate a "pick your own" field from a pre-picked display area near the entrance for smaller kids or anyone who doesn't want to walk the full field. Wagons or carts are commonly available for hauling larger pumpkins back to the car, which is worth asking about if you're planning to go big.</p>
+
+          <h2>When Pumpkin Season Actually Happens</h2>
+
+          <p>Pumpkin season is remarkably consistent across the country compared to something like strawberries, generally running from mid-to-late September through October and sometimes into early November in warmer regions. The timing has more to do with the fall festival calendar than strict harvest windows, since pumpkins keep well once picked and most patches are stocked and ready well before peak visiting weekends in October. Weekends closest to Halloween are by far the busiest, so a weekday or early-October visit usually means shorter lines and better pumpkin selection.</p>
+
+          <h2>Tips for a Better Visit</h2>
+
+          <p>Check the weather and dress for a walk through an open field, since October mornings can be cooler than they look and fields are often muddy after rain. If you want a specific size or shape of pumpkin for carving, visit earlier in the season before the best ones are picked over. Ask whether the farm grows its own pumpkins or supplements with pumpkins bought in from other growers, since many farms in warmer climates do both, and either is fine as long as you know what you're getting.</p>
+
+          <h2>Finding a Patch Near You</h2>
+
+          <p>Use the map above to browse pumpkin patches by ZIP code or state, check current ratings and reviews, and get directions to the closest one. Many of the same farms that grow pumpkins also run apple orchards or garden centers, so it's worth checking what else is nearby for a fuller day trip.</p>
+
+        </article>
+
+      </div>
+    </section>
+
+    <section class="seo-content related-links">
+      <div class="container">
+        <h2>Explore More Pick-Your-Own Categories</h2>
+        <ul class="related-links-list">
+          <li><a href="/find/apple-picking-orchards-near-me">Apple Picking Orchards Near Me</a></li>
+          <li><a href="/find/cherry-picking-orchards-near-me">Cherry Picking Orchards Near Me</a></li>
+          <li><a href="/find/berry-picking-orchards-near-me">Berry Picking Orchards Near Me</a></li>
+          <li><a href="/find/peach-picking-orchards-near-me">Peach Picking Orchards Near Me</a></li>
+          <li><a href="/find/blueberry-picking-orchards-near-me">Blueberry Picking Orchards Near Me</a></li>
+          <li><a href="/find/garden-centers-near-me">Garden Centers Near Me</a></li>
+          <li><a href="/find/strawberry-patch-near-me">Strawberry Patches Near Me</a></li>
+        </ul>
+        <p class="related-links-all"><a href="/find">Browse all categories and states</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul class="footer-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/claim.html">Claim Your Listing</a></li>
+        <li><a href="/disclaimer.html">Disclaimer</a></li>
+        <li><a href="/privacy.html">Privacy</a></li>
+        <li><a href="/terms.html">Terms</a></li>
+        <li><a href="/sitemap.html">Sitemap</a></li>
+      </ul>
+      <div class="footer-bottom">
+        <p>Orchards Near Me &mdash; your friendly guide to orchards, farms, and garden centers across the USA. &copy; <span id="year"></span> orchards-nearme.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/vendor/leaflet/leaflet.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
