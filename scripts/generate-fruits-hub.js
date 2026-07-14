@@ -1,4 +1,35 @@
-<!DOCTYPE html>
+#!/usr/bin/env node
+'use strict';
+
+const fs = require('fs');
+const path = require('path');
+
+const OUT_DIR = path.join(__dirname, '..', 'fruits');
+
+const { FRUITS: APPLES } = require('./generate-fruit-variety-pages');
+const { FRUITS: BLUEBERRIES } = require('./generate-blueberry-variety-pages');
+
+const GROUPS = [
+  { label: 'Apples', suffix: 'Apples', fruits: APPLES },
+  { label: 'Blueberries', suffix: 'Blueberries', fruits: BLUEBERRIES },
+];
+
+const sections = GROUPS.map(group => {
+  const sorted = group.fruits.slice().sort((a, b) => a.label.localeCompare(b.label));
+  const items = sorted.map(f =>
+    `            <li><a href="/fruits/${f.slug}">${f.label} ${group.suffix}</a></li>`
+  ).join('\n');
+  return `      <h2 id="type-${group.label.toLowerCase()}" class="blog-region-heading">${group.label}</h2>
+      <ul class="blog-link-list">
+${items}
+      </ul>`;
+}).join('\n\n');
+
+const nav = GROUPS.map(group =>
+  `        <a href="#type-${group.label.toLowerCase()}">${group.label}</a>`
+).join('\n');
+
+const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
@@ -53,43 +84,10 @@
       <p class="lead">Deep dives into specific fruit varieties — taste profiles, history, season and availability, nutrition, and the best uses for each one. Browse by fruit type below.</p>
 
       <nav class="blog-region-nav" aria-label="Jump to fruit type">
-        <a href="#type-apples">Apples</a>
-        <a href="#type-blueberries">Blueberries</a>
+${nav}
       </nav>
 
-      <h2 id="type-apples" class="blog-region-heading">Apples</h2>
-      <ul class="blog-link-list">
-            <li><a href="/fruits/ambrosia-apples">Ambrosia Apples</a></li>
-            <li><a href="/fruits/fuji-apples">Fuji Apples</a></li>
-            <li><a href="/fruits/gala-apples">Gala Apples</a></li>
-            <li><a href="/fruits/granny-smith-apples">Granny Smith Apples</a></li>
-            <li><a href="/fruits/honeycrisp-apples">Honeycrisp Apples</a></li>
-            <li><a href="/fruits/mcintosh-apples">McIntosh Apples</a></li>
-      </ul>
-
-      <h2 id="type-blueberries" class="blog-region-heading">Blueberries</h2>
-      <ul class="blog-link-list">
-            <li><a href="/fruits/bluecrop-blueberries">Bluecrop Blueberries</a></li>
-            <li><a href="/fruits/bluejay-blueberries">Bluejay Blueberries</a></li>
-            <li><a href="/fruits/brightwell-blueberries">Brightwell Blueberries</a></li>
-            <li><a href="/fruits/chandler-blueberries">Chandler Blueberries</a></li>
-            <li><a href="/fruits/climax-blueberries">Climax Blueberries</a></li>
-            <li><a href="/fruits/duke-blueberries">Duke Blueberries</a></li>
-            <li><a href="/fruits/elliott-blueberries">Elliott Blueberries</a></li>
-            <li><a href="/fruits/emerald-blueberries">Emerald Blueberries</a></li>
-            <li><a href="/fruits/jewel-blueberries">Jewel Blueberries</a></li>
-            <li><a href="/fruits/legacy-blueberries">Legacy Blueberries</a></li>
-            <li><a href="/fruits/liberty-blueberries">Liberty Blueberries</a></li>
-            <li><a href="/fruits/misty-blueberries">Misty Blueberries</a></li>
-            <li><a href="/fruits/patriot-blueberries">Patriot Blueberries</a></li>
-            <li><a href="/fruits/pink-lemonade-blueberries">Pink Lemonade Blueberries</a></li>
-            <li><a href="/fruits/powderblue-blueberries">Powderblue Blueberries</a></li>
-            <li><a href="/fruits/premier-blueberries">Premier Blueberries</a></li>
-            <li><a href="/fruits/spartan-blueberries">Spartan Blueberries</a></li>
-            <li><a href="/fruits/sunshine-blue-blueberries">Sunshine Blue Blueberries</a></li>
-            <li><a href="/fruits/sweetcrisp-blueberries">Sweetcrisp Blueberries</a></li>
-            <li><a href="/fruits/toro-blueberries">Toro Blueberries</a></li>
-      </ul>
+${sections}
     </div>
   </main>
 
@@ -114,4 +112,7 @@
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
   <script>(function(){var b=document.getElementById('backToTop');if(!b)return;window.addEventListener('scroll',function(){var s=window.scrollY>600;b.classList.toggle('visible',s);b.tabIndex=s?0:-1;});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script>
 </body>
-</html>
+</html>`;
+
+fs.writeFileSync(path.join(OUT_DIR, 'index.html'), html, 'utf8');
+console.log('Generated: fruits/index.html');
