@@ -25,6 +25,7 @@ const KEYWORD_MATCHERS = {
   'strawberry-patch': (item, text) => text.includes('strawberr'),
   'pumpkin-patch': (item, text) => text.includes('pumpkin'),
   'u-pick-farms': (item) => item.category === 'Farm' || item.category === 'Orchard',
+  hayrides: (item, text) => text.includes('hayride') || text.includes('hay ride'),
 };
 
 function computeCategoryStateCounts() {
@@ -2025,6 +2026,269 @@ ${otherStatePages}
 `;
 }
 
+// ---------- Hayrides content ----------
+
+const HAYRIDE_STATES = ['California', 'Connecticut', 'Georgia', 'Hawaii', 'Indiana', 'Iowa', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'New Jersey', 'New York', 'North Dakota', 'Ohio', 'Oklahoma', 'South Carolina', 'Virginia', 'Washington', 'West Virginia', 'Wyoming'];
+
+const hayrideRegion = {
+  'new-england': { h2: 'Hayrides Across New England', body: `New England's hayrides run alongside the region's well-known fall foliage and apple season, with farms across Connecticut and Maine pairing a wagon ride with pumpkin picking, cider, and doughnuts each October.` },
+  'mid-atlantic': { h2: 'Mid-Atlantic Hayrides', body: `Mid-Atlantic hayrides are a fall staple at farms across New Jersey, New York, Maryland, Virginia, and West Virginia, often bundled with a corn maze or pumpkin patch visit as part of a full day trip.` },
+  southeast: { h2: 'Southeastern Hayrides', body: `Southeastern hayrides across Georgia, Kentucky, and South Carolina take advantage of a mild fall that extends comfortably into late October and November, longer than many parts of the country.` },
+  midwest: { h2: 'Midwest Hayrides', body: `Midwest hayrides across Indiana, Iowa, North Dakota, and Ohio are deeply tied to the region's fall harvest tradition, with tractor-pulled wagons a familiar sight at farms throughout September and October.` },
+  mountain: { h2: 'Mountain West Hayrides', body: `Hayrides in Wyoming and the wider Mountain West run on a shorter fall window, shaped by an early arriving winter, so farms here tend to schedule wagon rides earlier in the season than farms farther south.` },
+  'south-central': { h2: 'Hayrides in Louisiana and Oklahoma', body: `Hayrides in Louisiana and Oklahoma typically wait until late September or October once the worst of the summer heat has broken, often as part of a larger fall festival with a pumpkin patch and corn maze.` },
+  pacific: { h2: 'Pacific Coast Hayrides', body: `Pacific Coast hayrides in California, Washington, and Hawaii vary widely — California and Washington farms run a fairly traditional fall wagon-ride season, while Hawaii's hayride offerings are rare and tied to a small number of agritourism farms.` },
+};
+
+const hayrideRegionKey = {
+  California: 'pacific', Connecticut: 'new-england', Georgia: 'southeast', Hawaii: 'pacific',
+  Indiana: 'midwest', Iowa: 'midwest', Kentucky: 'southeast', Louisiana: 'south-central',
+  Maine: 'new-england', Maryland: 'mid-atlantic', 'New Jersey': 'mid-atlantic', 'New York': 'mid-atlantic',
+  'North Dakota': 'midwest', Ohio: 'midwest', Oklahoma: 'south-central', 'South Carolina': 'southeast',
+  Virginia: 'mid-atlantic', Washington: 'pacific', 'West Virginia': 'mid-atlantic', Wyoming: 'mountain',
+};
+
+const hayrideSeason = {
+  California: 'Hayrides run through the fall harvest season, roughly September through early November, at farms across the state.',
+  Connecticut: 'Peak hayride season runs through October, alongside Connecticut\'s apple picking and fall foliage.',
+  Georgia: 'Georgia\'s mild fall lets hayrides run comfortably from late September through November.',
+  Hawaii: 'Hayrides are uncommon in Hawaii and offered by only a small number of agritourism farms, generally available year-round rather than tied to a fall season.',
+  Indiana: 'Hayrides run through the fall harvest, typically late September through October.',
+  Iowa: 'Peak hayride season is September and October, tied to the state\'s pumpkin and harvest festivals.',
+  Kentucky: 'Kentucky\'s hayride season runs from late September through November thanks to the state\'s mild fall.',
+  Louisiana: 'Hayrides typically start in October once the worst of the summer heat has passed, running into November.',
+  Maine: 'Peak hayride season runs through October, alongside Maine\'s apple harvest and fall foliage.',
+  Maryland: 'Hayrides run September through October, often paired with pumpkin patches.',
+  'New Jersey': 'Peak hayride season is late September through October, alongside the state\'s well-known fall harvest farms.',
+  'New York': 'Hayrides run through October, often paired with apple and pumpkin picking upstate.',
+  'North Dakota': 'A shorter fall window, typically September into early October, before winter weather arrives.',
+  Ohio: 'Peak hayride season is late September through October, a major fall tradition at farms statewide.',
+  Oklahoma: 'Hayrides typically run October through November once the heat has broken.',
+  'South Carolina': 'South Carolina\'s mild fall supports hayrides from late September into November.',
+  Virginia: 'Peak hayride season is late September through October, often paired with a pumpkin patch visit.',
+  Washington: 'Hayrides run through the fall harvest season, typically late September through October.',
+  'West Virginia': 'Hayrides run September through October in the Appalachian hill country.',
+  Wyoming: 'A shorter fall window than most of the country, typically September into early October.',
+};
+
+const hayrideTips = {
+  California: 'Ask whether the hayride is a standalone activity or bundled with pumpkin picking, since pricing and timing vary a lot by farm.',
+  Connecticut: 'Weekends get busy fast in October, so a weekday visit usually means a shorter wait for the wagon.',
+  Georgia: 'Georgia\'s longer season means less rush than farther north — a November visit can still catch a hayride comfortably.',
+  Hawaii: 'Call ahead, since hayride offerings are limited to a handful of farms and availability can vary.',
+  Indiana: 'Dress warmly for an open-air wagon ride, especially on cool fall evenings.',
+  Iowa: 'Many Iowa hayrides are part of a larger harvest festival, so check what else is included before you go.',
+  Kentucky: 'Kentucky\'s mild fall means later-season visits are still comfortable for an open-air ride.',
+  Louisiana: 'Wait for cooler weather in October or November for a more comfortable ride.',
+  Maine: 'Combine a hayride with Maine\'s fall foliage drive for a fuller day trip.',
+  Maryland: 'Weekday visits mean shorter waits during Maryland\'s busy October pumpkin season.',
+  'New Jersey': 'Many New Jersey farms sell timed tickets for hayrides during peak fall weekends, so check ahead.',
+  'New York': 'Upstate hayrides are often paired with apple orchards, so ask what else is in season.',
+  'North Dakota': 'Visit earlier in the fall window before the season wraps up ahead of winter weather.',
+  Ohio: 'Ohio hayrides are a major fall draw, so expect weekend crowds and consider a weekday visit.',
+  Oklahoma: 'Wait for cooler October or November weather for the most comfortable ride.',
+  'South Carolina': 'The state\'s mild fall means a late-season visit is still a good option.',
+  Virginia: 'Many Virginia farms combine a hayride with a corn maze, so plan extra time if you want to do both.',
+  Washington: 'Check the weather, since a wet fall can affect field conditions for the wagon.',
+  'West Virginia': 'Dress for cooler mountain evenings on an open-air hayride.',
+  Wyoming: 'Visit earlier in the fall rather than waiting for late October, given the state\'s shorter season.',
+};
+
+// ---------- Hayrides page generator ----------
+
+function generateHayridesPage({ city, state, code, imageIndex }) {
+  const citySlug = slugify(city);
+  const stateSlug = slugify(state);
+  const urlSlug = `hayrides-near-${citySlug}-${stateSlug}`;
+  const canonicalUrl = `https://orchards-nearme.com/find/${urlSlug}`;
+  const locationCount = CATEGORY_STATE_COUNTS['hayrides'][state] || 0;
+  const titleTag = `Hayrides Near ${city}, ${state} | ${locationCount} Locations`;
+  const h1 = `Hayrides Near ${city}, ${state} - ${locationCount} Locations`;
+  const desc = `There are ${locationCount} hayride providers near ${city}, ${state}. Browse all farms offering hayrides on an interactive map. Search, filter and sort by ZIP code to find the closest location.`;
+  const resultsHeading = `Hayrides Near ${city}, ${code}`;
+  const relatedLinks = relatedLinksHtml('hayrides', citySlug, stateSlug, city, state);
+
+  const regionKey = hayrideRegionKey[state];
+  const regionData = hayrideRegion[regionKey];
+  const seasonText = hayrideSeason[state];
+  const tips = hayrideTips[state];
+  const regionLabel = regionLabels[regionKey] || 'the region';
+
+  const intro = `Hayrides near ${city}, ${state} are offered by a handful of farms that pull a wagon of hay bales through their fields, typically as part of a fall visit alongside pumpkin picking or a corn maze. ${city} sits within ${regionLabel}, and the farms below offer this as a specific service worth checking for before you go.`;
+
+  const seasonH2 = `Best Time for a Hayride Near ${city}`;
+  const tipsH2 = `Tips for Your ${city} Hayride`;
+  const mainH2 = `Hayrides Near ${city}: What You Need to Know`;
+
+  const filterChips = `<button class="filter-chip" data-cat="all">All Listings</button>
+          <button class="filter-chip active" data-cat="hayrides">Hayrides</button>
+          <button class="filter-chip" data-cat="Farm">Farms</button>
+          <button class="filter-chip" data-cat="Orchard">Orchards</button>`;
+
+  const images = [
+    { file: 'hayride-covered-wagon-nursery.jpg', alt: 'A covered hayride wagon decorated with fall leaves outside a nursery' },
+    { file: 'hayride-horse-drawn-pumpkin-patch.jpg', alt: 'A horse-drawn hayride wagon at a pumpkin patch' },
+    { file: 'hayride-tractor-wagon-hay-bales.jpg', alt: 'A tractor pulling a hay bale wagon with riders' },
+  ];
+  const image = images[imageIndex % images.length];
+  const imageAlt = `${image.alt} near ${city}, ${state}`;
+  const ogImageTag = `\n  <meta property="og:image" content="https://orchards-nearme.com/images/find/${image.file}" />`;
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3CMJFS74HE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-3CMJFS74HE');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${titleTag}</title>
+  <meta name="description" content="${desc}" />
+  <link rel="canonical" href="${canonicalUrl}" />
+  <meta property="og:title" content="${titleTag}" />
+  <meta property="og:description" content="Find farms offering hayrides near ${city}, ${state} on an interactive map." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="${canonicalUrl}" />${ogImageTag}
+
+  <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/vendor/leaflet/leaflet.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9332749804326149" crossorigin="anonymous"></script>
+</head>
+<body>
+  <a class="skip-link" href="#find">Skip to map</a>
+  <button id="backToTop" class="back-to-top" type="button" tabindex="-1" aria-label="Back to top">&#8593;</button>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="/" aria-label="Orchards Near Me home">
+        <img src="/logo.svg" alt="" class="logo-icon" />
+        Orchards Near Me
+      </a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/blog">Blog</a>
+        <a href="/find" class="cta">Find</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero hero--with-image">
+      <div class="container">
+        <div class="hero-text">
+          <h1>${h1}</h1>
+          <p>Discover farms offering hayrides near ${city}, ${state}. Search by ZIP code to find the closest one, check ratings, and read real visitor reviews before you go.</p>
+        </div>
+        <img class="find-hero-image" src="/images/find/${image.file}" alt="${imageAlt}" width="420" height="260" loading="eager" />
+      </div>
+    </section>
+
+    <section class="controls" id="find">
+      <div class="container">
+        <form class="search-form" id="searchForm">
+          <input type="text" id="zipInput" inputmode="numeric" placeholder="Enter your ZIP code (e.g. 05346)" aria-label="Search by ZIP code" />
+          <button type="submit" class="btn">Search</button>
+          <p id="zipError" hidden class="zip-error-msg" role="alert"></p>
+        </form>
+        <div class="filters-wrap">
+          <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
+            <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
+          </button>
+          <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="hayrides" data-default-state="${state}">
+            ${filterChips}
+          </div>
+        </div>
+        <select class="state-select" id="stateSelect" aria-label="Filter by state">
+          <option value="all">All states</option>
+        </select>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="view-toggle" id="viewToggle">
+        <button class="active" data-view="map">Map</button>
+        <button data-view="list">List</button>
+      </div>
+      <div class="find-layout">
+        <div class="results-col">
+          <div class="results-head">
+            <h2>${resultsHeading}</h2>
+            <span class="results-count" id="resultsCount">Loading...</span>
+          </div>
+          <div class="cards" id="cards"></div>
+        </div>
+        <div class="map-col">
+          <div id="map" role="application" aria-label="Map of hayride providers near ${city}, ${state}"></div>
+          <div class="map-legend" aria-label="Map key">
+            <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
+            <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
+            <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="seo-content">
+      <div class="container">
+        <article class="seo-article">
+
+          <h2>${mainH2}</h2>
+          <p>${intro}</p>
+
+          <h2>${regionData.h2}</h2>
+          <p>${regionData.body}</p>
+
+          <h2>${seasonH2}</h2>
+          <p>${seasonText}</p>
+
+          <h2>${tipsH2}</h2>
+          <p>${tips}</p>
+
+        </article>
+      </div>
+    </section>
+
+    ${relatedLinks}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul class="footer-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/claim.html">Claim Your Listing</a></li>
+        <li><a href="/disclaimer.html">Disclaimer</a></li>
+        <li><a href="/privacy.html">Privacy</a></li>
+        <li><a href="/terms.html">Terms</a></li>
+        <li><a href="/sitemap.html">Sitemap</a></li>
+      </ul>
+      <div class="footer-bottom">
+        <p>Orchards Near Me &mdash; your friendly guide to orchards, farms, and garden centers across the USA. &copy; <span id="year"></span> orchards-nearme.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/vendor/leaflet/leaflet.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
+`;
+}
+
 // ---------- U-Pick Farms content ----------
 
 const uPickFarmsRegion = {
@@ -2749,5 +3013,17 @@ for (const categoryValue of Object.keys(STATE_CATEGORY_CONFIG)) {
     console.log('Generated:', filename);
   });
 }
+
+const hayrideCapitals = capitals.filter(cap => HAYRIDE_STATES.includes(cap.state));
+hayrideCapitals.forEach((cap, imageIndex) => {
+  const citySlug = slugify(cap.city);
+  const stateSlug = slugify(cap.state);
+  const filename = `hayrides-near-${citySlug}-${stateSlug}.html`;
+  const filePath = path.join(findDir, filename);
+  fs.writeFileSync(filePath, generateHayridesPage({ ...cap, imageIndex }), 'utf8');
+  const url = `https://orchards-nearme.com/find/hayrides-near-${citySlug}-${stateSlug}`;
+  allUrls.push(url);
+  console.log('Generated:', filename);
+});
 
 console.log(`\nDone. Generated ${allUrls.length} pages.`);

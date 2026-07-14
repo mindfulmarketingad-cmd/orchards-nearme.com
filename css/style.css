@@ -1058,6 +1058,10 @@ h3 {
   border-top-color: #d97324;
 }
 
+.find-directory-card--hayride {
+  border-top-color: #8b6f47;
+}
+
 .find-directory-card-icon {
   font-size: 2.4rem;
   line-height: 1;
@@ -1096,6 +1100,10 @@ h3 {
 
 .find-directory-card--pumpkin .find-directory-card-body h3 {
   color: #a8501a;
+}
+
+.find-directory-card--hayride .find-directory-card-body h3 {
+  color: #6b5030;
 }
 
 .find-directory-card-body p {
@@ -1137,6 +1145,10 @@ h3 {
 
 .find-directory-card--pumpkin .find-directory-card-cta {
   color: #d97324;
+}
+
+.find-directory-card--hayride .find-directory-card-cta {
+  color: #8b6f47;
 }
 
 .find-directory-city-list {
