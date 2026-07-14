@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3CMJFS74HE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-3CMJFS74HE');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Orchards in Kentucky | 20 Locations</title>
+  <meta name="description" content="There are 20 orchard locations in Kentucky. Browse all orchards on an interactive map. Search, filter and sort by ZIP code to find the closest location." />
+  <link rel="canonical" href="https://orchards-nearme.com/find/all-orchards-in-kentucky" />
+  <meta property="og:title" content="All Orchards in Kentucky | 20 Locations" />
+  <meta property="og:description" content="Find orchards across Kentucky on an interactive map." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://orchards-nearme.com/find/all-orchards-in-kentucky" />
+  <meta property="og:image" content="https://orchards-nearme.com/images/blog/cherry-bucket-orchard-row.jpg" />
+
+  <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/vendor/leaflet/leaflet.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9332749804326149" crossorigin="anonymous"></script>
+</head>
+<body>
+  <a class="skip-link" href="#find">Skip to map</a>
+  <button id="backToTop" class="back-to-top" type="button" tabindex="-1" aria-label="Back to top">&#8593;</button>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="/" aria-label="Orchards Near Me home">
+        <img src="/logo.svg" alt="" class="logo-icon" />
+        Orchards Near Me
+      </a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/blog">Blog</a>
+        <a href="/find" class="cta">Find</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero hero--with-image">
+      <div class="container">
+        <div class="hero-text">
+          <h1>All Orchards in Kentucky - 20 Locations</h1>
+          <p>Discover orchards across Kentucky. Search by ZIP code to find the closest one, check ratings, and read real visitor reviews before you go.</p>
+        </div>
+        <img class="find-hero-image" src="/images/blog/cherry-bucket-orchard-row.jpg" alt="A bucket of cherries in an orchard row in Kentucky" width="420" height="260" loading="eager" />
+      </div>
+    </section>
+
+    <section class="controls" id="find">
+      <div class="container">
+        <form class="search-form" id="searchForm">
+          <input type="text" id="zipInput" inputmode="numeric" placeholder="Enter your ZIP code (e.g. 05346)" aria-label="Search by ZIP code" />
+          <button type="submit" class="btn">Search</button>
+          <p id="zipError" hidden class="zip-error-msg" role="alert"></p>
+        </form>
+        <div class="filters-wrap">
+          <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
+            <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
+          </button>
+          <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="Orchard" data-default-state="Kentucky">
+            <button class="filter-chip" data-cat="all">All Listings</button>
+          <button class="filter-chip active" data-cat="Orchard">Orchards</button>
+          <button class="filter-chip" data-cat="Farm">Farms</button>
+          <button class="filter-chip" data-cat="Garden Center">Garden Centers</button>
+          </div>
+        </div>
+        <select class="state-select" id="stateSelect" aria-label="Filter by state">
+          <option value="all">All states</option>
+        </select>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="view-toggle" id="viewToggle">
+        <button class="active" data-view="map">Map</button>
+        <button data-view="list">List</button>
+      </div>
+      <div class="find-layout">
+        <div class="results-col">
+          <div class="results-head">
+            <h2>All Orchards in Kentucky</h2>
+            <span class="results-count" id="resultsCount">Loading...</span>
+          </div>
+          <div class="cards" id="cards"></div>
+        </div>
+        <div class="map-col">
+          <div id="map" role="application" aria-label="Map of orchards in Kentucky"></div>
+          <div class="map-legend" aria-label="Map key">
+            <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
+            <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
+            <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="seo-content">
+      <div class="container">
+        <article class="seo-article">
+
+          <h2>Orchards in Kentucky: What You Need to Know</h2>
+          <p>Kentucky sits within the Southeast, and visitors across the state have access to orchards reflecting the area's growing conditions and seasonal calendar. Whether you're near Frankfort or elsewhere in Kentucky, use the map below to find the closest location and check current ratings before you go.</p>
+
+          <h2>Southeastern Orchards</h2>
+          <p>Southeastern orchards across Georgia, Alabama, Mississippi, Tennessee, Florida, North Carolina, South Carolina, Arkansas, Kentucky, and Louisiana take advantage of a long growing season, with higher-elevation areas particularly well suited to apples and peaches.</p>
+
+          <h2>Best Time to Visit a Orchard in Kentucky</h2>
+          <p>An early peach season in summer, with apples following in fall, especially at higher elevations.</p>
+
+          <h2>Tips for Visiting Orchards in Kentucky</h2>
+          <p>Visit early in the day during peach season to beat both the crowds and the heat; higher-elevation apple orchards stay comfortable later into fall.</p>
+
+        </article>
+      </div>
+    </section>
+
+    <section class="seo-content related-links">
+      <div class="container">
+        <h2>More to Explore in Kentucky</h2>
+        <ul class="related-links-list">
+          <li><a href="/find/all-garden-centers-in-kentucky">All Garden Centers in Kentucky</a></li>
+          <li><a href="/find/all-farms-in-kentucky">All Farms in Kentucky</a></li>
+        </ul>
+        <p class="related-links-all"><a href="/find">Browse all pick-your-own categories and states</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul class="footer-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/claim.html">Claim Your Listing</a></li>
+        <li><a href="/disclaimer.html">Disclaimer</a></li>
+        <li><a href="/privacy.html">Privacy</a></li>
+        <li><a href="/terms.html">Terms</a></li>
+        <li><a href="/sitemap.html">Sitemap</a></li>
+      </ul>
+      <div class="footer-bottom">
+        <p>Orchards Near Me &mdash; your friendly guide to orchards, farms, and garden centers across the USA. &copy; <span id="year"></span> orchards-nearme.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/vendor/leaflet/leaflet.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

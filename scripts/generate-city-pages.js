@@ -24,6 +24,7 @@ const KEYWORD_MATCHERS = {
   'blueberry-picking': (item, text) => text.includes('blueberr'),
   'strawberry-patch': (item, text) => text.includes('strawberr'),
   'pumpkin-patch': (item, text) => text.includes('pumpkin'),
+  'u-pick-farms': (item) => item.category === 'Farm' || item.category === 'Orchard',
 };
 
 function computeCategoryStateCounts() {
@@ -32,6 +33,8 @@ function computeCategoryStateCounts() {
   const counts = {};
   for (const slug of Object.keys(KEYWORD_MATCHERS)) counts[slug] = {};
   counts['garden-centers'] = {};
+  counts['all-orchards'] = {};
+  counts['all-farms'] = {};
 
   for (const item of data.listings) {
     const state = item.state;
@@ -44,6 +47,12 @@ function computeCategoryStateCounts() {
     }
     if (item.category === 'Garden Center') {
       counts['garden-centers'][state] = (counts['garden-centers'][state] || 0) + 1;
+    }
+    if (item.category === 'Orchard') {
+      counts['all-orchards'][state] = (counts['all-orchards'][state] || 0) + 1;
+    }
+    if (item.category === 'Farm') {
+      counts['all-farms'][state] = (counts['all-farms'][state] || 0) + 1;
     }
   }
   return counts;
@@ -113,6 +122,7 @@ const allCategories = [
   { slug: 'garden-centers', label: 'Garden Centers', urlPrefix: 'garden-centers-near-', nearMeUrl: '/find/garden-centers-near-me', nearMeLabel: 'Garden Centers Near Me' },
   { slug: 'strawberry-patch', label: 'Strawberry Patch', urlPrefix: 'strawberry-patch-near-', nearMeUrl: '/find/strawberry-patch-near-me', nearMeLabel: 'Strawberry Patches Near Me' },
   { slug: 'pumpkin-patch', label: 'Pumpkin Patch', urlPrefix: 'pumpkin-patch-near-', nearMeUrl: '/find/pumpkin-patch-near-me', nearMeLabel: 'Pumpkin Patches Near Me' },
+  { slug: 'u-pick-farms', label: 'U-Pick Farms', urlPrefix: 'u-pick-farms-near-', nearMeUrl: '/find/u-pick-farms-near-me', nearMeLabel: 'U-Pick Farms Near Me' },
 ];
 
 function relatedLinksHtml(currentSlug, citySlug, stateSlug, city, state) {
@@ -122,11 +132,17 @@ function relatedLinksHtml(currentSlug, citySlug, stateSlug, city, state) {
       return `          <li><a href="/find/${c.urlPrefix}${citySlug}-${stateSlug}">${c.label} Near ${city}, ${state}</a></li>`;
     })
     .join('\n');
+  const stateItems = Object.keys(STATE_CATEGORY_CONFIG)
+    .map(function (c) {
+      return `          <li><a href="/find/${STATE_CATEGORY_CONFIG[c].slugPrefix}${stateSlug}">All ${STATE_CATEGORY_CONFIG[c].label} in ${state}</a></li>`;
+    })
+    .join('\n');
   return `<section class="seo-content related-links">
       <div class="container">
         <h2>More to Explore Near ${city}, ${state}</h2>
         <ul class="related-links-list">
 ${items}
+${stateItems}
         </ul>
         <p class="related-links-all"><a href="/find">Browse all pick-your-own categories and states</a></p>
       </div>
@@ -1109,9 +1125,67 @@ const blueberrySeason = {
   Wyoming: 'No meaningful commercial blueberry season given the state\'s elevation, winters, and alkaline soil.',
 };
 
+// ---------- Featured images for keyword-based category pages ----------
+
+const FRUIT_IMAGES = {
+  'apple-picking': [
+    { file: 'apple-basket-farm-stand.webp', alt: 'A basket of freshly picked apples at a farm stand' },
+    { file: 'apple-orchard-harvest-crate.jpg', alt: 'A crate of harvested apples in an orchard' },
+    { file: 'apple-picking-family-orchard.jpg', alt: 'A family picking apples together in an orchard' },
+    { file: 'apple-picking-kids-orchard.jpg', alt: 'Kids picking apples in an orchard' },
+  ],
+  'cherry-picking': [
+    { file: 'cherry-bucket-orchard-row.jpg', alt: 'A bucket of cherries in an orchard row' },
+    { file: 'cherry-girl-holding-pair.jpg', alt: 'A girl holding a pair of freshly picked cherries' },
+    { file: 'cherry-hands-cupped-harvest.jpg', alt: 'Hands cupped around freshly harvested cherries' },
+    { file: 'cherry-workers-sorting-crate.jpg', alt: 'Workers sorting freshly picked cherries into a crate' },
+  ],
+  'berry-picking': [
+    { file: 'strawberry-field-rows-texas.jpg', alt: 'Rows of ripening strawberry plants in a sunny field' },
+    { file: 'strawberry-picking-kids-baskets.jpg', alt: 'Kids holding freshly picked strawberries with baskets' },
+    { file: 'blueberry-basket-harvest.jpg', alt: 'A basket of freshly harvested blueberries' },
+    { file: 'blueberry-farm-bucket-field.jpg', alt: 'A bucket of blueberries in a farm field' },
+    { file: 'raspberry-bush-closeup.jpg', alt: 'Close-up of ripe and unripe raspberries on a bush' },
+    { file: 'raspberry-market-crates.jpg', alt: 'Crates of freshly picked raspberries at a farm market' },
+  ],
+  'peach-picking': [
+    { file: 'peach-hand-picking-tree-1.jpg', alt: 'A hand reaching to pick a ripe peach from a tree' },
+    { file: 'peach-kids-crates-picking.jpg', alt: 'Kids sitting with crates of freshly picked peaches' },
+    { file: 'peach-hand-picking-tree-2.jpg', alt: 'Ripe peaches hanging on a tree branch' },
+  ],
+  'blueberry-picking': [
+    { file: 'blueberry-basket-harvest.jpg', alt: 'A basket of freshly harvested blueberries' },
+    { file: 'blueberry-farm-bucket-field.jpg', alt: 'A bucket of blueberries in a farm field' },
+    { file: 'blueberry-hands-picking-bush.jpg', alt: 'Hands picking blueberries from a bush' },
+  ],
+};
+
+const FRUIT_IMAGE_DIR = {
+  'apple-picking': 'blog',
+  'cherry-picking': 'blog',
+  'berry-picking': 'blog',
+  'peach-picking': 'blog',
+  'blueberry-picking': 'blog',
+};
+
+const U_PICK_FARM_IMAGES = [
+  { file: 'apple-picking-family-orchard.jpg', dir: 'blog', alt: 'A family picking apples together on a u-pick farm' },
+  { file: 'cherry-bucket-orchard-row.jpg', dir: 'blog', alt: 'A bucket of freshly picked cherries on a u-pick farm' },
+  { file: 'pear-hand-picking-tree.jpg', dir: 'blog', alt: 'A hand picking a ripe pear from a tree on a u-pick farm' },
+  { file: 'peach-hand-picking-tree-1.jpg', dir: 'blog', alt: 'A hand reaching to pick a ripe peach on a u-pick farm' },
+];
+
+const ORCHARD_STATE_IMAGES = [
+  { file: 'apple-orchard-harvest-crate.jpg', dir: 'blog', alt: 'A crate of harvested apples in an orchard' },
+  { file: 'cherry-bucket-orchard-row.jpg', dir: 'blog', alt: 'A bucket of cherries in an orchard row' },
+  { file: 'pear-hand-picking-tree.jpg', dir: 'blog', alt: 'A hand picking a ripe pear from a tree in an orchard' },
+];
+
+const GARDEN_CENTER_IMAGE = { file: 'garden-center-flower-tables.jpg', dir: 'find', alt: 'Tables of colorful flowering plants at a garden center' };
+
 // ---------- Page generator ----------
 
-function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
+function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel, imageIndex }) {
   const citySlug = slugify(city);
   const stateSlug = slugify(state);
   const urlSlug = `${fruitSlug}-orchards-near-${citySlug}-${stateSlug}`;
@@ -1148,6 +1222,12 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
           <button class="filter-chip" data-cat="Orchard">All Orchard Types</button>
           <button class="filter-chip" data-cat="Farm">Farms</button>`;
 
+  const imagePool = FRUIT_IMAGES[fruitSlug];
+  const image = imagePool ? imagePool[imageIndex % imagePool.length] : null;
+  const imageDir = FRUIT_IMAGE_DIR[fruitSlug] || 'find';
+  const imageAlt = image ? `${image.alt} near ${city}, ${state}` : '';
+  const ogImageTag = image ? `\n  <meta property="og:image" content="https://orchards-nearme.com/images/${imageDir}/${image.file}" />` : '';
+
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1169,7 +1249,7 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
   <meta property="og:title" content="${titleTag}" />
   <meta property="og:description" content="Find ${fruitLabel.toLowerCase()} orchards near ${city}, ${state} on an interactive map." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="${canonicalUrl}" />
+  <meta property="og:url" content="${canonicalUrl}" />${ogImageTag}
 
   <link rel="icon" href="/logo.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1199,10 +1279,13 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel }) {
   </header>
 
   <main>
-    <section class="hero">
+    <section class="hero${image ? ' hero--with-image' : ''}">
       <div class="container">
-        <h1>${h1}</h1>
-        <p>Discover ${fruitLabel.toLowerCase()} orchards near ${city}, ${state}. Search by ZIP code to find the closest orchard, check ratings, and read real visitor reviews before you go.</p>
+        <div class="hero-text">
+          <h1>${h1}</h1>
+          <p>Discover ${fruitLabel.toLowerCase()} orchards near ${city}, ${state}. Search by ZIP code to find the closest orchard, check ratings, and read real visitor reviews before you go.</p>
+        </div>
+        ${image ? `<img class="find-hero-image" src="/images/${imageDir}/${image.file}" alt="${imageAlt}" width="420" height="260" loading="eager" />` : ''}
       </div>
     </section>
 
@@ -1623,6 +1706,575 @@ const pumpkinPatchTips = {
   southwest: 'Wait for October or November in Arizona rather than visiting during the tail end of summer heat. In Hawaii, call ahead since traditional pumpkin patches are far less common than on the mainland.',
 };
 
+// ---------- State-level "All X in [State]" content ----------
+
+const orchardStateRegion = {
+  'new-england': { h2: 'Orchards Across New England', body: `New England's orchards are best known for apples, with a long fall harvest that draws visitors for weeks, though many properties across Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, and Vermont also grow peaches, cherries, and berries earlier in the season.` },
+  'mid-atlantic': { h2: 'Mid-Atlantic Orchards', body: `New Jersey and Pennsylvania anchor a strong mid-Atlantic orchard tradition spanning apples, peaches, and cherries, complemented by farms throughout Delaware, Maryland, Virginia, and West Virginia.` },
+  southeast: { h2: 'Southeastern Orchards', body: `Southeastern orchards across Georgia, Alabama, Mississippi, Tennessee, Florida, North Carolina, South Carolina, Arkansas, Kentucky, and Louisiana take advantage of a long growing season, with higher-elevation areas particularly well suited to apples and peaches.` },
+  midwest: { h2: 'Midwest Orchards', body: `Midwest orchards across Illinois, Indiana, Iowa, Kansas, Michigan, Minnesota, Missouri, Nebraska, Ohio, North Dakota, South Dakota, and Wisconsin are known especially for apples and cherries, with Michigan in particular a major national producer of both.` },
+  mountain: { h2: 'Mountain West Orchards', body: `High altitude and intense sun across Colorado, Idaho, Montana, Nevada, New Mexico, Utah, and Wyoming concentrate flavor in orchard fruit, with apples and cherries as the region's most common crops.` },
+  'south-central': { h2: 'Orchards in Texas, Oklahoma, and Louisiana', body: `Orchards across Texas, Oklahoma, and Louisiana grow peaches and citrus in the warmer areas, with apples more common in Texas's cooler high-elevation pockets.` },
+  pacific: { h2: 'Pacific Coast Orchards', body: `Washington and Oregon are national leaders in apple and cherry production, while California's orchards span everything from citrus to stone fruit, and Alaska's limited orchards make the most of a short growing season.` },
+  southwest: { h2: 'Orchards in Arizona and Hawaii', body: `Arizona's orchards favor apples and stone fruit at higher, cooler elevations, while Hawaii's tropical climate supports orchards growing fruit found almost nowhere else in the country.` },
+};
+
+const orchardStateSeason = {
+  'new-england': 'A long fall apple season from September through October, with peaches and cherries earlier in summer.',
+  'mid-atlantic': 'Peaches and cherries in summer, building to a well-known apple season from September through October.',
+  southeast: 'An early peach season in summer, with apples following in fall, especially at higher elevations.',
+  midwest: 'Cherries in midsummer, apples from September through October.',
+  mountain: 'A shorter, later season shaped by altitude, with apples and cherries in late summer and early fall.',
+  'south-central': 'Peaches in early summer, citrus in winter, and apples in fall where the climate allows.',
+  pacific: 'Cherries in early-to-mid summer, apples from late summer through fall, and citrus through winter in California.',
+  southwest: 'Stone fruit and apples in the cooler months at elevation; citrus through the winter.',
+};
+
+const orchardStateTips = {
+  'new-england': 'Fall weekends get busy fast once peak apple season hits, so a weekday visit usually means shorter lines. Call ahead in summer to check what stone fruit or berries are currently ready.',
+  'mid-atlantic': 'Many orchards here grow several fruits across the season, so ask what else is ready when you call about one crop in particular.',
+  southeast: 'Visit early in the day during peach season to beat both the crowds and the heat; higher-elevation apple orchards stay comfortable later into fall.',
+  midwest: 'Cherry season moves fast, so don\'t wait too long once picking opens; apple season runs longer and is more forgiving to plan around.',
+  mountain: 'Call ahead to confirm timing, since Mountain West orchards often run later and shorter than lower-elevation regions.',
+  'south-central': 'Plan around the region\'s heat — early morning visits are especially worthwhile for summer peach picking.',
+  pacific: 'Washington and Oregon cherry season is short and popular, so check availability before making the trip; California\'s long season allows more flexibility.',
+  southwest: 'Visit at elevation for the most comfortable stone fruit and apple picking; citrus season in the lower desert runs through winter.',
+};
+
+const farmStateRegion = {
+  'new-england': { h2: 'Farms Across New England', body: `New England's small, family-run farms across Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, and Vermont grow everything from spring strawberries through summer vegetables to a well-known fall harvest of pumpkins and other produce.` },
+  'mid-atlantic': { h2: 'Mid-Atlantic Farms', body: `The mid-Atlantic's strong agricultural tradition, especially in New Jersey and Pennsylvania, supports farms growing produce across the calendar throughout Delaware, Maryland, Virginia, and West Virginia as well.` },
+  southeast: { h2: 'Southeastern Farms', body: `The Southeast's long growing season keeps farms across Georgia, Alabama, Mississippi, Tennessee, Florida, North Carolina, South Carolina, Arkansas, Kentucky, and Louisiana active for much of the year, from early strawberries through summer produce into a mild fall.` },
+  midwest: { h2: 'Midwest Farms', body: `Midwest farms across Illinois, Indiana, Iowa, Kansas, Michigan, Minnesota, Missouri, Nebraska, Ohio, North Dakota, South Dakota, and Wisconsin reflect the region's deep agricultural roots, with a compact summer season building toward a major fall pumpkin harvest.` },
+  mountain: { h2: 'Mountain West Farms', body: `Farms across Colorado, Idaho, Montana, Nevada, New Mexico, Utah, and Wyoming work within a short, intense growing season shaped by altitude, often specializing in produce suited to cool nights and strong sun.` },
+  'south-central': { h2: 'Farms in Texas, Oklahoma, and Louisiana', body: `Farms across Texas, Oklahoma, and Louisiana see an early spring start with strawberries and vegetables, running through summer into a fall pumpkin season once the heat breaks.` },
+  pacific: { h2: 'Pacific Coast Farms', body: `California's Mediterranean climate supports farms growing produce nearly year-round, while Oregon and Washington farms follow the Pacific Northwest's mild, wet-winter growing calendar, and Alaska's farms make the most of long summer daylight hours.` },
+  southwest: { h2: 'Farms in Arizona and Hawaii', body: `Arizona's desert farms favor cooler-season produce in winter and early spring, while Hawaii's tropical climate supports small-scale, nearly year-round farming unlike anywhere else in the country.` },
+};
+
+const farmStateSeason = {
+  'new-england': 'Strawberries in June, summer vegetables, and a fall pumpkin harvest.',
+  'mid-atlantic': 'Spring and summer produce building toward a well-known fall pumpkin season.',
+  southeast: 'An early spring start, active through summer, with a mild extended fall.',
+  midwest: 'A compact summer season leading into the region\'s major fall pumpkin harvest.',
+  mountain: 'A short, intense midsummer-through-early-fall growing season.',
+  'south-central': 'An early spring start, summer produce, and a fall pumpkin season once the heat breaks.',
+  pacific: 'California supports nearly year-round farming; Oregon and Washington follow a summer-into-fall calendar.',
+  southwest: 'Arizona favors winter and early spring; Hawaii supports farming nearly year-round.',
+};
+
+const farmStateTips = {
+  'new-england': 'Check what\'s in season before visiting, since farms here rotate through several different crops across the year. Weekday visits are usually quieter.',
+  'mid-atlantic': 'Many farms grow several crops on the same property, so ask what else is ready when you call ahead about one in particular.',
+  southeast: 'Morning visits help beat both crowds and heat, especially during the region\'s early spring and summer growing months.',
+  midwest: 'Plan visits promptly once a crop is announced as ready, since Midwest picking windows can move quickly.',
+  mountain: 'Call ahead to confirm timing, since farms here often open later than lower-elevation regions given the shorter season.',
+  'south-central': 'Early spring and mid-to-late fall tend to be the most comfortable times to visit farms in this region.',
+  pacific: 'California\'s long season allows more flexibility; in Oregon and Washington, check ahead since a wet spring can shift timing.',
+  southwest: 'Dress warmer than expected for Arizona\'s cooler-season farm visits; call ahead for Hawaii farms since they are less common.',
+};
+
+const STATE_CATEGORY_CONFIG = {
+  Orchard: {
+    slugPrefix: 'all-orchards-in-',
+    label: 'Orchards',
+    labelSingular: 'Orchard',
+    region: orchardStateRegion,
+    season: orchardStateSeason,
+    tips: orchardStateTips,
+  },
+  'Garden Center': {
+    slugPrefix: 'all-garden-centers-in-',
+    label: 'Garden Centers',
+    labelSingular: 'Garden Center',
+    region: gardenCenterRegion,
+    season: gardenCenterSeason,
+    tips: null, // uses per-city gardenCenterTips; state pages use region-only tips fallback below
+  },
+  Farm: {
+    slugPrefix: 'all-farms-in-',
+    label: 'Farms',
+    labelSingular: 'Farm',
+    region: farmStateRegion,
+    season: farmStateSeason,
+    tips: farmStateTips,
+  },
+};
+
+const gardenCenterStateTips = {
+  'new-england': 'Visit as soon as the frost risk passes in spring for the best selection of hardy perennials, and consider a fall trip for trees and shrubs.',
+  'mid-atlantic': 'Ask staff what\'s grown locally versus shipped in — the region\'s strong nursery industry means the answer varies more than you\'d expect.',
+  southeast: 'Garden centers here stay busy nearly year-round rather than seeing sharp seasonal swings common farther north.',
+  midwest: 'The spring rush is intense and short, so visit early for the best selection of hardy perennials.',
+  mountain: 'Ask about drought-tolerant and native plants suited to high altitude, intense sun, and dramatic temperature swings.',
+  'south-central': 'Ask about wind-tolerant, low-water natives in Texas and Oklahoma; Louisiana\'s long season supports a wider range of ornamentals.',
+  pacific: 'The Pacific Northwest\'s nursery-growing region means exceptionally deep local inventory worth asking about specifically.',
+  southwest: 'Arizona centers specialize in xeriscaping; Hawaii centers focus on tropical plants suited to year-round warmth.',
+};
+
+function getStateCategoryTips(categoryValue, regionKey) {
+  const config = STATE_CATEGORY_CONFIG[categoryValue];
+  if (config.tips) return config.tips[regionKey];
+  return gardenCenterStateTips[regionKey];
+}
+
+// ---------- State-level "All X in [State]" page generator ----------
+
+function generateStateCategoryPage({ state, code, capitalCity, categoryValue, imageIndex }) {
+  const config = STATE_CATEGORY_CONFIG[categoryValue];
+  const stateSlug = slugify(state);
+  const urlSlug = `${config.slugPrefix}${stateSlug}`;
+  const canonicalUrl = `https://orchards-nearme.com/find/${urlSlug}`;
+  const locationCount = CATEGORY_STATE_COUNTS[categoryValue === 'Garden Center' ? 'garden-centers' : (categoryValue === 'Orchard' ? 'all-orchards' : 'all-farms')][state] || 0;
+  const titleTag = `All ${config.label} in ${state} | ${locationCount} Locations`;
+  const h1 = `All ${config.label} in ${state} - ${locationCount} Locations`;
+  const desc = `There are ${locationCount} ${config.labelSingular.toLowerCase()} locations in ${state}. Browse all ${config.label.toLowerCase()} on an interactive map. Search, filter and sort by ZIP code to find the closest location.`;
+  const resultsHeading = `All ${config.label} in ${state}`;
+
+  const capital = capitals.find(c => c.state === state);
+  const regionKey = capital ? capital.region : undefined;
+  const regionData = config.region[regionKey];
+  const seasonText = config.season[state] || config.season[regionKey];
+  const tips = getStateCategoryTips(categoryValue, regionKey);
+  const regionLabel = regionLabels[regionKey] || 'the region';
+
+  const intro = `${state} sits within ${regionLabel}, and visitors across the state have access to ${config.label.toLowerCase()} reflecting the area's growing conditions and seasonal calendar. Whether you're near ${capitalCity} or elsewhere in ${state}, use the map below to find the closest location and check current ratings before you go.`;
+
+  const seasonH2 = `Best Time to Visit ${categoryValue === 'Garden Center' ? 'a Garden Center' : `a ${config.labelSingular}`} in ${state}`;
+  const tipsH2 = `Tips for Visiting ${config.label} in ${state}`;
+  const mainH2 = `${config.label} in ${state}: What You Need to Know`;
+
+  const otherCats = ['Orchard', 'Farm', 'Garden Center'].filter(c => c !== categoryValue);
+  const filterChips = `<button class="filter-chip" data-cat="all">All Listings</button>
+          <button class="filter-chip active" data-cat="${categoryValue}">${config.label}</button>
+          <button class="filter-chip" data-cat="${otherCats[0]}">${STATE_CATEGORY_CONFIG[otherCats[0]].label}</button>
+          <button class="filter-chip" data-cat="${otherCats[1]}">${STATE_CATEGORY_CONFIG[otherCats[1]].label}</button>`;
+
+  const otherStatePages = Object.keys(STATE_CATEGORY_CONFIG)
+    .filter(c => c !== categoryValue)
+    .map(c => `          <li><a href="/find/${STATE_CATEGORY_CONFIG[c].slugPrefix}${stateSlug}">All ${STATE_CATEGORY_CONFIG[c].label} in ${state}</a></li>`)
+    .join('\n');
+
+  const relatedLinks = `<section class="seo-content related-links">
+      <div class="container">
+        <h2>More to Explore in ${state}</h2>
+        <ul class="related-links-list">
+${otherStatePages}
+        </ul>
+        <p class="related-links-all"><a href="/find">Browse all pick-your-own categories and states</a></p>
+      </div>
+    </section>`;
+
+  const imagePool = categoryValue === 'Garden Center' ? [GARDEN_CENTER_IMAGE] : (categoryValue === 'Orchard' ? ORCHARD_STATE_IMAGES : U_PICK_FARM_IMAGES);
+  const image = imagePool[imageIndex % imagePool.length];
+  const imageAlt = `${image.alt} in ${state}`;
+  const ogImageTag = `\n  <meta property="og:image" content="https://orchards-nearme.com/images/${image.dir}/${image.file}" />`;
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3CMJFS74HE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-3CMJFS74HE');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${titleTag}</title>
+  <meta name="description" content="${desc}" />
+  <link rel="canonical" href="${canonicalUrl}" />
+  <meta property="og:title" content="${titleTag}" />
+  <meta property="og:description" content="Find ${config.label.toLowerCase()} across ${state} on an interactive map." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="${canonicalUrl}" />${ogImageTag}
+
+  <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/vendor/leaflet/leaflet.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9332749804326149" crossorigin="anonymous"></script>
+</head>
+<body>
+  <a class="skip-link" href="#find">Skip to map</a>
+  <button id="backToTop" class="back-to-top" type="button" tabindex="-1" aria-label="Back to top">&#8593;</button>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="/" aria-label="Orchards Near Me home">
+        <img src="/logo.svg" alt="" class="logo-icon" />
+        Orchards Near Me
+      </a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/blog">Blog</a>
+        <a href="/find" class="cta">Find</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero hero--with-image">
+      <div class="container">
+        <div class="hero-text">
+          <h1>${h1}</h1>
+          <p>Discover ${config.label.toLowerCase()} across ${state}. Search by ZIP code to find the closest one, check ratings, and read real visitor reviews before you go.</p>
+        </div>
+        <img class="find-hero-image" src="/images/${image.dir}/${image.file}" alt="${imageAlt}" width="420" height="260" loading="eager" />
+      </div>
+    </section>
+
+    <section class="controls" id="find">
+      <div class="container">
+        <form class="search-form" id="searchForm">
+          <input type="text" id="zipInput" inputmode="numeric" placeholder="Enter your ZIP code (e.g. 05346)" aria-label="Search by ZIP code" />
+          <button type="submit" class="btn">Search</button>
+          <p id="zipError" hidden class="zip-error-msg" role="alert"></p>
+        </form>
+        <div class="filters-wrap">
+          <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
+            <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
+          </button>
+          <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="${categoryValue}" data-default-state="${state}">
+            ${filterChips}
+          </div>
+        </div>
+        <select class="state-select" id="stateSelect" aria-label="Filter by state">
+          <option value="all">All states</option>
+        </select>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="view-toggle" id="viewToggle">
+        <button class="active" data-view="map">Map</button>
+        <button data-view="list">List</button>
+      </div>
+      <div class="find-layout">
+        <div class="results-col">
+          <div class="results-head">
+            <h2>${resultsHeading}</h2>
+            <span class="results-count" id="resultsCount">Loading...</span>
+          </div>
+          <div class="cards" id="cards"></div>
+        </div>
+        <div class="map-col">
+          <div id="map" role="application" aria-label="Map of ${config.label.toLowerCase()} in ${state}"></div>
+          <div class="map-legend" aria-label="Map key">
+            <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
+            <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
+            <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="seo-content">
+      <div class="container">
+        <article class="seo-article">
+
+          <h2>${mainH2}</h2>
+          <p>${intro}</p>
+
+          <h2>${regionData.h2}</h2>
+          <p>${regionData.body}</p>
+
+          <h2>${seasonH2}</h2>
+          <p>${seasonText}</p>
+
+          <h2>${tipsH2}</h2>
+          <p>${tips}</p>
+
+        </article>
+      </div>
+    </section>
+
+    ${relatedLinks}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul class="footer-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/claim.html">Claim Your Listing</a></li>
+        <li><a href="/disclaimer.html">Disclaimer</a></li>
+        <li><a href="/privacy.html">Privacy</a></li>
+        <li><a href="/terms.html">Terms</a></li>
+        <li><a href="/sitemap.html">Sitemap</a></li>
+      </ul>
+      <div class="footer-bottom">
+        <p>Orchards Near Me &mdash; your friendly guide to orchards, farms, and garden centers across the USA. &copy; <span id="year"></span> orchards-nearme.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/vendor/leaflet/leaflet.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
+`;
+}
+
+// ---------- U-Pick Farms content ----------
+
+const uPickFarmsRegion = {
+  'new-england': {
+    h2: 'U-Pick Farms Across New England',
+    body: `New England's u-pick calendar runs from June strawberries through summer blueberries and raspberries into a long, beloved apple and pumpkin season each fall across Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, and Vermont. Many farms here have been family-run for generations, and it's common for one property to offer several different crops across the season rather than just one.`,
+  },
+  'mid-atlantic': {
+    h2: 'Mid-Atlantic U-Pick Farms',
+    body: `The mid-Atlantic's strong commercial agricultural tradition, especially in New Jersey and Pennsylvania, supports u-pick farms growing everything from spring strawberries through summer peaches and blueberries to a well-known fall apple and pumpkin season across Delaware, Maryland, Virginia, and West Virginia as well.`,
+  },
+  southeast: {
+    h2: 'Southeastern U-Pick Farms',
+    body: `The Southeast's long growing season means u-pick farms across Georgia, Alabama, Mississippi, Tennessee, Florida, North Carolina, South Carolina, Arkansas, Kentucky, and Louisiana stay active for much of the year, starting with some of the earliest strawberries in the country and running through summer peaches and blueberries into a mild, extended fall season.`,
+  },
+  midwest: {
+    h2: 'Midwest U-Pick Farms',
+    body: `Midwest u-pick farms across Illinois, Indiana, Iowa, Kansas, Michigan, Minnesota, Missouri, Nebraska, Ohio, North Dakota, South Dakota, and Wisconsin work within a clear seasonal rhythm shaped by cold winters, with a compact strawberry and berry season in early summer building toward the region's famous apple and pumpkin harvests each fall.`,
+  },
+  mountain: {
+    h2: 'Mountain West U-Pick Farms',
+    body: `High altitude and a short growing season across Colorado, Idaho, Montana, Nevada, New Mexico, Utah, and Wyoming concentrate most u-pick activity into a compressed window from midsummer through early fall, though the region's intense sun and cool nights often produce especially flavorful fruit.`,
+  },
+  'south-central': {
+    h2: 'U-Pick Farms in Texas, Oklahoma, and Louisiana',
+    body: `Texas, Oklahoma, and Louisiana see u-pick season start early with spring strawberries and citrus in the warmest areas, continuing through summer peaches and blueberries before wrapping up with a fall pumpkin season once the worst of the heat has broken.`,
+  },
+  pacific: {
+    h2: 'Pacific Coast U-Pick Farms',
+    body: `California's Mediterranean climate supports one of the longest u-pick seasons in the country, while Oregon and Washington are known for berries, cherries, and pumpkins tied to the Pacific Northwest's mild, wet-winter climate, and Alaska's limited but genuine farms make the most of long summer daylight hours.`,
+  },
+  southwest: {
+    h2: 'U-Pick Farms in Arizona and Hawaii',
+    body: `Arizona's desert u-pick farms favor cooler-season crops like citrus and winter strawberries, a different rhythm from most of the country, while Hawaii's tropical climate supports smaller-scale, nearly year-round growing quite unlike anywhere else on this list.`,
+  },
+};
+
+const uPickFarmsSeason = {
+  'new-england': 'Something is usually in season from June strawberries through a long fall apple and pumpkin harvest, though any single crop has a short window.',
+  'mid-atlantic': 'A long season running from spring strawberries through summer peaches and blueberries into a well-known fall apple and pumpkin harvest.',
+  southeast: 'One of the longest u-pick seasons in the country, starting with early spring strawberries and running through summer and into a mild fall.',
+  midwest: 'A compact but full season, from early summer berries through the region\'s famous fall apple and pumpkin harvests.',
+  mountain: 'A compressed midsummer-through-early-fall window shaped by altitude and a shorter growing season.',
+  'south-central': 'An early start with spring strawberries and citrus, continuing through summer produce into a fall pumpkin season.',
+  pacific: 'California supports nearly year-round picking, while Oregon and Washington follow a more traditional summer-into-fall calendar.',
+  southwest: 'Arizona favors cooler-season crops in winter and early spring; Hawaii supports smaller-scale growing nearly year-round.',
+};
+
+const uPickFarmsTips = {
+  'new-england': 'Check what\'s currently in season before you go, since New England farms rotate through several different crops across spring, summer, and fall. Popular farms can sell out of picking slots on nice weekends, so a weekday visit is often less crowded.',
+  'mid-atlantic': 'Many mid-Atlantic farms grow several crops on the same property, so ask what else is ready when you call ahead about one in particular. Weekday mornings tend to be quieter than weekend afternoons.',
+  southeast: 'Since the Southeast\'s season starts earlier and runs longer than most of the country, check with individual farms directly rather than assuming a single national timeline applies. Morning visits help beat both crowds and heat.',
+  midwest: 'Midwest picking windows move fast, so don\'t wait too long once a farm announces a crop is ready. Many farms combine a visit with a corn maze or other fall activities once pumpkin season arrives.',
+  mountain: 'Call ahead to confirm timing, since Mountain West farms often open later than lower-elevation regions given the shorter growing season. Dress for cool mornings even in summer at higher elevations.',
+  'south-central': 'Plan around the region\'s heat — early spring and mid-to-late fall tend to be the most comfortable times to visit u-pick farms in Texas, Oklahoma, and Louisiana.',
+  pacific: 'California\'s long season means less time pressure than elsewhere, but coastal farms can still get busy on weekends. In Oregon and Washington, check ahead since a wet spring can shift opening dates.',
+  southwest: 'Arizona\'s cooler-season picking means dressing warmer than you\'d expect for a desert visit. Hawaii farms are less common, so calling ahead to confirm hours is especially useful.',
+};
+
+// ---------- U-Pick Farms page generator ----------
+
+function generateUPickFarmsPage({ city, state, code, imageIndex }) {
+  const citySlug = slugify(city);
+  const stateSlug = slugify(state);
+  const urlSlug = `u-pick-farms-near-${citySlug}-${stateSlug}`;
+  const canonicalUrl = `https://orchards-nearme.com/find/${urlSlug}`;
+  const locationCount = CATEGORY_STATE_COUNTS['u-pick-farms'][state] || 0;
+  const titleTag = `U-Pick Farms Near ${city}, ${state} | ${locationCount} Locations`;
+  const h1 = `U-Pick Farms Near ${city}, ${state} - ${locationCount} Locations`;
+  const desc = `There are ${locationCount} u-pick farm locations near ${city}, ${state}. Browse all u-pick farms and orchards on an interactive map. Search, filter and sort by ZIP code to find the closest location.`;
+  const resultsHeading = `U-Pick Farms Near ${city}, ${code}`;
+  const relatedLinks = relatedLinksHtml('u-pick-farms', citySlug, stateSlug, city, state);
+
+  const capital = capitals.find(c => c.city === city);
+  const regionKey = capital ? capital.region : undefined;
+  const regionData = uPickFarmsRegion[regionKey];
+  const seasonText = uPickFarmsSeason[regionKey];
+  const tips = uPickFarmsTips[regionKey];
+  const regionLabel = regionLabels[regionKey] || 'the region';
+
+  const intro = `${city} sits within ${regionLabel}, giving visitors access to a range of u-pick farms and orchards growing everything from berries and stone fruit to apples and pumpkins depending on the season. Whether you're looking for a single afternoon outing or planning multiple visits across the year, the farms near ${city}, ${state} offer a genuine hands-on harvest experience.`;
+
+  const seasonH2 = `Best Time to Visit a U-Pick Farm Near ${city}`;
+  const tipsH2 = `Tips for Your ${city} U-Pick Farm Visit`;
+  const mainH2 = `U-Pick Farms Near ${city}: What You Need to Know`;
+
+  const filterChips = `<button class="filter-chip" data-cat="all">All Listings</button>
+          <button class="filter-chip active" data-cat="u-pick-farms">U-Pick Farms</button>
+          <button class="filter-chip" data-cat="Orchard">Orchards</button>
+          <button class="filter-chip" data-cat="Farm">Farms</button>`;
+
+  const image = U_PICK_FARM_IMAGES[imageIndex % U_PICK_FARM_IMAGES.length];
+  const imageAlt = `${image.alt} near ${city}, ${state}`;
+  const ogImageTag = `\n  <meta property="og:image" content="https://orchards-nearme.com/images/${image.dir}/${image.file}" />`;
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3CMJFS74HE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-3CMJFS74HE');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${titleTag}</title>
+  <meta name="description" content="${desc}" />
+  <link rel="canonical" href="${canonicalUrl}" />
+  <meta property="og:title" content="${titleTag}" />
+  <meta property="og:description" content="Find u-pick farms near ${city}, ${state} on an interactive map." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="${canonicalUrl}" />${ogImageTag}
+
+  <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/vendor/leaflet/leaflet.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9332749804326149" crossorigin="anonymous"></script>
+</head>
+<body>
+  <a class="skip-link" href="#find">Skip to map</a>
+  <button id="backToTop" class="back-to-top" type="button" tabindex="-1" aria-label="Back to top">&#8593;</button>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="/" aria-label="Orchards Near Me home">
+        <img src="/logo.svg" alt="" class="logo-icon" />
+        Orchards Near Me
+      </a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/blog">Blog</a>
+        <a href="/find" class="cta">Find</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero hero--with-image">
+      <div class="container">
+        <div class="hero-text">
+          <h1>${h1}</h1>
+          <p>Discover u-pick farms and orchards near ${city}, ${state}. Search by ZIP code to find the closest one, check ratings, and read real visitor reviews before you go.</p>
+        </div>
+        <img class="find-hero-image" src="/images/${image.dir}/${image.file}" alt="${imageAlt}" width="420" height="260" loading="eager" />
+      </div>
+    </section>
+
+    <section class="controls" id="find">
+      <div class="container">
+        <form class="search-form" id="searchForm">
+          <input type="text" id="zipInput" inputmode="numeric" placeholder="Enter your ZIP code (e.g. 05346)" aria-label="Search by ZIP code" />
+          <button type="submit" class="btn">Search</button>
+          <p id="zipError" hidden class="zip-error-msg" role="alert"></p>
+        </form>
+        <div class="filters-wrap">
+          <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
+            <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
+          </button>
+          <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="u-pick-farms" data-default-state="${state}">
+            ${filterChips}
+          </div>
+        </div>
+        <select class="state-select" id="stateSelect" aria-label="Filter by state">
+          <option value="all">All states</option>
+        </select>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="view-toggle" id="viewToggle">
+        <button class="active" data-view="map">Map</button>
+        <button data-view="list">List</button>
+      </div>
+      <div class="find-layout">
+        <div class="results-col">
+          <div class="results-head">
+            <h2>${resultsHeading}</h2>
+            <span class="results-count" id="resultsCount">Loading...</span>
+          </div>
+          <div class="cards" id="cards"></div>
+        </div>
+        <div class="map-col">
+          <div id="map" role="application" aria-label="Map of u-pick farms near ${city}, ${state}"></div>
+          <div class="map-legend" aria-label="Map key">
+            <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
+            <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
+            <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="seo-content">
+      <div class="container">
+        <article class="seo-article">
+
+          <h2>${mainH2}</h2>
+          <p>${intro}</p>
+
+          <h2>${regionData.h2}</h2>
+          <p>${regionData.body}</p>
+
+          <h2>${seasonH2}</h2>
+          <p>${seasonText}</p>
+
+          <h2>${tipsH2}</h2>
+          <p>${tips}</p>
+
+        </article>
+      </div>
+    </section>
+
+    ${relatedLinks}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul class="footer-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/claim.html">Claim Your Listing</a></li>
+        <li><a href="/disclaimer.html">Disclaimer</a></li>
+        <li><a href="/privacy.html">Privacy</a></li>
+        <li><a href="/terms.html">Terms</a></li>
+        <li><a href="/sitemap.html">Sitemap</a></li>
+      </ul>
+      <div class="footer-bottom">
+        <p>Orchards Near Me &mdash; your friendly guide to orchards, farms, and garden centers across the USA. &copy; <span id="year"></span> orchards-nearme.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/vendor/leaflet/leaflet.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
+`;
+}
+
 // ---------- Strawberry patch / pumpkin patch page generator ----------
 
 function generatePatchPage({ city, state, code, patchSlug, patchLabel, imageSrc, imageAlt, regionData: regionMap, seasonData, tipsData }) {
@@ -1841,6 +2493,10 @@ function generateGardenCenterPage({ city, state, code }) {
           <button class="filter-chip" data-cat="Orchard">Orchards</button>
           <button class="filter-chip" data-cat="Farm">Farms</button>`;
 
+  const image = GARDEN_CENTER_IMAGE;
+  const imageAlt = `${image.alt} near ${city}, ${state}`;
+  const ogImageTag = `\n  <meta property="og:image" content="https://orchards-nearme.com/images/${image.dir}/${image.file}" />`;
+
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1862,7 +2518,7 @@ function generateGardenCenterPage({ city, state, code }) {
   <meta property="og:title" content="${titleTag}" />
   <meta property="og:description" content="Find garden centers near ${city}, ${state} on an interactive map." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="${canonicalUrl}" />
+  <meta property="og:url" content="${canonicalUrl}" />${ogImageTag}
 
   <link rel="icon" href="/logo.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1892,10 +2548,13 @@ function generateGardenCenterPage({ city, state, code }) {
   </header>
 
   <main>
-    <section class="hero">
+    <section class="hero hero--with-image">
       <div class="container">
-        <h1>${h1}</h1>
-        <p>Discover garden centers near ${city}, ${state}. Search by ZIP code to find the closest nursery, check ratings, and read real visitor reviews before you go.</p>
+        <div class="hero-text">
+          <h1>${h1}</h1>
+          <p>Discover garden centers near ${city}, ${state}. Search by ZIP code to find the closest nursery, check ratings, and read real visitor reviews before you go.</p>
+        </div>
+        <img class="find-hero-image" src="/images/${image.dir}/${image.file}" alt="${imageAlt}" width="420" height="260" loading="eager" />
       </div>
     </section>
 
@@ -2009,16 +2668,16 @@ const fruits = [
 ];
 
 for (const fruit of fruits) {
-  for (const cap of capitals) {
+  capitals.forEach((cap, imageIndex) => {
     const citySlug = slugify(cap.city);
     const stateSlug = slugify(cap.state);
     const filename = `${fruit.fruitSlug}-orchards-near-${citySlug}-${stateSlug}.html`;
     const filePath = path.join(findDir, filename);
-    fs.writeFileSync(filePath, generatePage({ ...cap, ...fruit }), 'utf8');
+    fs.writeFileSync(filePath, generatePage({ ...cap, ...fruit, imageIndex }), 'utf8');
     const url = `https://orchards-nearme.com/find/${fruit.fruitSlug}-orchards-near-${citySlug}-${stateSlug}`;
     allUrls.push(url);
     console.log('Generated:', filename);
-  }
+  });
 }
 
 for (const cap of capitals) {
@@ -2065,6 +2724,30 @@ for (const patch of patches) {
     allUrls.push(url);
     console.log('Generated:', filename);
   }
+}
+
+capitals.forEach((cap, imageIndex) => {
+  const citySlug = slugify(cap.city);
+  const stateSlug = slugify(cap.state);
+  const filename = `u-pick-farms-near-${citySlug}-${stateSlug}.html`;
+  const filePath = path.join(findDir, filename);
+  fs.writeFileSync(filePath, generateUPickFarmsPage({ ...cap, imageIndex }), 'utf8');
+  const url = `https://orchards-nearme.com/find/u-pick-farms-near-${citySlug}-${stateSlug}`;
+  allUrls.push(url);
+  console.log('Generated:', filename);
+});
+
+for (const categoryValue of Object.keys(STATE_CATEGORY_CONFIG)) {
+  capitals.forEach((cap, imageIndex) => {
+    const stateSlug = slugify(cap.state);
+    const config = STATE_CATEGORY_CONFIG[categoryValue];
+    const filename = `${config.slugPrefix}${stateSlug}.html`;
+    const filePath = path.join(findDir, filename);
+    fs.writeFileSync(filePath, generateStateCategoryPage({ state: cap.state, code: cap.code, capitalCity: cap.city, categoryValue, imageIndex }), 'utf8');
+    const url = `https://orchards-nearme.com/find/${config.slugPrefix}${stateSlug}`;
+    allUrls.push(url);
+    console.log('Generated:', filename);
+  });
 }
 
 console.log(`\nDone. Generated ${allUrls.length} pages.`);

@@ -29,7 +29,7 @@
     all: [],
     filtered: [],
     category: 'all',
-    keyword: null,   // 'apple-picking', 'cherry-picking', 'berry-picking', 'peach-picking', 'blueberry-picking', 'strawberry-patch', 'pumpkin-patch', or null
+    keyword: null,   // 'apple-picking', 'cherry-picking', 'berry-picking', 'peach-picking', 'blueberry-picking', 'strawberry-patch', 'pumpkin-patch', 'u-pick-farms', 'hayrides', or null
     stateFilter: 'all',
     origin: null,
     rendered: 0,
@@ -84,6 +84,18 @@
       label: 'Pumpkin Patch',
       icon: '🎃',
       test: function (item, text) { return text.includes('pumpkin'); }
+    },
+    {
+      slug: 'u-pick-farms',
+      label: 'U-Pick Farms',
+      icon: '🧺',
+      test: function (item, text) { return item.category === 'Farm' || item.category === 'Orchard'; }
+    },
+    {
+      slug: 'hayrides',
+      label: 'Hayrides',
+      icon: '🚜',
+      test: function (item, text) { return text.includes('hayride') || text.includes('hay ride'); }
     }
   ];
 
@@ -305,8 +317,10 @@
         '</blockquote>'
       : '';
     var directions =
-      'https://www.google.com/maps/search/?api=1&query=' +
-      encodeURIComponent(item.name + ' ' + item.address);
+      'https://www.google.com/maps/dir/?api=1&destination=' +
+      encodeURIComponent(item.name + ' ' + item.address) +
+      '&destination_place_id=' + encodeURIComponent(item.id) +
+      '&travelmode=driving';
     var website = item.website
       ? '<a href="' + escapeHtml(item.website) + '" target="_blank" rel="noopener nofollow">Website</a>'
       : '';
@@ -440,7 +454,7 @@
       });
       btn.classList.add('active');
       var cat = btn.getAttribute('data-cat');
-      if (cat === 'apple-picking' || cat === 'cherry-picking' || cat === 'berry-picking' || cat === 'peach-picking' || cat === 'blueberry-picking' || cat === 'strawberry-patch' || cat === 'pumpkin-patch') {
+      if (findKeywordDef(cat)) {
         state.keyword = cat;
         state.category = 'all';
       } else {
@@ -566,6 +580,8 @@
     'blueberry-picking': 'Blueberry Picking',
     'strawberry-patch': 'Strawberry Patch',
     'pumpkin-patch': 'Pumpkin Patch',
+    'u-pick-farms': 'U-Pick Farms',
+    'hayrides': 'Hayrides',
     'Orchard': 'Orchards',
     'Farm': 'Farms',
     'Garden Center': 'Garden Centers',
@@ -579,6 +595,8 @@
     'blueberry-picking': '/find/blueberry-picking-orchards-near-me',
     'strawberry-patch': '/find/strawberry-patch-near-me',
     'pumpkin-patch': '/find/pumpkin-patch-near-me',
+    'u-pick-farms': '/find/u-pick-farms-near-me',
+    'hayrides': '/find/hayrides-near-me',
     'Orchard': '/find',
     'Farm': '/find',
     'Garden Center': '/find/garden-centers-near-me',
@@ -631,7 +649,7 @@
         Array.prototype.forEach.call(el.filters.children, function (c) { c.classList.remove('active'); });
         chip.classList.add('active');
       }
-      if (defaultFilter === 'apple-picking' || defaultFilter === 'cherry-picking' || defaultFilter === 'berry-picking' || defaultFilter === 'peach-picking' || defaultFilter === 'blueberry-picking' || defaultFilter === 'strawberry-patch' || defaultFilter === 'pumpkin-patch') {
+      if (findKeywordDef(defaultFilter)) {
         state.keyword = defaultFilter;
         state.category = 'all';
       } else {
