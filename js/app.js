@@ -581,7 +581,7 @@
     var crumbText = h2 ? h2.textContent : null;
 
     var nav = document.createElement('nav');
-    nav.className = 'breadcrumb';
+    nav.className = 'breadcrumb breadcrumb--hero';
     nav.setAttribute('aria-label', 'Breadcrumb');
 
     var inner = '<a href="/">Home</a>' +

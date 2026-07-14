@@ -1432,6 +1432,15 @@ select:focus-visible {
   color: var(--green-dark);
 }
 
+.breadcrumb--hero {
+  color: rgba(255, 255, 255, 0.85);
+  margin: 10px 0 0;
+}
+
+.breadcrumb--hero a {
+  color: #fff;
+}
+
 .blog-post-header {
   margin-bottom: 32px;
 }
