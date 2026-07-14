@@ -24,6 +24,10 @@ function slugify(str) {
 const FRUIT_SERIES = [
   { prefix: 'apple-picking-season', label: 'Apple Picking Season' },
   { prefix: 'blueberry-picking-season', label: 'Blueberry Picking Season' },
+  { prefix: 'cherry-picking-season', label: 'Cherry Picking Season' },
+  { prefix: 'raspberry-picking-season', label: 'Raspberry Picking Season' },
+  { prefix: 'orange-picking-season', label: 'Orange Picking Season' },
+  { prefix: 'pear-picking-season', label: 'Pear Picking Season' },
 ];
 
 const REGION_LABELS = {
