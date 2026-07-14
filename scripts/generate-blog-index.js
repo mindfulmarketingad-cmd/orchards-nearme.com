@@ -28,6 +28,7 @@ const FRUIT_SERIES = [
   { prefix: 'raspberry-picking-season', label: 'Raspberry Picking Season' },
   { prefix: 'orange-picking-season', label: 'Orange Picking Season' },
   { prefix: 'pear-picking-season', label: 'Pear Picking Season' },
+  { prefix: 'strawberry-picking-season', label: 'Strawberry Picking Season' },
 ];
 
 const REGION_LABELS = {
@@ -76,6 +77,16 @@ ${items}
 const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3CMJFS74HE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-3CMJFS74HE');
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blog | Orchards Near Me</title>
@@ -131,6 +142,7 @@ ${sections}
         <li><a href="/about.html">About</a></li>
         <li><a href="/blog">Blog</a></li>
         <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/claim.html">Claim Your Listing</a></li>
         <li><a href="/disclaimer.html">Disclaimer</a></li>
         <li><a href="/privacy.html">Privacy</a></li>
         <li><a href="/terms.html">Terms</a></li>

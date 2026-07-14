@@ -132,7 +132,9 @@ function generatePage(config, state, index, allStates) {
   const title = `${fruitLabel} Picking Season ${name}`;
   const desc = `${intro} Find pick-your-own ${fruitLower} farms near ${capital}, ${name} on an interactive map.`;
   const canonical = `${SITE_URL}/blog/${fruitSlug}-picking-season-${slug}`;
-  const findLink = `/find/${findSlug}-orchards-near-${capitalSlug}-${slug}`;
+  const findUrlPrefix = config.findUrlPrefix || `${findSlug}-orchards-near-`;
+  const findNearMeUrl = config.findNearMeUrl || `/find/${findSlug}-orchards-near-me`;
+  const findLink = `/find/${findUrlPrefix}${capitalSlug}-${slug}`;
   const image = images[index % images.length];
   const imageUrl = `${SITE_URL}/images/blog/${image.file}`;
   const buildFaqs = config.buildFaqs || buildDefaultFaqs;
@@ -188,7 +190,7 @@ function generatePage(config, state, index, allStates) {
     ? `<p>${fruitLabel} orchards aren't yet their own category on our map, but you can browse <a href="/find">our full directory</a> of orchards, farms, and garden centers near ${capital} to find related pick-your-own destinations, or check the grower's own website for picking hours and directions.</p>`
     : noSeason
     ? `<p>Since ${name} doesn't have a meaningful ${fruitLower} season, browse the full <a href="/find/${findSlug}-orchards-near-me">${fruitLabel} Picking Near Me</a> directory to find the closest active farm in a neighboring state, or explore <a href="/find">other pick-your-own categories</a> better suited to the local climate.</p>`
-    : `<p>Our interactive map pulls from farms across the state. <a href="${findLink}">Search ${fruitLower} picking near ${capital}</a> to see what is closest to you, or browse the full <a href="/find/${findSlug}-orchards-near-me">${fruitLabel} Picking Near Me</a> directory for the whole country.</p>`;
+    : `<p>Our interactive map pulls from farms across the state. <a href="${findLink}">Search ${fruitLower} picking near ${capital}</a> to see what is closest to you, or browse the full <a href="${findNearMeUrl}">${fruitLabel} Picking Near Me</a> directory for the whole country.</p>`;
 
   const varietiesPara = noSeason
     ? `<p>${name} doesn't support commercial ${fruitLower} growing — ${noSeasonReason}</p>`
@@ -199,6 +201,16 @@ function generatePage(config, state, index, allStates) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3CMJFS74HE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-3CMJFS74HE');
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${title}</title>
@@ -312,6 +324,7 @@ ${moreGuidesHtml}
         <li><a href="/about.html">About</a></li>
         <li><a href="/blog">Blog</a></li>
         <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/claim.html">Claim Your Listing</a></li>
         <li><a href="/disclaimer.html">Disclaimer</a></li>
         <li><a href="/privacy.html">Privacy</a></li>
         <li><a href="/terms.html">Terms</a></li>
