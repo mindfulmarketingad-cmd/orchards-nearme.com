@@ -7,17 +7,26 @@
 
   var CLAIM_LISTING_URL = '/claim.html';
 
-  // All markers use the same red pin regardless of category.
-  var markerSvg = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 32"%3E%3Ccircle cx="12" cy="10" r="8" fill="%23e23b3b"/%3E%3Cpath d="M12 18 L12 28" stroke="%238b6f47" stroke-width="2"/%3E%3C/svg%3E';
-  var markerIcon = L.icon({
-    iconUrl: markerSvg,
-    iconSize: [24, 32],
-    iconAnchor: [12, 32],
-    popupAnchor: [0, -32]
-  });
+  // Fruit icons (tiny SVGs for markers)
+  var iconSvgs = {
+    Orchard: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 32"%3E%3Ccircle cx="12" cy="10" r="8" fill="%23e23b3b"/%3E%3Cpath d="M12 18 L12 28" stroke="%238b6f47" stroke-width="2"/%3E%3C/svg%3E',
+    Farm: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 32"%3E%3Ccircle cx="12" cy="10" r="8" fill="%232e8b3d"/%3E%3Cpath d="M12 18 L12 28" stroke="%238b6f47" stroke-width="2"/%3E%3C/svg%3E',
+    'Garden Center': 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 32"%3E%3Ccircle cx="12" cy="10" r="8" fill="%236b4f2a"/%3E%3Cpath d="M12 18 L12 28" stroke="%238b6f47" stroke-width="2"/%3E%3C/svg%3E'
+  };
 
-  function getMarkerIcon() {
-    return markerIcon;
+  var iconCache = {};
+
+  function getMarkerIcon(category) {
+    if (!iconCache[category]) {
+      var svg = iconSvgs[category] || iconSvgs.Farm;
+      iconCache[category] = L.icon({
+        iconUrl: svg,
+        iconSize: [24, 32],
+        iconAnchor: [12, 32],
+        popupAnchor: [0, -32]
+      });
+    }
+    return iconCache[category];
   }
 
   var state = {
@@ -135,6 +144,7 @@
     cards: document.getElementById('cards'),
     count: document.getElementById('resultsCount'),
     filters: document.getElementById('filters'),
+    filtersToggle: document.getElementById('filtersToggle'),
     stateSelect: document.getElementById('stateSelect'),
     searchForm: document.getElementById('searchForm'),
     zipInput: document.getElementById('zipInput'),
@@ -257,7 +267,7 @@
     markersLayer.clearLayers();
     markersById = {};
     state.filtered.forEach(function (item) {
-      var m = L.marker([item.lat, item.lng], { icon: getMarkerIcon() });
+      var m = L.marker([item.lat, item.lng], { icon: getMarkerIcon(item.category) });
       m.bindPopup(popupHtml(item));
       m.on('click', function () {
         showCard(item);
@@ -435,8 +445,48 @@
       });
   }
 
+  // ---------- filters dropdown ----------
+  function closeFiltersDropdown() {
+    if (!el.filtersToggle) return;
+    el.filters.classList.remove('open');
+    el.filters.classList.remove('filters--align-right');
+    el.filtersToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  function positionFiltersDropdown() {
+    // Default left-aligned; flip to right-aligned if it would overflow the viewport.
+    el.filters.classList.remove('filters--align-right');
+    var rect = el.filters.getBoundingClientRect();
+    if (rect.right > window.innerWidth) {
+      el.filters.classList.add('filters--align-right');
+    }
+  }
+
+  function toggleFiltersDropdown() {
+    if (!el.filtersToggle) return;
+    var willOpen = !el.filters.classList.contains('open');
+    el.filters.classList.toggle('open', willOpen);
+    el.filtersToggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+    if (willOpen) positionFiltersDropdown();
+  }
+
   // ---------- events ----------
   function bindEvents() {
+    if (el.filtersToggle) {
+      el.filtersToggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        toggleFiltersDropdown();
+      });
+      document.addEventListener('click', function (e) {
+        if (!el.filters.classList.contains('open')) return;
+        if (e.target.closest('.filters-wrap')) return;
+        closeFiltersDropdown();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeFiltersDropdown();
+      });
+    }
+
     el.filters.addEventListener('click', function (e) {
       var btn = e.target.closest('.filter-chip');
       if (!btn) return;
@@ -453,6 +503,7 @@
         state.category = cat;
       }
       applyFilters();
+      closeFiltersDropdown();
     });
 
     el.stateSelect.addEventListener('change', function () {

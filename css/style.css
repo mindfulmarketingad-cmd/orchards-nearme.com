@@ -285,18 +285,64 @@ h3 {
 }
 
 .filters-wrap {
-  flex: 1 1 auto;
-  min-width: 0;
-  overflow: hidden;
+  position: relative;
+  flex: none;
+}
+
+.filters-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 2px solid var(--border);
+  background: var(--white);
+  color: var(--ink);
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.filters-toggle:hover,
+.filters-toggle[aria-expanded="true"] {
+  border-color: var(--green);
+  color: var(--green-dark);
+}
+
+.filters-toggle-icon {
+  font-size: 1rem;
+  line-height: 1;
 }
 
 .filters {
-  display: flex;
-  flex-wrap: nowrap;
+  display: none;
+  flex-wrap: wrap;
+  align-content: flex-start;
   gap: 8px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 2px;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 950;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 14px;
+  width: max-content;
+  max-width: min(420px, 90vw);
+  max-height: min(420px, calc(100vh - 140px));
+  overflow-y: auto;
+}
+
+.filters.open {
+  display: flex;
+}
+
+.filters.filters--align-right {
+  left: auto;
+  right: 0;
 }
 
 .filter-chip {
@@ -478,16 +524,14 @@ h3 {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18), 0 4px 14px rgba(0, 0, 0, 0.12);
 }
 
-.find-topbar .filters {
-  background: none;
-  box-shadow: none;
-  padding: 0;
-}
-
-.find-topbar .filter-chip {
+.find-topbar .filters-toggle {
   background: var(--white);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18), 0 4px 14px rgba(0, 0, 0, 0.12);
   border: none;
+}
+
+.find-topbar .filter-chip {
+  border: 2px solid var(--border);
 }
 
 .find-topbar .filter-chip.active {
