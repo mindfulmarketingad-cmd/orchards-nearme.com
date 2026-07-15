@@ -21,12 +21,41 @@ const KEYWORD_MATCHERS = {
   'cherry-picking': (item, text) => text.includes('cherry'),
   'berry-picking': (item, text) => text.includes('berry') || text.includes('berries') || text.includes('strawberr') || text.includes('blueberr') || text.includes('raspberr') || text.includes('blackberr'),
   'peach-picking': (item, text) => text.includes('peach'),
+  'pear-picking': (item, text) => /\bpears?\b/.test(text),
   'blueberry-picking': (item, text) => text.includes('blueberr'),
   'strawberry-patch': (item, text) => text.includes('strawberr'),
   'pumpkin-patch': (item, text) => text.includes('pumpkin'),
   'u-pick-farms': (item) => item.category === 'Farm' || item.category === 'Orchard',
   hayrides: (item, text) => text.includes('hayride') || text.includes('hay ride'),
 };
+
+// Full set of filter chips shown in the dropdown on every /find/ page.
+// activeCat is the data-cat value that should render pre-selected; allLabel
+// lets fruit-city pages keep their "All Orchards" wording for the first chip.
+const FULL_FILTER_CHIPS = [
+  { cat: 'apple-picking', label: 'Apple Picking' },
+  { cat: 'cherry-picking', label: 'Cherry Picking' },
+  { cat: 'berry-picking', label: 'Berry Picking' },
+  { cat: 'peach-picking', label: 'Peach Picking' },
+  { cat: 'pear-picking', label: 'Pear Picking' },
+  { cat: 'blueberry-picking', label: 'Blueberry Picking' },
+  { cat: 'strawberry-patch', label: 'Strawberry Patch' },
+  { cat: 'pumpkin-patch', label: 'Pumpkin Patch' },
+  { cat: 'u-pick-farms', label: 'U-Pick Farms' },
+  { cat: 'hayrides', label: 'Hayrides' },
+  { cat: 'Orchard', label: 'Orchards' },
+  { cat: 'Farm', label: 'Farms' },
+  { cat: 'Garden Center', label: 'Garden Centers' },
+];
+
+function buildFilterChips(activeCat, allLabel) {
+  const rows = [`<button class="filter-chip" data-cat="all">${allLabel || 'All Listings'}</button>`];
+  FULL_FILTER_CHIPS.forEach((chip) => {
+    const activeClass = chip.cat === activeCat ? ' active' : '';
+    rows.push(`          <button class="filter-chip${activeClass}" data-cat="${chip.cat}">${chip.label}</button>`);
+  });
+  return rows.join('\n');
+}
 
 function computeCategoryStateCounts() {
   const listingsPath = path.join(__dirname, '..', 'data', 'listings.json');
@@ -1218,9 +1247,7 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel, imageIn
 
   const mainH2 = `${fruitLabel} Near ${city}: What You Need to Know`;
 
-  const filterChips = `<button class="filter-chip" data-cat="all">All Orchards</button>
-          <button class="filter-chip active" data-cat="${fruitSlug}">${fruitLabel}</button>
-          <button class="filter-chip" data-cat="Orchard">All Orchard Types</button>`;
+  const filterChips = buildFilterChips(fruitSlug, 'All Orchards');
 
   const imagePool = FRUIT_IMAGES[fruitSlug];
   const image = imagePool ? imagePool[imageIndex % imagePool.length] : null;
@@ -1831,10 +1858,7 @@ function generateStateCategoryPage({ state, code, capitalCity, categoryValue, im
   const tipsH2 = `Tips for Visiting ${config.label} in ${state}`;
   const mainH2 = `${config.label} in ${state}: What You Need to Know`;
 
-  const otherCats = ['Orchard', 'Farm', 'Garden Center'].filter(c => c !== categoryValue);
-  const filterChips = `<button class="filter-chip" data-cat="all">All Listings</button>
-          <button class="filter-chip active" data-cat="${categoryValue}">${config.label}</button>
-          <button class="filter-chip" data-cat="${otherCats[0]}">${STATE_CATEGORY_CONFIG[otherCats[0]].label}</button>`;
+  const filterChips = buildFilterChips(categoryValue);
 
   const otherStatePages = Object.keys(STATE_CATEGORY_CONFIG)
     .filter(c => c !== categoryValue)
@@ -2092,9 +2116,7 @@ function generateHayridesPage({ city, state, code, imageIndex }) {
   const tipsH2 = `Tips for Your ${city} Hayride`;
   const mainH2 = `Hayrides Near ${city}: What You Need to Know`;
 
-  const filterChips = `<button class="filter-chip" data-cat="all">All Listings</button>
-          <button class="filter-chip active" data-cat="hayrides">Hayrides</button>
-          <button class="filter-chip" data-cat="Farm">Farms</button>`;
+  const filterChips = buildFilterChips('hayrides');
 
   const images = [
     { file: 'hayride-covered-wagon-nursery.jpg', alt: 'A covered hayride wagon decorated with fall leaves outside a nursery' },
@@ -2333,9 +2355,7 @@ function generateUPickFarmsPage({ city, state, code, imageIndex }) {
   const tipsH2 = `Tips for Your ${city} U-Pick Farm Visit`;
   const mainH2 = `U-Pick Farms Near ${city}: What You Need to Know`;
 
-  const filterChips = `<button class="filter-chip" data-cat="all">All Listings</button>
-          <button class="filter-chip active" data-cat="u-pick-farms">U-Pick Farms</button>
-          <button class="filter-chip" data-cat="Orchard">Orchards</button>`;
+  const filterChips = buildFilterChips('u-pick-farms');
 
   const image = U_PICK_FARM_IMAGES[imageIndex % U_PICK_FARM_IMAGES.length];
   const imageAlt = `${image.alt} near ${city}, ${state}`;
@@ -2510,9 +2530,7 @@ function generatePatchPage({ city, state, code, patchSlug, patchLabel, imageSrc,
   const tipsH2 = `Tips for Your ${city} ${patchLabel} Visit`;
   const mainH2 = `${patchLabel}s Near ${city}: What You Need to Know`;
 
-  const filterChips = `<button class="filter-chip" data-cat="all">All Listings</button>
-          <button class="filter-chip active" data-cat="${patchSlug}">${patchLabel}</button>
-          <button class="filter-chip" data-cat="Farm">Farms</button>`;
+  const filterChips = buildFilterChips(patchSlug);
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -2682,9 +2700,7 @@ function generateGardenCenterPage({ city, state, code }) {
   const tipsH2 = `Tips for Your ${city} Garden Center Visit`;
   const mainH2 = `Garden Centers Near ${city}: What You Need to Know`;
 
-  const filterChips = `<button class="filter-chip" data-cat="all">All Listings</button>
-          <button class="filter-chip active" data-cat="Garden Center">Garden Centers</button>
-          <button class="filter-chip" data-cat="Orchard">Orchards</button>`;
+  const filterChips = buildFilterChips('Garden Center');
 
   const image = GARDEN_CENTER_IMAGE;
   const imageAlt = `${image.alt} near ${city}, ${state}`;

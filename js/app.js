@@ -33,7 +33,7 @@
     all: [],
     filtered: [],
     category: 'all',
-    keyword: null,   // 'apple-picking', 'cherry-picking', 'berry-picking', 'peach-picking', 'blueberry-picking', 'strawberry-patch', 'pumpkin-patch', 'u-pick-farms', 'hayrides', or null
+    keyword: null,   // 'apple-picking', 'cherry-picking', 'berry-picking', 'peach-picking', 'pear-picking', 'blueberry-picking', 'strawberry-patch', 'pumpkin-patch', 'u-pick-farms', 'hayrides', or null
     stateFilter: 'all',
     origin: null,
   };
@@ -69,6 +69,12 @@
       label: 'Peach Picking',
       icon: '🍑',
       test: function (item, text) { return text.includes('peach'); }
+    },
+    {
+      slug: 'pear-picking',
+      label: 'Pear Picking',
+      icon: '🍐',
+      test: function (item, text) { return /\bpears?\b/.test(text); }
     },
     {
       slug: 'blueberry-picking',
@@ -562,6 +568,7 @@
     'cherry-picking': 'Cherry Picking',
     'berry-picking': 'Berry Picking',
     'peach-picking': 'Peach Picking',
+    'pear-picking': 'Pear Picking',
     'blueberry-picking': 'Blueberry Picking',
     'strawberry-patch': 'Strawberry Patch',
     'pumpkin-patch': 'Pumpkin Patch',
