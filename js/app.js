@@ -196,7 +196,8 @@
   var streetLayer, satelliteLayer;
 
   function initMap() {
-    map = L.map('map', { scrollWheelZoom: true }).setView([39.5, -98.35], 4);
+    map = L.map('map', { scrollWheelZoom: false, zoomControl: false }).setView([39.5, -98.35], 4);
+    L.control.zoom({ position: 'bottomleft' }).addTo(map);
     streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; OpenStreetMap contributors',
@@ -529,7 +530,6 @@
       var id = card.getAttribute('data-id');
       var marker = markersById[id];
       if (marker) {
-        map.scrollWheelZoom.enable();
         map.setView(marker.getLatLng(), Math.max(map.getZoom(), 13), { animate: true });
         marker.openPopup();
       }

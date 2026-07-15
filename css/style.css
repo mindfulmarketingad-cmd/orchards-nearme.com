@@ -448,6 +448,30 @@ h3 {
   flex-wrap: wrap;
   align-items: flex-start;
   gap: 10px;
+  pointer-events: none;
+}
+
+.find-topbar > * {
+  pointer-events: auto;
+}
+
+/* Lift Leaflet's own controls above the bottom card strip; the zoom
+   +/- control sits at bottom-left, stacked above the Satellite toggle. */
+.find-stage .leaflet-bottom {
+  bottom: var(--find-strip-h);
+}
+
+.find-stage .leaflet-bottom.leaflet-left .leaflet-control-zoom {
+  margin-left: 14px;
+  margin-bottom: 64px;
+}
+
+.find-stage .leaflet-control-zoom a {
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  font-size: 1.3rem;
+  font-weight: 700;
 }
 
 .find-topbar .search-form {
