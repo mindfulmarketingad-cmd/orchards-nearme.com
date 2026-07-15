@@ -337,8 +337,13 @@ h3 {
 
 /* ---------- Full-page search map ---------- */
 :root {
-  --find-strip-h: 196px;
+  --find-strip-h: 0px;
+  --find-strip-h-open: 196px;
   --find-titlebar-h: auto;
+}
+
+.find-stage.has-card {
+  --find-strip-h: var(--find-strip-h-open);
 }
 
 .find-stage {
@@ -534,11 +539,17 @@ h3 {
   bottom: 0;
   z-index: 1040;
   height: var(--find-strip-h);
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 6px;
-  padding: 10px 14px 14px;
+  padding: 0 14px;
   background: linear-gradient(180deg, rgba(247, 250, 247, 0) 0%, rgba(247, 250, 247, 0.92) 22%, var(--cream) 45%);
+  transition: height 0.2s ease;
+}
+
+.find-stage.has-card .find-strip {
+  padding: 10px 14px 14px;
 }
 
 .find-strip-head {
@@ -591,7 +602,7 @@ h3 {
 
 @media (max-width: 760px) {
   :root {
-    --find-strip-h: 172px;
+    --find-strip-h-open: 172px;
   }
   .find-topbar {
     flex-direction: column;

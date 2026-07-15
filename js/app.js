@@ -140,6 +140,7 @@
     zipInput: document.getElementById('zipInput'),
     zipError: document.getElementById('zipError'),
     layersToggle: document.getElementById('layersToggle'),
+    stage: document.querySelector('.find-stage'),
   };
 
   function setZipError(msg) {
@@ -375,14 +376,16 @@
     if (!state.filtered.length) {
       el.cards.innerHTML =
         '<div class="no-results">No locations match your search. Try a different ZIP code or filter.</div>';
+      if (el.stage) el.stage.classList.add('has-card');
     } else {
-      el.cards.innerHTML =
-        '<div class="no-results">Click a location on the map to see details here.</div>';
+      el.cards.innerHTML = '';
+      if (el.stage) el.stage.classList.remove('has-card');
     }
   }
 
   function showCard(item) {
     el.cards.innerHTML = cardHtml(item);
+    if (el.stage) el.stage.classList.add('has-card');
   }
 
   // ---------- ZIP search ----------
@@ -634,5 +637,6 @@
       el.count.textContent = 'Could not load listings.';
       el.cards.innerHTML =
         '<div class="no-results">Sorry, we could not load the listings right now. Please refresh the page.</div>';
+      if (el.stage) el.stage.classList.add('has-card');
     });
 })();
