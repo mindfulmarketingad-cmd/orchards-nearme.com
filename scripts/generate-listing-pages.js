@@ -256,6 +256,7 @@ ${jsonLdString}
         <a href="/about.html">About</a>
         <a href="/blog">Blog</a>
         <a href="/fruits">Fruits</a>
+        <a href="/partners">Partners</a>
         <a href="/find" class="cta">Find</a>
       </nav>
     </div>

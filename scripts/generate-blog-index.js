@@ -137,6 +137,7 @@ const html = `<!DOCTYPE html>
         <a href="/">Home</a>
         <a href="/about.html">About</a>
         <a href="/blog" class="active">Blog</a>
+        <a href="/partners">Partners</a>
         <a href="/find" class="cta">Find</a>
       </nav>
     </div>

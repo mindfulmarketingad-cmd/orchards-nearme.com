@@ -1300,6 +1300,7 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel, imageIn
         <a href="/">Home</a>
         <a href="/about.html">About</a>
         <a href="/blog">Blog</a>
+        <a href="/partners">Partners</a>
         <a href="/find" class="cta">Find</a>
       </nav>
     </div>
@@ -1925,6 +1926,7 @@ ${otherStatePages}
         <a href="/">Home</a>
         <a href="/about.html">About</a>
         <a href="/blog">Blog</a>
+        <a href="/partners">Partners</a>
         <a href="/find" class="cta">Find</a>
       </nav>
     </div>
@@ -2172,6 +2174,7 @@ function generateHayridesPage({ city, state, code, imageIndex }) {
         <a href="/">Home</a>
         <a href="/about.html">About</a>
         <a href="/blog">Blog</a>
+        <a href="/partners">Partners</a>
         <a href="/find" class="cta">Find</a>
       </nav>
     </div>
@@ -2406,6 +2409,7 @@ function generateUPickFarmsPage({ city, state, code, imageIndex }) {
         <a href="/">Home</a>
         <a href="/about.html">About</a>
         <a href="/blog">Blog</a>
+        <a href="/partners">Partners</a>
         <a href="/find" class="cta">Find</a>
       </nav>
     </div>
@@ -2578,6 +2582,7 @@ function generatePatchPage({ city, state, code, patchSlug, patchLabel, imageSrc,
         <a href="/">Home</a>
         <a href="/about.html">About</a>
         <a href="/blog">Blog</a>
+        <a href="/partners">Partners</a>
         <a href="/find" class="cta">Find</a>
       </nav>
     </div>
@@ -2751,6 +2756,7 @@ function generateGardenCenterPage({ city, state, code }) {
         <a href="/">Home</a>
         <a href="/about.html">About</a>
         <a href="/blog">Blog</a>
+        <a href="/partners">Partners</a>
         <a href="/find" class="cta">Find</a>
       </nav>
     </div>
