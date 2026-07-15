@@ -1301,6 +1301,11 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel, imageIn
         <select class="state-select" id="stateSelect" aria-label="Filter by state">
           <option value="all">All states</option>
         </select>
+        <div class="find-legend-float" aria-label="Map key">
+          <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
+          <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
+          <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
+        </div>
       </div>
 
       <button type="button" class="find-layers-btn" id="layersToggle" aria-pressed="false">
@@ -1924,6 +1929,11 @@ ${otherStatePages}
         <select class="state-select" id="stateSelect" aria-label="Filter by state">
           <option value="all">All states</option>
         </select>
+        <div class="find-legend-float" aria-label="Map key">
+          <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
+          <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
+          <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
+        </div>
       </div>
 
       <button type="button" class="find-layers-btn" id="layersToggle" aria-pressed="false">
@@ -2168,6 +2178,11 @@ function generateHayridesPage({ city, state, code, imageIndex }) {
         <select class="state-select" id="stateSelect" aria-label="Filter by state">
           <option value="all">All states</option>
         </select>
+        <div class="find-legend-float" aria-label="Map key">
+          <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
+          <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
+          <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
+        </div>
       </div>
 
       <button type="button" class="find-layers-btn" id="layersToggle" aria-pressed="false">
@@ -2399,6 +2414,11 @@ function generateUPickFarmsPage({ city, state, code, imageIndex }) {
         <select class="state-select" id="stateSelect" aria-label="Filter by state">
           <option value="all">All states</option>
         </select>
+        <div class="find-legend-float" aria-label="Map key">
+          <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
+          <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
+          <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
+        </div>
       </div>
 
       <button type="button" class="find-layers-btn" id="layersToggle" aria-pressed="false">
@@ -2568,6 +2588,11 @@ function generatePatchPage({ city, state, code, patchSlug, patchLabel, imageSrc,
         <select class="state-select" id="stateSelect" aria-label="Filter by state">
           <option value="all">All states</option>
         </select>
+        <div class="find-legend-float" aria-label="Map key">
+          <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
+          <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
+          <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
+        </div>
       </div>
 
       <button type="button" class="find-layers-btn" id="layersToggle" aria-pressed="false">
@@ -2738,6 +2763,11 @@ function generateGardenCenterPage({ city, state, code }) {
         <select class="state-select" id="stateSelect" aria-label="Filter by state">
           <option value="all">All states</option>
         </select>
+        <div class="find-legend-float" aria-label="Map key">
+          <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
+          <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
+          <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
+        </div>
       </div>
 
       <button type="button" class="find-layers-btn" id="layersToggle" aria-pressed="false">

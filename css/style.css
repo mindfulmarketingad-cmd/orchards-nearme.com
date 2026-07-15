@@ -546,6 +546,39 @@ h3 {
   border: none;
 }
 
+.find-legend-float {
+  flex: none;
+  margin-left: auto;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 4px 12px;
+  background: var(--white);
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18), 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+.map-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.map-legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex: none;
+}
+
+.map-legend-dot.orchard { background: #e23b3b; }
+.map-legend-dot.farm    { background: #2e8b3d; }
+.map-legend-dot.garden  { background: #6b4f2a; }
+
 .find-layers-btn {
   position: absolute;
   left: 14px;
@@ -666,6 +699,9 @@ h3 {
   }
   .find-topbar .search-form .btn {
     flex: 0 0 auto;
+  }
+  .find-legend-float {
+    margin-left: 0;
   }
   .cards.cards-horizontal .card {
     flex-basis: 232px;
