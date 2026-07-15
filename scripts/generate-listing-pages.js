@@ -19,6 +19,36 @@ const CATEGORY_CONFIG = {
   'Garden Center': { color: '#6b4f2a', slugPrefix: 'all-garden-centers-in-', label: 'Garden Centers' },
 };
 
+// Mirrors KEYWORD_DEFS in js/app.js so the "fit chips" on a listing page match
+// exactly what the map cards/popups show for the same business.
+const KEYWORD_DEFS = [
+  { slug: 'apple-picking', label: 'Apple Picking', icon: '🍎', noun: 'apple picking',
+    test: (item, text) => item.category === 'Orchard' || (text.includes('apple') && (text.includes('pick') || text.includes('orchard') || text.includes('u-pick') || text.includes('u pick'))) },
+  { slug: 'cherry-picking', label: 'Cherry Picking', icon: '🍒', noun: 'cherry picking',
+    test: (item, text) => text.includes('cherry') },
+  { slug: 'berry-picking', label: 'Berry Picking', icon: '🍓', noun: 'berry picking',
+    test: (item, text) => text.includes('berry') || text.includes('berries') || text.includes('strawberr') || text.includes('blueberr') || text.includes('raspberr') || text.includes('blackberr') },
+  { slug: 'peach-picking', label: 'Peach Picking', icon: '🍑', noun: 'peach picking',
+    test: (item, text) => text.includes('peach') },
+  { slug: 'pear-picking', label: 'Pear Picking', icon: '🍐', noun: 'pear picking',
+    test: (item, text) => /\bpears?\b/.test(text) },
+  { slug: 'blueberry-picking', label: 'Blueberry Picking', icon: '🫐', noun: 'blueberry picking',
+    test: (item, text) => text.includes('blueberr') },
+  { slug: 'strawberry-patch', label: 'Strawberry Patch', icon: '🍓', noun: 'strawberry picking',
+    test: (item, text) => text.includes('strawberr') },
+  { slug: 'pumpkin-patch', label: 'Pumpkin Patch', icon: '🎃', noun: 'pumpkin picking',
+    test: (item, text) => text.includes('pumpkin') },
+  { slug: 'u-pick-farms', label: 'U-Pick Farms', icon: '🧺', noun: null,
+    test: (item) => item.category === 'Farm' || item.category === 'Orchard' },
+  { slug: 'hayrides', label: 'Hayrides', icon: '🚜', noun: 'hayrides',
+    test: (item, text) => text.includes('hayride') || text.includes('hay ride') },
+];
+
+function getFitChips(item) {
+  const text = (item.name + ' ' + (item.review || '')).toLowerCase();
+  return KEYWORD_DEFS.filter((def) => def.test(item, text));
+}
+
 function slugify(str) {
   return String(str)
     .toLowerCase()
@@ -50,6 +80,48 @@ function toTitleCase(name) {
   return name.replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
+function joinNaturally(arr) {
+  if (arr.length === 0) return '';
+  if (arr.length === 1) return arr[0];
+  if (arr.length === 2) return arr[0] + ' and ' + arr[1];
+  return arr.slice(0, -1).join(', ') + ', and ' + arr[arr.length - 1];
+}
+
+function buildAbout(item, displayName, chips) {
+  const cat = item.category.toLowerCase();
+  const loc = `${item.city}, ${item.state}`;
+  const sentences = [];
+
+  if (item.category === 'Garden Center') {
+    sentences.push(`${displayName} is a garden center in ${loc}, offering plants, seedlings, soil, tools, and local growing advice for home gardeners.`);
+  } else if (item.category === 'Orchard') {
+    sentences.push(`${displayName} is an orchard in ${loc}. Orchards like this one typically welcome visitors for seasonal pick-your-own fruit and farm-fresh produce.`);
+  } else {
+    sentences.push(`${displayName} is a farm in ${loc}. Working farms like this often open seasonally for pick-your-own visits and fresh local produce.`);
+  }
+
+  const nouns = chips.map((c) => c.noun).filter(Boolean);
+  if (nouns.length) {
+    sentences.push(`Visitors come here for ${joinNaturally(nouns)}.`);
+  }
+
+  if (item.rating) {
+    sentences.push(`It holds a ${item.rating}-star rating from ${item.reviewCount.toLocaleString()} Google reviews.`);
+  }
+
+  sentences.push('Because seasons and hours vary from farm to farm, it\'s always worth calling ahead or checking the website before you go.');
+
+  return sentences.map((s) => escapeHtml(s)).join(' ');
+}
+
+function fitChipsHtml(chips) {
+  if (!chips.length) return '';
+  const inner = chips
+    .map((c) => `<span class="fit-chip fit-chip--${c.slug.replace('-picking', '')}">${c.icon} ${escapeHtml(c.label)}</span>`)
+    .join('');
+  return `<div class="fit-chips">${inner}</div>`;
+}
+
 function generateListingPage(item) {
   const displayName = toTitleCase(item.name);
   const config = CATEGORY_CONFIG[item.category] || CATEGORY_CONFIG.Farm;
@@ -57,23 +129,45 @@ function generateListingPage(item) {
   const stateSlug = slugify(item.state);
   const canonicalUrl = `https://orchards-nearme.com/find/${item.slug}`;
   const categoryPageUrl = `/find/${config.slugPrefix}${stateSlug}`;
+  const chips = getFitChips(item);
 
   const titleTag = `${displayName} - ${item.category} in ${cityState} | Orchards Near Me`;
   const ratingSummary = item.rating
     ? `rated ${item.rating} out of 5 from ${item.reviewCount.toLocaleString()} reviews`
     : 'a pick-your-own destination';
-  const desc = `${displayName} is a ${item.category.toLowerCase()} in ${cityState}, ${ratingSummary}. Get directions, contact info, and visitor reviews.`;
+  const desc = `${displayName} is a ${item.category.toLowerCase()} in ${cityState}, ${ratingSummary}. Get directions, hours info, reviews, and contact details.`;
   const ogDesc = `${item.category} in ${cityState}${item.rating ? ' · ' + item.rating + ' stars' : ''}. View address, directions, and reviews.`;
 
-  const ratingBlock = item.rating
-    ? `<p class="listing-rating"><span class="stars">${stars(item.rating)}</span> ${item.rating} (${item.reviewCount.toLocaleString()} reviews)</p>`
-    : '<p class="listing-rating">No rating yet</p>';
+  const aboutText = buildAbout(item, displayName, chips);
 
-  const reviewBlock = item.review
-    ? `<blockquote class="card-review">“${escapeHtml(item.review)}”${item.reviewAuthor ? '<cite>' + escapeHtml(item.reviewAuthor) + '</cite>' : ''}</blockquote>`
+  const ratingRow = item.rating
+    ? `<div class="listing-rating-row"><span class="stars">${stars(item.rating)}</span> <strong>${item.rating}</strong> <span class="muted">(${item.reviewCount.toLocaleString()} reviews)</span></div>`
+    : '<div class="listing-rating-row"><span class="muted">No rating yet</span></div>';
+
+  const reviewSection = item.rating
+    ? `<section class="listing-section">
+          <h2>Reviews</h2>
+          <div class="review-summary">
+            <span class="review-score-num">${item.rating}</span>
+            <div class="review-summary-meta">
+              <span class="stars">${stars(item.rating)}</span>
+              <span class="muted">${item.reviewCount.toLocaleString()} Google reviews</span>
+            </div>
+          </div>
+          ${item.review
+            ? `<blockquote class="card-review">“${escapeHtml(item.review)}”${item.reviewAuthor ? '<cite>' + escapeHtml(item.reviewAuthor) + '</cite>' : ''}</blockquote>`
+            : ''}
+        </section>`
     : '';
 
-  const websiteBlock = item.website
+  const websiteRow = item.website
+    ? `<div class="info-row">
+            <span class="info-label">Website</span>
+            <span class="info-value"><a href="${escapeHtml(item.website)}" target="_blank" rel="noopener nofollow">${escapeHtml(item.website.replace(/^https?:\/\//, '').replace(/\/$/, ''))}</a></span>
+          </div>`
+    : '';
+
+  const websiteBtn = item.website
     ? `<a class="btn btn-ghost" href="${escapeHtml(item.website)}" target="_blank" rel="noopener nofollow">Visit Website</a>`
     : '';
 
@@ -175,29 +269,45 @@ ${jsonLdString}
         <span aria-current="page">${escapeHtml(displayName)}</span>
       </nav>
 
-      <div class="listing-header">
-        <div>
-          <span class="badge ${item.category === 'Garden Center' ? 'GardenCenter' : item.category}">${escapeHtml(item.category)}</span>
-          <h1>${escapeHtml(displayName)}</h1>
-          <p class="listing-location">${escapeHtml(cityState)}</p>
-          ${ratingBlock}
-        </div>
+      <div class="listing-hero">
+        <span class="badge ${item.category === 'Garden Center' ? 'GardenCenter' : item.category}">${escapeHtml(item.category)}</span>
+        <h1>${escapeHtml(displayName)}</h1>
+        <p class="listing-location">${escapeHtml(cityState)}</p>
+        ${ratingRow}
+        ${fitChipsHtml(chips)}
       </div>
 
-      <div class="listing-body">
+      <div id="listingMap" class="listing-map" role="application" aria-label="Map showing the location of ${escapeHtml(displayName)}"></div>
+
+      <div class="listing-layout">
         <div class="listing-main">
-          <div id="listingMap" class="listing-map" role="application" aria-label="Map showing the location of ${escapeHtml(displayName)}"></div>
+          <section class="listing-section">
+            <h2>About ${escapeHtml(displayName)}</h2>
+            <p>${aboutText}</p>
+          </section>
 
-          <div class="listing-actions">
-            <a class="btn" href="${directionsUrl}" target="_blank" rel="noopener nofollow">Get Directions</a>
-            ${websiteBlock}
-            <a class="btn btn-ghost card-claim" href="/claim.html">Own This Business?</a>
-          </div>
-
-          <p class="listing-address">${escapeHtml(item.address)}</p>
-
-          ${reviewBlock}
+          ${reviewSection}
         </div>
+
+        <aside class="listing-sidebar">
+          <div class="info-card">
+            <h2 class="info-card-title">Visit</h2>
+            <div class="info-row">
+              <span class="info-label">Address</span>
+              <span class="info-value">${escapeHtml(item.address)}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Hours</span>
+              <span class="info-value">Hours aren't listed here &mdash; call ahead or check the website before visiting, as farm hours change with the season.</span>
+            </div>
+            ${websiteRow}
+            <div class="info-actions">
+              <a class="btn" href="${directionsUrl}" target="_blank" rel="noopener nofollow">Get Directions</a>
+              ${websiteBtn}
+              <a class="btn btn-ghost card-claim" href="/claim.html">Own This Business?</a>
+            </div>
+          </div>
+        </aside>
       </div>
 
       <section class="seo-content related-links">
