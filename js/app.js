@@ -5,24 +5,19 @@
 (function () {
   'use strict';
 
-  var PAGE_SIZE = 24;
   var CLAIM_LISTING_URL = '/claim.html';
 
-  // Fruit icons (tiny SVGs for markers)
-  var iconSvgs = {
-    Orchard: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 32"%3E%3Ccircle cx="12" cy="10" r="8" fill="%23e23b3b"/%3E%3Cpath d="M12 18 L12 28" stroke="%238b6f47" stroke-width="2"/%3E%3C/svg%3E',
-    Farm: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 32"%3E%3Ccircle cx="12" cy="10" r="8" fill="%232e8b3d"/%3E%3Cpath d="M12 18 L12 28" stroke="%238b6f47" stroke-width="2"/%3E%3C/svg%3E',
-    'Garden Center': 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 32"%3E%3Ccircle cx="12" cy="10" r="8" fill="%236b4f2a"/%3E%3Cpath d="M12 18 L12 28" stroke="%238b6f47" stroke-width="2"/%3E%3C/svg%3E'
-  };
+  // All markers use the same red pin regardless of category.
+  var markerSvg = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 32"%3E%3Ccircle cx="12" cy="10" r="8" fill="%23e23b3b"/%3E%3Cpath d="M12 18 L12 28" stroke="%238b6f47" stroke-width="2"/%3E%3C/svg%3E';
+  var markerIcon = L.icon({
+    iconUrl: markerSvg,
+    iconSize: [24, 32],
+    iconAnchor: [12, 32],
+    popupAnchor: [0, -32]
+  });
 
-  function getMarkerIcon(category) {
-    var svg = iconSvgs[category] || iconSvgs.Farm;
-    return L.icon({
-      iconUrl: svg,
-      iconSize: [24, 32],
-      iconAnchor: [12, 32],
-      popupAnchor: [0, -32]
-    });
+  function getMarkerIcon() {
+    return markerIcon;
   }
 
   var state = {
@@ -32,7 +27,6 @@
     keyword: null,   // 'apple-picking', 'cherry-picking', 'berry-picking', 'peach-picking', 'blueberry-picking', 'strawberry-patch', 'pumpkin-patch', 'u-pick-farms', 'hayrides', or null
     stateFilter: 'all',
     origin: null,
-    rendered: 0,
   };
 
   // Single source of truth for keyword filters, reused by the filter logic
@@ -262,8 +256,11 @@
     markersLayer.clearLayers();
     markersById = {};
     state.filtered.forEach(function (item) {
-      var m = L.marker([item.lat, item.lng], { icon: getMarkerIcon(item.category) });
+      var m = L.marker([item.lat, item.lng], { icon: getMarkerIcon() });
       m.bindPopup(popupHtml(item));
+      m.on('click', function () {
+        showCard(item);
+      });
       markersById[item.id] = m;
       markersLayer.addLayer(m);
     });
@@ -319,9 +316,7 @@
     }
 
     state.filtered = list;
-    state.rendered = 0;
-    el.cards.innerHTML = '';
-    renderMore();
+    showCardsPlaceholder();
     rebuildMarkers();
     fitMap();
     updateCount();
@@ -376,15 +371,18 @@
     );
   }
 
-  function renderMore() {
-    var slice = state.filtered.slice(state.rendered, state.rendered + PAGE_SIZE);
-    if (state.rendered === 0 && slice.length === 0) {
+  function showCardsPlaceholder() {
+    if (!state.filtered.length) {
       el.cards.innerHTML =
         '<div class="no-results">No locations match your search. Try a different ZIP code or filter.</div>';
     } else {
-      el.cards.insertAdjacentHTML('beforeend', slice.map(cardHtml).join(''));
+      el.cards.innerHTML =
+        '<div class="no-results">Click a location on the map to see details here.</div>';
     }
-    state.rendered += slice.length;
+  }
+
+  function showCard(item) {
+    el.cards.innerHTML = cardHtml(item);
   }
 
   // ---------- ZIP search ----------
@@ -471,15 +469,6 @@
     el.searchForm.addEventListener('submit', function (e) {
       e.preventDefault();
       searchZip(el.zipInput.value);
-    });
-
-    // Infinite scroll — load next page as user nears the end of the horizontally scrolling card strip
-    el.cards.addEventListener('scroll', function () {
-      if (state.rendered >= state.filtered.length) return;
-      var threshold = 300;
-      if (el.cards.scrollLeft + el.cards.clientWidth >= el.cards.scrollWidth - threshold) {
-        renderMore();
-      }
     });
 
     el.cards.addEventListener('click', function (e) {

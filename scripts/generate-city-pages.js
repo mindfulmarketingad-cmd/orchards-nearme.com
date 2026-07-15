@@ -1220,8 +1220,7 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel, imageIn
 
   const filterChips = `<button class="filter-chip" data-cat="all">All Orchards</button>
           <button class="filter-chip active" data-cat="${fruitSlug}">${fruitLabel}</button>
-          <button class="filter-chip" data-cat="Orchard">All Orchard Types</button>
-          <button class="filter-chip" data-cat="Farm">Farms</button>`;
+          <button class="filter-chip" data-cat="Orchard">All Orchard Types</button>`;
 
   const imagePool = FRUIT_IMAGES[fruitSlug];
   const image = imagePool ? imagePool[imageIndex % imagePool.length] : null;
@@ -1304,12 +1303,6 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel, imageIn
       <button type="button" class="find-layers-btn" id="layersToggle" aria-pressed="false">
         <span aria-hidden="true">🛰️</span> Satellite
       </button>
-
-      <div class="find-legend-float" aria-label="Map key">
-        <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
-        <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
-        <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
-      </div>
 
       <div class="find-strip">
         <div class="find-strip-head">
@@ -1833,8 +1826,7 @@ function generateStateCategoryPage({ state, code, capitalCity, categoryValue, im
   const otherCats = ['Orchard', 'Farm', 'Garden Center'].filter(c => c !== categoryValue);
   const filterChips = `<button class="filter-chip" data-cat="all">All Listings</button>
           <button class="filter-chip active" data-cat="${categoryValue}">${config.label}</button>
-          <button class="filter-chip" data-cat="${otherCats[0]}">${STATE_CATEGORY_CONFIG[otherCats[0]].label}</button>
-          <button class="filter-chip" data-cat="${otherCats[1]}">${STATE_CATEGORY_CONFIG[otherCats[1]].label}</button>`;
+          <button class="filter-chip" data-cat="${otherCats[0]}">${STATE_CATEGORY_CONFIG[otherCats[0]].label}</button>`;
 
   const otherStatePages = Object.keys(STATE_CATEGORY_CONFIG)
     .filter(c => c !== categoryValue)
@@ -1931,12 +1923,6 @@ ${otherStatePages}
       <button type="button" class="find-layers-btn" id="layersToggle" aria-pressed="false">
         <span aria-hidden="true">🛰️</span> Satellite
       </button>
-
-      <div class="find-legend-float" aria-label="Map key">
-        <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
-        <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
-        <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
-      </div>
 
       <div class="find-strip">
         <div class="find-strip-head">
@@ -2092,8 +2078,7 @@ function generateHayridesPage({ city, state, code, imageIndex }) {
 
   const filterChips = `<button class="filter-chip" data-cat="all">All Listings</button>
           <button class="filter-chip active" data-cat="hayrides">Hayrides</button>
-          <button class="filter-chip" data-cat="Farm">Farms</button>
-          <button class="filter-chip" data-cat="Orchard">Orchards</button>`;
+          <button class="filter-chip" data-cat="Farm">Farms</button>`;
 
   const images = [
     { file: 'hayride-covered-wagon-nursery.jpg', alt: 'A covered hayride wagon decorated with fall leaves outside a nursery' },
@@ -2179,12 +2164,6 @@ function generateHayridesPage({ city, state, code, imageIndex }) {
       <button type="button" class="find-layers-btn" id="layersToggle" aria-pressed="false">
         <span aria-hidden="true">🛰️</span> Satellite
       </button>
-
-      <div class="find-legend-float" aria-label="Map key">
-        <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
-        <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
-        <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
-      </div>
 
       <div class="find-strip">
         <div class="find-strip-head">
@@ -2332,8 +2311,7 @@ function generateUPickFarmsPage({ city, state, code, imageIndex }) {
 
   const filterChips = `<button class="filter-chip" data-cat="all">All Listings</button>
           <button class="filter-chip active" data-cat="u-pick-farms">U-Pick Farms</button>
-          <button class="filter-chip" data-cat="Orchard">Orchards</button>
-          <button class="filter-chip" data-cat="Farm">Farms</button>`;
+          <button class="filter-chip" data-cat="Orchard">Orchards</button>`;
 
   const image = U_PICK_FARM_IMAGES[imageIndex % U_PICK_FARM_IMAGES.length];
   const imageAlt = `${image.alt} near ${city}, ${state}`;
@@ -2414,12 +2392,6 @@ function generateUPickFarmsPage({ city, state, code, imageIndex }) {
       <button type="button" class="find-layers-btn" id="layersToggle" aria-pressed="false">
         <span aria-hidden="true">🛰️</span> Satellite
       </button>
-
-      <div class="find-legend-float" aria-label="Map key">
-        <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
-        <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
-        <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
-      </div>
 
       <div class="find-strip">
         <div class="find-strip-head">
@@ -2508,8 +2480,7 @@ function generatePatchPage({ city, state, code, patchSlug, patchLabel, imageSrc,
 
   const filterChips = `<button class="filter-chip" data-cat="all">All Listings</button>
           <button class="filter-chip active" data-cat="${patchSlug}">${patchLabel}</button>
-          <button class="filter-chip" data-cat="Farm">Farms</button>
-          <button class="filter-chip" data-cat="Orchard">Orchards</button>`;
+          <button class="filter-chip" data-cat="Farm">Farms</button>`;
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -2587,12 +2558,6 @@ function generatePatchPage({ city, state, code, patchSlug, patchLabel, imageSrc,
       <button type="button" class="find-layers-btn" id="layersToggle" aria-pressed="false">
         <span aria-hidden="true">🛰️</span> Satellite
       </button>
-
-      <div class="find-legend-float" aria-label="Map key">
-        <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
-        <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
-        <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
-      </div>
 
       <div class="find-strip">
         <div class="find-strip-head">
@@ -2679,8 +2644,7 @@ function generateGardenCenterPage({ city, state, code }) {
 
   const filterChips = `<button class="filter-chip" data-cat="all">All Listings</button>
           <button class="filter-chip active" data-cat="Garden Center">Garden Centers</button>
-          <button class="filter-chip" data-cat="Orchard">Orchards</button>
-          <button class="filter-chip" data-cat="Farm">Farms</button>`;
+          <button class="filter-chip" data-cat="Orchard">Orchards</button>`;
 
   const image = GARDEN_CENTER_IMAGE;
   const imageAlt = `${image.alt} near ${city}, ${state}`;
@@ -2761,12 +2725,6 @@ function generateGardenCenterPage({ city, state, code }) {
       <button type="button" class="find-layers-btn" id="layersToggle" aria-pressed="false">
         <span aria-hidden="true">🛰️</span> Satellite
       </button>
-
-      <div class="find-legend-float" aria-label="Map key">
-        <span class="map-legend-item"><span class="map-legend-dot orchard"></span>Orchard</span>
-        <span class="map-legend-item"><span class="map-legend-dot farm"></span>Farm</span>
-        <span class="map-legend-item"><span class="map-legend-dot garden"></span>Garden Center</span>
-      </div>
 
       <div class="find-strip">
         <div class="find-strip-head">
