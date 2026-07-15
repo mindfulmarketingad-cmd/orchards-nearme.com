@@ -749,6 +749,15 @@ h3 {
   white-space: nowrap;
 }
 
+.card h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.card h3 a:hover {
+  text-decoration: underline;
+}
+
 .badge {
   flex: none;
   font-size: 0.68rem;
@@ -933,6 +942,15 @@ h3 {
   font-family: "Baloo 2", sans-serif;
   color: var(--green-dark);
   font-size: 1.05rem;
+}
+
+.map-popup h4 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.map-popup h4 a:hover {
+  text-decoration: underline;
 }
 
 .map-popup .pop-meta {
@@ -2378,4 +2396,65 @@ select:focus-visible {
   background: var(--green);
   border-color: var(--green);
   color: #fff;
+}
+
+/* ---------- Individual listing page ---------- */
+.listing-page {
+  padding: 32px 0 48px;
+}
+
+.listing-header h1 {
+  margin: 8px 0 4px;
+  font-family: "Baloo 2", sans-serif;
+  font-size: 1.9rem;
+}
+
+.listing-location {
+  color: var(--muted);
+  font-size: 1.05rem;
+  margin: 0 0 6px;
+}
+
+.listing-rating {
+  font-size: 1.05rem;
+  margin: 0 0 8px;
+}
+
+.listing-rating .stars {
+  color: #f5a623;
+}
+
+.listing-map {
+  width: 100%;
+  height: 320px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  margin: 20px 0;
+}
+
+.listing-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.listing-actions .btn {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.listing-address {
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+
+.listing-body .card-review {
+  max-width: 640px;
+}
+
+@media (max-width: 760px) {
+  .listing-map {
+    height: 240px;
+  }
 }

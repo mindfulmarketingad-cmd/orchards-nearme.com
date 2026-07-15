@@ -263,7 +263,7 @@
     var claim = '<a class="card-claim" href="' + CLAIM_LISTING_URL + '">Own This Business?</a>';
     return (
       '<div class="map-popup">' +
-      '<h4>' + escapeHtml(item.name) + '</h4>' +
+      '<h4><a href="/find/' + escapeHtml(item.slug) + '">' + escapeHtml(item.name) + '</a></h4>' +
       '<p class="pop-meta">' + escapeHtml(meta) + '</p>' +
       fitChipsHtml(item) +
       rating +
@@ -376,7 +376,7 @@
     return (
       '<article class="card" data-id="' + escapeHtml(item.id) + '">' +
       '<div class="card-top">' +
-      '<div><h3>' + escapeHtml(item.name) + '</h3>' +
+      '<div><h3><a href="/find/' + escapeHtml(item.slug) + '">' + escapeHtml(item.name) + '</a></h3>' +
       '<p class="card-meta">' + ratingLine + '</p></div>' +
       '<span class="badge ' + catClass(item.category) + '">' + escapeHtml(item.category) + '</span>' +
       '</div>' +
