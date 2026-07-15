@@ -1,9 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15 -35 230 260">
   <defs>
     <style>
       .fist { fill: #e23b3b; stroke: #e23b3b; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+      .branch { fill: none; stroke: #e23b3b; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+      .cherry { fill: #e23b3b; stroke: none; }
+      .leaf { fill: #e23b3b; stroke: #e23b3b; stroke-width: 3; stroke-linejoin: round; }
     </style>
   </defs>
+
+  <!-- Branch the fist is gripping, arcing off to the upper right -->
+  <path class="branch" d="M 117 14 Q 138 -8 158 2 Q 176 11 197 3"/>
+  <path class="branch" d="M 178 8 Q 188 1 199 -10"/>
+
+  <!-- Leaf at the branch tip -->
+  <path class="leaf" d="M 178 -6 Q 189 -17 200 -9 Q 191 1 178 -6 Z"/>
 
   <!-- Thumb -->
   <path class="fist" d="M 50 80 Q 40 60 45 40 Q 48 30 58 32 Q 65 35 62 55 Q 60 70 65 85"/>
@@ -26,4 +36,10 @@
   <!-- Wrist/arm -->
   <path class="fist" d="M 75 155 L 65 185 Q 62 195 72 198 Q 82 200 85 190 L 95 160"/>
   <path class="fist" d="M 135 155 L 145 185 Q 148 195 138 198 Q 128 200 125 190 L 115 160"/>
+
+  <!-- Cherries hanging above the grip, on top so they stay visible -->
+  <path class="branch" d="M 102 10 Q 90 8 78 14"/>
+  <circle class="cherry" cx="74" cy="18" r="10"/>
+  <path class="branch" d="M 112 8 Q 108 0 104 -8"/>
+  <circle class="cherry" cx="102" cy="-13" r="10"/>
 </svg>
