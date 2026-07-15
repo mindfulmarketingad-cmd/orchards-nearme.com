@@ -1551,6 +1551,33 @@ select:focus-visible {
   flex-wrap: wrap;
 }
 
+/* ---------- Homepage UGC video ---------- */
+.video-content {
+  padding: 44px 0 8px;
+  margin-top: 32px;
+  text-align: center;
+}
+
+.video-content h2 {
+  font-size: 1.55rem;
+  color: var(--green-dark);
+  margin: 0 0 8px;
+}
+
+.video-content > .container > p {
+  color: var(--muted);
+  margin: 0 0 20px;
+}
+
+.ugc-video {
+  width: 100%;
+  max-width: 420px;
+  max-height: 70vh;
+  border-radius: var(--radius);
+  background: #000;
+  box-shadow: var(--shadow);
+}
+
 /* ---------- Homepage SEO content ---------- */
 .seo-content {
   background: #f7faf7;
