@@ -141,7 +141,6 @@
     cards: document.getElementById('cards'),
     count: document.getElementById('resultsCount'),
     filters: document.getElementById('filters'),
-    filtersToggle: document.getElementById('filtersToggle'),
     stateSelect: document.getElementById('stateSelect'),
     searchForm: document.getElementById('searchForm'),
     zipInput: document.getElementById('zipInput'),
@@ -197,7 +196,7 @@
 
   function initMap() {
     map = L.map('map', { scrollWheelZoom: false, zoomControl: false }).setView([39.5, -98.35], 4);
-    L.control.zoom({ position: 'bottomleft' }).addTo(map);
+    L.control.zoom({ position: 'bottomright' }).addTo(map);
     streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; OpenStreetMap contributors',
@@ -435,48 +434,8 @@
       });
   }
 
-  // ---------- filters dropdown ----------
-  function closeFiltersDropdown() {
-    if (!el.filtersToggle) return;
-    el.filters.classList.remove('open');
-    el.filters.classList.remove('filters--align-right');
-    el.filtersToggle.setAttribute('aria-expanded', 'false');
-  }
-
-  function positionFiltersDropdown() {
-    // Default left-aligned; flip to right-aligned if it would overflow the viewport.
-    el.filters.classList.remove('filters--align-right');
-    var rect = el.filters.getBoundingClientRect();
-    if (rect.right > window.innerWidth) {
-      el.filters.classList.add('filters--align-right');
-    }
-  }
-
-  function toggleFiltersDropdown() {
-    if (!el.filtersToggle) return;
-    var willOpen = !el.filters.classList.contains('open');
-    el.filters.classList.toggle('open', willOpen);
-    el.filtersToggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
-    if (willOpen) positionFiltersDropdown();
-  }
-
   // ---------- events ----------
   function bindEvents() {
-    if (el.filtersToggle) {
-      el.filtersToggle.addEventListener('click', function (e) {
-        e.stopPropagation();
-        toggleFiltersDropdown();
-      });
-      document.addEventListener('click', function (e) {
-        if (!el.filters.classList.contains('open')) return;
-        if (e.target.closest('.filters-wrap')) return;
-        closeFiltersDropdown();
-      });
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') closeFiltersDropdown();
-      });
-    }
-
     el.filters.addEventListener('click', function (e) {
       var btn = e.target.closest('.filter-chip');
       if (!btn) return;
@@ -493,7 +452,6 @@
         state.category = cat;
       }
       applyFilters();
-      closeFiltersDropdown();
     });
 
     el.stateSelect.addEventListener('change', function () {

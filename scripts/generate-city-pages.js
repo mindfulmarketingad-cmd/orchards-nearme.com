@@ -1297,9 +1297,6 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel, imageIn
           <p id="zipError" hidden class="zip-error-msg" role="alert"></p>
         </form>
         <div class="filters-wrap">
-          <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
-            <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
-          </button>
           <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="${defaultFilter}" data-default-state="${state}">
             ${filterChips}
           </div>
@@ -1932,9 +1929,6 @@ ${otherStatePages}
           <p id="zipError" hidden class="zip-error-msg" role="alert"></p>
         </form>
         <div class="filters-wrap">
-          <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
-            <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
-          </button>
           <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="${categoryValue}" data-default-state="${state}">
             ${filterChips}
           </div>
@@ -2188,9 +2182,6 @@ function generateHayridesPage({ city, state, code, imageIndex }) {
           <p id="zipError" hidden class="zip-error-msg" role="alert"></p>
         </form>
         <div class="filters-wrap">
-          <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
-            <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
-          </button>
           <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="hayrides" data-default-state="${state}">
             ${filterChips}
           </div>
@@ -2431,9 +2422,6 @@ function generateUPickFarmsPage({ city, state, code, imageIndex }) {
           <p id="zipError" hidden class="zip-error-msg" role="alert"></p>
         </form>
         <div class="filters-wrap">
-          <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
-            <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
-          </button>
           <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="u-pick-farms" data-default-state="${state}">
             ${filterChips}
           </div>
@@ -2612,9 +2600,6 @@ function generatePatchPage({ city, state, code, patchSlug, patchLabel, imageSrc,
           <p id="zipError" hidden class="zip-error-msg" role="alert"></p>
         </form>
         <div class="filters-wrap">
-          <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
-            <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
-          </button>
           <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="${patchSlug}" data-default-state="${state}">
             ${filterChips}
           </div>
@@ -2794,9 +2779,6 @@ function generateGardenCenterPage({ city, state, code }) {
           <p id="zipError" hidden class="zip-error-msg" role="alert"></p>
         </form>
         <div class="filters-wrap">
-          <button type="button" class="filters-toggle" id="filtersToggle" aria-haspopup="true" aria-expanded="false" aria-controls="filters">
-            <span class="filters-toggle-icon" aria-hidden="true">&#9776;</span> Filters
-          </button>
           <div class="filters" id="filters" role="group" aria-label="Filter by type" data-default-filter="Garden Center" data-default-state="${state}">
             ${filterChips}
           </div>
