@@ -557,7 +557,7 @@
     var crumbText = h2 ? h2.textContent : null;
 
     var nav = document.createElement('nav');
-    nav.className = 'breadcrumb breadcrumb--hero';
+    nav.className = 'breadcrumb';
     nav.setAttribute('aria-label', 'Breadcrumb');
 
     var inner = '<a href="/">Home</a>' +
@@ -575,9 +575,9 @@
 
     nav.innerHTML = inner;
 
-    var titlebar = document.querySelector('.find-titlebar .container');
+    var topbar = document.querySelector('.find-topbar');
     var hero = document.querySelector('.hero .container');
-    if (titlebar) titlebar.appendChild(nav);
+    if (topbar) topbar.insertAdjacentElement('beforebegin', nav);
     else if (hero) hero.insertAdjacentElement('afterend', nav);
     else {
       var controls = document.getElementById('find');

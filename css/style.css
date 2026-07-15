@@ -340,49 +340,43 @@ h3 {
   --find-titlebar-h: auto;
 }
 
-.find-page-full {
-  display: flex;
-  flex-direction: column;
-  min-height: calc(100vh - 72px);
-}
-
-.find-titlebar {
-  flex: none;
-  background: linear-gradient(160deg, var(--green) 0%, var(--green-dark) 100%);
-  color: var(--white);
-  padding: 14px 0;
-}
-
-.find-titlebar .container {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.find-titlebar h1 {
-  color: var(--white);
-  font-size: clamp(1.25rem, 2.6vw, 1.6rem);
-  margin: 0;
-  line-height: 1.25;
-}
-
-.find-titlebar p {
-  margin: 2px 0 0;
-  font-size: 0.92rem;
-  opacity: 0.92;
-  max-width: 760px;
-}
-
-.find-titlebar .breadcrumb {
-  margin-top: 4px;
-}
-
 .find-stage {
   position: relative;
-  flex: 1 1 auto;
+  height: calc(100vh - 72px);
   min-height: 480px;
   background: var(--border);
   overflow: hidden;
+}
+
+/* The page H1/description still exist for SEO but aren't shown — real
+   Google Maps has no page-title chrome at all, the map is the whole screen. */
+.find-stage > h1,
+.find-stage > p.find-page-desc {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.find-stage > .breadcrumb {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 1050;
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18), 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+.find-stage > .breadcrumb + .find-topbar {
+  top: 60px;
 }
 
 .find-stage #map {
@@ -1827,15 +1821,6 @@ select:focus-visible {
 
 .breadcrumb a {
   color: var(--green-dark);
-}
-
-.breadcrumb--hero {
-  color: rgba(255, 255, 255, 0.85);
-  margin: 10px 0 0;
-}
-
-.breadcrumb--hero a {
-  color: #fff;
 }
 
 .blog-post-header {

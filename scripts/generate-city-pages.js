@@ -1280,14 +1280,9 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel, imageIn
   </header>
 
   <main class="find-page-full">
-    <section class="find-titlebar">
-      <div class="container">
-        <h1>${h1}</h1>
-        <p>Discover ${fruitLabel.toLowerCase()} orchards near ${city}, ${state}. Search by ZIP code to find the closest orchard, check ratings, and read real visitor reviews before you go.</p>
-      </div>
-    </section>
-
     <div class="find-stage">
+      <h1 class="sr-only">${h1}</h1>
+      <p class="find-page-desc sr-only">Discover ${fruitLabel.toLowerCase()} orchards near ${city}, ${state}. Search by ZIP code to find the closest orchard, check ratings, and read real visitor reviews before you go.</p>
       <div id="map" role="application" aria-label="Map of ${fruitLabel.toLowerCase()} orchards near ${city}, ${state}"></div>
 
       <div class="find-topbar">
@@ -1912,14 +1907,9 @@ ${otherStatePages}
   </header>
 
   <main class="find-page-full">
-    <section class="find-titlebar">
-      <div class="container">
-        <h1>${h1}</h1>
-        <p>Discover ${config.label.toLowerCase()} across ${state}. Search by ZIP code to find the closest one, check ratings, and read real visitor reviews before you go.</p>
-      </div>
-    </section>
-
     <div class="find-stage">
+      <h1 class="sr-only">${h1}</h1>
+      <p class="find-page-desc sr-only">Discover ${config.label.toLowerCase()} across ${state}. Search by ZIP code to find the closest one, check ratings, and read real visitor reviews before you go.</p>
       <div id="map" role="application" aria-label="Map of ${config.label.toLowerCase()} in ${state}"></div>
 
       <div class="find-topbar">
@@ -2165,14 +2155,9 @@ function generateHayridesPage({ city, state, code, imageIndex }) {
   </header>
 
   <main class="find-page-full">
-    <section class="find-titlebar">
-      <div class="container">
-        <h1>${h1}</h1>
-        <p>Discover farms offering hayrides near ${city}, ${state}. Search by ZIP code to find the closest one, check ratings, and read real visitor reviews before you go.</p>
-      </div>
-    </section>
-
     <div class="find-stage">
+      <h1 class="sr-only">${h1}</h1>
+      <p class="find-page-desc sr-only">Discover farms offering hayrides near ${city}, ${state}. Search by ZIP code to find the closest one, check ratings, and read real visitor reviews before you go.</p>
       <div id="map" role="application" aria-label="Map of hayride providers near ${city}, ${state}"></div>
 
       <div class="find-topbar">
@@ -2405,14 +2390,9 @@ function generateUPickFarmsPage({ city, state, code, imageIndex }) {
   </header>
 
   <main class="find-page-full">
-    <section class="find-titlebar">
-      <div class="container">
-        <h1>${h1}</h1>
-        <p>Discover u-pick farms and orchards near ${city}, ${state}. Search by ZIP code to find the closest one, check ratings, and read real visitor reviews before you go.</p>
-      </div>
-    </section>
-
     <div class="find-stage">
+      <h1 class="sr-only">${h1}</h1>
+      <p class="find-page-desc sr-only">Discover u-pick farms and orchards near ${city}, ${state}. Search by ZIP code to find the closest one, check ratings, and read real visitor reviews before you go.</p>
       <div id="map" role="application" aria-label="Map of u-pick farms near ${city}, ${state}"></div>
 
       <div class="find-topbar">
@@ -2583,14 +2563,9 @@ function generatePatchPage({ city, state, code, patchSlug, patchLabel, imageSrc,
   </header>
 
   <main class="find-page-full">
-    <section class="find-titlebar">
-      <div class="container">
-        <h1>${h1}</h1>
-        <p>Discover a ${patchLabel.toLowerCase()} near ${city}, ${state}. Search by ZIP code to find the closest farm, check ratings, and read real visitor reviews before you go.</p>
-      </div>
-    </section>
-
     <div class="find-stage">
+      <h1 class="sr-only">${h1}</h1>
+      <p class="find-page-desc sr-only">Discover a ${patchLabel.toLowerCase()} near ${city}, ${state}. Search by ZIP code to find the closest farm, check ratings, and read real visitor reviews before you go.</p>
       <div id="map" role="application" aria-label="Map of ${patchLabel.toLowerCase()}s near ${city}, ${state}"></div>
 
       <div class="find-topbar">
@@ -2762,14 +2737,9 @@ function generateGardenCenterPage({ city, state, code }) {
   </header>
 
   <main class="find-page-full">
-    <section class="find-titlebar">
-      <div class="container">
-        <h1>${h1}</h1>
-        <p>Discover garden centers near ${city}, ${state}. Search by ZIP code to find the closest nursery, check ratings, and read real visitor reviews before you go.</p>
-      </div>
-    </section>
-
     <div class="find-stage">
+      <h1 class="sr-only">${h1}</h1>
+      <p class="find-page-desc sr-only">Discover garden centers near ${city}, ${state}. Search by ZIP code to find the closest nursery, check ratings, and read real visitor reviews before you go.</p>
       <div id="map" role="application" aria-label="Map of garden centers near ${city}, ${state}"></div>
 
       <div class="find-topbar">
