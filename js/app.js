@@ -219,6 +219,10 @@
     markersLayer = L.layerGroup();
     map.addLayer(markersLayer);
 
+    map.on('popupclose', function () {
+      showCardsPlaceholder();
+    });
+
     if (window.ResizeObserver) {
       new ResizeObserver(function () { map.invalidateSize(); }).observe(document.getElementById('map'));
     }
