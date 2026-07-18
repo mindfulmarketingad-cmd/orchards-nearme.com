@@ -515,7 +515,6 @@ function generateVarietyPage(fruit, imageIndex) {
     "@type": "Article",
     "headline": title,
     "description": desc,
-    "image": imageUrl,
     "url": canonical,
     "datePublished": PUB_DATE,
     "dateModified": PUB_DATE,
@@ -563,7 +562,6 @@ function generateVarietyPage(fruit, imageIndex) {
   <meta property="og:description" content="${desc.replace(/"/g, '&quot;')}" />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="${canonical}" />
-  <meta property="og:image" content="${imageUrl}" />
   <meta property="article:published_time" content="${PUB_DATE}" />
 
   <link rel="icon" href="/logo.svg" type="image/svg+xml" />
@@ -614,7 +612,6 @@ ${faqJsonLd}
         <header class="blog-post-header">
           <h1>${title}</h1>
           <p class="blog-post-meta"><time datetime="${PUB_DATE}">July 1, 2025</time> &middot; Orchards Near Me</p>
-          <img class="blog-post-featured-image" src="/images/blog/${image.file}" alt="${image.alt}" loading="lazy" width="1200" height="675" />
         </header>
 
         <div class="blog-post-body">

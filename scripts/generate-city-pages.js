@@ -1253,7 +1253,7 @@ function generatePage({ city, state, code, fruit, fruitSlug, fruitLabel, imageIn
   const image = imagePool ? imagePool[imageIndex % imagePool.length] : null;
   const imageDir = FRUIT_IMAGE_DIR[fruitSlug] || 'find';
   const imageAlt = image ? `${image.alt} near ${city}, ${state}` : '';
-  const ogImageTag = image ? `\n  <meta property="og:image" content="https://orchards-nearme.com/images/${imageDir}/${image.file}" />` : '';
+  const ogImageTag = '';
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -1879,7 +1879,7 @@ ${otherStatePages}
   const imagePool = categoryValue === 'Garden Center' ? [GARDEN_CENTER_IMAGE] : (categoryValue === 'Orchard' ? ORCHARD_STATE_IMAGES : U_PICK_FARM_IMAGES);
   const image = imagePool[imageIndex % imagePool.length];
   const imageAlt = `${image.alt} in ${state}`;
-  const ogImageTag = `\n  <meta property="og:image" content="https://orchards-nearme.com/images/${image.dir}/${image.file}" />`;
+  const ogImageTag = '';
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -2127,7 +2127,7 @@ function generateHayridesPage({ city, state, code, imageIndex }) {
   ];
   const image = images[imageIndex % images.length];
   const imageAlt = `${image.alt} near ${city}, ${state}`;
-  const ogImageTag = `\n  <meta property="og:image" content="https://orchards-nearme.com/images/find/${image.file}" />`;
+  const ogImageTag = '';
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -2362,7 +2362,7 @@ function generateUPickFarmsPage({ city, state, code, imageIndex }) {
 
   const image = U_PICK_FARM_IMAGES[imageIndex % U_PICK_FARM_IMAGES.length];
   const imageAlt = `${image.alt} near ${city}, ${state}`;
-  const ogImageTag = `\n  <meta property="og:image" content="https://orchards-nearme.com/images/${image.dir}/${image.file}" />`;
+  const ogImageTag = '';
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -2558,7 +2558,6 @@ function generatePatchPage({ city, state, code, patchSlug, patchLabel, imageSrc,
   <meta property="og:description" content="Find a ${patchLabel.toLowerCase()} near ${city}, ${state} on an interactive map." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="${canonicalUrl}" />
-  <meta property="og:image" content="https://orchards-nearme.com${imageSrc}" />
 
   <link rel="icon" href="/logo.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -2709,7 +2708,7 @@ function generateGardenCenterPage({ city, state, code }) {
 
   const image = GARDEN_CENTER_IMAGE;
   const imageAlt = `${image.alt} near ${city}, ${state}`;
-  const ogImageTag = `\n  <meta property="og:image" content="https://orchards-nearme.com/images/${image.dir}/${image.file}" />`;
+  const ogImageTag = '';
 
   return `<!DOCTYPE html>
 <html lang="en">
