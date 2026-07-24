@@ -2722,3 +2722,39 @@ select:focus-visible {
     width: 100%;
   }
 }
+
+/* ---------- 404 page ---------- */
+.not-found-page {
+  text-align: center;
+  padding: 48px 0 64px;
+}
+
+.not-found-eyebrow {
+  font-family: "Baloo 2", sans-serif;
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--green-light);
+  line-height: 1;
+  margin: 0;
+}
+
+.not-found-page .lead {
+  max-width: 560px;
+  margin: 8px auto 0;
+}
+
+.not-found-page .card-grid {
+  text-align: left;
+  margin-top: 36px;
+}
+
+.not-found-page .info-card .btn {
+  display: inline-block;
+  text-decoration: none;
+  margin-top: 6px;
+}
+
+.not-found-help {
+  margin-top: 32px;
+  color: var(--muted);
+}
